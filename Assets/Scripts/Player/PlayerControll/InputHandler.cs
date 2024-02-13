@@ -11,9 +11,15 @@ public class InputHandler : MonoBehaviour
     public float mouseY;
 
     private PlayerControls inputActions;
+    CameraHandler cameraHandler;
 
     private Vector2 movementInput;
     private Vector2 cameraInput;
+
+    void Awake()
+    {
+        Init();
+    }
 
     public void OnEnable()
     {
@@ -30,6 +36,22 @@ public class InputHandler : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Disable();
+    }
+
+    private void Init()
+    {
+        cameraHandler = CameraHandler.instance;
+    }
+
+    private void FixedUpdate()
+    {
+        float delta = Time.fixedDeltaTime;
+
+        if (cameraHandler != null)
+        {
+            cameraHandler.FollowTarget(delta);
+            cameraHandler.HandleCameraRotation(delta, mouseX, mouseY);
+        }
     }
 
     public void TickInput(float delta)

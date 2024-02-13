@@ -47,12 +47,15 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;
         moveDirection.Normalize();
+        moveDirection.y = 0;
 
         float speed = movementSpeed;
         moveDirection *= speed;
 
         Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         rigidbody.velocity = projectVelocity;
+
+        animHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
 
         if (animHandler.canRotate)
         {
