@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 317048128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ Transform:
   m_GameObject: {fileID: 317048127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -338,7 +338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &790899757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -528,6 +528,10 @@ PrefabInstance:
     - target: {fileID: 4931088058171678787, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_Name
       value: GameWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931088058171678787, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4931088058171678788, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -584,7 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410110849}
   - component: {fileID: 1410110850}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,10 +627,13 @@ MonoBehaviour:
   camTransform: {fileID: 963194228}
   camPivotTransform: {fileID: 317048128}
   lookSpeed: 0.1
-  followSpeed: 0.1
+  followSpeed: 0.15
   pivotSpeed: 0.03
   minPivot: -35
   maxPivot: 35
+  cameraSphereRadius: 0.2
+  cameraCollisionOff: 0.2
+  minCollisionOff: 0.2
 --- !u!1 &1949015461
 GameObject:
   m_ObjectHideFlags: 0
