@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     [HideInInspector]
     public Transform playerTransform;
+    [HideInInspector]
+    public AnimatorHandler animHandler;
 
     public new Rigidbody rigidbody;
     public GameObject normalCamera;
@@ -29,8 +32,10 @@ public class PlayerLocomotion : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputHandler>();
+        animHandler = GetComponentInChildren<AnimatorHandler>();
         cameraObject = Camera.main.transform;
         playerTransform = transform;
+        animHandler.Init();
     }
 
     public void Update()
@@ -48,6 +53,11 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         rigidbody.velocity = projectVelocity;
+
+        if (animHandler.canRotate)
+        {
+            HandleRotation(delta);
+        }
     }
 
     #region Movement
