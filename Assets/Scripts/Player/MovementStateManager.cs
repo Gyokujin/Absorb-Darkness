@@ -70,6 +70,9 @@ public class MovementStateManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (!Application.isPlaying)
+            return;
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(spherePos, controller.radius - 0.05f);
     }
