@@ -47,8 +47,7 @@ public class MovementStateManager : MonoBehaviour
         verInput = Input.GetAxis("Vertical");
 
         direction = transform.forward * verInput + transform.right * horInput;
-
-        controller.Move(direction * moveSpeed * Time.deltaTime);
+        controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
     }
 
     bool IsGrounded()
