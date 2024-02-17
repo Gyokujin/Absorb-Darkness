@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class MovementStateManager : MonoBehaviour
 {
+    public enum PlayerState
+    {
+        Idle,
+        Walk,
+        Crouch,
+        Run
+    }
+
     [Header("Move")]
     [SerializeField]
     private float moveSpeed = 3;
@@ -17,13 +25,22 @@ public class MovementStateManager : MonoBehaviour
     [SerializeField]
     private LayerMask groundMask;
     private Vector3 spherePos;
-
     [SerializeField]
     private float gravity = -9.81f;
     private Vector3 velocity;
 
+    [Header("State")]
+    public PlayerState playerState;
+    public IdleState Idle = new IdleState();
+    public WalkState Walk = new WalkState();
+    public CrouchState Crouch = new CrouchState();
+    public RunState Run = new RunState();
+
     [Header("Component")]
+    [HideInInspector]
+    public Animator animator;
     private CharacterController controller;
+    private MovementBaseState currentState;
 
     void Start()
     {
@@ -34,11 +51,24 @@ public class MovementStateManager : MonoBehaviour
     {
         GetDirAndMove();
         Gravity();
+        AnimatorControll();
+        currentState.UpdateState(this);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spherePos, controller.radius - 0.05f);
     }
 
     void Init()
     {
+        animator = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+        SwitchState(Idle);
     }
 
     void GetDirAndMove()
@@ -67,12 +97,25 @@ public class MovementStateManager : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void OnDrawGizmos()
+    void AnimatorControll()
     {
-        if (!Application.isPlaying)
-            return;
+        animator.SetFloat("InputHor", horInput);
+        animator.SetFloat("InputVer", verInput);
+    }
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(spherePos, controller.radius - 0.05f);
+    public void SwitchState(MovementBaseState state)
+    {
+        if (state == Idle)
+            playerState = PlayerState.Idle;
+        else if (state == Walk)
+            playerState = PlayerState.Walk;
+        else if (state == Crouch)
+            playerState = PlayerState.Crouch;
+        else if (state == Run)
+            playerState = PlayerState.Run;
+
+        Debug.Log($"current State = {playerState}");
+        currentState = state;
+        currentState.EnterState(this);
     }
 }
