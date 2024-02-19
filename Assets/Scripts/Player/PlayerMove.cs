@@ -57,6 +57,7 @@ public class PlayerMove : MonoBehaviour
         moveDirection = cameraPos.forward * inputHandler.vertical;
         moveDirection += cameraPos.right * inputHandler.horizontal;
         moveDirection.Normalize();
+        moveDirection.y = 0;
 
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = moveSpeed;

@@ -16,6 +16,17 @@ public class InputHandler : MonoBehaviour
 
     [Header("Component")]
     private PlayerControls inputActions;
+    private CameraHandler cameraHandler;
+
+    void Awake()
+    {
+        Init();
+    }
+
+    void Init()
+    {
+        cameraHandler = CameraHandler.instance;
+    }
 
     void OnEnable()
     {
@@ -32,6 +43,25 @@ public class InputHandler : MonoBehaviour
     void OnDisable()
     {
         inputActions.Disable();
+    }
+
+    void FixedUpdate()
+    {
+        // float delta = Time.fixedDeltaTime;
+
+        if (cameraHandler != null)
+        {
+            cameraHandler.FollowTarget(Time.fixedDeltaTime);
+            
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (cameraHandler != null)
+        {
+            cameraHandler.HandleCameraRotation(Time.fixedDeltaTime, mouseX, mouseY);
+        }
     }
 
     public void TickInput(float delta)
