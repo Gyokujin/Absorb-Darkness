@@ -45,15 +45,15 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        Move();
-    }
-
-    void Move()
-    {
         float delta = Time.deltaTime;
 
-        // 키 입력에 따른 방향 벡터를 구한다.
         inputHandler.TickInput(delta);
+        HandleMovement(delta);
+    }
+
+    public void HandleMovement(float delta)
+    {
+        // 키 입력에 따른 방향 벡터를 구한다.
         moveDirection = cameraPos.forward * inputHandler.vertical;
         moveDirection += cameraPos.right * inputHandler.horizontal;
         moveDirection.Normalize();

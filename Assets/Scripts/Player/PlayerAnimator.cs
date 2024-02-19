@@ -6,18 +6,11 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator animator;
-
-    [Header("Parameter")]
-    private int vertical;
-    private int horizontal;
-
     public bool canRotate = true;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
-        vertical = Animator.StringToHash("Vertical");
-        horizontal = Animator.StringToHash("Horizontal");
     }
 
     public void AnimatorValue(float moveVer, float moveHor)
@@ -71,8 +64,15 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat(vertical, v, 0.1f, Time.deltaTime);
-        animator.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
+        animator.SetFloat("Vertical", v, 0.1f, Time.deltaTime);
+        animator.SetFloat("Horizontal", h, 0.1f, Time.deltaTime);
+    }
+
+    public void PlayTargetAnimations(string targetAnim, bool isInteracting)
+    {
+        animator.applyRootMotion = isInteracting;
+        animator.SetBool("isInteracting", isInteracting);
+        animator.CrossFade(targetAnim, 0.2f);
     }
 
     public void CanRotate(bool isCan)
