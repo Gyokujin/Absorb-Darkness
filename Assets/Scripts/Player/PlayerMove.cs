@@ -49,6 +49,7 @@ public class PlayerMove : MonoBehaviour
 
         inputHandler.TickInput(delta);
         HandleMovement(delta);
+        HandleRollingAndSprinting(delta);
     }
 
     public void HandleMovement(float delta)
@@ -92,5 +93,29 @@ public class PlayerMove : MonoBehaviour
         Quaternion tr = Quaternion.LookRotation(targetDir);
         Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
         playerTransform.rotation = targetRotation;
+    }
+
+    public void HandleRollingAndSprinting(float delta)
+    {
+        if (playerAnimator.animator.GetBool("isInteracting")) // 현재 플레이어가 행동 중이지 않을 때만 실행
+            return;
+
+        if (inputHandler.rollFlag)
+        {
+            moveDirection = cameraPos.forward * inputHandler.vertical;
+            moveDirection += cameraPos.right * inputHandler.horizontal;
+
+            if (inputHandler.moveAmount > 0) // 이동중에 회피키를 누르면 구르기
+            {
+                playerAnimator.PlayTargetAnimation("Rolling", true);
+                moveDirection.y = 0;
+                Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                playerTransform.rotation = rollRotation;
+            }
+            else // 회피키를 누르지 않으면 백스텝
+            {
+                playerAnimator.PlayTargetAnimation("Backstep", true);
+            }
+        }
     }
 }

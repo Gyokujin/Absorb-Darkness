@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9075166867664938643}
   - component: {fileID: 5519299445957328094}
   m_Layer: 0
-  m_Name: PlayerObj
+  m_Name: Player Obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 2709587594954445939}
   - component: {fileID: 2914456257228887296}
   - component: {fileID: 3709347772672571701}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bab677bd3f4be4b91a0626519fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7.25
   rotationSpeed: 10
   playerCamera: {fileID: 0}
 --- !u!1 &7526301503087316451

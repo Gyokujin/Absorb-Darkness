@@ -10,6 +10,9 @@ public class InputHandler : MonoBehaviour
     public float mouseX;
     public float mouseY;
 
+    public bool inputAble;
+    public bool rollFlag;
+
     [Header("Input")]
     private Vector2 movementInput;
     private Vector2 cameraInput;
@@ -47,8 +50,6 @@ public class InputHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        // float delta = Time.fixedDeltaTime;
-
         if (cameraHandler != null)
         {
             cameraHandler.FollowTarget(Time.fixedDeltaTime);
@@ -67,6 +68,7 @@ public class InputHandler : MonoBehaviour
     public void TickInput(float delta)
     {
         MoveInput(delta);
+        HandleRollInput(delta);
     }
 
     void MoveInput(float delta)
@@ -76,5 +78,15 @@ public class InputHandler : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
+    }
+
+    void HandleRollInput(float delta)
+    {
+        inputAble = inputActions.PlayerActions.Roll.triggered;
+
+        if (inputAble)
+        {
+            rollFlag = true;
+        }
     }
 }

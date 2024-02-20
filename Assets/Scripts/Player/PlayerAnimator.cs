@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
-    private Animator animator;
+    [HideInInspector]
+    public Animator animator;
     public bool canRotate = true;
 
     public void Init()
@@ -68,7 +69,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("Horizontal", h, 0.1f, Time.deltaTime);
     }
 
-    public void PlayTargetAnimations(string targetAnim, bool isInteracting)
+    public void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {
         animator.applyRootMotion = isInteracting;
         animator.SetBool("isInteracting", isInteracting);
