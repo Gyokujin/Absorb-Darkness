@@ -13,7 +13,8 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Physics")]
     private Transform playerTransform;
-    private Rigidbody rigidbody; // new 선언 요구
+    [HideInInspector]
+    public Rigidbody rigidbody; // new 선언 요구
     private Vector3 moveDirection;
     private Vector3 normalVec;
     private Vector3 targetPosition;

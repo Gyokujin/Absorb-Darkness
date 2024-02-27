@@ -7,11 +7,17 @@ public class PlayerAnimator : MonoBehaviour
 {
     [HideInInspector]
     public Animator animator;
+    [HideInInspector]
+    public InputHandler inputHandler;
+    [HideInInspector]
+    public PlayerMove playerMove;
     public bool canRotate = true;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
+        inputHandler = GetComponent<InputHandler>();
+        playerMove = GetComponent<PlayerMove>();
     }
 
     public void AnimatorValue(float moveVer, float moveHor)
@@ -79,5 +85,18 @@ public class PlayerAnimator : MonoBehaviour
     public void CanRotate(bool isCan)
     {
         canRotate = isCan;
+    }
+
+    void OnAnimatorMove()
+    {
+        if (!inputHandler.isInteracting)
+            return;
+
+        float delta = Time.deltaTime;
+        playerMove.rigidbody.drag = 0;
+        Vector3 deltaPosition = animator.deltaPosition;
+        deltaPosition.y = 0;
+        Vector3 velocity = deltaPosition / delta;
+        playerMove.rigidbody.velocity = velocity;
     }
 }

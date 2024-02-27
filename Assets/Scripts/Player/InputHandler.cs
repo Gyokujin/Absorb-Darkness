@@ -12,6 +12,7 @@ public class InputHandler : MonoBehaviour
 
     public bool inputAble;
     public bool rollFlag;
+    public bool isInteracting;
 
     [Header("Input")]
     private Vector2 movementInput;
