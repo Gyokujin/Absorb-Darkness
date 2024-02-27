@@ -6,7 +6,7 @@ Avatar:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: castle_guard_01@Sprint (1)Avatar
+  m_Name: Avatar_Player
   m_AvatarSize: 12016
   m_Avatar:
     serializedVersion: 3

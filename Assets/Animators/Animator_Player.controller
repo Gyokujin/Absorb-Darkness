@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8353149890206225336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853c6fac3108654409fefd32d5124b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1102 &-7001877937623033770
 AnimatorState:
   serializedVersion: 6
@@ -26,18 +38,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &-6729974688081819868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853c6fac3108654409fefd32d5124b3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!206 &-2581432326651532015
 BlendTree:
   m_ObjectHideFlags: 1
@@ -73,8 +73,8 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 69cb7d9b6be9f1245829e9029d86eda8, type: 2}
     m_Threshold: 1
-    m_Position: {x: -1, y: 0}
-    m_TimeScale: 1
+    m_Position: {x: 0, y: 2}
+    m_TimeScale: 1.1
     m_CycleOffset: 0
     m_DirectBlendParameter: Vertical
     m_Mirror: 0
@@ -155,12 +155,12 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rolling
-  m_Speed: 1.6
+  m_Speed: 1.85
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6589197886979378206}
   m_StateMachineBehaviours:
-  - {fileID: -6729974688081819868}
+  - {fileID: -8353149890206225336}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -175,7 +175,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &3595117516396837293
+--- !u!114 &2112584673001798609
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,12 +217,12 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Backstep
-  m_Speed: 2
+  m_Speed: 2.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1574789723895752813}
   m_StateMachineBehaviours:
-  - {fileID: 3595117516396837293}
+  - {fileID: 2112584673001798609}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

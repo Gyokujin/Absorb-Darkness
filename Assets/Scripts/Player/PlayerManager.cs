@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    private InputHandler inputHandler;
+    private PlayerInput playerInput;
     private Animator animator;
 
     void Start()
     {
-        inputHandler = GetComponent<InputHandler>();
+        Init();
+    }
+
+    void Init()
+    {
+        playerInput = GetComponent<PlayerInput>();
         animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-        inputHandler.isInteracting = animator.GetBool("isInteracting");
-        inputHandler.rollFlag = false;
+        playerInput.isInteracting = animator.GetBool("isInteracting");
+        playerInput.rollFlag = false;
+        playerInput.sprintFlag = false;
     }
 }

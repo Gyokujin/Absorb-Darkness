@@ -8,7 +8,7 @@ public class PlayerAnimator : MonoBehaviour
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
-    public InputHandler inputHandler;
+    public PlayerInput playerInput;
     [HideInInspector]
     public PlayerMove playerMove;
     public bool canRotate = true;
@@ -16,11 +16,11 @@ public class PlayerAnimator : MonoBehaviour
     public void Init()
     {
         animator = GetComponent<Animator>();
-        inputHandler = GetComponent<InputHandler>();
-        playerMove = GetComponent<PlayerMove>();
+        playerInput = GetComponentInParent<PlayerInput>();
+        playerMove = GetComponentInParent<PlayerMove>();
     }
 
-    public void AnimatorValue(float moveVer, float moveHor)
+    public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
     {
         // Vertical 파라미터
         float v = 0;
@@ -70,6 +70,12 @@ public class PlayerAnimator : MonoBehaviour
             h = 0;
         }
 
+        if (isSprinting)
+        {
+            v = 2;
+            h = moveHor;
+        }
+
         // 애니메이터 파라미터 입력
         animator.SetFloat("Vertical", v, 0.1f, Time.deltaTime);
         animator.SetFloat("Horizontal", h, 0.1f, Time.deltaTime);
@@ -89,7 +95,7 @@ public class PlayerAnimator : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        if (!inputHandler.isInteracting)
+        if (playerInput.isInteracting == false)
             return;
 
         float delta = Time.deltaTime;

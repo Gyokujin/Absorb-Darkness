@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class InputHandler : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     public float horizontal;
     public float vertical;
@@ -10,8 +11,11 @@ public class InputHandler : MonoBehaviour
     public float mouseX;
     public float mouseY;
 
-    public bool inputAble;
+    public bool b_Input;
+
     public bool rollFlag;
+    public bool sprintFlag;
+    public float rollInputTimer;
     public bool isInteracting;
 
     [Header("Input")]
@@ -20,16 +24,16 @@ public class InputHandler : MonoBehaviour
 
     [Header("Component")]
     private PlayerControls inputActions;
-    private CameraHandler cameraHandler;
+    private PlayerCamera playerCamera;
 
-    void Awake()
+    void Start()
     {
         Init();
     }
 
     void Init()
     {
-        cameraHandler = CameraHandler.instance;
+        playerCamera = PlayerCamera.instance;
     }
 
     void OnEnable()
@@ -51,18 +55,19 @@ public class InputHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (cameraHandler != null)
+        if (playerCamera != null)
         {
-            cameraHandler.FollowTarget(Time.fixedDeltaTime);
+            playerCamera.FollowTarget(Time.fixedDeltaTime);
             
         }
     }
 
     void LateUpdate()
     {
-        if (cameraHandler != null)
+
+        if (playerCamera != null)
         {
-            cameraHandler.HandleCameraRotation(Time.fixedDeltaTime, mouseX, mouseY);
+            playerCamera.HandleCameraRotation(Time.fixedDeltaTime, mouseX, mouseY);
         }
     }
 
@@ -83,11 +88,23 @@ public class InputHandler : MonoBehaviour
 
     void HandleRollInput(float delta)
     {
-        inputAble = inputActions.PlayerActions.Roll.triggered;
+        // b_Input = inputActions.PlayerActions.Roll.triggered;
+        b_Input = inputActions.PlayerActions.Roll.phase == InputActionPhase.Performed;
 
-        if (inputAble)
+        if (b_Input)
         {
-            rollFlag = true;
+            rollInputTimer += delta;
+            sprintFlag = true;
+        }
+        else
+        {
+            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
+            {
+                sprintFlag = false;
+                rollFlag = true;
+            }
+
+            rollInputTimer = 0;
         }
     }
 }

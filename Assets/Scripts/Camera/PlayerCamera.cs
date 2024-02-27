@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraHandler : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
-    public static CameraHandler instance;
+    public static PlayerCamera instance;
 
     [Header("Status")]
     [SerializeField]
