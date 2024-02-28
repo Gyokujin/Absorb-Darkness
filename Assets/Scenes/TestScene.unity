@@ -173,9 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0ec76935b051840999df4453c1bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSpeed: 0.025
+  lookSpeed: 0.017
   followSpeed: 0.1
-  pivotSpeed: 0.0075
+  pivotSpeed: 0.008
   playerTransform: {fileID: 28132056}
   cameraTransform: {fileID: 1307785140}
   cameraPivotTransform: {fileID: 479258338}
@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0183a3fb0ab7d4bae677f2fae3ddb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteracting: 0
+  isSprinting: 0
 --- !u!1 &790899756
 GameObject:
   m_ObjectHideFlags: 0

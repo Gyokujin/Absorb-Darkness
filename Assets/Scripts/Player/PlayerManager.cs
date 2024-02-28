@@ -36,18 +36,20 @@ public class PlayerManager : MonoBehaviour
         playerInput.TickInput(delta);
         playerMove.HandleMovement(delta);
         playerMove.HandleRollingAndSprinting(delta);
-    }
-
-    void FixedUpdate()
-    {
-        float delta = Time.fixedDeltaTime;
 
         if (playerCamera != null)
         {
-            playerCamera.FollowTarget(delta);
-            playerCamera.HandleCameraRotation(delta, playerInput.mouseX, playerInput.mouseY);
+            playerCamera.FollowTarget(Time.fixedDeltaTime);
+            playerCamera.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
         }
     }
+
+    //void FixedUpdate()
+    //{
+    //    float delta = Time.fixedDeltaTime;
+
+
+    //}
 
     void LateUpdate()
     {
