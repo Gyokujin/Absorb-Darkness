@@ -5,16 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerMove : MonoBehaviour
 {
-    [Header("Status")]
+    [Header("Movement Status")]
     [SerializeField]
     private float moveSpeed = 5;
     [SerializeField]
     private float sprintSpeed = 7;
     [SerializeField]
     private float rotationSpeed = 10;
-
-    [HideInInspector]
-    public bool isSprinting;
 
     [Header("Physics")]
     private Transform playerTransform;
@@ -30,6 +27,7 @@ public class PlayerMove : MonoBehaviour
     private GameObject playerCamera;
 
     [Header("Component")]
+    private PlayerManager playerManager;
     private PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
 
@@ -41,22 +39,13 @@ public class PlayerMove : MonoBehaviour
     void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
+        playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
 
         cameraPos = playerCamera.transform;
         playerTransform = transform;
         playerAnimator.Init();
-    }
-
-    void Update()
-    {
-        float delta = Time.deltaTime;
-
-        isSprinting = playerInput.b_Input;
-        playerInput.TickInput(delta);
-        HandleMovement(delta);
-        HandleRollingAndSprinting(delta);
     }
 
     public void HandleMovement(float delta)
@@ -76,7 +65,7 @@ public class PlayerMove : MonoBehaviour
         if (playerInput.sprintFlag) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
         {
             speed = sprintSpeed;
-            isSprinting = true;
+            playerManager.isSprinting = true;
             moveDirection *= speed;
         }
         else
@@ -88,7 +77,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody.velocity = projectedVelocity;
 
         // 애니메이션 실행
-        playerAnimator.AnimatorValue(playerInput.moveAmount, 0, isSprinting);
+        playerAnimator.AnimatorValue(playerInput.moveAmount, 0, playerManager.isSprinting);
 
         // 회전이 가능한 경우에는 이동 방향으로 캐릭터를 회전한다.
         if (playerAnimator.canRotate)

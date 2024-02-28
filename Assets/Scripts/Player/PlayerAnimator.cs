@@ -5,17 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
+    public bool canRotate = true;
+
+    [Header("Component")]
     [HideInInspector]
     public Animator animator;
-    [HideInInspector]
-    public PlayerInput playerInput;
-    [HideInInspector]
-    public PlayerMove playerMove;
-    public bool canRotate = true;
+    private PlayerManager playerManager;
+    private PlayerInput playerInput;
+    private PlayerMove playerMove;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
+        playerManager = GetComponentInParent<PlayerManager>();
         playerInput = GetComponentInParent<PlayerInput>();
         playerMove = GetComponentInParent<PlayerMove>();
     }
@@ -95,7 +97,7 @@ public class PlayerAnimator : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        if (playerInput.isInteracting == false)
+        if (playerManager.isInteracting == false)
             return;
 
         float delta = Time.deltaTime;

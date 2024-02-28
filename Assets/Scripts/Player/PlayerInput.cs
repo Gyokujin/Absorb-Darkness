@@ -5,18 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    [Header("Move")]
     public float horizontal;
     public float vertical;
     public float moveAmount;
     public float mouseX;
     public float mouseY;
 
+    [Header("Action")]
     public bool b_Input;
-
     public bool rollFlag;
     public bool sprintFlag;
     public float rollInputTimer;
-    public bool isInteracting;
 
     [Header("Input")]
     private Vector2 movementInput;
@@ -24,17 +24,6 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Component")]
     private PlayerControls inputActions;
-    private PlayerCamera playerCamera;
-
-    void Start()
-    {
-        Init();
-    }
-
-    void Init()
-    {
-        playerCamera = PlayerCamera.instance;
-    }
 
     void OnEnable()
     {
@@ -51,24 +40,6 @@ public class PlayerInput : MonoBehaviour
     void OnDisable()
     {
         inputActions.Disable();
-    }
-
-    void FixedUpdate()
-    {
-        if (playerCamera != null)
-        {
-            playerCamera.FollowTarget(Time.fixedDeltaTime);
-            
-        }
-    }
-
-    void LateUpdate()
-    {
-
-        if (playerCamera != null)
-        {
-            playerCamera.HandleCameraRotation(Time.fixedDeltaTime, mouseX, mouseY);
-        }
     }
 
     public void TickInput(float delta)
