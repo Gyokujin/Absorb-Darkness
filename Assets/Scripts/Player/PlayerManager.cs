@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         float delta = Time.deltaTime;
+        float fixedDelta = Time.fixedDeltaTime;
 
         isInteracting = animator.GetBool("isInteracting");
         playerInput.TickInput(delta);
@@ -39,17 +40,10 @@ public class PlayerManager : MonoBehaviour
 
         if (playerCamera != null)
         {
-            playerCamera.FollowTarget(Time.fixedDeltaTime);
-            playerCamera.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
+            playerCamera.FollowTarget(fixedDelta);
+            playerCamera.HandleCameraRotation(fixedDelta, playerInput.mouseX, playerInput.mouseY);
         }
     }
-
-    //void FixedUpdate()
-    //{
-    //    float delta = Time.fixedDeltaTime;
-
-
-    //}
 
     void LateUpdate()
     {
