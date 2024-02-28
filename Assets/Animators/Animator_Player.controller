@@ -74,7 +74,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 69cb7d9b6be9f1245829e9029d86eda8, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 2}
-    m_TimeScale: 1.1
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Vertical
     m_Mirror: 0
@@ -155,7 +155,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rolling
-  m_Speed: 1.4
+  m_Speed: 1.575
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6589197886979378206}

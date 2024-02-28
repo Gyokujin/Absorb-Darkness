@@ -70,7 +70,7 @@ public class PlayerAnimator : MonoBehaviour
             h = 0;
         }
 
-        if (isSprinting)
+        if (isSprinting) // 제자리에서 달리기 방지
         {
             v = 2;
             h = moveHor;
