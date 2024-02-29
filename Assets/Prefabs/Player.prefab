@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 1
+  animator: {fileID: 0}
 --- !u!1 &6366478102795742700
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +82,7 @@ GameObject:
   - component: {fileID: 2838161875984726342}
   - component: {fileID: 7728398987219097447}
   - component: {fileID: 2709587594954445939}
+  - component: {fileID: 8617564737508553580}
   - component: {fileID: 2914456257228887296}
   - component: {fileID: 3709347772672571701}
   m_Layer: 10
@@ -126,9 +128,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.32
-  m_Height: 2.65
+  m_Height: 2.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.27, z: 0.02}
+  m_Center: {x: 0, y: 1.44, z: 0.02}
 --- !u!54 &2709587594954445939
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,6 +158,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8617564737508553580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366478102795742700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0183a3fb0ab7d4bae677f2fae3ddb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteracting: 0
+  isSprinting: 0
 --- !u!114 &2914456257228887296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +189,10 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_Input: 0
+  rollFlag: 0
+  sprintFlag: 0
+  rollInputTimer: 0
 --- !u!114 &3709347772672571701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7.25
+  sprintSpeed: 7
   rotationSpeed: 10
+  rigidbody: {fileID: 0}
   playerCamera: {fileID: 0}
 --- !u!1 &7526301503087316451
 GameObject:

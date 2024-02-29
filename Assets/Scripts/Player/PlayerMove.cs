@@ -12,12 +12,24 @@ public class PlayerMove : MonoBehaviour
     private float sprintSpeed = 7;
     [SerializeField]
     private float rotationSpeed = 10;
+    [SerializeField]
+    private float fallingSpeed = 45;
+
+    [Header("Ground & Air Detection States")]
+    [SerializeField]
+    private float groundDetectionRayStart = 0.5f;
+    [SerializeField]
+    private float distanceBeginFallMin = 1f;
+    [SerializeField]
+    private float groundDirRayDistance = 0.2f;
+    private LayerMask ignoreGroundCheck;
+    public float inAirTimer;
 
     [Header("Physics")]
     private Transform playerTransform;
     [HideInInspector]
     public Rigidbody rigidbody; // new 선언 요구
-    private Vector3 moveDirection;
+    public Vector3 moveDirection;
     private Vector3 normalVec;
     private Vector3 targetPosition;
 
@@ -46,11 +58,13 @@ public class PlayerMove : MonoBehaviour
         cameraPos = playerCamera.transform;
         playerTransform = transform;
         playerAnimator.Init();
+        playerManager.isGrounded = true;
+        ignoreGroundCheck = ~(1 << 8 | 1 << 11);
     }
 
     public void HandleMovement(float delta)
     {
-        if (playerInput.rollFlag)
+        if (playerInput.rollFlag || playerManager.isInteracting)
             return;
 
         // 키 입력에 따른 방향 벡터를 구한다.
@@ -125,6 +139,88 @@ public class PlayerMove : MonoBehaviour
             else // 회피키를 누르지 않으면 백스텝
             {
                 playerAnimator.PlayTargetAnimation("Backstep", true);
+            }
+        }
+    }
+
+    public void HandleFalling(float delta, Vector3 moveDirection)
+    {
+        playerManager.isGrounded = false;
+        RaycastHit hit;
+        Vector3 origin = playerTransform.position;
+        origin.y += groundDetectionRayStart;
+
+        if (Physics.Raycast(origin, playerTransform.forward, out hit, 0.4f))
+        {
+            moveDirection = Vector3.zero;
+        }
+
+        if (playerManager.isInAir)
+        {
+            rigidbody.AddForce(Vector3.down * fallingSpeed);
+            rigidbody.AddForce(moveDirection * fallingSpeed / 6f);
+        }
+
+        Vector3 dir = moveDirection;
+        dir.Normalize();
+        origin = origin + dir * groundDirRayDistance;
+        targetPosition = playerTransform.position;
+        
+        Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
+        if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
+        {
+            normalVec = hit.normal;
+            Vector3 transform = hit.point;
+            playerManager.isGrounded = true;
+            targetPosition.y = transform.y;
+
+            if (playerManager.isInAir)
+            {
+                if (inAirTimer > 0.5f)
+                {
+                    Debug.Log($"낙하시간 {inAirTimer}");
+                    playerAnimator.PlayTargetAnimation("Land", true);
+                    inAirTimer = 0;
+                }
+                else
+                {
+                    playerAnimator.PlayTargetAnimation("Movement", false);
+                    inAirTimer = 0;
+                }
+
+                playerManager.isInAir = false;
+            }
+        }
+        else
+        {
+            if (playerManager.isGrounded)
+            {
+                playerManager.isGrounded = false;
+            }
+
+            if (!playerManager.isInAir)
+            {
+                if (!playerManager.isInteracting)
+                {
+                    playerAnimator.PlayTargetAnimation("Falling", true);
+                }
+
+                Vector3 velocity = rigidbody.velocity;
+                velocity.Normalize();
+                rigidbody.velocity = velocity * (moveSpeed / 2);
+                playerManager.isInAir = true;
+            }
+        }
+
+        if (playerManager.isGrounded)
+        {
+            if (playerManager.isInteracting || playerInput.moveAmount > 0)
+            {
+                playerTransform.position = Vector3.Lerp(playerTransform.position, targetPosition, Time.deltaTime);
+            }
+            else
+            {
+                playerTransform.position = targetPosition;
             }
         }
     }

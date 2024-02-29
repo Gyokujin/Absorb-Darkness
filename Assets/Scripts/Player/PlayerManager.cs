@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
+    public bool isInAir;
+    public bool isGrounded;
 
     [Header("Component")]
     private PlayerInput playerInput;
@@ -37,6 +39,7 @@ public class PlayerManager : MonoBehaviour
         playerInput.TickInput(delta);
         playerMove.HandleMovement(delta);
         playerMove.HandleRollingAndSprinting(delta);
+        playerMove.HandleFalling(delta, playerMove.moveDirection);
 
         if (playerCamera != null)
         {
@@ -50,5 +53,10 @@ public class PlayerManager : MonoBehaviour
         playerInput.rollFlag = false;
         playerInput.sprintFlag = false;
         isSprinting = playerInput.b_Input;
+
+        if (isInAir)
+        {
+            playerMove.inAirTimer += Time.deltaTime;
+        }
     }
 }
