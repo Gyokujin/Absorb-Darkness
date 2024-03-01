@@ -359,6 +359,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 619683573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &861462417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861462418}
+  m_Layer: 0
+  m_Name: Left Hand Override
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &861462418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861462417}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.007908319, y: 0.9816087, z: -0.041707955, w: -0.18612456}
+  m_LocalPosition: {x: 0.435, y: 0.003, z: 2.033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4648728234679692691}
+  m_LocalEulerAnglesHint: {x: 4.866, y: 201.473, z: 0}
 --- !u!1001 &1173933613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,6 +451,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
+--- !u!1 &1184950206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5410894530778408287, guid: b448eb40df46926429e39f76897876cb, type: 3}
+  m_PrefabInstance: {fileID: 4648728234679692687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1184950207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184950206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f440f3cb43136314f81a5f4fddfddcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1307785137
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +665,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1881113125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6366478102795742700, guid: b448eb40df46926429e39f76897876cb, type: 3}
+  m_PrefabInstance: {fileID: 4648728234679692687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1881113126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881113125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddd1076f180c3c4cb2e1e9ea9d1c8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightWeapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
+  leftWeapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
 --- !u!1 &1949015461
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,9 +989,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8437209197855924395, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 861462418}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6366478102795742700, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1881113126}
+    - targetCorrespondingSourceObject: {fileID: 5410894530778408287, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1184950207}
+    - targetCorrespondingSourceObject: {fileID: 8919332345277425589, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4648728234679692693}
+    - targetCorrespondingSourceObject: {fileID: 7526301503087316451, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4648728234679692690}
   m_SourcePrefab: {fileID: 100100000, guid: b448eb40df46926429e39f76897876cb, type: 3}
+--- !u!4 &4648728234679692688 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1026406260362803034, guid: b448eb40df46926429e39f76897876cb, type: 3}
+  m_PrefabInstance: {fileID: 4648728234679692687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4648728234679692689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7526301503087316451, guid: b448eb40df46926429e39f76897876cb, type: 3}
+  m_PrefabInstance: {fileID: 4648728234679692687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4648728234679692690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648728234679692689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 4648728234679692688}
+  isLeftHandSlot: 0
+  isRightHandSlot: 1
+  currentWeaponModel: {fileID: 0}
+--- !u!4 &4648728234679692691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8437209197855924395, guid: b448eb40df46926429e39f76897876cb, type: 3}
+  m_PrefabInstance: {fileID: 4648728234679692687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4648728234679692692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8919332345277425589, guid: b448eb40df46926429e39f76897876cb, type: 3}
+  m_PrefabInstance: {fileID: 4648728234679692687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4648728234679692693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648728234679692692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 861462418}
+  isLeftHandSlot: 1
+  isRightHandSlot: 0
+  currentWeaponModel: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
