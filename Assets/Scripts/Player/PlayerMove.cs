@@ -178,7 +178,6 @@ public class PlayerMove : MonoBehaviour
             {
                 if (inAirTimer > 0.5f)
                 {
-                    Debug.Log($"³«ÇÏ½Ã°£ {inAirTimer}");
                     playerAnimator.PlayTargetAnimation("Land", true);
                     inAirTimer = 0;
                 }
