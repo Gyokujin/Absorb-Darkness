@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4160408060332390981}
   - component: {fileID: 9075166867664938643}
   - component: {fileID: 5519299445957328094}
+  - component: {fileID: 8798160039837250154}
   m_Layer: 0
   m_Name: Player Obj
   m_TagString: Untagged
@@ -71,6 +72,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRotate: 1
   animator: {fileID: 0}
+--- !u!114 &8798160039837250154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410894530778408287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f440f3cb43136314f81a5f4fddfddcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6366478102795742700
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +98,7 @@ GameObject:
   - component: {fileID: 8617564737508553580}
   - component: {fileID: 2914456257228887296}
   - component: {fileID: 3709347772672571701}
+  - component: {fileID: 932760681572707472}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -172,6 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   isSprinting: 0
+  isInAir: 0
+  isGrounded: 0
 --- !u!114 &2914456257228887296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,11 +221,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bab677bd3f4be4b91a0626519fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.25
+  moveSpeed: 5
   sprintSpeed: 7
   rotationSpeed: 10
+  fallingSpeed: 40
+  groundDetectionRayStart: 0.5
+  distanceBeginFallMin: 1
+  groundDirRayDistance: 0.2
+  inAirTimer: 0
   rigidbody: {fileID: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 0}
+--- !u!114 &932760681572707472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366478102795742700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddd1076f180c3c4cb2e1e9ea9d1c8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightWeapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
+  leftWeapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
+--- !u!1 &6437952303365378209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9146915616317885950}
+  m_Layer: 0
+  m_Name: Left Hand Override
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9146915616317885950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437952303365378209}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.007908319, y: 0.9816087, z: -0.041707955, w: -0.18612456}
+  m_LocalPosition: {x: 0.435, y: 0.003, z: 2.033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8437209197855924395}
+  m_LocalEulerAnglesHint: {x: 4.866, y: 201.473, z: 0}
 --- !u!1 &7526301503087316451
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026406260362803034}
+  - component: {fileID: 9062692692766094525}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -241,6 +309,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4160408060332390981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9062692692766094525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7526301503087316451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 1026406260362803034}
+  isLeftHandSlot: 0
+  isRightHandSlot: 1
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &8326553560396908548
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8437209197855924395}
+  - component: {fileID: 674863756967040917}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -354,6 +439,23 @@ Transform:
   m_LocalPosition: {x: -1.1121707, y: 1.9118483, z: -0.020710845}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9146915616317885950}
   m_Father: {fileID: 4160408060332390981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &674863756967040917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919332345277425589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 9146915616317885950}
+  isLeftHandSlot: 1
+  isRightHandSlot: 0
+  currentWeaponModel: {fileID: 0}
