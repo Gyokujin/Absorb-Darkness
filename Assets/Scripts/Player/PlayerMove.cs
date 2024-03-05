@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
 {
     [Header("Movement Status")]
     [SerializeField]
+    private float walkSpeed = 3;
+    [SerializeField]
     private float moveSpeed = 5;
     [SerializeField]
     private float sprintSpeed = 7;
@@ -76,7 +78,7 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = moveSpeed;
         
-        if (playerInput.sprintFlag) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
+        if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
         {
             speed = sprintSpeed;
             playerManager.isSprinting = true;
@@ -84,7 +86,16 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            moveDirection *= speed;
+            if (playerInput.moveAmount < 0.5f)
+            {
+                moveDirection *= walkSpeed;
+                playerManager.isSprinting = false;
+            }
+            else
+            {
+                moveDirection *= speed;
+                playerManager.isSprinting = false;
+            }
         }
         
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
@@ -183,7 +194,7 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    playerAnimator.PlayTargetAnimation("Movement", false);
+                    playerAnimator.PlayTargetAnimation("Empty", false);
                     inAirTimer = 0;
                 }
 

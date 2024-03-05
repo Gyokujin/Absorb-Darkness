@@ -168,10 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bab677bd3f4be4b91a0626519fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 3
   moveSpeed: 5
   sprintSpeed: 9
   rotationSpeed: 10
-  fallingSpeed: 115
+  fallingSpeed: 90
   groundDetectionRayStart: 0.5
   distanceBeginFallMin: 1
   groundDirRayDistance: 0.2

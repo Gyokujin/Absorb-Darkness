@@ -52,7 +52,6 @@ public class PlayerManager : MonoBehaviour
     {
         playerInput.rollFlag = false;
         playerInput.sprintFlag = false;
-        isSprinting = playerInput.b_Input;
 
         if (isInAir)
         {
