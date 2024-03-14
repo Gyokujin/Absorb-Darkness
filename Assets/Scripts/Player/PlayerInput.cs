@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
     public bool rollFlag;
     public bool sprintFlag;
     public float rollInputTimer;
+    public bool comboFlag;
 
     [Header("Input")]
     private Vector2 movementInput;
@@ -29,6 +30,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerControls inputActions;
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
+    private PlayerManager playerManager;
 
     void Awake()
     {
@@ -39,6 +41,7 @@ public class PlayerInput : MonoBehaviour
     {
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
     void OnEnable()
@@ -103,7 +106,19 @@ public class PlayerInput : MonoBehaviour
 
         if (rb_Input)
         {
-            playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            if (playerManager.canDoCombo)
+            {
+                comboFlag = true;
+                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                comboFlag = false;
+            }
+            else
+            {
+                if (playerManager.isInteracting || playerManager.canDoCombo)
+                    return;
+
+                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            }
         }
 
         if (rt_Input)

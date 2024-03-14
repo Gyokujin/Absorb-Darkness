@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public bool isSprinting;
     public bool isInAir;
     public bool isGrounded;
+    public bool canDoCombo;
 
     [Header("Component")]
     private PlayerInput playerInput;
@@ -37,6 +38,7 @@ public class PlayerManager : MonoBehaviour
     {
         float delta = Time.deltaTime;
         float fixedDelta = Time.fixedDeltaTime;
+        canDoCombo = animator.GetBool("canDoCombo");
 
         isInteracting = animator.GetBool("isInteracting");
         playerInput.TickInput(delta);

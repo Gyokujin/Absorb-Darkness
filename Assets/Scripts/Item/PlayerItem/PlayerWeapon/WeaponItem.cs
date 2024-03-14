@@ -8,7 +8,12 @@ public class WeaponItem : Item
     public GameObject modelPrefab;
     public bool isUnarmed;
 
-    [Header("One Handed Attack Animations")]
+    [Header("Idle Animations")]
+    public string right_Hand_Idle;
+    public string left_Hand_Idle;
+
+    [Header("Attack Animations")]
     public string OneHand_LightAttack1;
+    public string OneHand_LightAttack2;
     public string OneHand_HeavyAttack1;
 }
