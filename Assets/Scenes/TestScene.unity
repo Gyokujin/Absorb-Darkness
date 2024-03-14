@@ -1469,46 +1469,6 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 479258337}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00021
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00036
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.00043
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.05261784
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.03217783
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.92861474
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.3658834
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 43.072
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -174.172
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726945947296777840, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.668
-      objectReference: {fileID: 0}
     - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: healthBar
       value: 

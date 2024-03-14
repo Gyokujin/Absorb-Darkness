@@ -22,6 +22,12 @@ public class PlayerInput : MonoBehaviour
     public float rollInputTimer;
     public bool comboFlag;
 
+    [Header("Quick Slots")]
+    public bool d_Pad_Up;
+    public bool d_Pad_Down;
+    public bool d_Pad_Left;
+    public bool d_Pad_Right;
+
     [Header("Input")]
     private Vector2 movementInput;
     private Vector2 cameraInput;
@@ -66,6 +72,7 @@ public class PlayerInput : MonoBehaviour
         MoveInput(delta);
         HandleRollInput(delta);
         HandleAttackInput(delta);
+        HandleQuickSlotsInput();
     }
 
     void MoveInput(float delta)
@@ -124,6 +131,21 @@ public class PlayerInput : MonoBehaviour
         if (rt_Input)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+        }
+    }
+
+    void HandleQuickSlotsInput()
+    {
+        inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
+        inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
+
+        if (d_Pad_Left)
+        {
+            playerInventory.ChangeLeftWeapon();
+        }
+        else if (d_Pad_Right)
+        {
+            playerInventory.ChangeRightWeapon();
         }
     }
 }
