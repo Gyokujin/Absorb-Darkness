@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 3350726264196729079}
   - component: {fileID: 1912785350997228117}
   - component: {fileID: 8704254429465697172}
+  - component: {fileID: 5664519629810846392}
+  - component: {fileID: 6446244042411737521}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -153,6 +155,8 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   b_Input: 0
+  rb_Input: 0
+  rt_Input: 0
   rollFlag: 0
   sprintFlag: 0
   rollInputTimer: 0
@@ -194,6 +198,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightWeapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
   leftWeapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
+--- !u!114 &5664519629810846392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b657433619f3149b9129f22661ff55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6446244042411737521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8c2aa4e3f917040834b3e94ad60688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  healthLevelAmount: 10
+  maxHealth: 100
+  currentHealth: 100
+  healthBar: {fileID: 0}
 --- !u!1001 &8633419180313039681
 PrefabInstance:
   m_ObjectHideFlags: 0

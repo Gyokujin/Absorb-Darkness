@@ -222,6 +222,15 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        if (playerManager.isInteracting || playerInput.moveAmount > 0)
+        {
+            playerTransform.position = Vector3.Lerp(playerTransform.position, targetPosition, Time.deltaTime / 0.1f);
+        }
+        else
+        {
+            playerTransform.position = targetPosition;
+        }
+
         if (playerManager.isGrounded)
         {
             if (playerManager.isInteracting || playerInput.moveAmount > 0)

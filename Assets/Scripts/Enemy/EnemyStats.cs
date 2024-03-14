@@ -2,40 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class EnemyStats : MonoBehaviour
 {
+    [Header("Status")]
     [SerializeField]
     private int healthLevel = 10;
     [SerializeField]
     private int healthLevelAmount = 10;
-    public int maxHealth;
-    public int currentHealth;
+    private int maxHealth;
+    private int currentHealth;
 
     [Header("Component")]
-    [SerializeField]
-    private HealthBar healthBar;
-    private PlayerAnimator playerAnimator;
+    private Animator animator;
 
     void Awake()
     {
-        Init();
-    }
-
-    void Init()
-    {
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Start()
     {
-        InitHealth();
-    }
-
-    void InitHealth()
-    {
         maxHealth = SetMaxHealthLevel();
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
     }
 
     int SetMaxHealthLevel()
@@ -46,14 +34,14 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("Hit");
         currentHealth -= damage;
-        healthBar.SetCurrentHealth(currentHealth);
-        playerAnimator.PlayTargetAnimation("Damage01", true);
+        animator.Play("Damage_01");
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            playerAnimator.PlayTargetAnimation("Dead01", true);
+            animator.Play("Damage_01");
         }
     }
 }

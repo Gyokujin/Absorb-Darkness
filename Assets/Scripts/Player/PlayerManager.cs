@@ -16,6 +16,11 @@ public class PlayerManager : MonoBehaviour
     private PlayerCamera playerCamera;
     private Animator animator;
 
+    void Awake()
+    {
+        playerCamera = FindObjectOfType<PlayerCamera>();
+    }
+
     void Start()
     {
         Init();
@@ -23,8 +28,6 @@ public class PlayerManager : MonoBehaviour
 
     void Init()
     {
-        playerCamera = PlayerCamera.instance;
-
         animator = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
