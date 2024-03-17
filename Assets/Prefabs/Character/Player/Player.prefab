@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5579523496723315606}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03217783, y: -0.92861474, z: 0.3658834, w: 0.05261784}
-  m_LocalPosition: {x: 0.00021, y: 0.00036, z: 0.00043}
+  m_LocalRotation: {x: -0.0644171, y: -0.9499309, z: 0.29965088, w: -0.060755637}
+  m_LocalPosition: {x: 0.00018, y: -0.00035, z: 0.00064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1072069048093040576}
-  m_LocalEulerAnglesHint: {x: 43.072, y: -174.172, z: -1.668}
+  m_LocalEulerAnglesHint: {x: 35.248, y: -185.398, z: 6.043}
 --- !u!1 &6995717877939349760
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,13 +206,27 @@ MonoBehaviour:
   rightWeapon: {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   weaponInLeftSlots:
-  - {fileID: 11400000, guid: b304aa18071fd1044a076e55baf20c65, type: 2}
+  - {fileID: 11400000, guid: 78acc4bd2fdb5584b895d368aa3db280, type: 2}
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
+  - {fileID: 11400000, guid: 5a59c3ad702c5a34284da810f121102e, type: 2}
+  - {fileID: 11400000, guid: bd60c38c802667449bca24d768f9d216, type: 2}
+  - {fileID: 11400000, guid: 5917b21438e8a6243bba8578acaeb29d, type: 2}
+  - {fileID: 11400000, guid: e7f8544e6c8075342960bb014bff61a1, type: 2}
   weaponInRightSlots:
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
-  - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
-  currentLeftWeaponIndex: 0
-  currentRightWeaponIndex: 0
+  - {fileID: 11400000, guid: 6507fa0c5413a4a499876349ba8af936, type: 2}
+  - {fileID: 11400000, guid: 64d77cc29a2495841b4cc27dd42e637a, type: 2}
+  - {fileID: 11400000, guid: 48a41d10dfad7f049ade9ef7ae228510, type: 2}
+  - {fileID: 11400000, guid: 33e463ecf98df774594ae80033a7ffa0, type: 2}
+  - {fileID: 11400000, guid: e2a4fbdbf6d3d4a408062555a1eac883, type: 2}
+  - {fileID: 11400000, guid: 0b98c1ea9de03c944ab6a7eb048026be, type: 2}
+  - {fileID: 11400000, guid: 2779c1f1f4d58d54babe84628d0c5db2, type: 2}
+  - {fileID: 11400000, guid: a255f099c086ec740bd92fc294c5d9d0, type: 2}
+  - {fileID: 11400000, guid: 33f060163eb603542af21cacb58e4fed, type: 2}
+  - {fileID: 11400000, guid: 32ad7b7566f084549af4666d8f9843a7, type: 2}
+  - {fileID: 11400000, guid: 5f05c93837659b746a00ecf4e26231e0, type: 2}
+  currentLeftWeaponIndex: -1
+  currentRightWeaponIndex: -1
 --- !u!114 &5664519629810846392
 MonoBehaviour:
   m_ObjectHideFlags: 0
