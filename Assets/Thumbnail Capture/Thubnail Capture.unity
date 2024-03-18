@@ -647,7 +647,7 @@ MonoBehaviour:
   rt: {fileID: 8400000, guid: 16edc8a8d4b0690468690289eeb7bd98, type: 2}
   bg: {fileID: 1394868788}
   grade: 0
-  size: 3
+  size: 4
   obj: []
   targetColoer: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1025038649
