@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [Header("Weapon")]
     public WeaponItem leftWeapon;
     public WeaponItem rightWeapon;
     public WeaponItem unarmedWeapon;
@@ -13,6 +14,9 @@ public class PlayerInventory : MonoBehaviour
 
     public int currentLeftWeaponIndex = -1;
     public int currentRightWeaponIndex = -1;
+
+    [Header("Inventory")]
+    public List<WeaponItem> weaponsInventory;
 
     [Header("Component")]
     private WeaponSlotManager weaponSlotManager;

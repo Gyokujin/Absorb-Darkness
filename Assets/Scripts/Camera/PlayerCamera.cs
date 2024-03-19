@@ -24,7 +24,7 @@ public class PlayerCamera : MonoBehaviour
     private Transform myTransform;
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
-    private LayerMask layerMask;
+    public LayerMask layerMask;
 
     [Header("Angle")]
     [SerializeField]

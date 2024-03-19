@@ -11,6 +11,12 @@ public class PlayerManager : MonoBehaviour
     public bool isGrounded;
     public bool canDoCombo;
 
+    [Header("Interact")]
+    [SerializeField]
+    private float checkRadius = 0.3f;
+    [SerializeField]
+    private float checkMaxDis = 1f;
+
     [Header("Component")]
     private PlayerInput playerInput;
     private PlayerMove playerMove;
@@ -67,6 +73,24 @@ public class PlayerManager : MonoBehaviour
         if (isInAir)
         {
             playerMove.inAirTimer += Time.deltaTime;
+        }
+    }
+
+    public void CheckInteractableObject()
+    {
+        RaycastHit hit;
+
+        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, playerCamera.layerMask))
+        {
+            if (hit.collider.tag == "Interactable")
+            {
+                Interactable interactableObj = hit.collider.GetComponent<Interactable>();
+
+                if (interactableObj != null)
+                {
+                    string interactableText = interactableObj.interactableText;
+                }
+            }
         }
     }
 }
