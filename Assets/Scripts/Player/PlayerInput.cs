@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     public float mouseY;
 
     [Header("Action")]
+    public bool a_Input;
     public bool b_Input;
     public bool rb_Input;
     public bool rt_Input;
@@ -73,6 +74,7 @@ public class PlayerInput : MonoBehaviour
         HandleRollInput(delta);
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
+        HandleInteractInput();
     }
 
     void MoveInput(float delta)
@@ -84,10 +86,17 @@ public class PlayerInput : MonoBehaviour
         mouseY = cameraInput.y;
     }
 
+    void HandleInteractInput()
+    {
+        // a_Input = inputActions.PlayerActions.A.phase == InputActionPhase.Performed;
+
+        inputActions.PlayerActions.A.performed += i => a_Input = true;
+    }
+
     void HandleRollInput(float delta)
     {
         // b_Input = inputActions.PlayerActions.Roll.triggered;
-        b_Input = inputActions.PlayerActions.Roll.phase == InputActionPhase.Performed;
+        b_Input = inputActions.PlayerActions.B.phase == InputActionPhase.Performed;
 
         if (b_Input)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
-    private float radius = 0.6f;
+    private float radius = 1f;
     public string interactableText;
 
     void OnDrawGizmosSelected()

@@ -120,7 +120,16 @@
             "id": "9f08a179-78c2-4d14-a400-398d04012103",
             "actions": [
                 {
-                    "name": "Roll",
+                    "name": "A",
+                    "type": "Button",
+                    "id": "02f069dc-bfda-4455-b5b5-921f485532bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "B",
                     "type": "Button",
                     "id": "016d6095-94ba-4f6f-90e1-c035e51da9ab",
                     "expectedControlType": "Button",
@@ -155,7 +164,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roll",
+                    "action": "B",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -166,7 +175,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roll",
+                    "action": "B",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -211,6 +220,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9241f101-0bfb-4bb5-aff0-d1d2b7740a35",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9bb35c6e-5459-4d25-8443-4fa4ee1d51e1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hittalbe
   - Enemy
+  - Interactable
   layers:
   - Default
   - TransparentFX

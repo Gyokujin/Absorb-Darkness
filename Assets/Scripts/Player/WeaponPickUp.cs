@@ -9,6 +9,7 @@ public class WeaponPickUp : Interactable
     public override void Interact(PlayerManager playerManager)
     {
         base.Interact(playerManager);
+        PickUpItem(playerManager);
     }
 
     void PickUpItem(PlayerManager playerManager)
@@ -22,7 +23,8 @@ public class WeaponPickUp : Interactable
         playerAnimator = playerManager.GetComponentInChildren<PlayerAnimator>();
 
         playerMove.rigidbody.velocity = Vector3.zero; // 상호작용 전에 이동을 끝낸다.
-        playerAnimator.PlayTargetAnimation("Pick Up Item", true);
+        playerAnimator.PlayTargetAnimation("Pick Up", true);
         playerInventory.weaponsInventory.Add(weapon);
+        // gameObject.SetActive(false);
     }
 }

@@ -52,6 +52,8 @@ public class PlayerManager : MonoBehaviour
         playerMove.HandleRollingAndSprinting(delta);
         playerMove.HandleFalling(delta, playerMove.moveDirection);
 
+        CheckInteractableObject();
+
         if (playerCamera != null)
         {
             playerCamera.FollowTarget(fixedDelta);
@@ -63,6 +65,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerInput.rollFlag = false;
         playerInput.sprintFlag = false;
+        playerInput.a_Input = false;
         playerInput.rb_Input = false;
         playerInput.rt_Input = false;
         playerInput.d_Pad_Up = false;
@@ -89,6 +92,12 @@ public class PlayerManager : MonoBehaviour
                 if (interactableObj != null)
                 {
                     string interactableText = interactableObj.interactableText;
+
+                    if (playerInput.a_Input)
+                    {
+                        Debug.Log("¿€µø");
+                        interactableObj.Interact(this);
+                    }
                 }
             }
         }
