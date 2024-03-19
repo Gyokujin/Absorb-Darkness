@@ -102,4 +102,9 @@ public class WeaponSlotManager : MonoBehaviour
     {
         rightHandDamageCollider.AbleDamageCollider(false);
     }
+
+    public void DrainStaminaLightAttack() 
+    {
+
+    }
 }

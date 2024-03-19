@@ -16,4 +16,9 @@ public class WeaponItem : Item
     public string OneHand_LightAttack1;
     public string OneHand_LightAttack2;
     public string OneHand_HeavyAttack1;
+
+    [Header("Stamina Costs")]
+    public int baseStamina;
+    public float lightAttackMultiplier;
+    public float heavyAttackMultiplier;
 }
