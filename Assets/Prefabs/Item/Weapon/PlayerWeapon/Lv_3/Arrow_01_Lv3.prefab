@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 489728179665167106}
   - component: {fileID: 7349598272735741489}
   - component: {fileID: 2654494353937170215}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Arrow_01_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

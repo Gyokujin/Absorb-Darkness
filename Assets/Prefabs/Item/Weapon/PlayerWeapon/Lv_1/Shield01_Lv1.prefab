@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5833179602252796463}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8848639306601202916}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Shield01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 7535413776107961370}
   - component: {fileID: 2621028555333001388}
   - component: {fileID: 8411687300433889514}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Shield01_Lv2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

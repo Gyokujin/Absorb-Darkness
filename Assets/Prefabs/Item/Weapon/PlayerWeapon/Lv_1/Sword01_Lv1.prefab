@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6167588764936824576}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2876126044690533459}
   - component: {fileID: 4443989352842434974}
   - component: {fileID: 151847858034899791}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sword01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524353173679944492}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sword01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

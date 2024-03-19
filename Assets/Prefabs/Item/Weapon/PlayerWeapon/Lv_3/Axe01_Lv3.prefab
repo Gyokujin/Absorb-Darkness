@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7359999209288562793}
   - component: {fileID: 3920860505568912027}
   - component: {fileID: 7541382576140827801}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Axe01_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6369662056143023406}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7706716682378859851}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Axe01_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

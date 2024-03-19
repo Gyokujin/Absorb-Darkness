@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7213540920531849781}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Bow01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 579328716783585664}
   - component: {fileID: 8645306216060730767}
   - component: {fileID: 546676294675594186}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Bow01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1306709731110944728}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

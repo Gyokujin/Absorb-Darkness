@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4236381720569756824}
   - component: {fileID: 8867194809028337401}
   - component: {fileID: 2684935376006862387}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Quiver_01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3223941679390470721}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4199225707397004872}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Quiver_01_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

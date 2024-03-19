@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6174618883244514211}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7622827955035456845}
   - component: {fileID: 1400895115659952322}
   - component: {fileID: 8745903957131790080}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sword02_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 25
+  weaponDamage: 22
 --- !u!1 &4738964134946653520
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6802005112370242044}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sword02_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
