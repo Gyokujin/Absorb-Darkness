@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Shield01_Lv2
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 71c8436c28ae94adbb53d75503e54b28, type: 3}
-  itemName: 
-  modelPrefab: {fileID: 4004318677464375987, guid: 5fadb083ad6eac74cb33b254e388deeb, type: 3}
+  itemIcon: {fileID: 21300000, guid: 483d77631fc381e41acf1c641614ec59, type: 3}
+  itemName: Shield01_Lv2
+  modelPrefab: {fileID: 4413132484232675543, guid: 97890e7cbc144384b9fbe5cec4994805, type: 3}
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle
   left_Hand_Idle: LeftArm_Idle

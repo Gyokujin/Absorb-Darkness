@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Sword02_Lv3
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 71c8436c28ae94adbb53d75503e54b28, type: 3}
-  itemName: 
-  modelPrefab: {fileID: 4946864827864651371, guid: d2c75d373c3af5d4f8cf6dd98736c0a0, type: 3}
+  itemIcon: {fileID: 21300000, guid: 40e2d0e73ab056a48a2c37c006b0080a, type: 3}
+  itemName: Sword02_Lv3
+  modelPrefab: {fileID: 4738964134946653520, guid: 612ede6b213afc14ea1adffabfcb38b6, type: 3}
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle
   left_Hand_Idle: LeftArm_Idle

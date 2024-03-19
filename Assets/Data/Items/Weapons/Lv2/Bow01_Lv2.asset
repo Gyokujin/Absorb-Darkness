@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Bow01_Lv2
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 71c8436c28ae94adbb53d75503e54b28, type: 3}
-  itemName: 
+  itemIcon: {fileID: 21300000, guid: 3fadb426da45c334f8b011e7f00a0a06, type: 3}
+  itemName: Bow01_Lv2
   modelPrefab: {fileID: 6332370269935873315, guid: d8d69ed6710dfeb4abab8a4adc9516a4, type: 3}
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle

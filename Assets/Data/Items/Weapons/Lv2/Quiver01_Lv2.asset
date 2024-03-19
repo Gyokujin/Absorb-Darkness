@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
-  m_Name: Axe01_Lv1
+  m_Name: Quiver01_Lv2
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: ebd0229c0d6e56f48b6f861b2da59544, type: 3}
-  itemName: Axe01_Lv1
-  modelPrefab: {fileID: 456606574791117825, guid: 3cfce2acc8b30e3478fad94986fc8d0a, type: 3}
+  itemIcon: {fileID: 21300000, guid: 910f636cc8f8bc04faab7662edb8e2ea, type: 3}
+  itemName: Quiver01_Lv2
+  modelPrefab: {fileID: 5953393746740529625, guid: 3b1557061c8ec4f4991ffb1798a7c6f1, type: 3}
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle
   left_Hand_Idle: LeftArm_Idle

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Shield01_Lv3
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 71c8436c28ae94adbb53d75503e54b28, type: 3}
-  itemName: 
+  itemIcon: {fileID: 21300000, guid: 954f414566cf96b47823a77a11fb11dd, type: 3}
+  itemName: Shield01_Lv3
   modelPrefab: {fileID: 6544429131228668425, guid: 89675ad4ee10d624f936aab4c7903b06, type: 3}
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle
