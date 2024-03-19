@@ -53,7 +53,7 @@ public class PlayerCamera : MonoBehaviour
     {
         myTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
-        layerMask = ~(1 << 3 | 1 << 9 | 1 << 10);
+        layerMask = ~(1 << 3 | 1 << 9 | 1 << 10); // 플레이어, 무기, 컨트롤러(카메라, 시스템 등)
         playerTransform = FindObjectOfType<PlayerManager>().transform;
     }
 
