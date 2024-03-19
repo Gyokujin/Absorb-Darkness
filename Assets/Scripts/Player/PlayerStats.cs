@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Status")]
     [SerializeField]
     private int healthLevel = 10;
     [SerializeField]
@@ -11,9 +12,21 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
-    [Header("Component")]
+    [SerializeField]
+    private int staminaLevel = 10;
+    [SerializeField]
+    private int staminaLevelAmount = 10;
+    [SerializeField]
+    private int maxStamina;
+    public int currentStamina;
+
+    [Header("UI")]
     [SerializeField]
     private HealthBar healthBar;
+    [SerializeField]
+    private StaminaBar staminaBar;
+
+    [Header("Component")]
     private PlayerAnimator playerAnimator;
 
     void Awake()
@@ -29,6 +42,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         InitHealth();
+        InitStamina();
     }
 
     void InitHealth()
@@ -38,10 +52,23 @@ public class PlayerStats : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
+    void InitStamina()
+    {
+        maxStamina = SetMaxStaminaLevel();
+        currentStamina = maxStamina;
+        staminaBar.SetMaxStamina(maxStamina);
+    }
+
     int SetMaxHealthLevel()
     {
         maxHealth = healthLevel * healthLevelAmount;
         return maxHealth;
+    }
+
+    int SetMaxStaminaLevel()
+    {
+        maxStamina = staminaLevel * staminaLevelAmount;
+        return maxStamina;
     }
 
     public void TakeDamage(int damage)
@@ -55,5 +82,11 @@ public class PlayerStats : MonoBehaviour
             currentHealth = 0;
             playerAnimator.PlayTargetAnimation("Dead01", true);
         }
+    }
+
+    public void TakeStamina(int amount)
+    {
+        currentStamina -= amount;
+        staminaBar.SetCurrentStamina(currentStamina);
     }
 }

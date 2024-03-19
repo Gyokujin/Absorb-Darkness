@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
+    [Header("Weapon")]
+    public WeaponItem attackingWeapon;
     private WeaponHolderSlot leftHandSlot;
     private WeaponHolderSlot rightHandSlot;
-
     private DamageCollider leftHandDamageCollider;
     private DamageCollider rightHandDamageCollider;
 
     [Header("Component")]
     private Animator animator;
     private QuickSlotsUI quickSlotsUI;
+    private PlayerStats playerStats;
 
     void Awake()
     {
@@ -23,6 +25,7 @@ public class WeaponSlotManager : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
+        playerStats = GetComponentInParent<PlayerStats>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         
@@ -105,6 +108,11 @@ public class WeaponSlotManager : MonoBehaviour
 
     public void DrainStaminaLightAttack() 
     {
+        playerStats.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
+    }
 
+    public void DrainStaminaHeavyAttack()
+    {
+        playerStats.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
     }
 }

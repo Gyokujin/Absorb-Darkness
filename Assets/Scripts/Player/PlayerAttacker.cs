@@ -10,6 +10,7 @@ public class PlayerAttacker : MonoBehaviour
     [Header("Component")]
     private PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
+    private WeaponSlotManager weaponSlotManager;
 
     void Awake()
     {
@@ -20,16 +21,19 @@ public class PlayerAttacker : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
     }
 
     public void HandleLightAttack(WeaponItem weapon)
     {
+        weaponSlotManager.attackingWeapon = weapon;
         playerAnimator.PlayTargetAnimation(weapon.OneHand_LightAttack1, true);
         lastAttack = weapon.OneHand_LightAttack1;
     }
 
     public void HandleHeavyAttack(WeaponItem weapon)
     {
+        weaponSlotManager.attackingWeapon = weapon;
         playerAnimator.PlayTargetAnimation(weapon.OneHand_HeavyAttack1, true);
         lastAttack = weapon.OneHand_HeavyAttack1;
     }

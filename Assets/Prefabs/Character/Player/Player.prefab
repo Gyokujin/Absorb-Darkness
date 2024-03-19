@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8704254429465697172}
   - component: {fileID: 5664519629810846392}
   - component: {fileID: 6446244042411737521}
-  m_Layer: 10
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -256,7 +256,12 @@ MonoBehaviour:
   healthLevelAmount: 10
   maxHealth: 100
   currentHealth: 100
+  staminaLevel: 10
+  staminaLevelAmount: 10
+  maxStamina: 0
+  currentStamina: 0
   healthBar: {fileID: 0}
+  staminaBar: {fileID: 7820962297994377743, guid: 4a0d12bfe85866744841ed2b4bae27fa, type: 3}
 --- !u!1001 &8633419180313039681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,6 +313,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
       propertyPath: m_Name
       value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3027896407205900740, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -425,3 +434,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f440f3cb43136314f81a5f4fddfddcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackingWeapon: {fileID: 0}
