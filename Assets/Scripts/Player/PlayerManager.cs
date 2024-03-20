@@ -95,7 +95,6 @@ public class PlayerManager : MonoBehaviour
 
                     if (playerInput.a_Input)
                     {
-                        Debug.Log("¿€µø");
                         interactableObj.Interact(this);
                     }
                 }

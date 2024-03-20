@@ -25,6 +25,6 @@ public class WeaponPickUp : Interactable
         playerMove.rigidbody.velocity = Vector3.zero; // 상호작용 전에 이동을 끝낸다.
         playerAnimator.PlayTargetAnimation("Pick Up", true);
         playerInventory.weaponsInventory.Add(weapon);
-        // gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
