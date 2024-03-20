@@ -21,3 +21,6 @@ MonoBehaviour:
   OneHand_LightAttack1: LightAttack01
   OneHand_LightAttack2: LightAttack02
   OneHand_HeavyAttack1: HeavyAttack01
+  baseStamina: 20
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2
