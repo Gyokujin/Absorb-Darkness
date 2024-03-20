@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponPickUp : Interactable
 {
@@ -25,6 +26,9 @@ public class WeaponPickUp : Interactable
         playerMove.rigidbody.velocity = Vector3.zero; // 상호작용 전에 이동을 끝낸다.
         playerAnimator.PlayTargetAnimation("Pick Up", true);
         playerInventory.weaponsInventory.Add(weapon);
+        playerManager.itemInteractableObj.GetComponentInChildren<Text>().text = weapon.itemName;
+        playerManager.itemInteractableObj.GetComponentInChildren<RawImage>().texture = weapon.itemIcon.texture;
+        playerManager.itemInteractableObj.SetActive(true);
         gameObject.SetActive(false);
     }
 }

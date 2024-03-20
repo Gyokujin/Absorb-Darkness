@@ -16,12 +16,16 @@ public class PlayerManager : MonoBehaviour
     private float checkRadius = 0.3f;
     [SerializeField]
     private float checkMaxDis = 1f;
+    [SerializeField]
+    private GameObject interactableUIObj;
+    public GameObject itemInteractableObj;
 
     [Header("Component")]
     private PlayerInput playerInput;
     private PlayerMove playerMove;
     private PlayerCamera playerCamera;
     private Animator animator;
+    private InteractableUI interactableUI;
 
     void Awake()
     {
@@ -38,6 +42,7 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
+        interactableUI = FindObjectOfType<InteractableUI>();
     }
 
     void Update()
@@ -92,12 +97,26 @@ public class PlayerManager : MonoBehaviour
                 if (interactableObj != null)
                 {
                     string interactableText = interactableObj.interactableText;
+                    interactableUI.interactableText.text = interactableText;
+                    interactableUIObj.SetActive(true);
 
                     if (playerInput.a_Input)
                     {
                         interactableObj.Interact(this);
                     }
                 }
+            }
+        }
+        else
+        {
+            if (interactableUIObj != null)
+            {
+                interactableUIObj.SetActive(false);
+            }
+
+            if (itemInteractableObj != null && playerInput.a_Input)
+            {
+                itemInteractableObj.SetActive(false);
             }
         }
     }
