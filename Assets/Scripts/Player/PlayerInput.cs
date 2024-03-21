@@ -161,4 +161,9 @@ public class PlayerInput : MonoBehaviour
             playerInventory.ChangeRightWeapon();
         }
     }
+
+    void HandleInverntoryInput()
+    {
+        // inputActions.PlayerActions.Inveotory.performed += i => inventory_Input = true;
+    }
 }
