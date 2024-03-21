@@ -18,11 +18,13 @@ public class PlayerInput : MonoBehaviour
     public bool rb_Input;
     public bool rt_Input;
     public bool jump_Input;
+    public bool inventory_Input;
 
     public bool rollFlag;
     public bool sprintFlag;
     public float rollInputTimer;
     public bool comboFlag;
+    public bool inventoryFlag;
 
     [Header("Quick Slots")]
     public bool d_Pad_Up;
@@ -39,6 +41,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
     private PlayerManager playerManager;
+    private UIManager uiManager;
 
     void Awake()
     {
@@ -50,6 +53,7 @@ public class PlayerInput : MonoBehaviour
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     void OnEnable()
@@ -77,6 +81,8 @@ public class PlayerInput : MonoBehaviour
         HandleJumpInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
+        HandleInteractInput();
+        HandleInverntoryInput();
     }
 
     void MoveInput(float delta)
@@ -164,6 +170,20 @@ public class PlayerInput : MonoBehaviour
 
     void HandleInverntoryInput()
     {
-        // inputActions.PlayerActions.Inveotory.performed += i => inventory_Input = true;
+        inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
+        if (inventory_Input)
+        {
+            inventoryFlag = !inventoryFlag;
+
+            if (inventoryFlag)
+            {
+                uiManager.ControlSelectWindow(true);
+            }
+            else
+            {
+                uiManager.ControlSelectWindow(false);
+            }
+        }
     }
 }
