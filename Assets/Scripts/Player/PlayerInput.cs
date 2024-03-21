@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
     public bool b_Input;
     public bool rb_Input;
     public bool rt_Input;
+    public bool jump_Input;
 
     public bool rollFlag;
     public bool sprintFlag;
@@ -71,10 +72,11 @@ public class PlayerInput : MonoBehaviour
     public void TickInput(float delta)
     {
         MoveInput(delta);
+        HandleInteractInput();
         HandleRollInput(delta);
+        HandleJumpInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
-        HandleInteractInput();
     }
 
     void MoveInput(float delta)
@@ -88,14 +90,11 @@ public class PlayerInput : MonoBehaviour
 
     void HandleInteractInput()
     {
-        // a_Input = inputActions.PlayerActions.A.phase == InputActionPhase.Performed;
-
         inputActions.PlayerActions.A.performed += i => a_Input = true;
     }
 
     void HandleRollInput(float delta)
     {
-        // b_Input = inputActions.PlayerActions.Roll.triggered;
         b_Input = inputActions.PlayerActions.B.phase == InputActionPhase.Performed;
 
         if (b_Input)
@@ -115,6 +114,11 @@ public class PlayerInput : MonoBehaviour
         }
     }
     
+    void HandleJumpInput()
+    {
+        inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+    }
+
     void HandleAttackInput(float delta)
     {
         inputActions.PlayerActions.RB.performed += i => rb_Input = true;

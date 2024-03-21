@@ -243,4 +243,24 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
+
+    public void HandleJumping()
+    {
+        if (playerManager.isInteracting)
+            return;
+
+        if (playerInput.jump_Input)
+        {
+            if (playerInput.moveAmount > 0)
+            {
+                moveDirection = cameraPos.forward * playerInput.vertical;
+                moveDirection += cameraPos.right * playerInput.horizontal;
+                playerAnimator.PlayTargetAnimation("Jump", true);
+                
+                moveDirection.y = 0;
+                Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+                playerTransform.rotation = jumpRotation;
+            }
+        }
+    }
 }

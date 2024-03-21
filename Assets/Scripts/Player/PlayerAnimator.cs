@@ -79,8 +79,8 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat("Vertical", v, 0.1f, Time.deltaTime);
-        animator.SetFloat("Horizontal", h, 0.1f, Time.deltaTime);
+        animator.SetFloat("vertical", v, 0.1f, Time.deltaTime);
+        animator.SetFloat("horizontal", h, 0.1f, Time.deltaTime);
     }
 
     public void PlayTargetAnimation(string targetAnim, bool isInteracting)
