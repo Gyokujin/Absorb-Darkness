@@ -315,8 +315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5802257227843499187
 CanvasRenderer:
@@ -503,7 +503,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2488867833377815532
 CanvasRenderer:
@@ -671,6 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5434561824076852826}
+  - component: {fileID: 557645230802554503}
   m_Layer: 5
   m_Name: Weapon Item Inventory
   m_TagString: Untagged
@@ -699,6 +700,19 @@ RectTransform:
   m_AnchoredPosition: {x: 15, y: -15}
   m_SizeDelta: {x: 560, y: 1050}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &557645230802554503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799045978649546597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee86c0cdb9d5ae40b6d04035b4bb9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
 --- !u!1 &3045771741613625201
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +749,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6001009297152566583
 CanvasRenderer:
@@ -1225,8 +1239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 33.333332, y: -25}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2369430583560258823
 CanvasRenderer:
@@ -1721,8 +1735,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141.66666, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7004955485609972925
 CanvasRenderer:
@@ -1771,6 +1785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1073789576099530284}
+  - component: {fileID: 2772626003128425956}
   m_Layer: 5
   m_Name: Weapon Inventory Slot
   m_TagString: Untagged
@@ -1798,6 +1813,19 @@ RectTransform:
   m_AnchoredPosition: {x: 70, y: -65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2772626003128425956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681123800048564503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee86c0cdb9d5ae40b6d04035b4bb9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 4283093767551964993}
 --- !u!1 &6734467382340168904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,7 +2053,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6787496759022839404
 CanvasRenderer:
@@ -2271,6 +2299,7 @@ GameObject:
   - component: {fileID: 9075239015951270713}
   - component: {fileID: 8682981007696342553}
   - component: {fileID: 3169367981475563118}
+  - component: {fileID: 3303484276473554134}
   m_Layer: 5
   m_Name: Player UI
   m_TagString: Untagged
@@ -2362,6 +2391,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3303484276473554134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7975925210535395057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2116f1ba1d7d11344bad34e5c8b05d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudWindow: {fileID: 8631116405738496142}
+  selectWindow: {fileID: 8022257323182852294}
+  weaponInventoryWindow: {fileID: 0}
+  weaponInventorySlotPrefab: {fileID: 6681123800048564503}
+  weaponInventorySlotsParent: {fileID: 3629632311309717461}
+  playerInventory: {fileID: 0}
 --- !u!1 &7979710107852157995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2522,7 +2569,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 40}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 240, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5886674446907201776
 CanvasRenderer:
@@ -2807,7 +2854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1658854333099715740}
   m_Layer: 5
-  m_Name: HUD
+  m_Name: HUD Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
