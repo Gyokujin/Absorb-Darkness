@@ -138,6 +138,10 @@ MonoBehaviour:
   isInAir: 0
   isGrounded: 0
   canDoCombo: 0
+  checkRadius: 0.3
+  checkMaxDis: 1
+  interactableUIObj: {fileID: 0}
+  itemInteractableObj: {fileID: 0}
 --- !u!114 &3350726264196729079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,13 +159,17 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  a_Input: 0
   b_Input: 0
   rb_Input: 0
   rt_Input: 0
+  jump_Input: 0
+  inventory_Input: 0
   rollFlag: 0
   sprintFlag: 0
   rollInputTimer: 0
   comboFlag: 0
+  inventoryFlag: 0
   d_Pad_Up: 0
   d_Pad_Down: 0
   d_Pad_Left: 0
@@ -227,6 +235,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f05c93837659b746a00ecf4e26231e0, type: 2}
   currentLeftWeaponIndex: -1
   currentRightWeaponIndex: -1
+  weaponsInventory: []
 --- !u!114 &5664519629810846392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +270,7 @@ MonoBehaviour:
   maxStamina: 0
   currentStamina: 0
   healthBar: {fileID: 0}
-  staminaBar: {fileID: 7820962297994377743, guid: 4a0d12bfe85866744841ed2b4bae27fa, type: 3}
+  staminaBar: {fileID: 0}
 --- !u!1001 &8633419180313039681
 PrefabInstance:
   m_ObjectHideFlags: 0
