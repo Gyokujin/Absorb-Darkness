@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
 
         isInteracting = animator.GetBool("isInteracting");
         playerInput.TickInput(delta);
-        playerMove.HandleMovement(delta);
+        playerMove.HandleMovement(fixedDelta);
         playerMove.HandleRollingAndSprinting(delta);
         playerMove.HandleFalling(delta, playerMove.moveDirection);
         playerMove.HandleJumping();

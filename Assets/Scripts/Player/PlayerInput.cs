@@ -179,10 +179,14 @@ public class PlayerInput : MonoBehaviour
             if (inventoryFlag)
             {
                 uiManager.ControlSelectWindow(true);
+                uiManager.UpdateUI();
+                uiManager.hudWindow.SetActive(false);
             }
             else
             {
                 uiManager.ControlSelectWindow(false);
+                uiManager.CloseAllInventoryWindow();
+                uiManager.hudWindow.SetActive(true);
             }
         }
     }
