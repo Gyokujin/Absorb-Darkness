@@ -17,12 +17,20 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform weaponInventorySlotsParent;
 
+    [Header("Component")]
     public PlayerInventory playerInventory;
+    private EquipmentWindowUI equipmentWindowUI;
     private WeaponInventorySlot[] weaponInventorySlots;
+
+    void Awake()
+    {
+        equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
+    }
 
     void Start()
     {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+        equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
     }
 
     public void UpdateUI()
