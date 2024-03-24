@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class HandEquipmentSlotUI : MonoBehaviour
 {
-    [SerializeField]
-    private Image icon;
+    public Image icon;
     private WeaponItem weapon;
 
     public bool rightHandSlot01;

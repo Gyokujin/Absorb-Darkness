@@ -11,6 +11,11 @@ public class EquipmentWindowUI : MonoBehaviour
 
     private HandEquipmentSlotUI[] handEquipmentSlotUI;
 
+    void Awake()
+    {
+
+    }
+
     void Start()
     {
         handEquipmentSlotUI = GetComponentsInChildren<HandEquipmentSlotUI>();
@@ -32,7 +37,7 @@ public class EquipmentWindowUI : MonoBehaviour
             {
                 handEquipmentSlotUI[i].AddItem(playerInventory.weaponInLeftSlots[0]);
             }
-            else if (handEquipmentSlotUI[i].leftHandSlot02)
+            else
             {
                 handEquipmentSlotUI[i].AddItem(playerInventory.weaponInLeftSlots[1]);
             }

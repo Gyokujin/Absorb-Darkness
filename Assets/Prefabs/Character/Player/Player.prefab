@@ -215,24 +215,10 @@ MonoBehaviour:
   unarmedWeapon: {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   weaponInLeftSlots:
   - {fileID: 11400000, guid: bd60c38c802667449bca24d768f9d216, type: 2}
-  - {fileID: 11400000, guid: 78acc4bd2fdb5584b895d368aa3db280, type: 2}
-  - {fileID: 11400000, guid: e7f8544e6c8075342960bb014bff61a1, type: 2}
-  - {fileID: 11400000, guid: 5a59c3ad702c5a34284da810f121102e, type: 2}
-  - {fileID: 11400000, guid: 5917b21438e8a6243bba8578acaeb29d, type: 2}
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
   weaponInRightSlots:
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
-  - {fileID: 11400000, guid: 33e463ecf98df774594ae80033a7ffa0, type: 2}
-  - {fileID: 11400000, guid: a255f099c086ec740bd92fc294c5d9d0, type: 2}
-  - {fileID: 11400000, guid: 6507fa0c5413a4a499876349ba8af936, type: 2}
-  - {fileID: 11400000, guid: e2a4fbdbf6d3d4a408062555a1eac883, type: 2}
-  - {fileID: 11400000, guid: 33f060163eb603542af21cacb58e4fed, type: 2}
-  - {fileID: 11400000, guid: 64d77cc29a2495841b4cc27dd42e637a, type: 2}
-  - {fileID: 11400000, guid: 0b98c1ea9de03c944ab6a7eb048026be, type: 2}
-  - {fileID: 11400000, guid: 32ad7b7566f084549af4666d8f9843a7, type: 2}
   - {fileID: 11400000, guid: 48a41d10dfad7f049ade9ef7ae228510, type: 2}
-  - {fileID: 11400000, guid: 2779c1f1f4d58d54babe84628d0c5db2, type: 2}
-  - {fileID: 11400000, guid: 5f05c93837659b746a00ecf4e26231e0, type: 2}
   currentLeftWeaponIndex: -1
   currentRightWeaponIndex: -1
   weaponsInventory: []
