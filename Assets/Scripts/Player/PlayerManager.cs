@@ -47,25 +47,17 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        float delta = Time.deltaTime;
-        float fixedDelta = Time.fixedDeltaTime;
         canDoCombo = animator.GetBool("canDoCombo");
         animator.SetBool("isInAir", isInAir);
-
         isInteracting = animator.GetBool("isInteracting");
-        playerInput.TickInput(delta);
-        playerMove.HandleMovement(fixedDelta);
-        playerMove.HandleRollingAndSprinting(delta);
-        playerMove.HandleFalling(delta, playerMove.moveDirection);
+
+        playerInput.TickInput(Time.deltaTime);
+        playerMove.HandleMovement(Time.fixedDeltaTime);
+        playerMove.HandleRollingAndSprinting(Time.deltaTime);
+        playerMove.HandleFalling(Time.deltaTime, playerMove.moveDirection);
         playerMove.HandleJumping();
 
         CheckInteractableObject();
-
-        if (playerCamera != null)
-        {
-            playerCamera.FollowTarget(fixedDelta);
-            playerCamera.HandleCameraRotation(fixedDelta, playerInput.mouseX, playerInput.mouseY);
-        }
     }
 
     void LateUpdate()
@@ -81,6 +73,12 @@ public class PlayerManager : MonoBehaviour
         playerInput.d_Pad_Right = false;
         playerInput.jump_Input = false;
         playerInput.inventory_Input = false;
+
+        if (playerCamera != null)
+        {
+            playerCamera.FollowTarget(Time.deltaTime);
+            playerCamera.HandleCameraRotation(Time.deltaTime, playerInput.mouseX, playerInput.mouseY);
+        }
 
         if (isInAir)
         {

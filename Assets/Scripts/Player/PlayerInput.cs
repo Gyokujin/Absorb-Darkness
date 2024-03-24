@@ -63,6 +63,13 @@ public class PlayerInput : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+            inputActions.PlayerActions.RB.performed += i => rb_Input = true;
+            inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+            inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
+            inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
+            inputActions.PlayerActions.A.performed += i => a_Input = true;
+            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+            inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
         }
 
         inputActions.Enable();
@@ -76,12 +83,9 @@ public class PlayerInput : MonoBehaviour
     public void TickInput(float delta)
     {
         MoveInput(delta);
-        HandleInteractInput();
         HandleRollInput(delta);
-        HandleJumpInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
-        HandleInteractInput();
         HandleInverntoryInput();
     }
 
@@ -94,13 +98,9 @@ public class PlayerInput : MonoBehaviour
         mouseY = cameraInput.y;
     }
 
-    void HandleInteractInput()
-    {
-        inputActions.PlayerActions.A.performed += i => a_Input = true;
-    }
-
     void HandleRollInput(float delta)
     {
+        // b_Input = inputActions.PlayerActions.B.phase == UnityEngine.InputSystem.InputActionPhase.Started;
         b_Input = inputActions.PlayerActions.B.phase == InputActionPhase.Performed;
 
         if (b_Input)
@@ -119,17 +119,9 @@ public class PlayerInput : MonoBehaviour
             rollInputTimer = 0;
         }
     }
-    
-    void HandleJumpInput()
-    {
-        inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
-    }
 
     void HandleAttackInput(float delta)
     {
-        inputActions.PlayerActions.RB.performed += i => rb_Input = true;
-        inputActions.PlayerActions.RT.performed += i => rt_Input = true;
-
         if (rb_Input)
         {
             if (playerManager.canDoCombo)
@@ -155,9 +147,6 @@ public class PlayerInput : MonoBehaviour
 
     void HandleQuickSlotsInput()
     {
-        inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
-        inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
-
         if (d_Pad_Left)
         {
             playerInventory.ChangeLeftWeapon();
@@ -170,8 +159,6 @@ public class PlayerInput : MonoBehaviour
 
     void HandleInverntoryInput()
     {
-        inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
-
         if (inventory_Input)
         {
             inventoryFlag = !inventoryFlag;
