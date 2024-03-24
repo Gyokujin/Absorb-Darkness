@@ -190,7 +190,7 @@ MonoBehaviour:
   moveSpeed: 5
   sprintSpeed: 9
   rotationSpeed: 10
-  fallingSpeed: 90
+  fallingSpeed: 620
   groundDetectionRayStart: 0.5
   distanceBeginFallMin: 1
   groundDirRayDistance: 0.2

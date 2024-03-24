@@ -100,8 +100,8 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput(float delta)
     {
-        // b_Input = inputActions.PlayerActions.B.phase == UnityEngine.InputSystem.InputActionPhase.Started;
         b_Input = inputActions.PlayerActions.B.phase == InputActionPhase.Performed;
+        sprintFlag = b_Input;
 
         if (b_Input)
         {

@@ -48,13 +48,11 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         canDoCombo = animator.GetBool("canDoCombo");
-        animator.SetBool("isInAir", isInAir);
         isInteracting = animator.GetBool("isInteracting");
+        animator.SetBool("isInAir", isInAir);
 
         playerInput.TickInput(Time.deltaTime);
-        playerMove.HandleMovement(Time.fixedDeltaTime);
         playerMove.HandleRollingAndSprinting(Time.deltaTime);
-        playerMove.HandleFalling(Time.deltaTime, playerMove.moveDirection);
         playerMove.HandleJumping();
 
         CheckInteractableObject();
@@ -63,7 +61,6 @@ public class PlayerManager : MonoBehaviour
     void LateUpdate()
     {
         playerInput.rollFlag = false;
-        playerInput.sprintFlag = false;
         playerInput.a_Input = false;
         playerInput.rb_Input = false;
         playerInput.rt_Input = false;
@@ -84,6 +81,13 @@ public class PlayerManager : MonoBehaviour
         {
             playerMove.inAirTimer += Time.deltaTime;
         }
+    }
+
+    void FixedUpdate()
+    {
+        playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
+        playerMove.HandleMovement(Time.fixedDeltaTime);
+
     }
 
     public void CheckInteractableObject()
