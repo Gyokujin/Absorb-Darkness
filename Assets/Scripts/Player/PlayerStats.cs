@@ -75,12 +75,12 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
-        playerAnimator.PlayTargetAnimation("Damage01", true);
+        playerAnimator.PlayTargetAnimation("Damage", true);
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            playerAnimator.PlayTargetAnimation("Dead01", true);
+            playerAnimator.PlayTargetAnimation("Dead", true);
         }
     }
 
