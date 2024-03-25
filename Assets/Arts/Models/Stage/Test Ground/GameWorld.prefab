@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4931088056165794155}
   - component: {fileID: 4931088056165794154}
   - component: {fileID: 4931088056165794153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2ndFloor02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4931088056331570296}
   - component: {fileID: 4931088056331570295}
   - component: {fileID: 4931088056331570294}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slope02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931088056332244217}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4931088056342706039}
   - component: {fileID: 4931088056342706038}
   - component: {fileID: 4931088056342706037}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2ndFloor01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 4931088056641926886}
   - component: {fileID: 4931088056641926885}
   - component: {fileID: 4931088056641926884}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 4931088056829072282}
   - component: {fileID: 4931088056829072281}
   - component: {fileID: 4931088056829072280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 4931088056899719034}
   - component: {fileID: 4931088056899719033}
   - component: {fileID: 4931088056899719032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 4931088057033638455}
   - component: {fileID: 4931088057033638454}
   - component: {fileID: 4931088057033638453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slope01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 4931088057201892371}
   - component: {fileID: 4931088057201892370}
   - component: {fileID: 4931088057201892369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931088057274237920}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 4931088057320889005}
   - component: {fileID: 4931088057320889004}
   - component: {fileID: 4931088057320889003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 4931088057382543361}
   - component: {fileID: 4931088057382543360}
   - component: {fileID: 4931088057382543423}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931088057489499356}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 4931088057810490279}
   - component: {fileID: 4931088057810490278}
   - component: {fileID: 4931088057810490277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1274,7 +1274,7 @@ GameObject:
   - component: {fileID: 4931088057855660504}
   - component: {fileID: 4931088057855660503}
   - component: {fileID: 4931088057855660502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2ndFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ GameObject:
   - component: {fileID: 4931088057981778538}
   - component: {fileID: 4931088057981778537}
   - component: {fileID: 4931088057981778536}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stair (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,7 +1484,7 @@ GameObject:
   - component: {fileID: 4931088058137423576}
   - component: {fileID: 4931088058137423575}
   - component: {fileID: 4931088058137423574}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1586,7 +1586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931088058171678788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -170,15 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookSpeed: 0.033
-  followSpeed: 0.1
+  followSpeed: 0.5
   pivotSpeed: 0.015
   playerTransform: {fileID: 0}
+  playerFollowRate: 0.2
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3080
   minPivot: -35
   maxPivot: 35
+  lookAngle: 0.033
   cameraSphereRadius: 0.2
   cameraCollisionOffset: 0.2
+  minCollisionOffset: 0.2

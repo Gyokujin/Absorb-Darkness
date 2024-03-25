@@ -431,3 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackingWeapon: {fileID: 0}
+  weaponArmIdleAnimations:
+  - LeftArm Empty
+  - RightArm Empty
+  animacionFadeAmount: 0.2
