@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour
     private float rotationSpeed = 10;
     [SerializeField]
     private float fallingSpeed = 45;
+    [SerializeField]
+    private float jumpForce = 5f;
 
     [Header("Ground & Air Detection States")]
     [SerializeField]
@@ -176,7 +178,7 @@ public class PlayerMove : MonoBehaviour
         dir.Normalize();
         origin = origin + dir * groundDirRayDistance;
         targetPosition = playerTransform.position;
-        
+
         Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
         if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
         {

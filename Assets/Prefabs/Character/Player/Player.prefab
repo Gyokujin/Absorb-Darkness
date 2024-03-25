@@ -192,7 +192,7 @@ MonoBehaviour:
   rotationSpeed: 10
   fallingSpeed: 620
   groundDetectionRayStart: 0.5
-  distanceBeginFallMin: 1
+  distanceBeginFallMin: 0.5
   groundDirRayDistance: 0.2
   inAirTimer: 0
   rigidbody: {fileID: 0}
