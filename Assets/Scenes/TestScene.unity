@@ -1030,17 +1030,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: jumpForce
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1307785137}
-    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: distanceBeginFallMin
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: healthBar
       value: 
@@ -1139,6 +1131,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1243945029}
+    - target: {fileID: 7631947022005300, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 1544
+      objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

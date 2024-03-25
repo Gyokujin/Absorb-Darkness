@@ -191,8 +191,9 @@ MonoBehaviour:
   sprintSpeed: 9
   rotationSpeed: 10
   fallingSpeed: 620
+  jumpForce: 4
   groundDetectionRayStart: 0.5
-  distanceBeginFallMin: 0.5
+  distanceBeginFallMin: 1
   groundDirRayDistance: 0.2
   inAirTimer: 0
   rigidbody: {fileID: 0}
