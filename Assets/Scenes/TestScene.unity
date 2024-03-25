@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4497093, g: 0.49977654, b: 0.5756359, a: 1}
+  m_IndirectSpecularColor: {r: 0.44970876, g: 0.4997759, b: 0.5756351, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -343,81 +343,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 619683573}
     m_Modifications:
-    - target: {fileID: 4931088056165794152, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088056331570293, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088056332244216, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088056342706036, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088056641926882, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088056829072278, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088056899719030, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057033638452, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057201892367, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057274237983, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057320889001, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057382543421, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057489499355, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057810490275, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057855660501, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088057981778534, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088058137423573, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4931088058171678787, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_Name
       value: GameWorld
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931088058171678787, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4931088058171678788, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1131,10 +1059,6 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1243945029}
-    - target: {fileID: 7631947022005300, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 1544
-      objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1204,7 +1128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7925401802482542750}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon Pivot
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -1317,7 +1241,7 @@ GameObject:
   - component: {fileID: 4552545288946138290}
   - component: {fileID: 7073346730665859616}
   - component: {fileID: 7073346730665859615}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sword01_Lv1
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -1622,7 +1546,7 @@ GameObject:
   - component: {fileID: 2270112013324567501}
   - component: {fileID: 416366887409227264}
   - component: {fileID: 4211001362015286481}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sword01_Lv1
   m_TagString: Interactable
   m_Icon: {fileID: 0}

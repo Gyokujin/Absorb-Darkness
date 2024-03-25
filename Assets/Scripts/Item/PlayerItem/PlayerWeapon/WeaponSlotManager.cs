@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
@@ -10,6 +11,12 @@ public class WeaponSlotManager : MonoBehaviour
     private WeaponHolderSlot rightHandSlot;
     private DamageCollider leftHandDamageCollider;
     private DamageCollider rightHandDamageCollider;
+
+    [Header("Animation")]
+    [SerializeField]
+    private string[] weaponArmIdleAnimations = { "LeftArm Empty", "RightArm Empty" };
+    [SerializeField]
+    private float animacionFadeAmount = 0.2f;
 
     [Header("Component")]
     private Animator animator;
@@ -24,8 +31,8 @@ public class WeaponSlotManager : MonoBehaviour
     void Init()
     {
         animator = GetComponent<Animator>();
-        quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerStats = GetComponentInParent<PlayerStats>();
+        quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         
@@ -52,11 +59,11 @@ public class WeaponSlotManager : MonoBehaviour
 
             if (weaponItem != null)
             {
-                animator.CrossFade(weaponItem.left_Hand_Idle, 0.2f);
+                animator.CrossFade(weaponItem.left_Hand_Idle, animacionFadeAmount);
             }
             else
             {
-                animator.CrossFade("LeftArm Empty", 0.2f);
+                animator.CrossFade(weaponArmIdleAnimations[0], animacionFadeAmount);
             }
         }
         else
@@ -67,11 +74,11 @@ public class WeaponSlotManager : MonoBehaviour
 
             if (weaponItem != null)
             {
-                animator.CrossFade(weaponItem.right_Hand_Idle, 0.2f);
+                animator.CrossFade(weaponItem.right_Hand_Idle, animacionFadeAmount);
             }
             else
             {
-                animator.CrossFade("RightArm Empty", 0.2f);
+                animator.CrossFade(weaponArmIdleAnimations[1], animacionFadeAmount);
             }
         }
     }

@@ -10,18 +10,21 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private float lookSpeed = 0.025f;
     [SerializeField]
-    private float followSpeed = 0.1f;
+    private float followSpeed = 0.5f;
     [SerializeField]
-    private float pivotSpeed = 0.0075f;
+    private float pivotSpeed = 0.01f;
 
     [Header("Camera Target")]
     [SerializeField]
     private Transform playerTransform;
+    private float playerPosition;
+    [SerializeField]
+    private float playerFollowRate = 0.2f;
     [SerializeField]
     private Transform cameraTransform;
     [SerializeField]
     private Transform cameraPivotTransform;
-    private Transform myTransform;
+    private Transform camTransform;
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask layerMask;
@@ -31,9 +34,9 @@ public class PlayerCamera : MonoBehaviour
     private float minPivot = -35;
     [SerializeField]
     private float maxPivot = 35;
-    private float playerPosition;
     private float defaultPosition;
-    private float lookAngle;
+    [SerializeField]
+    private float lookAngle = 0.033f;
     private float pivotAngle;
 
     [Header("Camera Collision")]
@@ -41,24 +44,33 @@ public class PlayerCamera : MonoBehaviour
     private float cameraSphereRadius = 0.2f;
     [SerializeField]
     private float cameraCollisionOffset = 0.2f;
+    [SerializeField]
     private float minCollisionOffset = 0.2f;
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Init();
     }
 
     void Init()
     {
-        myTransform = transform;
+        camTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
     }
 
     public void FollowTarget(float delta)
     {
-        Vector3 playerPos = Vector3.SmoothDamp(myTransform.position, playerTransform.position, ref cameraFollowVelocity, delta / followSpeed);
-        myTransform.position = playerPos;
+        Vector3 playerPos = Vector3.SmoothDamp(camTransform.position, playerTransform.position, ref cameraFollowVelocity, delta / followSpeed);
+        camTransform.position = playerPos;
         HandleCameraCollision(delta);
     }
 
@@ -71,7 +83,7 @@ public class PlayerCamera : MonoBehaviour
         Vector3 rotation = Vector3.zero;
         rotation.y = lookAngle;
         Quaternion targetRotation = Quaternion.Euler(rotation);
-        myTransform.rotation = targetRotation;
+        camTransform.rotation = targetRotation;
 
         rotation = Vector3.zero;
         rotation.x = pivotAngle;
@@ -97,7 +109,7 @@ public class PlayerCamera : MonoBehaviour
             playerPosition = -minCollisionOffset;
         }
 
-        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / 0.2f);
+        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / playerFollowRate);
         cameraTransform.localPosition = cameraPos;
     }
 }

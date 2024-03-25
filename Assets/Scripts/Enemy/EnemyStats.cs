@@ -36,12 +36,12 @@ public class EnemyStats : MonoBehaviour
     {
         Debug.Log("Hit");
         currentHealth -= damage;
-        animator.Play("Damage_01");
+        animator.SetBool("onHit", true);
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            animator.Play("Damage_01");
+            animator.SetTrigger("doDie");
         }
     }
 }

@@ -6,7 +6,8 @@ using UnityEngine;
 public class WeaponItem : Item
 {
     public GameObject modelPrefab;
-    public bool isUnarmed;
+    [SerializeField]
+    private bool isUnarmed;
 
     [Header("Idle Animations")]
     public string right_Hand_Idle;

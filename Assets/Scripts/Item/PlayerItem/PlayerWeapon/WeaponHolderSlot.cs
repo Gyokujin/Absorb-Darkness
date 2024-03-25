@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WeaponHolderSlot : MonoBehaviour
 {
-    public Transform parentTransform;
+    [SerializeField]
+    private Transform parentTransform;
     public bool isLeftHandSlot;
     public bool isRightHandSlot;
 
@@ -22,7 +23,7 @@ public class WeaponHolderSlot : MonoBehaviour
     {
         if (currentWeaponModel != null)
         {
-            Destroy(currentWeaponModel);
+            Destroy(currentWeaponModel); // 이후에 수정하자
         }
     }
 
