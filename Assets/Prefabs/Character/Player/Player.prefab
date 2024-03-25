@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 3
-  moveSpeed: 5
+  moveSpeed: 7
   sprintSpeed: 9
   rotationSpeed: 10
   fallingSpeed: 620
