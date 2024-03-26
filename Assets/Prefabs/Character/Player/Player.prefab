@@ -188,14 +188,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   moveSpeed: 7
-  sprintSpeed: 9
+  sprintSpeed: 11
   rotationSpeed: 10
-  fallingSpeed: 620
-  jumpForce: 4
+  fallingSpeedRatio: 2
+  fallingDownForce: 750
+  fallingFrontForce: 5
+  groundCheckDis: 0.4
   groundDetectionRayStart: 0.5
   distanceBeginFallMin: 1
   groundDirRayDistance: 0.2
+  ignoreGroundCheck:
+    serializedVersion: 2
+    m_Bits: 64
   inAirTimer: 0
+  fallingFactor: 0.1
   rigidbody: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 0}
@@ -220,8 +226,6 @@ MonoBehaviour:
   weaponInRightSlots:
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
   - {fileID: 11400000, guid: 48a41d10dfad7f049ade9ef7ae228510, type: 2}
-  currentLeftWeaponIndex: -1
-  currentRightWeaponIndex: -1
   weaponsInventory: []
 --- !u!114 &5664519629810846392
 MonoBehaviour:
@@ -251,11 +255,9 @@ MonoBehaviour:
   healthLevel: 10
   healthLevelAmount: 10
   maxHealth: 100
-  currentHealth: 100
   staminaLevel: 10
   staminaLevelAmount: 10
   maxStamina: 0
-  currentStamina: 0
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
 --- !u!1001 &8633419180313039681
@@ -417,6 +419,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 1
+  idleParameterValue: 0
+  walkParameterValue: 0.5
+  runParameterValue: 1
+  sprintParameterValue: 2
+  animationDampTime: 0.1
+  animacionFadeAmount: 0.2
   animator: {fileID: 0}
 --- !u!114 &9075550436823375667
 MonoBehaviour:
