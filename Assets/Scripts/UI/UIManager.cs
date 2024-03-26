@@ -24,8 +24,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
-        // equipmentWindowUI = GetComponentInChildren<EquipmentWindowUI>();
+        equipmentWindowUI = GetComponentInChildren<EquipmentWindowUI>();
     }
 
     void Start()

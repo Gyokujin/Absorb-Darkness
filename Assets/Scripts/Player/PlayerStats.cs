@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Status")]
+    [Header("Health")]
     [SerializeField]
     private int healthLevel = 10;
     [SerializeField]
     private int healthLevelAmount = 10;
-    public int maxHealth;
-    public int currentHealth;
+    [SerializeField]
+    private int maxHealth;
+    private int currentHealth;
 
+    [Header("Stamina")]
     [SerializeField]
     private int staminaLevel = 10;
     [SerializeField]
     private int staminaLevelAmount = 10;
     [SerializeField]
     private int maxStamina;
-    public int currentStamina;
+    private int currentStamina;
 
     [Header("UI")]
     [SerializeField]
@@ -31,11 +33,6 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        Init();
-    }
-
-    void Init()
-    {
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
     }
 
@@ -47,28 +44,16 @@ public class PlayerStats : MonoBehaviour
 
     void InitHealth()
     {
-        maxHealth = SetMaxHealthLevel();
+        maxHealth = healthLevel * healthLevelAmount;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
     void InitStamina()
     {
-        maxStamina = SetMaxStaminaLevel();
+        maxStamina = staminaLevel * staminaLevelAmount;
         currentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
-    }
-
-    int SetMaxHealthLevel()
-    {
-        maxHealth = healthLevel * healthLevelAmount;
-        return maxHealth;
-    }
-
-    int SetMaxStaminaLevel()
-    {
-        maxStamina = staminaLevel * staminaLevelAmount;
-        return maxStamina;
     }
 
     public void TakeDamage(int damage)

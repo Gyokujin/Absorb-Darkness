@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   interactableText: "\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD55C\uB2E4 E"
-  weapon: {fileID: 11400000, guid: 33e463ecf98df774594ae80033a7ffa0, type: 2}
+  weapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
 --- !u!135 &7073346730665859616
 SphereCollider:
   m_ObjectHideFlags: 0
