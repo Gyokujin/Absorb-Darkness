@@ -15,9 +15,11 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 10;
     [SerializeField]
-    private float fallingDownSpeed = 45;
+    private float fallingSpeedRatio = 2;
     [SerializeField]
-    private float fallingFrontSpeed = 6f;
+    private float fallingDownForce = 750;
+    [SerializeField]
+    private float fallingFrontForce = 5f;
 
     [Header("Ground & Air Detection States")]
     [SerializeField]
@@ -32,6 +34,8 @@ public class PlayerMove : MonoBehaviour
     public float inAirTimer;
 
     [Header("Physics")]
+    [SerializeField]
+    private float fallingFactor = 0.1f;
     private Transform playerTransform;
     [HideInInspector]
     public new Rigidbody rigidbody;
@@ -87,18 +91,15 @@ public class PlayerMove : MonoBehaviour
             playerManager.isSprinting = true;
             moveDirection *= speed;
         }
+        else if (playerInput.moveAmount < 0.5f)
+        {
+            moveDirection *= walkSpeed;
+            playerManager.isSprinting = false;
+        }
         else
         {
-            if (playerInput.moveAmount < 0.5f)
-            {
-                moveDirection *= walkSpeed;
-                playerManager.isSprinting = false;
-            }
-            else
-            {
-                moveDirection *= speed;
-                playerManager.isSprinting = false;
-            }
+            moveDirection *= speed;
+            playerManager.isSprinting = false;
         }
         
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
@@ -171,8 +172,8 @@ public class PlayerMove : MonoBehaviour
 
         if (playerManager.isInAir)
         {
-            rigidbody.AddForce(Vector3.down * fallingDownSpeed); // 아래 낙하
-            rigidbody.AddForce(moveDirection * fallingDownSpeed / fallingFrontSpeed); // 끼임 방지를 위해 앞으로 이동
+            rigidbody.AddForce(Vector3.down * fallingDownForce); // 아래 낙하
+            rigidbody.AddForce(moveDirection * fallingDownForce / fallingFrontForce); // 끼임 방지를 위해 앞으로 이동
         }
 
         Vector3 dir = moveDirection;
@@ -190,7 +191,7 @@ public class PlayerMove : MonoBehaviour
 
             if (playerManager.isInAir)
             {
-                if (inAirTimer > 0.5f)
+                if (inAirTimer > 0.5f) // 낙하 시간이 0.5초 이상일때만 Land 애니메이션을 실행한다.
                 {
                     playerAnimator.PlayTargetAnimation("Land", true);
                     inAirTimer = 0;
@@ -220,14 +221,14 @@ public class PlayerMove : MonoBehaviour
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
-                rigidbody.velocity = velocity * (moveSpeed / 2);
+                rigidbody.velocity = velocity * (moveSpeed / fallingSpeedRatio);
                 playerManager.isInAir = true;
             }
         }
 
         if (playerManager.isInteracting || playerInput.moveAmount > 0)
         {
-            playerTransform.position = Vector3.Lerp(playerTransform.position, targetPosition, Time.deltaTime / 0.1f);
+            playerTransform.position = Vector3.Lerp(playerTransform.position, targetPosition, Time.deltaTime / fallingFactor);
         }
         else
         {
@@ -252,18 +253,15 @@ public class PlayerMove : MonoBehaviour
         if (playerManager.isInteracting)
             return;
 
-        if (playerInput.jump_Input)
+        if (playerInput.jump_Input && playerInput.moveAmount > 0)
         {
-            if (playerInput.moveAmount > 0)
-            {
-                moveDirection = cameraPos.forward * playerInput.vertical;
-                moveDirection += cameraPos.right * playerInput.horizontal;
-                playerAnimator.PlayTargetAnimation("Jump", true);
-                
-                moveDirection.y = 0;
-                Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
-                playerTransform.rotation = jumpRotation;
-            }
+            moveDirection = cameraPos.forward * playerInput.vertical;
+            moveDirection += cameraPos.right * playerInput.horizontal;
+            playerAnimator.PlayTargetAnimation("Jump", true);
+
+            moveDirection.y = 0;
+            Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+            playerTransform.rotation = jumpRotation;
         }
     }
 }

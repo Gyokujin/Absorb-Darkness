@@ -753,9 +753,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: sprintSpeed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: fallingSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1307785137}
+    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: fallingDownForce
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: fallingFrontForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: ignoreGroundCheck.m_Bits
       value: 64
@@ -774,11 +790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 10.66
       objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.55
       objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalRotation.w
