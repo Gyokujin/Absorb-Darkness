@@ -96,20 +96,17 @@ public class PlayerManager : MonoBehaviour
 
         if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, playerCamera.layerMask))
         {
-            if (hit.collider.tag == "Interactable")
+            if (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Interactable>() != null)
             {
                 Interactable interactableObj = hit.collider.GetComponent<Interactable>();
 
-                if (interactableObj != null)
-                {
-                    string interactableText = interactableObj.interactableText;
-                    interactableUI.interactableText.text = interactableText;
-                    interactableUIObj.SetActive(true);
+                string interactableText = interactableObj.interactableText;
+                interactableUI.interactableText.text = interactableText;
+                interactableUIObj.SetActive(true);
 
-                    if (playerInput.a_Input)
-                    {
-                        interactableObj.Interact(this);
-                    }
+                if (playerInput.a_Input)
+                {
+                    interactableObj.Interact(this);
                 }
             }
         }
@@ -118,11 +115,11 @@ public class PlayerManager : MonoBehaviour
             if (interactableUIObj != null)
             {
                 interactableUIObj.SetActive(false);
-            }
 
-            if (itemInteractableObj != null && playerInput.a_Input)
-            {
-                itemInteractableObj.SetActive(false);
+                if (playerInput.a_Input)
+                {
+                    itemInteractableObj.SetActive(false);
+                }
             }
         }
     }

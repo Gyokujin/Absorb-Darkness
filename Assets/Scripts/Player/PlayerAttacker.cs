@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerAttacker : MonoBehaviour
 {
-    public string lastAttack;
+    [SerializeField]
+    private string lastAttack;
 
     [Header("Component")]
     private PlayerInput playerInput;

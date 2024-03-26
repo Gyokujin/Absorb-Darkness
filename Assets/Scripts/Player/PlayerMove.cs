@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
     [Header("Movement Status")]
@@ -15,24 +15,26 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 10;
     [SerializeField]
-    private float fallingSpeed = 45;
+    private float fallingDownSpeed = 45;
     [SerializeField]
-    private float jumpForce = 5f;
+    private float fallingFrontSpeed = 6f;
 
     [Header("Ground & Air Detection States")]
+    [SerializeField]
+    private float groundCheckDis = 0.4f;
     [SerializeField]
     private float groundDetectionRayStart = 0.5f;
     [SerializeField]
     private float distanceBeginFallMin = 1f;
     [SerializeField]
     private float groundDirRayDistance = 0.2f;
-    private LayerMask ignoreGroundCheck;
+    public LayerMask ignoreGroundCheck;
     public float inAirTimer;
 
     [Header("Physics")]
     private Transform playerTransform;
     [HideInInspector]
-    public Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     public Vector3 moveDirection;
     private Vector3 normalVec;
     private Vector3 targetPosition;
@@ -63,7 +65,6 @@ public class PlayerMove : MonoBehaviour
         playerTransform = transform;
         playerAnimator.Init();
         playerManager.isGrounded = true;
-        ignoreGroundCheck = ~(1 << 8 | 1 << 11);
     }
 
     public void HandleMovement(float delta)
@@ -163,15 +164,15 @@ public class PlayerMove : MonoBehaviour
         Vector3 origin = playerTransform.position;
         origin.y += groundDetectionRayStart;
 
-        if (Physics.Raycast(origin, playerTransform.forward, out hit, 0.4f))
+        if (Physics.Raycast(origin, playerTransform.forward, out hit, groundCheckDis))
         {
             moveDirection = Vector3.zero;
         }
 
         if (playerManager.isInAir)
         {
-            rigidbody.AddForce(Vector3.down * fallingSpeed);
-            rigidbody.AddForce(moveDirection * fallingSpeed / 6f);
+            rigidbody.AddForce(Vector3.down * fallingDownSpeed); // 아래 낙하
+            rigidbody.AddForce(moveDirection * fallingDownSpeed / fallingFrontSpeed); // 끼임 방지를 위해 앞으로 이동
         }
 
         Vector3 dir = moveDirection;

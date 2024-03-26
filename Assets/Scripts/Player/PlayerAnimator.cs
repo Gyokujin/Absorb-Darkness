@@ -7,6 +7,22 @@ public class PlayerAnimator : MonoBehaviour
 {
     public bool canRotate = true;
 
+    [Header("Animator Parameters")]
+    private float parameterHor;
+    private float parameterVer;
+    [SerializeField]
+    private float idleParameterValue = 0;
+    [SerializeField]
+    private float walkParameterValue = 0.5f;
+    [SerializeField]
+    private float runParameterValue = 1;
+    [SerializeField]
+    private float sprintParameterValue = 2;
+    [SerializeField]
+    private float animationDampTime = 0.1f;
+    [SerializeField]
+    private float animacionFadeAmount = 0.2f;
+
     [Header("Component")]
     [HideInInspector]
     public Animator animator;
@@ -25,69 +41,69 @@ public class PlayerAnimator : MonoBehaviour
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
     {
         // Vertical 파라미터
-        float v = 0;
+        parameterVer = idleParameterValue;
 
         if (moveVer > 0 && moveVer < 0.55f)
         {
-            v = 0.5f;
+            parameterVer = walkParameterValue;
         }
         else if (moveVer > 0.55f)
         {
-            v = 1;
+            parameterVer = runParameterValue;
         }
         else if (moveVer < 0 && moveVer > -0.55f)
         {
-            v = -0.5f;
+            parameterVer = -walkParameterValue;
         }
         else if (moveVer < -0.55f)
         {
-            v = -1;
+            parameterVer = -runParameterValue;
         }
         else
         {
-            v = 0;
+            parameterVer = idleParameterValue;
         }
 
         // Horizontal 파라미터
-        float h = 0;
+        parameterHor = idleParameterValue;
 
         if (moveHor > 0 && moveHor < 0.55f)
         {
-            h = 0.5f;
+            parameterHor = walkParameterValue;
         }
         else if (moveHor > 0.55f)
         {
-            h = 1;
+            parameterHor = runParameterValue;
         }
         else if (moveHor < 0 && moveHor > -0.55f)
         {
-            h = -0.5f;
+            parameterHor = -walkParameterValue;
         }
         else if (moveHor < -0.55f)
         {
-            h = -1;
+            parameterHor = -runParameterValue;
         }
         else
         {
-            h = 0;
+            parameterHor = idleParameterValue;
         }
 
         if (isSprinting)
         {
-            v = 2;
-            h = moveHor;
+            parameterVer = sprintParameterValue;
+            parameterHor = sprintParameterValue;
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat("vertical", v, 0.1f, Time.deltaTime);
-        animator.SetFloat("horizontal", h, 0.1f, Time.deltaTime);
+        animator.SetFloat("vertical", parameterVer, animationDampTime, Time.deltaTime);
+        animator.SetFloat("horizontal", parameterHor, animationDampTime, Time.deltaTime);
     }
 
     public void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {
         animator.applyRootMotion = isInteracting;
         animator.SetBool("isInteracting", isInteracting);
-        animator.CrossFade(targetAnim, 0.2f);
+        animator.CrossFade(targetAnim, animacionFadeAmount);
     }
 
     public void CanRotate(bool isCan)
@@ -107,14 +123,12 @@ public class PlayerAnimator : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        if (playerManager.isInteracting == false)
+        if (!playerManager.isInteracting)
             return;
 
-        float delta = Time.deltaTime;
         playerMove.rigidbody.drag = 0;
-        Vector3 deltaPosition = animator.deltaPosition;
-        deltaPosition.y = 0;
-        Vector3 velocity = deltaPosition / delta;
+        Vector3 deltaPosition = new Vector3(animator.deltaPosition.x, 0, animator.deltaPosition.z);
+        Vector3 velocity = deltaPosition / Time.deltaTime;
         playerMove.rigidbody.velocity = velocity;
     }
 }

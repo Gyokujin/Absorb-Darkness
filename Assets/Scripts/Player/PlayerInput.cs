@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     public float mouseX;
     public float mouseY;
 
-    [Header("Action")]
+    [Header("Action Input")]
     public bool a_Input;
     public bool b_Input;
     public bool rb_Input;
@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
     public bool jump_Input;
     public bool inventory_Input;
 
+    [Header("Action Flag")]
     public bool rollFlag;
     public bool sprintFlag;
     public float rollInputTimer;
@@ -130,16 +131,13 @@ public class PlayerInput : MonoBehaviour
                 playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
                 comboFlag = false;
             }
-            else
+            else if (!playerManager.isInteracting && !playerManager.canDoCombo)
             {
-                if (playerManager.isInteracting || playerManager.canDoCombo)
-                    return;
-
                 playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
             }
         }
 
-        if (rt_Input)
+        if (rt_Input && !playerManager.isInteracting)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
         }
