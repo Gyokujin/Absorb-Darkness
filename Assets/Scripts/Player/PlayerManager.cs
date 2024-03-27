@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
+    public bool isJumping;
     public bool isInAir;
     public bool isGrounded;
     public bool canDoCombo;

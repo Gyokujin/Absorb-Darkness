@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerManager playerManager;
     private PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
+    private PlayerActionCollider playerActionCollider;
 
     void Start()
     {
@@ -64,6 +65,7 @@ public class PlayerMove : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerActionCollider = GetComponent<PlayerActionCollider>();
 
         cameraPos = playerCamera.transform;
         playerTransform = transform;
@@ -182,7 +184,8 @@ public class PlayerMove : MonoBehaviour
         targetPosition = playerTransform.position;
 
         Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
-        if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
+
+        if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck) && !playerManager.isJumping)
         {
             normalVec = hit.normal;
             Vector3 transform = hit.point;
@@ -257,7 +260,9 @@ public class PlayerMove : MonoBehaviour
         {
             moveDirection = cameraPos.forward * playerInput.vertical;
             moveDirection += cameraPos.right * playerInput.horizontal;
+            rigidbody.AddForce(moveDirection * 5000, ForceMode.Impulse);
             playerAnimator.PlayTargetAnimation("Jump", true);
+            playerManager.isJumping = true;
 
             moveDirection.y = 0;
             Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
