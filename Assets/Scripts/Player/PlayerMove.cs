@@ -52,7 +52,6 @@ public class PlayerMove : MonoBehaviour
     private PlayerManager playerManager;
     private PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
-    private PlayerActionCollider playerActionCollider;
 
     void Start()
     {
@@ -65,7 +64,6 @@ public class PlayerMove : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        playerActionCollider = GetComponent<PlayerActionCollider>();
 
         cameraPos = playerCamera.transform;
         playerTransform = transform;
@@ -251,21 +249,21 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void HandleJumping()
-    {
-        if (playerManager.isInteracting)
-            return;
+    //public void HandleJumping()
+    //{
+    //    if (playerManager.isInteracting)
+    //        return;
 
-        if (playerInput.jump_Input && playerInput.moveAmount > 0)
-        {
-            moveDirection = cameraPos.forward * playerInput.vertical;
-            moveDirection += cameraPos.right * playerInput.horizontal;
-            rigidbody.AddForce(moveDirection * 5000, ForceMode.Impulse);
-            playerAnimator.PlayTargetAnimation("Jump", true);
+    //    if (playerInput.jump_Input && playerInput.moveAmount > 0)
+    //    {
+    //        moveDirection = cameraPos.forward * playerInput.vertical;
+    //        moveDirection += cameraPos.right * playerInput.horizontal;
+    //        rigidbody.AddForce(moveDirection * 5000, ForceMode.Impulse);
+    //        playerAnimator.PlayTargetAnimation("Jump", true);
 
-            moveDirection.y = 0;
-            Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
-            playerTransform.rotation = jumpRotation;
-        }
-    }
+    //        moveDirection.y = 0;
+    //        Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+    //        playerTransform.rotation = jumpRotation;
+    //    }
+    //}
 }

@@ -7,7 +7,6 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
-    public bool isJumping;
     public bool isInAir;
     public bool isGrounded;
     public bool canDoCombo;
@@ -51,25 +50,21 @@ public class PlayerManager : MonoBehaviour
         canDoCombo = animator.GetBool("canDoCombo");
         isInteracting = animator.GetBool("isInteracting");
         animator.SetBool("isInAir", isInAir);
-
         playerInput.TickInput(Time.deltaTime);
         playerMove.HandleRollingAndSprinting(Time.deltaTime);
-        playerMove.HandleJumping();
-
         CheckInteractableObject();
     }
 
     void LateUpdate()
     {
         playerInput.rollFlag = false;
-        playerInput.a_Input = false;
-        playerInput.rb_Input = false;
-        playerInput.rt_Input = false;
-        playerInput.d_Pad_Up = false;
-        playerInput.d_Pad_Down = false;
-        playerInput.d_Pad_Left = false;
-        playerInput.d_Pad_Right = false;
-        playerInput.jump_Input = false;
+        playerInput.interact_Input = false;
+        playerInput.lightAttack_Input = false;
+        playerInput.heavyAttack_Input = false;
+        playerInput.quickSlotUp = false;
+        playerInput.quickSlotDown = false;
+        playerInput.quickSlotLeft = false;
+        playerInput.quickSlotRight = false;
         playerInput.inventory_Input = false;
 
         if (playerCamera != null)
@@ -105,7 +100,7 @@ public class PlayerManager : MonoBehaviour
                 interactableUI.interactableText.text = interactableText;
                 interactableUIObj.SetActive(true);
 
-                if (playerInput.a_Input)
+                if (playerInput.interact_Input)
                 {
                     interactableObj.Interact(this);
                 }
@@ -117,7 +112,7 @@ public class PlayerManager : MonoBehaviour
             {
                 interactableUIObj.SetActive(false);
 
-                if (playerInput.a_Input)
+                if (playerInput.interact_Input)
                 {
                     itemInteractableObj.SetActive(false);
                 }

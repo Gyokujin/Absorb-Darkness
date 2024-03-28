@@ -151,7 +151,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""A"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""02f069dc-bfda-4455-b5b5-921f485532bb"",
                     ""expectedControlType"": ""Button"",
@@ -160,7 +160,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""B"",
+                    ""name"": ""Rolling"",
                     ""type"": ""Button"",
                     ""id"": ""016d6095-94ba-4f6f-90e1-c035e51da9ab"",
                     ""expectedControlType"": ""Button"",
@@ -169,16 +169,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""a30a391a-ad60-48ba-a495-0ec20e642d95"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RB"",
+                    ""name"": ""LightAttack"",
                     ""type"": ""Button"",
                     ""id"": ""0d105b1e-6893-4be0-8d73-cb86c9dd95b1"",
                     ""expectedControlType"": ""Button"",
@@ -187,7 +178,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RT"",
+                    ""name"": ""HeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""3a711920-d185-456b-9284-92bcc7133534"",
                     ""expectedControlType"": ""Button"",
@@ -204,7 +195,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""B"",
+                    ""action"": ""Rolling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -215,7 +206,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""B"",
+                    ""action"": ""Rolling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -226,7 +217,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RB"",
+                    ""action"": ""LightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -237,7 +228,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RB"",
+                    ""action"": ""LightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +239,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RT"",
+                    ""action"": ""HeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -259,29 +250,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RT"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""55336b18-77fd-4e79-8c13-48395f0e1dc1"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ec9a5a8f-fdfe-4ed7-a744-6fcd5d528abb"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""HeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -314,7 +283,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -325,7 +294,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -336,7 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""80e98173-8b81-450d-a539-068ca4a7b918"",
             ""actions"": [
                 {
-                    ""name"": ""D-Pad Up"",
+                    ""name"": ""QuickSlotUp"",
                     ""type"": ""Button"",
                     ""id"": ""c64d70f4-895c-4e11-95c1-b0e9dea523e2"",
                     ""expectedControlType"": ""Button"",
@@ -345,7 +314,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""D-Pad Down"",
+                    ""name"": ""QuickSlotDown"",
                     ""type"": ""Button"",
                     ""id"": ""8f69b7e3-724f-46b0-921a-aa1a74bc1fed"",
                     ""expectedControlType"": ""Button"",
@@ -354,7 +323,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""D-Pad Left"",
+                    ""name"": ""QuickSlotLeft"",
                     ""type"": ""Button"",
                     ""id"": ""97287db5-18a2-4169-bf46-222477ca06a2"",
                     ""expectedControlType"": ""Button"",
@@ -363,7 +332,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""D-Pad Right"",
+                    ""name"": ""QuickSlotRight"",
                     ""type"": ""Button"",
                     ""id"": ""5c4dbc2e-da91-4ab7-a548-a6566b297762"",
                     ""expectedControlType"": ""Button"",
@@ -380,7 +349,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Up"",
+                    ""action"": ""QuickSlotUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -391,7 +360,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Up"",
+                    ""action"": ""QuickSlotUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -402,7 +371,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Down"",
+                    ""action"": ""QuickSlotDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -413,7 +382,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Down"",
+                    ""action"": ""QuickSlotDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -424,7 +393,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Left"",
+                    ""action"": ""QuickSlotLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -435,7 +404,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Left"",
+                    ""action"": ""QuickSlotLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -446,7 +415,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Right"",
+                    ""action"": ""QuickSlotRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -457,7 +426,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""D-Pad Right"",
+                    ""action"": ""QuickSlotRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -473,17 +442,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Player Actions
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
         m_PlayerActions_Inventory = m_PlayerActions.FindAction("Inventory", throwIfNotFound: true);
-        m_PlayerActions_A = m_PlayerActions.FindAction("A", throwIfNotFound: true);
-        m_PlayerActions_B = m_PlayerActions.FindAction("B", throwIfNotFound: true);
-        m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
-        m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerActions_Rolling = m_PlayerActions.FindAction("Rolling", throwIfNotFound: true);
+        m_PlayerActions_LightAttack = m_PlayerActions.FindAction("LightAttack", throwIfNotFound: true);
+        m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("HeavyAttack", throwIfNotFound: true);
         // Player QuickSlots
         m_PlayerQuickSlots = asset.FindActionMap("Player QuickSlots", throwIfNotFound: true);
-        m_PlayerQuickSlots_DPadUp = m_PlayerQuickSlots.FindAction("D-Pad Up", throwIfNotFound: true);
-        m_PlayerQuickSlots_DPadDown = m_PlayerQuickSlots.FindAction("D-Pad Down", throwIfNotFound: true);
-        m_PlayerQuickSlots_DPadLeft = m_PlayerQuickSlots.FindAction("D-Pad Left", throwIfNotFound: true);
-        m_PlayerQuickSlots_DPadRight = m_PlayerQuickSlots.FindAction("D-Pad Right", throwIfNotFound: true);
+        m_PlayerQuickSlots_QuickSlotUp = m_PlayerQuickSlots.FindAction("QuickSlotUp", throwIfNotFound: true);
+        m_PlayerQuickSlots_QuickSlotDown = m_PlayerQuickSlots.FindAction("QuickSlotDown", throwIfNotFound: true);
+        m_PlayerQuickSlots_QuickSlotLeft = m_PlayerQuickSlots.FindAction("QuickSlotLeft", throwIfNotFound: true);
+        m_PlayerQuickSlots_QuickSlotRight = m_PlayerQuickSlots.FindAction("QuickSlotRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -600,21 +568,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
     private readonly InputAction m_PlayerActions_Inventory;
-    private readonly InputAction m_PlayerActions_A;
-    private readonly InputAction m_PlayerActions_B;
-    private readonly InputAction m_PlayerActions_Jump;
-    private readonly InputAction m_PlayerActions_RB;
-    private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_Interact;
+    private readonly InputAction m_PlayerActions_Rolling;
+    private readonly InputAction m_PlayerActions_LightAttack;
+    private readonly InputAction m_PlayerActions_HeavyAttack;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Inventory => m_Wrapper.m_PlayerActions_Inventory;
-        public InputAction @A => m_Wrapper.m_PlayerActions_A;
-        public InputAction @B => m_Wrapper.m_PlayerActions_B;
-        public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
-        public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
-        public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
+        public InputAction @Rolling => m_Wrapper.m_PlayerActions_Rolling;
+        public InputAction @LightAttack => m_Wrapper.m_PlayerActions_LightAttack;
+        public InputAction @HeavyAttack => m_Wrapper.m_PlayerActions_HeavyAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -627,21 +593,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
-            @A.started += instance.OnA;
-            @A.performed += instance.OnA;
-            @A.canceled += instance.OnA;
-            @B.started += instance.OnB;
-            @B.performed += instance.OnB;
-            @B.canceled += instance.OnB;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @RB.started += instance.OnRB;
-            @RB.performed += instance.OnRB;
-            @RB.canceled += instance.OnRB;
-            @RT.started += instance.OnRT;
-            @RT.performed += instance.OnRT;
-            @RT.canceled += instance.OnRT;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Rolling.started += instance.OnRolling;
+            @Rolling.performed += instance.OnRolling;
+            @Rolling.canceled += instance.OnRolling;
+            @LightAttack.started += instance.OnLightAttack;
+            @LightAttack.performed += instance.OnLightAttack;
+            @LightAttack.canceled += instance.OnLightAttack;
+            @HeavyAttack.started += instance.OnHeavyAttack;
+            @HeavyAttack.performed += instance.OnHeavyAttack;
+            @HeavyAttack.canceled += instance.OnHeavyAttack;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -649,21 +612,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
-            @A.started -= instance.OnA;
-            @A.performed -= instance.OnA;
-            @A.canceled -= instance.OnA;
-            @B.started -= instance.OnB;
-            @B.performed -= instance.OnB;
-            @B.canceled -= instance.OnB;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @RB.started -= instance.OnRB;
-            @RB.performed -= instance.OnRB;
-            @RB.canceled -= instance.OnRB;
-            @RT.started -= instance.OnRT;
-            @RT.performed -= instance.OnRT;
-            @RT.canceled -= instance.OnRT;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Rolling.started -= instance.OnRolling;
+            @Rolling.performed -= instance.OnRolling;
+            @Rolling.canceled -= instance.OnRolling;
+            @LightAttack.started -= instance.OnLightAttack;
+            @LightAttack.performed -= instance.OnLightAttack;
+            @LightAttack.canceled -= instance.OnLightAttack;
+            @HeavyAttack.started -= instance.OnHeavyAttack;
+            @HeavyAttack.performed -= instance.OnHeavyAttack;
+            @HeavyAttack.canceled -= instance.OnHeavyAttack;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -685,18 +645,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Player QuickSlots
     private readonly InputActionMap m_PlayerQuickSlots;
     private List<IPlayerQuickSlotsActions> m_PlayerQuickSlotsActionsCallbackInterfaces = new List<IPlayerQuickSlotsActions>();
-    private readonly InputAction m_PlayerQuickSlots_DPadUp;
-    private readonly InputAction m_PlayerQuickSlots_DPadDown;
-    private readonly InputAction m_PlayerQuickSlots_DPadLeft;
-    private readonly InputAction m_PlayerQuickSlots_DPadRight;
+    private readonly InputAction m_PlayerQuickSlots_QuickSlotUp;
+    private readonly InputAction m_PlayerQuickSlots_QuickSlotDown;
+    private readonly InputAction m_PlayerQuickSlots_QuickSlotLeft;
+    private readonly InputAction m_PlayerQuickSlots_QuickSlotRight;
     public struct PlayerQuickSlotsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerQuickSlotsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @DPadUp => m_Wrapper.m_PlayerQuickSlots_DPadUp;
-        public InputAction @DPadDown => m_Wrapper.m_PlayerQuickSlots_DPadDown;
-        public InputAction @DPadLeft => m_Wrapper.m_PlayerQuickSlots_DPadLeft;
-        public InputAction @DPadRight => m_Wrapper.m_PlayerQuickSlots_DPadRight;
+        public InputAction @QuickSlotUp => m_Wrapper.m_PlayerQuickSlots_QuickSlotUp;
+        public InputAction @QuickSlotDown => m_Wrapper.m_PlayerQuickSlots_QuickSlotDown;
+        public InputAction @QuickSlotLeft => m_Wrapper.m_PlayerQuickSlots_QuickSlotLeft;
+        public InputAction @QuickSlotRight => m_Wrapper.m_PlayerQuickSlots_QuickSlotRight;
         public InputActionMap Get() { return m_Wrapper.m_PlayerQuickSlots; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -706,34 +666,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerQuickSlotsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerQuickSlotsActionsCallbackInterfaces.Add(instance);
-            @DPadUp.started += instance.OnDPadUp;
-            @DPadUp.performed += instance.OnDPadUp;
-            @DPadUp.canceled += instance.OnDPadUp;
-            @DPadDown.started += instance.OnDPadDown;
-            @DPadDown.performed += instance.OnDPadDown;
-            @DPadDown.canceled += instance.OnDPadDown;
-            @DPadLeft.started += instance.OnDPadLeft;
-            @DPadLeft.performed += instance.OnDPadLeft;
-            @DPadLeft.canceled += instance.OnDPadLeft;
-            @DPadRight.started += instance.OnDPadRight;
-            @DPadRight.performed += instance.OnDPadRight;
-            @DPadRight.canceled += instance.OnDPadRight;
+            @QuickSlotUp.started += instance.OnQuickSlotUp;
+            @QuickSlotUp.performed += instance.OnQuickSlotUp;
+            @QuickSlotUp.canceled += instance.OnQuickSlotUp;
+            @QuickSlotDown.started += instance.OnQuickSlotDown;
+            @QuickSlotDown.performed += instance.OnQuickSlotDown;
+            @QuickSlotDown.canceled += instance.OnQuickSlotDown;
+            @QuickSlotLeft.started += instance.OnQuickSlotLeft;
+            @QuickSlotLeft.performed += instance.OnQuickSlotLeft;
+            @QuickSlotLeft.canceled += instance.OnQuickSlotLeft;
+            @QuickSlotRight.started += instance.OnQuickSlotRight;
+            @QuickSlotRight.performed += instance.OnQuickSlotRight;
+            @QuickSlotRight.canceled += instance.OnQuickSlotRight;
         }
 
         private void UnregisterCallbacks(IPlayerQuickSlotsActions instance)
         {
-            @DPadUp.started -= instance.OnDPadUp;
-            @DPadUp.performed -= instance.OnDPadUp;
-            @DPadUp.canceled -= instance.OnDPadUp;
-            @DPadDown.started -= instance.OnDPadDown;
-            @DPadDown.performed -= instance.OnDPadDown;
-            @DPadDown.canceled -= instance.OnDPadDown;
-            @DPadLeft.started -= instance.OnDPadLeft;
-            @DPadLeft.performed -= instance.OnDPadLeft;
-            @DPadLeft.canceled -= instance.OnDPadLeft;
-            @DPadRight.started -= instance.OnDPadRight;
-            @DPadRight.performed -= instance.OnDPadRight;
-            @DPadRight.canceled -= instance.OnDPadRight;
+            @QuickSlotUp.started -= instance.OnQuickSlotUp;
+            @QuickSlotUp.performed -= instance.OnQuickSlotUp;
+            @QuickSlotUp.canceled -= instance.OnQuickSlotUp;
+            @QuickSlotDown.started -= instance.OnQuickSlotDown;
+            @QuickSlotDown.performed -= instance.OnQuickSlotDown;
+            @QuickSlotDown.canceled -= instance.OnQuickSlotDown;
+            @QuickSlotLeft.started -= instance.OnQuickSlotLeft;
+            @QuickSlotLeft.performed -= instance.OnQuickSlotLeft;
+            @QuickSlotLeft.canceled -= instance.OnQuickSlotLeft;
+            @QuickSlotRight.started -= instance.OnQuickSlotRight;
+            @QuickSlotRight.performed -= instance.OnQuickSlotRight;
+            @QuickSlotRight.canceled -= instance.OnQuickSlotRight;
         }
 
         public void RemoveCallbacks(IPlayerQuickSlotsActions instance)
@@ -759,17 +719,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IPlayerActionsActions
     {
         void OnInventory(InputAction.CallbackContext context);
-        void OnA(InputAction.CallbackContext context);
-        void OnB(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnRB(InputAction.CallbackContext context);
-        void OnRT(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnRolling(InputAction.CallbackContext context);
+        void OnLightAttack(InputAction.CallbackContext context);
+        void OnHeavyAttack(InputAction.CallbackContext context);
     }
     public interface IPlayerQuickSlotsActions
     {
-        void OnDPadUp(InputAction.CallbackContext context);
-        void OnDPadDown(InputAction.CallbackContext context);
-        void OnDPadLeft(InputAction.CallbackContext context);
-        void OnDPadRight(InputAction.CallbackContext context);
+        void OnQuickSlotUp(InputAction.CallbackContext context);
+        void OnQuickSlotDown(InputAction.CallbackContext context);
+        void OnQuickSlotLeft(InputAction.CallbackContext context);
+        void OnQuickSlotRight(InputAction.CallbackContext context);
     }
 }

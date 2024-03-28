@@ -129,7 +129,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "A",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "02f069dc-bfda-4455-b5b5-921f485532bb",
                     "expectedControlType": "Button",
@@ -138,7 +138,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "B",
+                    "name": "Rolling",
                     "type": "Button",
                     "id": "016d6095-94ba-4f6f-90e1-c035e51da9ab",
                     "expectedControlType": "Button",
@@ -147,16 +147,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "a30a391a-ad60-48ba-a495-0ec20e642d95",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RB",
+                    "name": "LightAttack",
                     "type": "Button",
                     "id": "0d105b1e-6893-4be0-8d73-cb86c9dd95b1",
                     "expectedControlType": "Button",
@@ -165,7 +156,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RT",
+                    "name": "HeavyAttack",
                     "type": "Button",
                     "id": "3a711920-d185-456b-9284-92bcc7133534",
                     "expectedControlType": "Button",
@@ -182,7 +173,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "B",
+                    "action": "Rolling",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -193,7 +184,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "B",
+                    "action": "Rolling",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -204,7 +195,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RB",
+                    "action": "LightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,7 +206,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RB",
+                    "action": "LightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,7 +217,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RT",
+                    "action": "HeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -237,29 +228,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RT",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "55336b18-77fd-4e79-8c13-48395f0e1dc1",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ec9a5a8f-fdfe-4ed7-a744-6fcd5d528abb",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
+                    "action": "HeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -292,7 +261,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "A",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -303,7 +272,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "A",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -314,7 +283,7 @@
             "id": "80e98173-8b81-450d-a539-068ca4a7b918",
             "actions": [
                 {
-                    "name": "D-Pad Up",
+                    "name": "QuickSlotUp",
                     "type": "Button",
                     "id": "c64d70f4-895c-4e11-95c1-b0e9dea523e2",
                     "expectedControlType": "Button",
@@ -323,7 +292,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "D-Pad Down",
+                    "name": "QuickSlotDown",
                     "type": "Button",
                     "id": "8f69b7e3-724f-46b0-921a-aa1a74bc1fed",
                     "expectedControlType": "Button",
@@ -332,7 +301,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "D-Pad Left",
+                    "name": "QuickSlotLeft",
                     "type": "Button",
                     "id": "97287db5-18a2-4169-bf46-222477ca06a2",
                     "expectedControlType": "Button",
@@ -341,7 +310,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "D-Pad Right",
+                    "name": "QuickSlotRight",
                     "type": "Button",
                     "id": "5c4dbc2e-da91-4ab7-a548-a6566b297762",
                     "expectedControlType": "Button",
@@ -358,7 +327,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Up",
+                    "action": "QuickSlotUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -369,7 +338,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Up",
+                    "action": "QuickSlotUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -380,7 +349,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Down",
+                    "action": "QuickSlotDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -391,7 +360,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Down",
+                    "action": "QuickSlotDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -402,7 +371,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Left",
+                    "action": "QuickSlotLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -413,7 +382,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Left",
+                    "action": "QuickSlotLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -424,7 +393,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Right",
+                    "action": "QuickSlotRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -435,7 +404,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "D-Pad Right",
+                    "action": "QuickSlotRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

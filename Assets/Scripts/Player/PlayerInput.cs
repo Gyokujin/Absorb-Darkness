@@ -13,11 +13,10 @@ public class PlayerInput : MonoBehaviour
     public float mouseY;
 
     [Header("Action Input")]
-    public bool a_Input;
-    public bool b_Input;
-    public bool rb_Input;
-    public bool rt_Input;
-    public bool jump_Input;
+    public bool interact_Input;
+    public bool rolling_Input;
+    public bool lightAttack_Input;
+    public bool heavyAttack_Input;
     public bool inventory_Input;
 
     [Header("Action Flag")]
@@ -28,10 +27,10 @@ public class PlayerInput : MonoBehaviour
     public bool inventoryFlag;
 
     [Header("Quick Slots")]
-    public bool d_Pad_Up;
-    public bool d_Pad_Down;
-    public bool d_Pad_Left;
-    public bool d_Pad_Right;
+    public bool quickSlotUp;
+    public bool quickSlotDown;
+    public bool quickSlotLeft;
+    public bool quickSlotRight;
 
     [Header("Input")]
     private Vector2 movementInput;
@@ -64,12 +63,11 @@ public class PlayerInput : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
-            inputActions.PlayerActions.RB.performed += i => rb_Input = true;
-            inputActions.PlayerActions.RT.performed += i => rt_Input = true;
-            inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
-            inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
-            inputActions.PlayerActions.A.performed += i => a_Input = true;
-            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+            inputActions.PlayerActions.LightAttack.performed += i => lightAttack_Input = true;
+            inputActions.PlayerActions.HeavyAttack.performed += i => heavyAttack_Input = true;
+            inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeft = true;
+            inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRight = true;
+            inputActions.PlayerActions.Interact.performed += i => interact_Input = true;
             inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
         }
 
@@ -101,10 +99,10 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput(float delta)
     {
-        b_Input = inputActions.PlayerActions.B.phase == InputActionPhase.Performed;
-        sprintFlag = b_Input;
+        rolling_Input = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
+        sprintFlag = rolling_Input;
 
-        if (b_Input)
+        if (rolling_Input)
         {
             rollInputTimer += delta;
             sprintFlag = true;
@@ -123,7 +121,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput(float delta)
     {
-        if (rb_Input)
+        if (lightAttack_Input)
         {
             if (playerManager.canDoCombo)
             {
@@ -137,7 +135,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (rt_Input && !playerManager.isInteracting)
+        if (heavyAttack_Input && !playerManager.isInteracting)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
         }
@@ -145,11 +143,11 @@ public class PlayerInput : MonoBehaviour
 
     void HandleQuickSlotsInput()
     {
-        if (d_Pad_Left)
+        if (quickSlotLeft)
         {
             playerInventory.ChangeLeftWeapon();
         }
-        else if (d_Pad_Right)
+        else if (quickSlotRight)
         {
             playerInventory.ChangeRightWeapon();
         }
