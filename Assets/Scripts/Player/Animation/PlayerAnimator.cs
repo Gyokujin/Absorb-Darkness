@@ -121,11 +121,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("canDoCombo", false);
     }
 
-    public void JumpEnd()
-    {
-        playerManager.isJumping = false;
-    }
-
     void OnAnimatorMove()
     {
         if (!playerManager.isInteracting)
