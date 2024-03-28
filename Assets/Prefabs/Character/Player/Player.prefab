@@ -159,21 +159,20 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
-  a_Input: 0
-  b_Input: 0
-  rb_Input: 0
-  rt_Input: 0
-  jump_Input: 0
+  interact_Input: 0
+  rolling_Input: 0
+  lightAttack_Input: 0
+  heavyAttack_Input: 0
   inventory_Input: 0
   rollFlag: 0
   sprintFlag: 0
   rollInputTimer: 0
   comboFlag: 0
   inventoryFlag: 0
-  d_Pad_Up: 0
-  d_Pad_Down: 0
-  d_Pad_Left: 0
-  d_Pad_Right: 0
+  quickSlotUp: 0
+  quickSlotDown: 0
+  quickSlotLeft: 0
+  quickSlotRight: 0
 --- !u!114 &1912785350997228117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 3
-  moveSpeed: 7
-  sprintSpeed: 11
+  moveSpeed: 6
+  sprintSpeed: 9
   rotationSpeed: 10
   fallingSpeedRatio: 2
   fallingDownForce: 750
@@ -203,7 +202,6 @@ MonoBehaviour:
   inAirTimer: 0
   fallingFactor: 0.1
   rigidbody: {fileID: 0}
-  collider: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 0}
 --- !u!114 &8704254429465697172
