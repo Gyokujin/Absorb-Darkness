@@ -185,7 +185,7 @@ public class PlayerMove : MonoBehaviour
 
         Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
 
-        if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck) && !playerManager.isJumping)
+        if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
         {
             normalVec = hit.normal;
             Vector3 transform = hit.point;
@@ -262,7 +262,6 @@ public class PlayerMove : MonoBehaviour
             moveDirection += cameraPos.right * playerInput.horizontal;
             rigidbody.AddForce(moveDirection * 5000, ForceMode.Impulse);
             playerAnimator.PlayTargetAnimation("Jump", true);
-            playerManager.isJumping = true;
 
             moveDirection.y = 0;
             Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
