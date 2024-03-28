@@ -17,14 +17,14 @@ public class PlayerInput : MonoBehaviour
     public bool rolling_Input;
     public bool lightAttack_Input;
     public bool heavyAttack_Input;
-    public bool inventory_Input;
+    public bool gameSystem_Input;
 
     [Header("Action Flag")]
     public bool rollFlag;
     public bool sprintFlag;
     public float rollInputTimer;
     public bool comboFlag;
-    public bool inventoryFlag;
+    public bool gameSystemFlag;
 
     [Header("Quick Slots")]
     public bool quickSlotUp;
@@ -68,7 +68,7 @@ public class PlayerInput : MonoBehaviour
             inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeft = true;
             inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRight = true;
             inputActions.PlayerActions.Interact.performed += i => interact_Input = true;
-            inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
+            inputActions.PlayerActions.GameSystem.performed += i => gameSystem_Input = true;
         }
 
         inputActions.Enable();
@@ -121,7 +121,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput(float delta)
     {
-        if (lightAttack_Input)
+        if (lightAttack_Input && !gameSystemFlag)
         {
             if (playerManager.canDoCombo)
             {
@@ -155,21 +155,17 @@ public class PlayerInput : MonoBehaviour
 
     void HandleInverntoryInput()
     {
-        if (inventory_Input)
+        if (gameSystem_Input)
         {
-            inventoryFlag = !inventoryFlag;
-
-            if (inventoryFlag)
+            if (!gameSystemFlag)
             {
-                uiManager.ControlSelectWindow(true);
-                uiManager.UpdateUI();
-                uiManager.hudWindow.SetActive(false);
+                gameSystemFlag = true;
+                uiManager.OpenGameSystemUI();
             }
             else
             {
-                uiManager.ControlSelectWindow(false);
-                uiManager.CloseAllInventoryWindow();
-                uiManager.hudWindow.SetActive(true);
+                gameSystemFlag = false;
+                uiManager.CloseGameSystemUI();
             }
         }
     }

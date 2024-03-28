@@ -142,7 +142,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""9f08a179-78c2-4d14-a400-398d04012103"",
             ""actions"": [
                 {
-                    ""name"": ""Inventory"",
+                    ""name"": ""GameSystem"",
                     ""type"": ""Button"",
                     ""id"": ""2a3d2419-4eed-423a-9662-c0491d956789"",
                     ""expectedControlType"": ""Button"",
@@ -261,7 +261,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Inventory"",
+                    ""action"": ""GameSystem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -272,7 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Inventory"",
+                    ""action"": ""GameSystem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -441,7 +441,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_Camera = m_PlayerMovement.FindAction("Camera", throwIfNotFound: true);
         // Player Actions
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
-        m_PlayerActions_Inventory = m_PlayerActions.FindAction("Inventory", throwIfNotFound: true);
+        m_PlayerActions_GameSystem = m_PlayerActions.FindAction("GameSystem", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Rolling = m_PlayerActions.FindAction("Rolling", throwIfNotFound: true);
         m_PlayerActions_LightAttack = m_PlayerActions.FindAction("LightAttack", throwIfNotFound: true);
@@ -567,7 +567,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Player Actions
     private readonly InputActionMap m_PlayerActions;
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
-    private readonly InputAction m_PlayerActions_Inventory;
+    private readonly InputAction m_PlayerActions_GameSystem;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Rolling;
     private readonly InputAction m_PlayerActions_LightAttack;
@@ -576,7 +576,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Inventory => m_Wrapper.m_PlayerActions_Inventory;
+        public InputAction @GameSystem => m_Wrapper.m_PlayerActions_GameSystem;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Rolling => m_Wrapper.m_PlayerActions_Rolling;
         public InputAction @LightAttack => m_Wrapper.m_PlayerActions_LightAttack;
@@ -590,9 +590,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Add(instance);
-            @Inventory.started += instance.OnInventory;
-            @Inventory.performed += instance.OnInventory;
-            @Inventory.canceled += instance.OnInventory;
+            @GameSystem.started += instance.OnGameSystem;
+            @GameSystem.performed += instance.OnGameSystem;
+            @GameSystem.canceled += instance.OnGameSystem;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -609,9 +609,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
         {
-            @Inventory.started -= instance.OnInventory;
-            @Inventory.performed -= instance.OnInventory;
-            @Inventory.canceled -= instance.OnInventory;
+            @GameSystem.started -= instance.OnGameSystem;
+            @GameSystem.performed -= instance.OnGameSystem;
+            @GameSystem.canceled -= instance.OnGameSystem;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -718,7 +718,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IPlayerActionsActions
     {
-        void OnInventory(InputAction.CallbackContext context);
+        void OnGameSystem(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRolling(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);

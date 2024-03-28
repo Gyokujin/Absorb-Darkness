@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("UI Window")]
+    [Header("Game System")]
     public GameObject hudWindow;
     [SerializeField]
     private GameObject selectWindow;
+
+    [Header("Inventory")]
     [SerializeField]
     private GameObject weaponInventoryWindow;
+    public PlayerInventory playerInventory;
 
     [Header("Weapon Inventory")]
     [SerializeField]
     private GameObject weaponInventorySlotPrefab;
     [SerializeField]
     private Transform weaponInventorySlotsParent;
-
-    [Header("Component")]
-    public PlayerInventory playerInventory;
-    private EquipmentWindowUI equipmentWindowUI;
     private WeaponInventorySlot[] weaponInventorySlots;
+    private EquipmentWindowUI equipmentWindowUI;
+
+    // [Header("Game Setting")]
 
     void Awake()
     {
@@ -31,6 +33,7 @@ public class UIManager : MonoBehaviour
     {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
         equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
+        equipmentWindowUI.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
@@ -54,13 +57,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ControlSelectWindow(bool onOpen)
+    public void OpenGameSystemUI()
     {
-        selectWindow.SetActive(onOpen);
+        selectWindow.SetActive(true);
+        hudWindow.SetActive(false);
     }
 
-    public void CloseAllInventoryWindow()
+    public void CloseGameSystemUI()
     {
-        weaponInventoryWindow.SetActive(false);
+        selectWindow.SetActive(false);
+        hudWindow.SetActive(true);
+        weaponInventoryWindow.gameObject.SetActive(false);
+        equipmentWindowUI.gameObject.SetActive(false);
     }
 }

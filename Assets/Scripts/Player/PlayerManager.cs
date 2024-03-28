@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         playerInput.quickSlotDown = false;
         playerInput.quickSlotLeft = false;
         playerInput.quickSlotRight = false;
-        playerInput.inventory_Input = false;
+        playerInput.gameSystem_Input = false;
 
         if (playerCamera != null)
         {

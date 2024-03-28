@@ -120,7 +120,7 @@
             "id": "9f08a179-78c2-4d14-a400-398d04012103",
             "actions": [
                 {
-                    "name": "Inventory",
+                    "name": "GameSystem",
                     "type": "Button",
                     "id": "2a3d2419-4eed-423a-9662-c0491d956789",
                     "expectedControlType": "Button",
@@ -239,7 +239,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Inventory",
+                    "action": "GameSystem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -250,7 +250,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Inventory",
+                    "action": "GameSystem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
