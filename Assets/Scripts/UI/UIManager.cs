@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance = null;
+
     [Header("Game System")]
     public GameObject hudWindow;
     [SerializeField]
@@ -26,14 +28,21 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         equipmentWindowUI = GetComponentInChildren<EquipmentWindowUI>();
     }
 
     void Start()
     {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-        equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
-        equipmentWindowUI.gameObject.SetActive(false);
     }
 
     public void UpdateUI()

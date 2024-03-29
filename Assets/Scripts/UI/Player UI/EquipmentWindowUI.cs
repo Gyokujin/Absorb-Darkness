@@ -9,11 +9,18 @@ public class EquipmentWindowUI : MonoBehaviour
     public bool rightHandSlot01Selected;
     public bool rightHandSlot02Selected;
 
+    [SerializeField]
     private HandEquipmentSlotUI[] handEquipmentSlotUI;
 
     void Start()
     {
-        handEquipmentSlotUI = GetComponentsInChildren<HandEquipmentSlotUI>();
+        handEquipmentSlotUI = GetComponentsInChildren<HandEquipmentSlotUI>(); // 최초 1회 장비창을 업데이트 한다.
+        gameObject.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        LoadWeaponsOnEquipmentScreen(UIManager.instance.playerInventory);
     }
 
     public void LoadWeaponsOnEquipmentScreen(PlayerInventory playerInventory)
