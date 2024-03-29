@@ -43,6 +43,12 @@ public class PlayerCamera : MonoBehaviour
     private float lookAngle = 0.033f;
     private float pivotAngle;
 
+    [Header("Lock On")]
+    [SerializeField]
+    private float lockRadius = 26;
+    [SerializeField]
+    private float maxLockOnDistance = 30;
+
     [Header("Camera Collision")]
     [SerializeField]
     private float cameraSphereRadius = 0.2f;
@@ -98,6 +104,30 @@ public class PlayerCamera : MonoBehaviour
         rotation.x = pivotAngle;
         targetRotation = Quaternion.Euler(rotation);
         cameraPivotTransform.localRotation = targetRotation;
+    }
+
+    public void HandleLockOn()
+    {
+        float shortesDistance = Mathf.Infinity;
+
+        Collider[] colliders = Physics.OverlapSphere(playerTransform.position, lockRadius);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            CharacterManager character = colliders[i].GetComponent<CharacterManager>();
+
+            if (character != null)
+            {
+                Vector3 lockTargetDirection = character.transform.position - playerTransform.position;
+                float distance = Vector3.Distance(playerTransform.position, character.transform.position);
+                float viewAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
+
+                if (character.transform.root != playerTransform.transform.root && viewAngle > -50 && viewAngle < 50 && distance <= maxLockOnDistance)
+                {
+
+                }
+            }
+        }
     }
 
     void HandleCameraCollision(float delta)
