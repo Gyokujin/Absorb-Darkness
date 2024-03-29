@@ -14,12 +14,16 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private float pivotSpeed = 0.01f;
 
-    [Header("Camera Target")]
+    [Header("Player")]
     [SerializeField]
+    private PlayerManager player;
     private Transform playerTransform;
+    private PlayerInput playerInput; // 게임 시스템 사용시 카메라 제약
     private float playerPosition;
     [SerializeField]
     private float playerFollowRate = 0.2f;
+
+    [Header("Camera")]
     [SerializeField]
     private Transform cameraTransform;
     [SerializeField]
@@ -63,6 +67,8 @@ public class PlayerCamera : MonoBehaviour
 
     void Init()
     {
+        playerTransform = player.transform;
+        playerInput = player.GetComponent<PlayerInput>();
         camTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
     }
@@ -76,6 +82,9 @@ public class PlayerCamera : MonoBehaviour
 
     public void HandleCameraRotation(float delta, float mouseX, float mouseY)
     {
+        if (playerInput.gameSystemFlag)
+            return;
+
         lookAngle += mouseX * lookSpeed / delta;
         pivotAngle -= mouseY * pivotSpeed / delta;
         pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);

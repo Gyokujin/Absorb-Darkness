@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
     {
         selectWindow.SetActive(true);
         hudWindow.SetActive(false);
+        GameManager.instance.LockCamera(false);
     }
 
     public void CloseGameSystemUI()
@@ -69,5 +70,6 @@ public class UIManager : MonoBehaviour
         hudWindow.SetActive(true);
         weaponInventoryWindow.gameObject.SetActive(false);
         equipmentWindowUI.gameObject.SetActive(false);
+        GameManager.instance.LockCamera(true);
     }
 }
