@@ -34,7 +34,6 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Hit");
         currentHealth -= damage;
         animator.SetBool("onHit", true);
 
