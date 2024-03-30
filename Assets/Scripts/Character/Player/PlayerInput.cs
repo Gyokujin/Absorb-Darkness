@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
     private PlayerManager playerManager;
+    private PlayerCamera playerCamera;
     private UIManager uiManager;
 
     void Awake()
@@ -55,6 +56,7 @@ public class PlayerInput : MonoBehaviour
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
+        playerCamera = FindObjectOfType<PlayerCamera>();
         uiManager = FindObjectOfType<UIManager>();
     }
 
@@ -64,13 +66,14 @@ public class PlayerInput : MonoBehaviour
         {
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
+            inputActions.PlayerActions.Interact.performed += i => interact_Input = true;
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+            inputActions.PlayerActions.LockOn.performed += i => lockOn_Input = true;
             inputActions.PlayerActions.LightAttack.performed += i => lightAttack_Input = true;
             inputActions.PlayerActions.HeavyAttack.performed += i => heavyAttack_Input = true;
+            inputActions.PlayerActions.GameSystem.performed += i => gameSystem_Input = true;
             inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeft = true;
             inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRight = true;
-            inputActions.PlayerActions.Interact.performed += i => interact_Input = true;
-            inputActions.PlayerActions.GameSystem.performed += i => gameSystem_Input = true;
         }
 
         inputActions.Enable();
@@ -85,6 +88,7 @@ public class PlayerInput : MonoBehaviour
     {
         MoveInput(delta);
         HandleRollInput(delta);
+        HandleLockOnInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
         HandleInverntoryInput();
@@ -168,6 +172,25 @@ public class PlayerInput : MonoBehaviour
             {
                 gameSystemFlag = false;
                 uiManager.CloseGameSystemUI();
+            }
+        }
+    }
+
+    void HandleLockOnInput()
+    {
+        if (lockOn_Input)
+        {
+            lockOn_Input = false;
+
+            if (!lockOnFlag)
+            {
+                lockOnFlag = true;
+                playerCamera.HandleLockOn();
+            }
+            else
+            {
+                lockOnFlag = false;
+                // Clear Lock On targets
             }
         }
     }

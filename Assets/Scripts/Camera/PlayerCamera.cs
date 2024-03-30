@@ -15,7 +15,7 @@ public class PlayerCamera : MonoBehaviour
     private float pivotSpeed = 0.01f;
 
     [Header("Player")]
-    [SerializeField]
+    // [SerializeField]
     private PlayerManager player;
     private Transform playerTransform;
     private PlayerInput playerInput; // 게임 시스템 사용시 카메라 제약
@@ -77,6 +77,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Init()
     {
+        player = FindObjectOfType<PlayerManager>();
         playerTransform = player.transform;
         playerInput = player.GetComponent<PlayerInput>();
         camTransform = transform;
