@@ -12,11 +12,6 @@ public class WeaponInventorySlot : MonoBehaviour
     [Header("Component")]
     private WeaponItem item;
 
-    void OnEnable()
-    {
-
-    }
-
     public void AddItem(WeaponItem newItem)
     {
         item = newItem;

@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0183a3fb0ab7d4bae677f2fae3ddb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockOnTramsform: {fileID: 2037056813837801136}
+  lockOnTransform: {fileID: 2037056813837801136}
   isInteracting: 0
   isSprinting: 0
   isInAir: 0
@@ -192,14 +192,16 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  rollInputTimer: 0
   interact_Input: 0
   rolling_Input: 0
+  lockOn_Input: 0
   lightAttack_Input: 0
   heavyAttack_Input: 0
   gameSystem_Input: 0
   rollFlag: 0
   sprintFlag: 0
-  rollInputTimer: 0
+  lockOnFlag: 0
   comboFlag: 0
   gameSystemFlag: 0
   quickSlotUp: 0
