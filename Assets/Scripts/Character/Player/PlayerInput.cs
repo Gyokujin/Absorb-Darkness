@@ -18,12 +18,14 @@ public class PlayerInput : MonoBehaviour
     private Vector2 cameraInput;
 
     [Header("Input System")]
-    public bool interact_Input;
-    public bool rolling_Input;
-    public bool lockOn_Input;
-    public bool lightAttack_Input;
-    public bool heavyAttack_Input;
-    public bool gameSystem_Input;
+    public bool interactInput;
+    public bool rollingInput;
+    public bool lockOnInput;
+    public bool rightStickLeftInput;
+    public bool rightStickRightInput;
+    public bool lightAttackInput;
+    public bool heavyAttackInput;
+    public bool gameSystemInput;
 
     [Header("Action Flag")]
     public bool rollFlag;
@@ -66,14 +68,16 @@ public class PlayerInput : MonoBehaviour
         {
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-            inputActions.PlayerActions.Interact.performed += i => interact_Input = true;
+            inputActions.PlayerActions.Interact.performed += i => interactInput = true;
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
-            inputActions.PlayerActions.LockOn.performed += i => lockOn_Input = true;
-            inputActions.PlayerActions.LightAttack.performed += i => lightAttack_Input = true;
-            inputActions.PlayerActions.HeavyAttack.performed += i => heavyAttack_Input = true;
-            inputActions.PlayerActions.GameSystem.performed += i => gameSystem_Input = true;
+            inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            inputActions.PlayerActions.LightAttack.performed += i => lightAttackInput = true;
+            inputActions.PlayerActions.HeavyAttack.performed += i => heavyAttackInput = true;
+            inputActions.PlayerActions.GameSystem.performed += i => gameSystemInput = true;
             inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeft = true;
             inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRight = true;
+            inputActions.PlayerMovement.LockOnTargetLeft.performed += i => rightStickLeftInput = true;
+            inputActions.PlayerMovement.LockOnTargetRight.performed += i => rightStickRightInput = true;
         }
 
         inputActions.Enable();
@@ -105,10 +109,10 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput(float delta)
     {
-        rolling_Input = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
-        sprintFlag = rolling_Input;
+        rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
+        sprintFlag = rollingInput;
 
-        if (rolling_Input)
+        if (rollingInput)
         {
             rollInputTimer += delta;
             sprintFlag = true;
@@ -127,7 +131,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput(float delta)
     {
-        if (lightAttack_Input && !gameSystemFlag)
+        if (lightAttackInput && !gameSystemFlag)
         {
             if (playerManager.canDoCombo)
             {
@@ -141,7 +145,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (heavyAttack_Input && !playerManager.isInteracting)
+        if (heavyAttackInput && !playerManager.isInteracting)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
         }
@@ -161,7 +165,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleGameSystemInput()
     {
-        if (gameSystem_Input)
+        if (gameSystemInput)
         {
             if (!gameSystemFlag)
             {
@@ -179,10 +183,8 @@ public class PlayerInput : MonoBehaviour
 
     void HandleLockOnInput()
     {
-        if (lockOn_Input && !gameSystemFlag)
+        if (lockOnInput && !gameSystemFlag)
         {
-            playerCamera.ClearLockOnTargets();
-
             if (!lockOnFlag)
             {
                 playerCamera.HandleLockOn();
@@ -196,6 +198,28 @@ public class PlayerInput : MonoBehaviour
             else
             {
                 lockOnFlag = false;
+            }
+        }
+
+        if (lockOnFlag && rightStickLeftInput)
+        {
+            rightStickLeftInput = false;
+            playerCamera.HandleLockOn();
+
+            if (playerCamera.leftLockTarget != null)
+            {
+                playerCamera.currentLockOnTarget = playerCamera.leftLockTarget;
+            }
+        }
+
+        if (lockOnFlag && rightStickRightInput)
+        {
+            rightStickRightInput = false;
+            playerCamera.HandleLockOn();
+
+            if (playerCamera.rightLockTarget != null)
+            {
+                playerCamera.currentLockOnTarget = playerCamera.rightLockTarget;
             }
         }
     }

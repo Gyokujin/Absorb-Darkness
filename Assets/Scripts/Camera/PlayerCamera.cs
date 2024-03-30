@@ -52,6 +52,8 @@ public class PlayerCamera : MonoBehaviour
     private float maxLockOnDistance = 30;
     [SerializeField]
     private float lockOnAngleLimit = 50;
+    public Transform leftLockTarget;
+    public Transform rightLockTarget;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -132,6 +134,8 @@ public class PlayerCamera : MonoBehaviour
     public void HandleLockOn()
     {
         float shortesDistance = Mathf.Infinity;
+        float shortesDistanceLeftTarget = Mathf.Infinity;
+        float shortesDistanceRightTarget = Mathf.Infinity;
         Collider[] colliders = Physics.OverlapSphere(playerTransform.position, lockRadius);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -161,6 +165,25 @@ public class PlayerCamera : MonoBehaviour
             {
                 shortesDistance = targetDistance;
                 nearestLockOnTarget = availableTargets[j].lockOnTransform;
+            }
+
+            if (playerInput.lockOnFlag)
+            {
+                Vector3 relativeEnemyPos = currentLockOnTarget.InverseTransformPoint(availableTargets[j].transform.position);
+                var distanceTargetLeft = currentLockOnTarget.transform.position.x - availableTargets[j].transform.position.x;
+                var distanceTargetRight = currentLockOnTarget.transform.position.x + availableTargets[j].transform.position.x;
+
+                if (relativeEnemyPos.x > 0 && distanceTargetLeft < shortesDistanceLeftTarget) // 문제시 0을 0.00
+                {
+                    shortesDistanceLeftTarget = distanceTargetLeft;
+                    leftLockTarget = availableTargets[j].lockOnTransform;
+                }
+
+                if (relativeEnemyPos.x < 0 && distanceTargetRight < shortesDistanceRightTarget)
+                {
+                    shortesDistanceRightTarget = distanceTargetRight;
+                    rightLockTarget = availableTargets[j].lockOnTransform;
+                }
             }
         }
     }
