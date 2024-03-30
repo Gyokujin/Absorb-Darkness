@@ -44,10 +44,14 @@ public class PlayerCamera : MonoBehaviour
     private float pivotAngle;
 
     [Header("Lock On")]
+    private List<CharacterManager> avilableTargets = new List<CharacterManager>();
+    public Transform nearestLockOnTarget;
     [SerializeField]
     private float lockRadius = 26;
     [SerializeField]
     private float maxLockOnDistance = 30;
+    [SerializeField]
+    private float lockOnAngleLimit = 50;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -122,10 +126,23 @@ public class PlayerCamera : MonoBehaviour
                 float distance = Vector3.Distance(playerTransform.position, character.transform.position);
                 float viewAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
 
-                if (character.transform.root != playerTransform.transform.root && viewAngle > -50 && viewAngle < 50 && distance <= maxLockOnDistance)
+                if (character.transform.root != playerTransform.transform.root
+                    && viewAngle > -lockOnAngleLimit && viewAngle < lockOnAngleLimit
+                    && distance <= maxLockOnDistance)
                 {
-
+                    avilableTargets.Add(character);
                 }
+            }
+        }
+
+        for (int j = 0; j < avilableTargets.Count; j++)
+        {
+            float targetDistance = Vector3.Distance(playerTransform.position, avilableTargets[j].transform.position);
+
+            if (targetDistance < shortesDistance)
+            {
+                shortesDistance = targetDistance;
+                nearestLockOnTarget = avilableTargets[j].lockOnTransform;
             }
         }
     }

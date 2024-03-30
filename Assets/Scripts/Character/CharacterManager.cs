@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    [SerializeField]
-    private Transform lockOnTramsform;
+    public Transform lockOnTransform;
 }

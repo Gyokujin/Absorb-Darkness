@@ -5,16 +5,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    [Header("Move")]
+    [Header("Move & Action")]
     public float horizontal;
     public float vertical;
     public float moveAmount;
     public float mouseX;
     public float mouseY;
+    public float rollInputTimer;
 
-    [Header("Action Input")]
+    [Header("Input")]
+    private Vector2 movementInput;
+    private Vector2 cameraInput;
+
+    [Header("Input System")]
     public bool interact_Input;
     public bool rolling_Input;
+    public bool lockOn_Input;
     public bool lightAttack_Input;
     public bool heavyAttack_Input;
     public bool gameSystem_Input;
@@ -22,7 +28,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Action Flag")]
     public bool rollFlag;
     public bool sprintFlag;
-    public float rollInputTimer;
+    public bool lockOnFlag;
     public bool comboFlag;
     public bool gameSystemFlag;
 
@@ -31,10 +37,6 @@ public class PlayerInput : MonoBehaviour
     public bool quickSlotDown;
     public bool quickSlotLeft;
     public bool quickSlotRight;
-
-    [Header("Input")]
-    private Vector2 movementInput;
-    private Vector2 cameraInput;
 
     [Header("Component")]
     private PlayerControls inputActions;
