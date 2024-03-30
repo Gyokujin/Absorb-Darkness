@@ -142,15 +142,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""9f08a179-78c2-4d14-a400-398d04012103"",
             ""actions"": [
                 {
-                    ""name"": ""GameSystem"",
-                    ""type"": ""Button"",
-                    ""id"": ""2a3d2419-4eed-423a-9662-c0491d956789"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""02f069dc-bfda-4455-b5b5-921f485532bb"",
@@ -169,6 +160,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""65938f21-6401-46f0-8959-0485d244661f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""LightAttack"",
                     ""type"": ""Button"",
                     ""id"": ""0d105b1e-6893-4be0-8d73-cb86c9dd95b1"",
@@ -181,6 +181,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""HeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""3a711920-d185-456b-9284-92bcc7133534"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GameSystem"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a3d2419-4eed-423a-9662-c0491d956789"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -234,23 +243,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9195fb0a-1885-41b2-afb4-432c4a124fbf"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""id"": ""9241f101-0bfb-4bb5-aff0-d1d2b7740a35"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""HeavyAttack"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d9634bc8-8aa4-4c2c-bff7-1e56806ab158"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""9bb35c6e-5459-4d25-8443-4fa4ee1d51e1"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""HeavyAttack"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -278,23 +287,45 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9241f101-0bfb-4bb5-aff0-d1d2b7740a35"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""9195fb0a-1885-41b2-afb4-432c4a124fbf"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""HeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9bb35c6e-5459-4d25-8443-4fa4ee1d51e1"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""d9634bc8-8aa4-4c2c-bff7-1e56806ab158"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""631cdbba-e1ef-494b-a9a0-51cb2215e93b"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea0790f4-a84f-42c1-8d33-af935f4e683b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -441,11 +472,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_Camera = m_PlayerMovement.FindAction("Camera", throwIfNotFound: true);
         // Player Actions
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
-        m_PlayerActions_GameSystem = m_PlayerActions.FindAction("GameSystem", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Rolling = m_PlayerActions.FindAction("Rolling", throwIfNotFound: true);
+        m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_LightAttack = m_PlayerActions.FindAction("LightAttack", throwIfNotFound: true);
         m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_PlayerActions_GameSystem = m_PlayerActions.FindAction("GameSystem", throwIfNotFound: true);
         // Player QuickSlots
         m_PlayerQuickSlots = asset.FindActionMap("Player QuickSlots", throwIfNotFound: true);
         m_PlayerQuickSlots_QuickSlotUp = m_PlayerQuickSlots.FindAction("QuickSlotUp", throwIfNotFound: true);
@@ -567,20 +599,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Player Actions
     private readonly InputActionMap m_PlayerActions;
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
-    private readonly InputAction m_PlayerActions_GameSystem;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Rolling;
+    private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_LightAttack;
     private readonly InputAction m_PlayerActions_HeavyAttack;
+    private readonly InputAction m_PlayerActions_GameSystem;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @GameSystem => m_Wrapper.m_PlayerActions_GameSystem;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Rolling => m_Wrapper.m_PlayerActions_Rolling;
+        public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @LightAttack => m_Wrapper.m_PlayerActions_LightAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_PlayerActions_HeavyAttack;
+        public InputAction @GameSystem => m_Wrapper.m_PlayerActions_GameSystem;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -590,40 +624,46 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Add(instance);
-            @GameSystem.started += instance.OnGameSystem;
-            @GameSystem.performed += instance.OnGameSystem;
-            @GameSystem.canceled += instance.OnGameSystem;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
             @Rolling.started += instance.OnRolling;
             @Rolling.performed += instance.OnRolling;
             @Rolling.canceled += instance.OnRolling;
+            @LockOn.started += instance.OnLockOn;
+            @LockOn.performed += instance.OnLockOn;
+            @LockOn.canceled += instance.OnLockOn;
             @LightAttack.started += instance.OnLightAttack;
             @LightAttack.performed += instance.OnLightAttack;
             @LightAttack.canceled += instance.OnLightAttack;
             @HeavyAttack.started += instance.OnHeavyAttack;
             @HeavyAttack.performed += instance.OnHeavyAttack;
             @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @GameSystem.started += instance.OnGameSystem;
+            @GameSystem.performed += instance.OnGameSystem;
+            @GameSystem.canceled += instance.OnGameSystem;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
         {
-            @GameSystem.started -= instance.OnGameSystem;
-            @GameSystem.performed -= instance.OnGameSystem;
-            @GameSystem.canceled -= instance.OnGameSystem;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
             @Rolling.started -= instance.OnRolling;
             @Rolling.performed -= instance.OnRolling;
             @Rolling.canceled -= instance.OnRolling;
+            @LockOn.started -= instance.OnLockOn;
+            @LockOn.performed -= instance.OnLockOn;
+            @LockOn.canceled -= instance.OnLockOn;
             @LightAttack.started -= instance.OnLightAttack;
             @LightAttack.performed -= instance.OnLightAttack;
             @LightAttack.canceled -= instance.OnLightAttack;
             @HeavyAttack.started -= instance.OnHeavyAttack;
             @HeavyAttack.performed -= instance.OnHeavyAttack;
             @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @GameSystem.started -= instance.OnGameSystem;
+            @GameSystem.performed -= instance.OnGameSystem;
+            @GameSystem.canceled -= instance.OnGameSystem;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -718,11 +758,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IPlayerActionsActions
     {
-        void OnGameSystem(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRolling(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnGameSystem(InputAction.CallbackContext context);
     }
     public interface IPlayerQuickSlotsActions
     {
