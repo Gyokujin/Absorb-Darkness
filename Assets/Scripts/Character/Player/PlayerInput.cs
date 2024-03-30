@@ -91,7 +91,7 @@ public class PlayerInput : MonoBehaviour
         HandleLockOnInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
-        HandleInverntoryInput();
+        HandleGameSystemInput();
     }
 
     void MoveInput(float delta)
@@ -159,7 +159,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void HandleInverntoryInput()
+    void HandleGameSystemInput()
     {
         if (gameSystem_Input)
         {
@@ -167,6 +167,7 @@ public class PlayerInput : MonoBehaviour
             {
                 gameSystemFlag = true;
                 uiManager.OpenGameSystemUI();
+                playerCamera.ClearLockOnTargets();
             }
             else
             {
@@ -178,19 +179,23 @@ public class PlayerInput : MonoBehaviour
 
     void HandleLockOnInput()
     {
-        if (lockOn_Input)
+        if (lockOn_Input && !gameSystemFlag)
         {
-            lockOn_Input = false;
+            playerCamera.ClearLockOnTargets();
 
             if (!lockOnFlag)
             {
-                lockOnFlag = true;
                 playerCamera.HandleLockOn();
+
+                if (playerCamera.nearestLockOnTarget != null)
+                {
+                    playerCamera.currentLockOnTarget = playerCamera.nearestLockOnTarget;
+                    lockOnFlag = true;
+                }
             }
             else
             {
                 lockOnFlag = false;
-                // Clear Lock On targets
             }
         }
     }

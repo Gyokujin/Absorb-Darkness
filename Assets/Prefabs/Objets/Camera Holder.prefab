@@ -172,7 +172,6 @@ MonoBehaviour:
   lookSpeed: 0.033
   followSpeed: 0.5
   pivotSpeed: 0.015
-  playerTransform: {fileID: 0}
   playerFollowRate: 0.2
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
@@ -182,6 +181,11 @@ MonoBehaviour:
   minPivot: -35
   maxPivot: 35
   lookAngle: 0.033
+  currentLockOnTarget: {fileID: 0}
+  nearestLockOnTarget: {fileID: 0}
+  lockRadius: 26
+  maxLockOnDistance: 30
+  lockOnAngleLimit: 75
   cameraSphereRadius: 0.2
   cameraCollisionOffset: 0.2
   minCollisionOffset: 0.2

@@ -15,7 +15,6 @@ public class PlayerCamera : MonoBehaviour
     private float pivotSpeed = 0.01f;
 
     [Header("Player")]
-    // [SerializeField]
     private PlayerManager player;
     private Transform playerTransform;
     private PlayerInput playerInput; // 게임 시스템 사용시 카메라 제약
@@ -44,7 +43,8 @@ public class PlayerCamera : MonoBehaviour
     private float pivotAngle;
 
     [Header("Lock On")]
-    private List<CharacterManager> avilableTargets = new List<CharacterManager>();
+    private List<CharacterManager> availableTargets = new List<CharacterManager>();
+    public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
     [SerializeField]
     private float lockRadius = 26;
@@ -93,28 +93,45 @@ public class PlayerCamera : MonoBehaviour
 
     public void HandleCameraRotation(float delta, float mouseX, float mouseY)
     {
-        if (playerInput.gameSystemFlag)
-            return;
+        if (!playerInput.lockOnFlag && currentLockOnTarget == null && !playerInput.gameSystemFlag)
+        {
+            lookAngle += mouseX * lookSpeed / delta;
+            pivotAngle -= mouseY * pivotSpeed / delta;
+            pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);
 
-        lookAngle += mouseX * lookSpeed / delta;
-        pivotAngle -= mouseY * pivotSpeed / delta;
-        pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);
+            Vector3 rotation = Vector3.zero;
+            rotation.y = lookAngle;
+            Quaternion targetRotation = Quaternion.Euler(rotation);
+            camTransform.rotation = targetRotation;
 
-        Vector3 rotation = Vector3.zero;
-        rotation.y = lookAngle;
-        Quaternion targetRotation = Quaternion.Euler(rotation);
-        camTransform.rotation = targetRotation;
+            rotation = Vector3.zero;
+            rotation.x = pivotAngle;
+            targetRotation = Quaternion.Euler(rotation);
+            cameraPivotTransform.localRotation = targetRotation;
+        }
+        else if (currentLockOnTarget != null)
+        {
+            float velocity = 0;
+            Vector3 dir = currentLockOnTarget.position - transform.position;
+            dir.Normalize();
+            dir.y = 0;
 
-        rotation = Vector3.zero;
-        rotation.x = pivotAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        cameraPivotTransform.localRotation = targetRotation;
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            transform.rotation = targetRotation;
+
+            dir = currentLockOnTarget.position - cameraPivotTransform.position;
+            dir.Normalize();
+
+            targetRotation = Quaternion.LookRotation(dir);
+            Vector3 eulerAngle = targetRotation.eulerAngles;
+            eulerAngle.y = 0;
+            cameraPivotTransform.localEulerAngles = eulerAngle;
+        }
     }
 
     public void HandleLockOn()
     {
         float shortesDistance = Mathf.Infinity;
-
         Collider[] colliders = Physics.OverlapSphere(playerTransform.position, lockRadius);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -131,19 +148,19 @@ public class PlayerCamera : MonoBehaviour
                     && viewAngle > -lockOnAngleLimit && viewAngle < lockOnAngleLimit
                     && distance <= maxLockOnDistance)
                 {
-                    avilableTargets.Add(character);
+                    availableTargets.Add(character);
                 }
             }
         }
 
-        for (int j = 0; j < avilableTargets.Count; j++)
+        for (int j = 0; j < availableTargets.Count; j++)
         {
-            float targetDistance = Vector3.Distance(playerTransform.position, avilableTargets[j].transform.position);
+            float targetDistance = Vector3.Distance(playerTransform.position, availableTargets[j].transform.position);
 
             if (targetDistance < shortesDistance)
             {
                 shortesDistance = targetDistance;
-                nearestLockOnTarget = avilableTargets[j].lockOnTransform;
+                nearestLockOnTarget = availableTargets[j].lockOnTransform;
             }
         }
     }
@@ -168,5 +185,12 @@ public class PlayerCamera : MonoBehaviour
 
         cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / playerFollowRate);
         cameraTransform.localPosition = cameraPos;
+    }
+
+    public void ClearLockOnTargets()
+    {
+        availableTargets.Clear();
+        nearestLockOnTarget = null;
+        currentLockOnTarget = null;
     }
 }
