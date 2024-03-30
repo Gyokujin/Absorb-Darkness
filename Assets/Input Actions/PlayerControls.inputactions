@@ -6,6 +6,15 @@
             "id": "4b25999c-e9c2-4b49-aa0d-f76091674055",
             "actions": [
                 {
+                    "name": "Camera",
+                    "type": "PassThrough",
+                    "id": "2c83422c-b349-48ac-8cd4-8160e1dfcbb0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Movement",
                     "type": "PassThrough",
                     "id": "24ff3041-36d2-4d71-81ca-f5f5e046c9e3",
@@ -15,16 +24,91 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Camera",
-                    "type": "PassThrough",
-                    "id": "2c83422c-b349-48ac-8cd4-8160e1dfcbb0",
-                    "expectedControlType": "Vector2",
+                    "name": "Lock On Target Left",
+                    "type": "Button",
+                    "id": "25358e0d-dccd-4d4f-b99b-0faf60782191",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lock On Target Right",
+                    "type": "Button",
+                    "id": "b8284899-4c46-4864-982d-64cc620e040f",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "eb3d3a17-bcdc-4978-baae-a32b19c62a98",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6ad1076-6d0f-41d1-8558-620b206cb0d1",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d8092e8-5305-4c75-b4b7-16e7c20bb374",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock On Target Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c9836ee-cc55-4895-955b-86a27820094f",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock On Target Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3215f85c-2cc2-4c1b-bfed-2fe0f02e60db",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock On Target Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fdfa4a5-b40b-4df9-8a72-cffeb8ccbbde",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock On Target Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "",
                     "id": "89863aa4-417b-46ea-bf7c-9f03ec66fb68",
@@ -90,28 +174,6 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "eb3d3a17-bcdc-4978-baae-a32b19c62a98",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "StickDeadzone",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b6ad1076-6d0f-41d1-8558-620b206cb0d1",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
