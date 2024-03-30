@@ -58,15 +58,15 @@ public class PlayerManager : CharacterManager
     void LateUpdate()
     {
         playerInput.rollFlag = false;
-        playerInput.interact_Input = false;
-        playerInput.lockOn_Input = false; // 이후에 록온 문제 생기면 지운다
-        playerInput.lightAttack_Input = false;
-        playerInput.heavyAttack_Input = false;
+        playerInput.interactInput = false;
+        playerInput.lockOnInput = false; // 이후에 록온 문제 생기면 지운다
+        playerInput.lightAttackInput = false;
+        playerInput.heavyAttackInput = false;
+        playerInput.gameSystemInput = false;
         playerInput.quickSlotUp = false;
         playerInput.quickSlotDown = false;
         playerInput.quickSlotLeft = false;
         playerInput.quickSlotRight = false;
-        playerInput.gameSystem_Input = false;
 
         if (playerCamera != null)
         {
@@ -101,7 +101,7 @@ public class PlayerManager : CharacterManager
                 interactableUI.interactableText.text = interactableText;
                 interactableUIObj.SetActive(true);
 
-                if (playerInput.interact_Input)
+                if (playerInput.interactInput)
                 {
                     interactableObj.Interact(this);
                 }
@@ -113,7 +113,7 @@ public class PlayerManager : CharacterManager
             {
                 interactableUIObj.SetActive(false);
 
-                if (playerInput.interact_Input)
+                if (playerInput.interactInput)
                 {
                     itemInteractableObj.SetActive(false);
                 }
