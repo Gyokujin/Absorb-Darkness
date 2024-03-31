@@ -188,6 +188,13 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
+    public void ClearLockOnTargets()
+    {
+        availableTargets.Clear();
+        nearestLockOnTarget = null;
+        currentLockOnTarget = null;
+    }
+
     void HandleCameraCollision(float delta)
     {
         playerPosition = defaultPosition;
@@ -208,12 +215,5 @@ public class PlayerCamera : MonoBehaviour
 
         cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / playerFollowRate);
         cameraTransform.localPosition = cameraPos;
-    }
-
-    public void ClearLockOnTargets()
-    {
-        availableTargets.Clear();
-        nearestLockOnTarget = null;
-        currentLockOnTarget = null;
     }
 }

@@ -198,6 +198,7 @@ public class PlayerInput : MonoBehaviour
             else
             {
                 lockOnFlag = false;
+                playerCamera.ClearLockOnTargets();
             }
         }
 
