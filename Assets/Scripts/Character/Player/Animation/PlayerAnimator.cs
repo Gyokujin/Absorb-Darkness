@@ -36,6 +36,7 @@ public class PlayerAnimator : MonoBehaviour
         playerManager = GetComponentInParent<PlayerManager>();
         playerInput = GetComponentInParent<PlayerInput>();
         playerMove = GetComponentInParent<PlayerMove>();
+        AA();
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
@@ -119,6 +120,10 @@ public class PlayerAnimator : MonoBehaviour
     public void DisableCombo()
     {
         animator.SetBool("canDoCombo", false);
+    }
+    public void AA()
+    {
+        animator.SetLayerWeight(0, 0);
     }
 
     void OnAnimatorMove()
