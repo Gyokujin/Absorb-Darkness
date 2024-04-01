@@ -709,6 +709,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3370350046326242293, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350046348459163, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350046501788143, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350046821752955, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350046912296356, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350047057507074, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350047371775792, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350047531302062, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370350047836853611, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7743642056720601897, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
       propertyPath: m_Name
       value: Stage
