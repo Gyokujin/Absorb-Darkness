@@ -90,7 +90,7 @@ public class PlayerInput : MonoBehaviour
 
     public void TickInput(float delta)
     {
-        MoveInput(delta);
+        HandleMoveInput(delta);
         HandleRollInput(delta);
         HandleLockOnInput();
         HandleAttackInput(delta);
@@ -98,7 +98,7 @@ public class PlayerInput : MonoBehaviour
         HandleGameSystemInput();
     }
 
-    void MoveInput(float delta)
+    void HandleMoveInput(float delta)
     {
         horizontal = movementInput.x;
         vertical = movementInput.y;

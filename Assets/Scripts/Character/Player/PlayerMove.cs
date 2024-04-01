@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -43,15 +44,11 @@ public class PlayerMove : MonoBehaviour
     private Vector3 normalVec;
     private Vector3 targetPosition;
 
-    [Header("Camera")]
-    private Transform cameraPos;
-    [SerializeField]
-    private GameObject playerCamera;
-
     [Header("Component")]
     private PlayerManager playerManager;
     private PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
+    private PlayerCamera playerCamera;
 
     void Start()
     {
@@ -64,8 +61,8 @@ public class PlayerMove : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerCamera = FindObjectOfType<PlayerCamera>();
 
-        cameraPos = playerCamera.transform;
         playerTransform = transform;
         playerAnimator.Init();
         playerManager.isGrounded = true;
@@ -77,8 +74,8 @@ public class PlayerMove : MonoBehaviour
             return;
 
         // 키 입력에 따른 방향 벡터를 구한다.
-        moveDirection = cameraPos.forward * playerInput.vertical;
-        moveDirection += cameraPos.right * playerInput.horizontal;
+        moveDirection = playerCamera.transform.forward * playerInput.vertical;
+        moveDirection += playerCamera.transform.right * playerInput.horizontal;
         moveDirection.Normalize();
         moveDirection.y = 0;
 
@@ -106,7 +103,15 @@ public class PlayerMove : MonoBehaviour
         rigidbody.velocity = projectedVelocity;
 
         // 애니메이션 실행
-        playerAnimator.AnimatorValue(playerInput.moveAmount, 0, playerManager.isSprinting);
+        if (playerInput.lockOnFlag && !playerInput.sprintFlag)
+        {
+            playerAnimator.AnimatorValue(playerInput.vertical, playerInput.horizontal, playerManager.isSprinting);
+        }
+        else
+        {
+            playerAnimator.AnimatorValue(playerInput.moveAmount, 0, playerManager.isSprinting);
+
+        }
 
         // 회전이 가능한 경우에는 이동 방향으로 캐릭터를 회전한다.
         if (playerAnimator.canRotate)
@@ -117,21 +122,40 @@ public class PlayerMove : MonoBehaviour
 
     void HandleRotation(float delta)
     {
-        Vector3 targetDir = Vector3.zero;
-        float moveOverride = playerInput.moveAmount;
+        if (playerInput.lockOnFlag && !playerInput.sprintFlag)
+        {
+            Vector3 targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
+            targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
+            targetDir.Normalize();
+            targetDir.y = 0;
 
-        targetDir = cameraPos.forward * playerInput.vertical;
-        targetDir += cameraPos.right * playerInput.horizontal;
-        targetDir.Normalize();
-        targetDir.y = 0;
+            if (targetDir == Vector3.zero)
+            {
+                targetDir = transform.forward;
+            }
 
-        if (targetDir == Vector3.zero)
-            targetDir = playerTransform.forward;
+            Quaternion tr = Quaternion.LookRotation(targetDir);
+            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+            transform.rotation = targetRotation;
+        }
+        else
+        {
+            Vector3 targetDir = Vector3.zero;
+            float moveOverride = playerInput.moveAmount;
 
-        float rs = rotationSpeed;
-        Quaternion tr = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
-        playerTransform.rotation = targetRotation;
+            targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
+            targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
+            targetDir.Normalize();
+            targetDir.y = 0;
+
+            if (targetDir == Vector3.zero)
+                targetDir = playerTransform.forward;
+
+            float rs = rotationSpeed;
+            Quaternion tr = Quaternion.LookRotation(targetDir);
+            Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
+            playerTransform.rotation = targetRotation;
+        }
     }
 
     public void HandleRollingAndSprinting(float delta)
@@ -141,8 +165,8 @@ public class PlayerMove : MonoBehaviour
 
         if (playerInput.rollFlag)
         {
-            moveDirection = cameraPos.forward * playerInput.vertical;
-            moveDirection += cameraPos.right * playerInput.horizontal;
+            moveDirection = playerCamera.transform.forward * playerInput.vertical;
+            moveDirection += playerCamera.transform.right * playerInput.horizontal;
 
             if (playerInput.moveAmount > 0) // 이동중에 회피키를 누르면 구르기
             {

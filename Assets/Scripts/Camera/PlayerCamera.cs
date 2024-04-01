@@ -23,11 +23,10 @@ public class PlayerCamera : MonoBehaviour
     private float playerFollowRate = 0.2f;
 
     [Header("Camera")]
-    [SerializeField]
-    private Transform cameraTransform;
+    public Transform cameraTransform;
     [SerializeField]
     private Transform cameraPivotTransform;
-    private Transform camTransform;
+    public Transform camTransform;
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask layerMask;
