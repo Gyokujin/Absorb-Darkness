@@ -223,5 +223,7 @@ public class PlayerInput : MonoBehaviour
                 playerCamera.currentLockOnTarget = playerCamera.rightLockTarget;
             }
         }
+
+        playerCamera.SetCameraHeight();
     }
 }

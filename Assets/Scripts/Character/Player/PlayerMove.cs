@@ -122,21 +122,35 @@ public class PlayerMove : MonoBehaviour
 
     void HandleRotation(float delta)
     {
-        if (playerInput.lockOnFlag && !playerInput.sprintFlag)
+        if (playerInput.lockOnFlag)
         {
-            Vector3 targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
-            targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
-            targetDir.Normalize();
-            targetDir.y = 0;
-
-            if (targetDir == Vector3.zero)
+            if (playerInput.sprintFlag || playerInput.rollFlag)
             {
-                targetDir = transform.forward;
-            }
+                Vector3 targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
+                targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
+                targetDir.Normalize();
+                targetDir.y = 0;
 
-            Quaternion tr = Quaternion.LookRotation(targetDir);
-            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
-            transform.rotation = targetRotation;
+                if (targetDir == Vector3.zero)
+                {
+                    targetDir = transform.forward;
+                }
+
+                Quaternion tr = Quaternion.LookRotation(targetDir);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                transform.rotation = targetRotation;
+            }
+            else
+            {
+                Vector3 rotationDir = moveDirection;
+                rotationDir = playerCamera.currentLockOnTarget.position - transform.position;
+                rotationDir.y = 0;
+                rotationDir.Normalize();
+                
+                Quaternion tr = Quaternion.LookRotation(rotationDir);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                transform.rotation = targetRotation;
+            }
         }
         else
         {

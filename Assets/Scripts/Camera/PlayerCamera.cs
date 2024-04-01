@@ -45,14 +45,18 @@ public class PlayerCamera : MonoBehaviour
     private List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
+    public Transform leftLockTarget;
+    public Transform rightLockTarget;
     [SerializeField]
     private float lockRadius = 26;
     [SerializeField]
     private float maxLockOnDistance = 30;
     [SerializeField]
     private float lockOnAngleLimit = 50;
-    public Transform leftLockTarget;
-    public Transform rightLockTarget;
+    [SerializeField]
+    private float lockedPivotPosition = 2.25f;
+    [SerializeField]
+    private float unlockedPivotPosition = 1.65f;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -192,6 +196,13 @@ public class PlayerCamera : MonoBehaviour
         availableTargets.Clear();
         nearestLockOnTarget = null;
         currentLockOnTarget = null;
+    }
+
+    public void SetCameraHeight()
+    {
+        Vector3 velocity = Vector3.zero;
+        Vector3 targetPosition = new Vector3(0, currentLockOnTarget != null ? lockedPivotPosition : unlockedPivotPosition);
+        cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.localPosition, targetPosition, ref velocity, Time.deltaTime);
     }
 
     void HandleCameraCollision(float delta)
