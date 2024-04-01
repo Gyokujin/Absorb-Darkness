@@ -24,7 +24,8 @@ public class PlayerManager : CharacterManager
     private PlayerInput playerInput;
     private PlayerMove playerMove;
     private PlayerCamera playerCamera;
-    private Animator animator;
+    private PlayerAnimator playerAnimator;
+    // private Animator animator;
     private InteractableUI interactableUI;
 
     void Awake()
@@ -39,7 +40,8 @@ public class PlayerManager : CharacterManager
 
     void Init()
     {
-        animator = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        // animator = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
         interactableUI = FindObjectOfType<InteractableUI>();
@@ -47,9 +49,9 @@ public class PlayerManager : CharacterManager
 
     void Update()
     {
-        canDoCombo = animator.GetBool("canDoCombo");
-        isInteracting = animator.GetBool("isInteracting");
-        animator.SetBool("isInAir", isInAir);
+        canDoCombo = playerAnimator.animator.GetBool("canDoCombo");
+        isInteracting = playerAnimator.animator.GetBool("isInteracting");
+        playerAnimator.animator.SetBool("isInAir", isInAir);
         playerInput.TickInput(Time.deltaTime);
         playerMove.HandleRollingAndSprinting(Time.deltaTime);
         CheckInteractableObject();

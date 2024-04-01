@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2338361754745184271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -175,17 +175,23 @@ MonoBehaviour:
   playerFollowRate: 0.2
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
+  camTransform: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 3080
   minPivot: -35
   maxPivot: 35
   lookAngle: 0.033
+  availableTargets: []
   currentLockOnTarget: {fileID: 0}
   nearestLockOnTarget: {fileID: 0}
+  leftLockTarget: {fileID: 0}
+  rightLockTarget: {fileID: 0}
   lockRadius: 26
-  maxLockOnDistance: 30
-  lockOnAngleLimit: 75
+  maxLockOnDistance: 20
+  lockOnAngleLimit: 35
+  lockedPivotPosition: 3
+  unlockedPivotPosition: 2.4
   cameraSphereRadius: 0.2
   cameraCollisionOffset: 0.2
   minCollisionOffset: 0.2

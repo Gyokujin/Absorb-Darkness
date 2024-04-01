@@ -42,6 +42,7 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Component")]
     private PlayerControls inputActions;
+    private PlayerAnimator playerAnimator;
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
     private PlayerManager playerManager;
@@ -56,6 +57,7 @@ public class PlayerInput : MonoBehaviour
     void Init()
     {
         playerAttacker = GetComponent<PlayerAttacker>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
         playerCamera = FindObjectOfType<PlayerCamera>();
@@ -191,13 +193,15 @@ public class PlayerInput : MonoBehaviour
 
                 if (playerCamera.nearestLockOnTarget != null)
                 {
-                    playerCamera.currentLockOnTarget = playerCamera.nearestLockOnTarget;
                     lockOnFlag = true;
+                    playerAnimator.animator.SetBool("onStance", true);
+                    playerCamera.currentLockOnTarget = playerCamera.nearestLockOnTarget;
                 }
             }
             else
             {
                 lockOnFlag = false;
+                playerAnimator.animator.SetBool("onStance", false);
                 playerCamera.ClearLockOnTargets();
             }
         }

@@ -42,6 +42,7 @@ public class PlayerCamera : MonoBehaviour
     private float pivotAngle;
 
     [Header("Lock On")]
+    [SerializeField]
     private List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
@@ -57,6 +58,7 @@ public class PlayerCamera : MonoBehaviour
     private float lockedPivotPosition = 2.25f;
     [SerializeField]
     private float unlockedPivotPosition = 1.65f;
+    private LayerMask environmentLayer;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -78,6 +80,11 @@ public class PlayerCamera : MonoBehaviour
         }
 
         Init();
+    }
+
+    void Start()
+    {
+        environmentLayer = LayerMask.NameToLayer("Environment");
     }
 
     void Init()
@@ -116,7 +123,6 @@ public class PlayerCamera : MonoBehaviour
         }
         else if (currentLockOnTarget != null)
         {
-            float velocity = 0;
             Vector3 dir = currentLockOnTarget.position - transform.position;
             dir.Normalize();
             dir.y = 0;
@@ -150,12 +156,25 @@ public class PlayerCamera : MonoBehaviour
                 Vector3 lockTargetDirection = character.transform.position - playerTransform.position;
                 float distance = Vector3.Distance(playerTransform.position, character.transform.position);
                 float viewAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
+                RaycastHit hit;
 
                 if (character.transform.root != playerTransform.transform.root
                     && viewAngle > -lockOnAngleLimit && viewAngle < lockOnAngleLimit
                     && distance <= maxLockOnDistance)
                 {
-                    availableTargets.Add(character);
+                    if (Physics.Linecast(player.lockOnTransform.position, character.lockOnTransform.position, out hit))
+                    {
+                        Debug.DrawLine(player.lockOnTransform.position, character.lockOnTransform.position);
+
+                        if (hit.transform.gameObject.layer == environmentLayer)
+                        {
+                            Debug.Log("Block");
+                        }
+                        else
+                        {
+                            availableTargets.Add(character);
+                        }
+                    }
                 }
             }
         }
