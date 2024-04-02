@@ -25,7 +25,6 @@ public class PlayerManager : CharacterManager
     private PlayerMove playerMove;
     private PlayerCamera playerCamera;
     private PlayerAnimator playerAnimator;
-    // private Animator animator;
     private InteractableUI interactableUI;
 
     void Awake()
@@ -41,7 +40,6 @@ public class PlayerManager : CharacterManager
     void Init()
     {
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        // animator = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
         interactableUI = FindObjectOfType<InteractableUI>();
