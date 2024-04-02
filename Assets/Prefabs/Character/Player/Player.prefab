@@ -193,12 +193,14 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   rollInputTimer: 0
-  interact_Input: 0
-  rolling_Input: 0
-  lockOn_Input: 0
-  lightAttack_Input: 0
-  heavyAttack_Input: 0
-  gameSystem_Input: 0
+  interactInput: 0
+  rollingInput: 0
+  lockOnInput: 0
+  rightStickLeftInput: 0
+  rightStickRightInput: 0
+  lightAttackInput: 0
+  heavyAttackInput: 0
+  gameSystemInput: 0
   rollFlag: 0
   sprintFlag: 0
   lockOnFlag: 0
@@ -238,7 +240,6 @@ MonoBehaviour:
   fallingFactor: 0.1
   rigidbody: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  playerCamera: {fileID: 0}
 --- !u!114 &8704254429465697172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +261,8 @@ MonoBehaviour:
   weaponInRightSlots:
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
   - {fileID: 11400000, guid: 48a41d10dfad7f049ade9ef7ae228510, type: 2}
+  currentLeftWeaponIndex: 0
+  currentRightWeaponIndex: 0
   weaponsInventory: []
 --- !u!114 &5664519629810846392
 MonoBehaviour:

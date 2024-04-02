@@ -738,11 +738,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb5b58d3cb7d144db6bdb6838d3b702, type: 3}
---- !u!1 &1307785137 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3683769820229131542, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
-  m_PrefabInstance: {fileID: 850225193821203767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1949015461
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,10 +963,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1912785350997228117, guid: b448eb40df46926429e39f76897876cb, type: 3}
-      propertyPath: playerCamera
-      value: 
-      objectReference: {fileID: 1307785137}
     - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: healthBar
       value: 
