@@ -22,8 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform weaponInventorySlotsParent;
     private WeaponInventorySlot[] weaponInventorySlots;
-    [SerializeField]
-    private EquipmentWindowUI equipmentWindowUI;
+    public EquipmentWindowUI equipmentWindowUI;
 
     // [Header("Game Setting")]
 
@@ -37,8 +36,10 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
-        equipmentWindowUI = GetComponentInChildren<EquipmentWindowUI>();
+    void Start()
+    {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
         equipmentWindowUI.gameObject.SetActive(false);
     }
