@@ -104,6 +104,7 @@ public class PlayerManager : CharacterManager
                 if (playerInput.interactInput)
                 {
                     interactableObj.Interact(this);
+                    UIManager.instance.UpdateUI();
                 }
             }
         }
