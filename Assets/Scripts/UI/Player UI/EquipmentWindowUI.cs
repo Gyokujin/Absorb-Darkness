@@ -9,13 +9,7 @@ public class EquipmentWindowUI : MonoBehaviour
     public bool rightHandSlot01Selected;
     public bool rightHandSlot02Selected;
 
-    [SerializeField]
-    private HandEquipmentSlotUI[] handEquipmentSlotUI;
-
-    void Awake()
-    {
-        handEquipmentSlotUI = GetComponentsInChildren<HandEquipmentSlotUI>(); // 최초 1회 장비창을 업데이트 한다.
-    }
+    public HandEquipmentSlotUI[] handEquipmentSlotUI;
 
     public void OpenEquipmentsUI()
     {
