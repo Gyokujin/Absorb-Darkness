@@ -16,13 +16,21 @@ public class UIManager : MonoBehaviour
     private GameObject weaponInventoryWindow;
     public PlayerInventory playerInventory;
 
-    [Header("Weapon Inventory")]
+    [Header("Equipment")]
+    [SerializeField]
+    private GameObject equipmentScreenWindow;
     [SerializeField]
     private GameObject weaponInventorySlotPrefab;
     [SerializeField]
     private Transform weaponInventorySlotsParent;
     private WeaponInventorySlot[] weaponInventorySlots;
     public EquipmentWindowUI equipmentWindowUI;
+
+    [Header("Equipment Window Slot Selected")]
+    public bool leftHandSlot01Selected;
+    public bool leftHandSlot02Selected;
+    public bool rightHandSlot01Selected;
+    public bool rightHandSlot02Selected;
 
     // [Header("Game Setting")]
 
@@ -41,7 +49,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-        equipmentWindowUI.gameObject.SetActive(false);
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -76,8 +84,22 @@ public class UIManager : MonoBehaviour
     {
         selectWindow.SetActive(false);
         hudWindow.SetActive(true);
-        weaponInventoryWindow.gameObject.SetActive(false);
-        equipmentWindowUI.gameObject.SetActive(false);
+        CloseAllInventoryUI();
         GameManager.instance.LockCamera(true);
+    }
+
+    public void CloseAllInventoryUI()
+    {
+        ResetAllSelectedSlots();
+        weaponInventoryWindow.SetActive(false);
+        equipmentScreenWindow.SetActive(false);
+    }
+
+    public void ResetAllSelectedSlots()
+    {
+        leftHandSlot01Selected = false;
+        leftHandSlot02Selected = false;
+        rightHandSlot01Selected = false;
+        rightHandSlot02Selected = false;
     }
 }

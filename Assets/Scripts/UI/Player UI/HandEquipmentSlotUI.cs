@@ -8,10 +8,10 @@ public class HandEquipmentSlotUI : MonoBehaviour
     public Image icon;
     private WeaponItem weapon;
 
-    public bool rightHandSlot01;
-    public bool rightHandSlot02;
     public bool leftHandSlot01;
     public bool leftHandSlot02;
+    public bool rightHandSlot01;
+    public bool rightHandSlot02;
 
     public void AddItem(WeaponItem newWeapon)
     {
@@ -27,5 +27,25 @@ public class HandEquipmentSlotUI : MonoBehaviour
         icon.sprite = null;
         icon.enabled = false;
         gameObject.SetActive(false);
+    }
+
+    public void SelectSlot()
+    {
+        if (leftHandSlot01)
+        {
+            UIManager.instance.leftHandSlot01Selected = true;
+        }
+        else if (leftHandSlot02)
+        {
+            UIManager.instance.leftHandSlot02Selected = true;
+        }
+        else if (rightHandSlot01)
+        {
+            UIManager.instance.rightHandSlot01Selected = true;
+        }
+        else
+        {
+            UIManager.instance.rightHandSlot02Selected = true;
+        }
     }
 }
