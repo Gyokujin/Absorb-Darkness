@@ -209,6 +209,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "TwoHand",
+                    "type": "Button",
+                    "id": "92c370ec-1fd6-46d9-80b9-b76b892470b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "LightAttack",
                     "type": "Button",
                     "id": "0d105b1e-6893-4be0-8d73-cb86c9dd95b1",
@@ -366,6 +375,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e41848fd-bcdf-4cbb-a6e8-0454c66c81e2",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TwoHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e58d574c-b749-474c-b90f-0208656358a9",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TwoHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
