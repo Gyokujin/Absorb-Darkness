@@ -5,9 +5,11 @@ using UnityEngine;
 public class WeaponHolderSlot : MonoBehaviour
 {
     [SerializeField]
-    private Transform parentTransform;
+    private Transform parentOverride;
+    public WeaponItem currentWeapon;
     public bool isLeftHandSlot;
     public bool isRightHandSlot;
+    public bool isBackSlot;
 
     public GameObject currentWeaponModel;
 
@@ -41,9 +43,9 @@ public class WeaponHolderSlot : MonoBehaviour
         
         if (model != null)
         {
-            if (parentTransform != null)
+            if (parentOverride != null)
             {
-                model.transform.parent = parentTransform;
+                model.transform.parent = parentOverride;
             }
             else
             {

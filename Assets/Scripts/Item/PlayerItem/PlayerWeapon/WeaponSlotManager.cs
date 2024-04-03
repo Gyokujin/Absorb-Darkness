@@ -8,6 +8,8 @@ public class WeaponSlotManager : MonoBehaviour
     public WeaponItem attackingWeapon;
     private WeaponHolderSlot leftHandSlot;
     private WeaponHolderSlot rightHandSlot;
+    private WeaponHolderSlot backSlot;
+
     private DamageCollider leftHandDamageCollider;
     private DamageCollider rightHandDamageCollider;
 
@@ -47,6 +49,10 @@ public class WeaponSlotManager : MonoBehaviour
             {
                 rightHandSlot = weaponSlot;
             }
+            else if (weaponSlot.isBackSlot)
+            {
+                backSlot = weaponSlot;
+            }
         }
     }
 
@@ -54,6 +60,7 @@ public class WeaponSlotManager : MonoBehaviour
     {
         if (isLeft)
         {
+            leftHandSlot.currentWeapon = weaponItem;
             leftHandSlot.LoadWeaponModel(weaponItem);
             LoadLeftWeaponDamageCollider();
             quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
@@ -71,11 +78,14 @@ public class WeaponSlotManager : MonoBehaviour
         {
             if (playerInput.twoHandFlag)
             {
+                backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+                leftHandSlot.UnloadWeaponAndDestroy();
                 animator.CrossFade(weaponItem.th_idle, animacionFadeAmount);
             }
             else
             {
                 animator.CrossFade(weaponArmIdleAnimations[2], animacionFadeAmount);
+                backSlot.UnloadWeaponAndDestroy();
 
                 if (weaponItem != null)
                 {
@@ -87,6 +97,7 @@ public class WeaponSlotManager : MonoBehaviour
                 }
             }
 
+            rightHandSlot.currentWeapon = weaponItem;
             rightHandSlot.LoadWeaponModel(weaponItem);
             LoadRightWeaponDamageCollider();
             quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);

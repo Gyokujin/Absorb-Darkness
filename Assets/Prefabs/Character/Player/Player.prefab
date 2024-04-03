@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4489682812220464935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4279496186176904155}
+  - component: {fileID: 4631933976666925729}
+  m_Layer: 0
+  m_Name: Back Weapon Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4279496186176904155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489682812220464935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.34413964, y: 0.0042345515, z: -0.416558, w: 0.8414449}
+  m_LocalPosition: {x: -0.00594, y: 0.00119, z: 0.00271}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6243325131398278859}
+  m_LocalEulerAnglesHint: {x: 35.639, y: -20.122, z: -59.204}
+--- !u!114 &4631933976666925729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489682812220464935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentOverride: {fileID: 4279496186176904155}
+  currentWeapon: {fileID: 0}
+  isLeftHandSlot: 0
+  isRightHandSlot: 0
+  isBackSlot: 1
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &4563626810316549287
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +245,7 @@ MonoBehaviour:
   rollInputTimer: 0
   interactInput: 0
   rollingInput: 0
+  twoHandInput: 0
   lockOnInput: 0
   rightStickLeftInput: 0
   rightStickRightInput: 0
@@ -203,6 +254,7 @@ MonoBehaviour:
   gameSystemInput: 0
   rollFlag: 0
   sprintFlag: 0
+  twoHandFlag: 0
   lockOnFlag: 0
   comboFlag: 0
   gameSystemFlag: 0
@@ -256,8 +308,8 @@ MonoBehaviour:
   rightWeapon: {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   weaponInLeftSlots:
-  - {fileID: 11400000, guid: bd60c38c802667449bca24d768f9d216, type: 2}
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
+  - {fileID: 11400000, guid: bd60c38c802667449bca24d768f9d216, type: 2}
   weaponInRightSlots:
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
   - {fileID: 11400000, guid: 48a41d10dfad7f049ade9ef7ae228510, type: 2}
@@ -1100,6 +1152,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2410743154318327178, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4279496186176904155}
     - targetCorrespondingSourceObject: {fileID: 8732708505508416641, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5726945947296777840}
@@ -1144,9 +1199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentTransform: {fileID: 5726945947296777840}
+  parentOverride: {fileID: 5726945947296777840}
+  currentWeapon: {fileID: 0}
   isLeftHandSlot: 1
   isRightHandSlot: 0
+  isBackSlot: 0
   currentWeaponModel: {fileID: 0}
 --- !u!1 &2712759921757626834 stripped
 GameObject:
@@ -1165,10 +1222,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bf62a135e1cb34da5935d2e6666967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentTransform: {fileID: 1113428526076970311}
+  parentOverride: {fileID: 1113428526076970311}
+  currentWeapon: {fileID: 0}
   isLeftHandSlot: 0
   isRightHandSlot: 1
+  isBackSlot: 0
   currentWeaponModel: {fileID: 0}
+--- !u!4 &6243325131398278859 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2410743154318327178, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
+  m_PrefabInstance: {fileID: 8633419180313039681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8095968538485273770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4edc659092f640409f8d7075a9b2d69, type: 3}
@@ -1215,4 +1279,5 @@ MonoBehaviour:
   weaponArmIdleAnimations:
   - LeftArm Empty
   - RightArm Empty
+  - BothArms Empty
   animacionFadeAmount: 0.2
