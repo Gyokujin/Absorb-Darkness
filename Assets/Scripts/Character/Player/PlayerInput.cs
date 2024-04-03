@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Input System")]
     public bool interactInput;
     public bool rollingInput;
+    public bool twoHandInput;
     public bool lockOnInput;
     public bool rightStickLeftInput;
     public bool rightStickRightInput;
@@ -30,6 +31,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Action Flag")]
     public bool rollFlag;
     public bool sprintFlag;
+    public bool twoHandFlag;
     public bool lockOnFlag;
     public bool comboFlag;
     public bool gameSystemFlag;
@@ -47,6 +49,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerInventory playerInventory;
     private PlayerManager playerManager;
     private PlayerCamera playerCamera;
+    private WeaponSlotManager weaponSlotManager;
     private UIManager uiManager;
 
     void Awake()
@@ -61,6 +64,7 @@ public class PlayerInput : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
         playerCamera = FindObjectOfType<PlayerCamera>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         uiManager = FindObjectOfType<UIManager>();
     }
 
@@ -80,6 +84,7 @@ public class PlayerInput : MonoBehaviour
             inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRight = true;
             inputActions.PlayerMovement.LockOnTargetLeft.performed += i => rightStickLeftInput = true;
             inputActions.PlayerMovement.LockOnTargetRight.performed += i => rightStickRightInput = true;
+            inputActions.PlayerActions.TwoHand.performed += i => twoHandInput = true;
         }
 
         inputActions.Enable();
@@ -95,6 +100,7 @@ public class PlayerInput : MonoBehaviour
         HandleMoveInput(delta);
         HandleRollInput(delta);
         HandleLockOnInput();
+        HandleTwoHandInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
         HandleGameSystemInput();
@@ -128,6 +134,25 @@ public class PlayerInput : MonoBehaviour
             }
 
             rollInputTimer = 0;
+        }
+    }
+
+    void HandleTwoHandInput()
+    {
+        if (twoHandInput)
+        {
+            twoHandInput = false;
+            twoHandFlag = !twoHandFlag;
+
+            if (twoHandFlag)
+            {
+                weaponSlotManager.LoadWeaponSlot(playerInventory.rightWeapon, false);
+            }
+            else
+            {
+                weaponSlotManager.LoadWeaponSlot(playerInventory.rightWeapon, false);
+                weaponSlotManager.LoadWeaponSlot(playerInventory.leftWeapon, true);
+            }
         }
     }
 
