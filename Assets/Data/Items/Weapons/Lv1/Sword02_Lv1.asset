@@ -18,7 +18,7 @@ MonoBehaviour:
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle
   left_Hand_Idle: LeftArm_Idle
-  th_idle: BothArmsIdle01
+  th_idle: BothArms Idle01
   OneHand_LightAttack1: LightAttack01
   OneHand_LightAttack2: LightAttack02
   OneHand_HeavyAttack1: HeavyAttack01
