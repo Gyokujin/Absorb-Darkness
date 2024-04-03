@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
@@ -14,13 +13,14 @@ public class WeaponSlotManager : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField]
-    private string[] weaponArmIdleAnimations = { "LeftArm Empty", "RightArm Empty" };
+    private string[] weaponArmIdleAnimations = { "LeftArm Empty", "RightArm Empty", "BothArms Empty" };
     [SerializeField]
     private float animacionFadeAmount = 0.2f;
 
     [Header("Component")]
     private Animator animator;
     private QuickSlotsUI quickSlotsUI;
+    private PlayerInput playerInput;
     private PlayerStats playerStats;
 
     void Awake()
@@ -31,8 +31,9 @@ public class WeaponSlotManager : MonoBehaviour
     void Init()
     {
         animator = GetComponent<Animator>();
-        playerStats = GetComponentInParent<PlayerStats>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
+        playerInput = GetComponentInParent<PlayerInput>();
+        playerStats = GetComponentInParent<PlayerStats>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         
@@ -68,18 +69,27 @@ public class WeaponSlotManager : MonoBehaviour
         }
         else
         {
-            rightHandSlot.LoadWeaponModel(weaponItem);
-            LoadRightWeaponDamageCollider();
-            quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
-
-            if (weaponItem != null)
+            if (playerInput.twoHandFlag)
             {
-                animator.CrossFade(weaponItem.right_Hand_Idle, animacionFadeAmount);
+                animator.CrossFade(weaponItem.th_idle, animacionFadeAmount);
             }
             else
             {
-                animator.CrossFade(weaponArmIdleAnimations[1], animacionFadeAmount);
+                animator.CrossFade(weaponArmIdleAnimations[2], animacionFadeAmount);
+
+                if (weaponItem != null)
+                {
+                    animator.CrossFade(weaponItem.right_Hand_Idle, animacionFadeAmount);
+                }
+                else
+                {
+                    animator.CrossFade(weaponArmIdleAnimations[1], animacionFadeAmount);
+                }
             }
+
+            rightHandSlot.LoadWeaponModel(weaponItem);
+            LoadRightWeaponDamageCollider();
+            quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
         }
     }
 
