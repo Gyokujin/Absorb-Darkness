@@ -15,9 +15,12 @@ public class WeaponItem : Item
     public string th_idle;
 
     [Header("Attack Animations")]
-    public string OneHand_LightAttack1;
-    public string OneHand_LightAttack2;
-    public string OneHand_HeavyAttack1;
+    public string oneHand_LightAttack1;
+    public string oneHand_LightAttack2;
+    public string oneHand_HeavyAttack1;
+    public string twoHand_LightAttack1;
+    public string twoHand_LightAttack2;
+    public string twoHand_HeavyAttack1;
 
     [Header("Stamina Costs")]
     public int baseStamina;

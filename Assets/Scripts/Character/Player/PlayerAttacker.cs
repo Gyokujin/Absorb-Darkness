@@ -27,15 +27,33 @@ public class PlayerAttacker : MonoBehaviour
     public void HandleLightAttack(WeaponItem weapon)
     {
         weaponSlotManager.attackingWeapon = weapon;
-        playerAnimator.PlayTargetAnimation(weapon.OneHand_LightAttack1, true);
-        lastAttack = weapon.OneHand_LightAttack1;
+
+        if (!playerInput.twoHandFlag) // 한손
+        {
+            playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack1, true);
+            lastAttack = weapon.oneHand_LightAttack1;
+        }
+        else // 두손
+        {
+            playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack1, true);
+            lastAttack = weapon.twoHand_LightAttack1;
+        }
     }
 
     public void HandleHeavyAttack(WeaponItem weapon)
     {
         weaponSlotManager.attackingWeapon = weapon;
-        playerAnimator.PlayTargetAnimation(weapon.OneHand_HeavyAttack1, true);
-        lastAttack = weapon.OneHand_HeavyAttack1;
+
+        if (!playerInput.twoHandFlag)
+        {
+            playerAnimator.PlayTargetAnimation(weapon.oneHand_HeavyAttack1, true);
+            lastAttack = weapon.oneHand_HeavyAttack1;
+        }
+        else
+        {
+            playerAnimator.PlayTargetAnimation(weapon.twoHand_HeavyAttack1, true);
+            lastAttack = weapon.twoHand_HeavyAttack1;
+        }
     }
 
     public void HandleWeaponCombo(WeaponItem weapon)
@@ -44,9 +62,13 @@ public class PlayerAttacker : MonoBehaviour
         {
             playerAnimator.animator.SetBool("canDoCombo", false);
 
-            if (lastAttack == weapon.OneHand_LightAttack1)
+            if (lastAttack == weapon.oneHand_LightAttack1)
             {
-                playerAnimator.PlayTargetAnimation(weapon.OneHand_LightAttack2, true);
+                playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack2, true);
+            }
+            else if (lastAttack == weapon.twoHand_LightAttack1)
+            {
+                playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack2, true);
             }
         }
     }
