@@ -19,9 +19,12 @@ MonoBehaviour:
   right_Hand_Idle: RightArm_Idle
   left_Hand_Idle: LeftArm_Idle
   th_idle: BothArms Idle01
-  OneHand_LightAttack1: OHLightAttack01
-  OneHand_LightAttack2: OHLightAttack02
-  OneHand_HeavyAttack1: OHHeavyAttack01
+  oneHand_LightAttack1: OHLightAttack01
+  oneHand_LightAttack2: OHLightAttack02
+  oneHand_HeavyAttack1: OHHeavyAttack01
+  twoHand_LightAttack1: THLightAttack01
+  twoHand_LightAttack2: THLightAttack02
+  twoHand_HeavyAttack1: THHeavyAttack01
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
