@@ -45,7 +45,7 @@ public class PlayerInventory : MonoBehaviour
 
         if (currentLeftWeaponIndex > weaponInLeftSlots.Length - 1) // index가 슬롯 범위를 초과할 경우
         {
-            currentLeftWeaponIndex = 0; // 이후 문제시 -1 로 조정
+            currentLeftWeaponIndex = -1;
             leftWeapon = unarmedWeapon;
             weaponSlotManager.LoadWeaponSlot(unarmedWeapon, true);
         }
