@@ -25,6 +25,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-8857485032345011949
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: THLightAttack01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 1991508559489594669}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: a27229cfdbe12534f87b87974df98f48, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-8451384118153604511
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -170,6 +197,28 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &-5250604778269882412
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 2242914858276968705}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.88805974
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &-5246753541054778966
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -518,6 +567,33 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 2
+--- !u!1102 &-2578578547193583655
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: THLightAttack02
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -5250604778269882412}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 2ab9cfe4a90e7d048881861b1bf0afa0, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-1942851680477283686
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -563,13 +639,13 @@ AnimatorStateMachine:
     m_Position: {x: 280, y: 550, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1063348523311145851}
-    m_Position: {x: 880, y: 130, z: 0}
+    m_Position: {x: 940, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 564639557528076991}
-    m_Position: {x: 880, y: 50, z: 0}
+    m_Position: {x: 940, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6064006321938417249}
-    m_Position: {x: 1150, y: 130, z: 0}
+    m_Position: {x: 940, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6352042856298108298}
     m_Position: {x: 280, y: 160, z: 0}
@@ -585,6 +661,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -586811905673133476}
     m_Position: {x: 280, y: 310, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -8857485032345011949}
+    m_Position: {x: 930, y: 370, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -2578578547193583655}
+    m_Position: {x: 930, y: 440, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -714,7 +796,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightAttack02
+  m_Name: OHLightAttack02
   m_Speed: 1.15
   m_CycleOffset: 0
   m_Transitions:
@@ -1049,7 +1131,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightAttack01
+  m_Name: OHLightAttack01
   m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
@@ -1157,6 +1239,28 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.6590909
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &1991508559489594669
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 2242914858276968705}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.87068963
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1392,7 +1496,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HeavyAttack01
+  m_Name: OHHeavyAttack01
   m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
@@ -1511,7 +1615,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 58a01033e314b5842aa7ebf5278660d9, type: 2}
+  m_Motion: {fileID: 7400000, guid: b8e2d19bcd982c24faeb494d1cb838dd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1665,13 +1769,13 @@ AnimatorStateMachine:
     m_Position: {x: 450, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6696050123385322175}
-    m_Position: {x: 750, y: 220, z: 0}
+    m_Position: {x: 830, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5395479248736851738}
-    m_Position: {x: 780, y: 130, z: 0}
+    m_Position: {x: 860, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4853774115280081892}
-    m_Position: {x: 752.4021, y: 297.6832, z: 0}
+    m_Position: {x: 830, y: 300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
