@@ -2,26 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : CharacterStats
 {
-    [Header("Health")]
-    [SerializeField]
-    private int healthLevel = 10;
-    [SerializeField]
-    private int healthLevelAmount = 10;
-    [SerializeField]
-    private int maxHealth;
-    private int currentHealth;
-
-    [Header("Stamina")]
-    [SerializeField]
-    private int staminaLevel = 10;
-    [SerializeField]
-    private int staminaLevelAmount = 10;
-    [SerializeField]
-    private int maxStamina;
-    private int currentStamina;
-
     [Header("UI")]
     [SerializeField]
     private HealthBar healthBar;

@@ -2,16 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : CharacterStats
 {
-    [Header("Status")]
-    [SerializeField]
-    private int healthLevel = 10;
-    [SerializeField]
-    private int healthLevelAmount = 10;
-    private int maxHealth;
-    private int currentHealth;
-
     [Header("Component")]
     private Animator animator;
 
