@@ -16,12 +16,15 @@ MonoBehaviour:
   itemName: Shield01_Lv1
   modelPrefab: {fileID: 4004318677464375987, guid: 5fadb083ad6eac74cb33b254e388deeb, type: 3}
   isUnarmed: 0
-  right_Hand_Idle: RightArm_Idle
-  left_Hand_Idle: LeftArm_Idle
+  right_Hand_Idle: RightArm Idle
+  left_Hand_Idle: LeftArm Idle
   th_idle: 
-  OneHand_LightAttack1: 
-  OneHand_LightAttack2: 
-  OneHand_HeavyAttack1: 
+  oneHand_LightAttack1: 
+  oneHand_LightAttack2: 
+  oneHand_HeavyAttack1: 
+  twoHand_LightAttack1: 
+  twoHand_LightAttack2: 
+  twoHand_HeavyAttack1: 
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2

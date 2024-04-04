@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: Axe01_Lv1
   modelPrefab: {fileID: 456606574791117825, guid: 3cfce2acc8b30e3478fad94986fc8d0a, type: 3}
   isUnarmed: 0
-  right_Hand_Idle: RightArm_Idle
-  left_Hand_Idle: LeftArm_Idle
+  right_Hand_Idle: RightArm Idle
+  left_Hand_Idle: LeftArm Idle
   th_idle: BothArms Idle01
   oneHand_LightAttack1: OHLightAttack01
   oneHand_LightAttack2: OHLightAttack02

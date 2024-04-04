@@ -16,11 +16,15 @@ MonoBehaviour:
   itemName: Quiver01_Lv1
   modelPrefab: {fileID: 6284679577939332877, guid: 16c09f0513154214087d61ec8b273ff5, type: 3}
   isUnarmed: 0
-  right_Hand_Idle: RightArm_Idle
-  left_Hand_Idle: LeftArm_Idle
-  OneHand_LightAttack1: LightAttack01
-  OneHand_LightAttack2: LightAttack02
-  OneHand_HeavyAttack1: HeavyAttack01
+  right_Hand_Idle: RightArm Idle
+  left_Hand_Idle: LeftArm Idle
+  th_idle: 
+  oneHand_LightAttack1: 
+  oneHand_LightAttack2: 
+  oneHand_HeavyAttack1: 
+  twoHand_LightAttack1: 
+  twoHand_LightAttack2: 
+  twoHand_HeavyAttack1: 
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
