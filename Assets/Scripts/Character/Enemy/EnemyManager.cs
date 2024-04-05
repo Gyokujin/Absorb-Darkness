@@ -8,20 +8,28 @@ public class EnemyManager : CharacterManager
     private bool isPreformingAction;
 
     [Header("Detection")]
-    public float detectionRadius;
+    public float detectionRadius = 20;
+    public float detectionAngleMax = 50;
+    public float detectionAngleMin = -50;
+
+    [Header("Component")]
+    private EnemyMove enemyMove;
 
     void Awake()
     {
-
+        enemyMove = GetComponent<EnemyMove>();
     }
 
     void Update()
     {
-
+        HandleCurrentAction();
     }
 
     void HandleCurrentAction()
     {
-
+        if (enemyMove.currentTarget == null)
+        {
+            enemyMove.HandleDetection();
+        }
     }
 }
