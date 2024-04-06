@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class EnemyManager : CharacterManager
 {
-    [Header("State")]
-    public bool isPreformingAction;
+    public enum EnemyState
+    {
+        Idle, Move, Attack
+    }
 
-    [Header("Detection")]
-    public float detectionRadius = 20;
-    public float detectionAngleMax = 50;
-    public float detectionAngleMin = -50;
+    [Header("State")]
+    public EnemyState state;
+    public bool isPreformingAction;
 
     [Header("Component")]
     private EnemyMove enemyMove;
 
     void Awake()
     {
+        state = EnemyState.Idle;
         enemyMove = GetComponent<EnemyMove>();
     }
 
