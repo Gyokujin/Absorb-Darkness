@@ -59,8 +59,7 @@ public class PlayerManager : CharacterManager
     {
         playerInput.rollFlag = false;
         playerInput.interactInput = false;
-        playerInput.lockOnInput = false; // 이후에 록온 문제 생기면 지운다
-        // playerInput.twoHandInput = false;
+        playerInput.lockOnInput = false;
         playerInput.lightAttackInput = false;
         playerInput.heavyAttackInput = false;
         playerInput.gameSystemInput = false;

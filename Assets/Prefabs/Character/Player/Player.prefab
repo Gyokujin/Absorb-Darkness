@@ -124,11 +124,11 @@ GameObject:
   - component: {fileID: 8617979884866548014}
   - component: {fileID: 8488239234627549522}
   - component: {fileID: 8842164406526633919}
+  - component: {fileID: 6446244042411737521}
   - component: {fileID: 3350726264196729079}
   - component: {fileID: 1912785350997228117}
   - component: {fileID: 8704254429465697172}
   - component: {fileID: 5664519629810846392}
-  - component: {fileID: 6446244042411737521}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -225,6 +225,32 @@ MonoBehaviour:
   checkMaxDis: 1
   interactableUIObj: {fileID: 0}
   itemInteractableObj: {fileID: 0}
+--- !u!114 &6446244042411737521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8c2aa4e3f917040834b3e94ad60688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  healthLevelAmount: 10
+  maxHealth: 100
+  currentHealth: 0
+  staminaLevel: 10
+  staminaLevelAmount: 10
+  maxStamina: 100
+  currentStamina: 0
+  walkSpeed: 3
+  runSpeed: 5
+  rotationSpeed: 10
+  sprintSpeed: 9
+  healthBar: {fileID: 0}
+  staminaBar: {fileID: 0}
 --- !u!114 &3350726264196729079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,13 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bab677bd3f4be4b91a0626519fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
-  moveSpeed: 6
-  sprintSpeed: 9
-  rotationSpeed: 10
-  fallingSpeedRatio: 2
-  fallingDownForce: 750
-  fallingFrontForce: 5
   groundCheckDis: 0.4
   groundDetectionRayStart: 0.5
   distanceBeginFallMin: 1
@@ -289,9 +308,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inAirTimer: 0
-  fallingFactor: 0.1
   rigidbody: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
+  fallingFactor: 0.1
+  fallingSpeedRatio: 2
+  fallingDownForce: 750
+  fallingFrontForce: 5
 --- !u!114 &8704254429465697172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,28 +351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttack: 
---- !u!114 &6446244042411737521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6995717877939349760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8c2aa4e3f917040834b3e94ad60688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthLevel: 10
-  healthLevelAmount: 10
-  maxHealth: 100
-  currentHealth: 0
-  staminaLevel: 10
-  staminaLevelAmount: 10
-  maxStamina: 100
-  currentStamina: 0
-  healthBar: {fileID: 0}
-  staminaBar: {fileID: 0}
 --- !u!1001 &8633419180313039681
 PrefabInstance:
   m_ObjectHideFlags: 0

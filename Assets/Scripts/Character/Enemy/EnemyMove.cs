@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static EnemyManager;
 
 public class EnemyMove : MonoBehaviour
 {
     [Header("Detection")]
     public LayerMask detectionLayer;
     public CharacterStats currentTarget;
-    [Header("Move")]
-    [SerializeField]
-    private float rotationSpeed = 15;
-    [SerializeField]
-    private float stopDistance = 1f;
     public float targetDistance;
 
     [Header("Component")]
-    public Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     private NavMeshAgent navMeshAgent;
     private EnemyManager enemyManager;
     private EnemyAnimator enemyAnimator;
+    private EnemyStats enemyStats;
 
     void Awake()
     {
@@ -27,7 +24,8 @@ public class EnemyMove : MonoBehaviour
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
-        navMeshAgent.stoppingDistance = stopDistance;
+        enemyStats = GetComponent<EnemyStats>();
+        navMeshAgent.stoppingDistance = enemyStats.stopDistance;
     }
 
     void Start()
@@ -38,7 +36,7 @@ public class EnemyMove : MonoBehaviour
 
     public void HandleDetection()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyStats.detectionRadius, detectionLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -49,7 +47,7 @@ public class EnemyMove : MonoBehaviour
                 Vector3 targetDirection = characterStats.transform.position - transform.position;
                 float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
-                if (viewableAngle > enemyManager.detectionAngleMin && viewableAngle < enemyManager.detectionAngleMax)
+                if (viewableAngle > enemyStats.detectionAngleMin && viewableAngle < enemyStats.detectionAngleMax)
                 {
                     currentTarget = characterStats;
                 }
@@ -63,7 +61,6 @@ public class EnemyMove : MonoBehaviour
         targetDistance = Vector3.Distance(currentTarget.transform.position, transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
-
         if (enemyManager.isPreformingAction)
         {
             enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
@@ -71,21 +68,21 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            if (targetDistance > stopDistance)
+            if (targetDistance > enemyStats.stopDistance)
             {
+                enemyManager.state = EnemyState.Move;
                 enemyAnimator.animator.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
 
                 targetDirection.Normalize();
                 targetDirection.y = 0;
 
-                float speed = 5; // 매직넘버 이후에 바꾸자
-                targetDirection *= speed;
+                targetDirection *= enemyStats.runSpeed;
                 Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
                 rigidbody.velocity = projectedVelocity;
             }
-            else if (targetDistance <= stopDistance)
+            else if (targetDistance <= enemyStats.stopDistance)
             {
-                Debug.Log("멈춰!");
+                enemyManager.state = EnemyState.Idle;
                 enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
                 rigidbody.velocity = Vector3.zero;
             }
@@ -110,7 +107,7 @@ public class EnemyMove : MonoBehaviour
             }
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed / Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, enemyStats.rotationSpeed / Time.deltaTime);
         }
         else
         {
@@ -120,7 +117,7 @@ public class EnemyMove : MonoBehaviour
             navMeshAgent.enabled = true;
             navMeshAgent.SetDestination(currentTarget.transform.position);
             navMeshAgent.velocity = targetVelocity;
-            transform.rotation = Quaternion.Slerp(transform.rotation, navMeshAgent.transform.rotation, rotationSpeed / Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, navMeshAgent.transform.rotation, enemyStats.rotationSpeed / Time.deltaTime);
         }
     }
 }

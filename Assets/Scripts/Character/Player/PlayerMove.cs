@@ -6,22 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
-    [Header("Movement Status")]
-    [SerializeField]
-    private float walkSpeed = 3;
-    [SerializeField]
-    private float moveSpeed = 5;
-    [SerializeField]
-    private float sprintSpeed = 7;
-    [SerializeField]
-    private float rotationSpeed = 10;
-    [SerializeField]
-    private float fallingSpeedRatio = 2;
-    [SerializeField]
-    private float fallingDownForce = 750;
-    [SerializeField]
-    private float fallingFrontForce = 5f;
-
     [Header("Ground & Air Detection States")]
     [SerializeField]
     private float groundCheckDis = 0.4f;
@@ -35,18 +19,24 @@ public class PlayerMove : MonoBehaviour
     public float inAirTimer;
 
     [Header("Physics")]
-    [SerializeField]
-    private float fallingFactor = 0.1f;
-    private Transform playerTransform;
-    [HideInInspector]
     public new Rigidbody rigidbody;
     public Vector3 moveDirection;
     private Vector3 normalVec;
     private Vector3 targetPosition;
+    [SerializeField]
+    private float fallingFactor = 0.1f;
+    [SerializeField]
+    private float fallingSpeedRatio = 2;
+    [SerializeField]
+    private float fallingDownForce = 750;
+    [SerializeField]
+    private float fallingFrontForce = 5f;
 
     [Header("Component")]
     private PlayerManager playerManager;
+    private Transform playerTransform;
     private PlayerInput playerInput;
+    private PlayerStats playerStats;
     private PlayerAnimator playerAnimator;
     private PlayerCamera playerCamera;
 
@@ -60,6 +50,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
+        playerStats = GetComponent<PlayerStats>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerCamera = FindObjectOfType<PlayerCamera>();
 
@@ -80,17 +71,16 @@ public class PlayerMove : MonoBehaviour
         moveDirection.y = 0;
 
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
-        float speed = moveSpeed;
+        float speed = playerStats.runSpeed;
         
         if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
         {
-            speed = sprintSpeed;
             playerManager.isSprinting = true;
-            moveDirection *= speed;
+            moveDirection *= playerStats.sprintSpeed;
         }
         else if (playerInput.moveAmount < 0.5f)
         {
-            moveDirection *= walkSpeed;
+            moveDirection *= playerStats.walkSpeed;
             playerManager.isSprinting = false;
         }
         else
@@ -137,7 +127,7 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 Quaternion tr = Quaternion.LookRotation(targetDir);
-                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStats.rotationSpeed * Time.deltaTime);
                 transform.rotation = targetRotation;
             }
             else
@@ -148,7 +138,7 @@ public class PlayerMove : MonoBehaviour
                 rotationDir.Normalize();
                 
                 Quaternion tr = Quaternion.LookRotation(rotationDir);
-                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStats.rotationSpeed * Time.deltaTime);
                 transform.rotation = targetRotation;
             }
         }
@@ -165,7 +155,7 @@ public class PlayerMove : MonoBehaviour
             if (targetDir == Vector3.zero)
                 targetDir = playerTransform.forward;
 
-            float rs = rotationSpeed;
+            float rs = playerStats.rotationSpeed;
             Quaternion tr = Quaternion.LookRotation(targetDir);
             Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
             playerTransform.rotation = targetRotation;
@@ -260,7 +250,7 @@ public class PlayerMove : MonoBehaviour
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
-                rigidbody.velocity = velocity * (moveSpeed / fallingSpeedRatio);
+                rigidbody.velocity = velocity * (playerStats.runSpeed / fallingSpeedRatio);
                 playerManager.isInAir = true;
             }
         }
