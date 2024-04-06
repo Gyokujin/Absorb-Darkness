@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
+    [Header("Move")]
+    public float sprintSpeed = 7;
+
     [Header("UI")]
     [SerializeField]
     private HealthBar healthBar;
