@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : AnimatorManager
 {
     public bool canRotate = true;
 
@@ -20,12 +20,8 @@ public class PlayerAnimator : MonoBehaviour
     private float sprintParameterValue = 2;
     [SerializeField]
     private float animationDampTime = 0.1f;
-    [SerializeField]
-    private float animacionFadeAmount = 0.2f;
 
     [Header("Component")]
-    [HideInInspector]
-    public Animator animator;
     private PlayerManager playerManager;
     private PlayerInput playerInput;
     private PlayerMove playerMove;
@@ -97,13 +93,6 @@ public class PlayerAnimator : MonoBehaviour
         // 애니메이터 파라미터 입력
         animator.SetFloat("vertical", parameterVer, animationDampTime, Time.deltaTime);
         animator.SetFloat("horizontal", parameterHor, animationDampTime, Time.deltaTime);
-    }
-
-    public void PlayTargetAnimation(string targetAnim, bool isInteracting)
-    {
-        animator.applyRootMotion = isInteracting;
-        animator.SetBool("isInteracting", isInteracting);
-        animator.CrossFade(targetAnim, animacionFadeAmount);
     }
 
     public void CanRotate(bool isCan)

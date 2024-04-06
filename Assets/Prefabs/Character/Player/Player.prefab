@@ -344,9 +344,11 @@ MonoBehaviour:
   healthLevel: 10
   healthLevelAmount: 10
   maxHealth: 100
+  currentHealth: 0
   staminaLevel: 10
   staminaLevelAmount: 10
-  maxStamina: 0
+  maxStamina: 100
+  currentStamina: 0
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
 --- !u!1001 &8633419180313039681
@@ -1255,14 +1257,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e670ccfa653c74da71765a408b735e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animacionFadeAmount: 0.2
+  animator: {fileID: 0}
   canRotate: 1
   idleParameterValue: 0
   walkParameterValue: 0.5
   runParameterValue: 1
   sprintParameterValue: 2
   animationDampTime: 0.1
-  animacionFadeAmount: 0.2
-  animator: {fileID: 0}
 --- !u!114 &9075550436823375667
 MonoBehaviour:
   m_ObjectHideFlags: 0
