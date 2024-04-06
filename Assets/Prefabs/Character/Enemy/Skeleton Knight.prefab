@@ -712,7 +712,7 @@ PrefabInstance:
       addedObject: {fileID: 1512644006444934643}
     - targetCorrespondingSourceObject: {fileID: 100078, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4046843016616679231}
+      addedObject: {fileID: 1450195169768672182}
     - targetCorrespondingSourceObject: {fileID: 100078, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8186874593433617496}
@@ -743,7 +743,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &4046843016616679231
+--- !u!195 &1450195169768672182
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
