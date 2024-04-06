@@ -89,7 +89,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -132,10 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 3027419130651067874}
+  state: 0
   isPreformingAction: 0
-  detectionRadius: 20
-  detectionAngleMax: 50
-  detectionAngleMin: -50
 --- !u!114 &8226064185287231384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c139f58744eb814a8b0aed0b9b080fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 3
+  runSpeed: 5
+  rotationSpeed: 15
   healthLevel: 10
   healthLevelAmount: 10
   maxHealth: 30
@@ -156,6 +157,10 @@ MonoBehaviour:
   staminaLevelAmount: 10
   maxStamina: 0
   currentStamina: 0
+  detectionRadius: 20
+  detectionAngleMax: 50
+  detectionAngleMin: -50
+  stopDistance: 2.5
 --- !u!114 &5848304182540115004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +177,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   currentTarget: {fileID: 0}
-  rotationSpeed: 10
-  stopDistance: 1
+  targetDistance: 0
   rigidbody: {fileID: 0}
 --- !u!1001 &7296129083151401664
 PrefabInstance:
