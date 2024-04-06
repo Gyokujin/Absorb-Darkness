@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4910829137236622607}
   - component: {fileID: 142081681564000534}
   - component: {fileID: 8226064185287231384}
+  - component: {fileID: 5848304182540115004}
   m_Layer: 7
   m_Name: Skeleton Knight
   m_TagString: Enemy
@@ -93,7 +94,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &4910829137236622607
 CapsuleCollider:
@@ -131,6 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 3027419130651067874}
+  isPreformingAction: 0
+  detectionRadius: 20
+  detectionAngleMax: 50
+  detectionAngleMin: -50
 --- !u!114 &8226064185287231384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +150,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthLevel: 10
   healthLevelAmount: 10
+  maxHealth: 30
+  currentHealth: 0
+  staminaLevel: 10
+  staminaLevelAmount: 10
+  maxStamina: 0
+  currentStamina: 0
+--- !u!114 &5848304182540115004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256624613381146393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3418565719b4cd349b8d715fdffc9f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  currentTarget: {fileID: 0}
+  rotationSpeed: 10
+  stopDistance: 1
+  rigidbody: {fileID: 0}
 --- !u!1001 &7296129083151401664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -676,6 +706,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100078, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1512644006444934643}
+    - targetCorrespondingSourceObject: {fileID: 100078, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4046843016616679231}
+    - targetCorrespondingSourceObject: {fileID: 100078, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8186874593433617496}
   m_SourcePrefab: {fileID: 100100000, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
 --- !u!1 &7296129083151434798 stripped
 GameObject:
@@ -703,6 +739,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &4046843016616679231
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7296129083151434798}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.05
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.15
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8186874593433617496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7296129083151434798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50be02fcf3e5b424b81f10f8bca72926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animacionFadeAmount: 0.2
+  animator: {fileID: 0}
 --- !u!4 &7296129083151538190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400078, guid: e7bef8fc87f9d7e4180bea653cfee1be, type: 3}
