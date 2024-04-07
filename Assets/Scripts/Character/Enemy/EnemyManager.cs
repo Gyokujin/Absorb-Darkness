@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class EnemyManager : CharacterManager
 {
-    public enum EnemyState
-    {
-        Idle, Move, Attack
-    }
-
     [Header("State")]
-    public EnemyState state = EnemyState.Idle;
     public bool isPreformingAction;
 
     [Header("Attack")]
-    public EnemyAttackAction[] enemyAttacks;
-    public EnemyAttackAction currentAttack;
     public float currentRecoveryTime = 0;
 
     [Header("Component")]
+    public CharacterStatus currentTarget;
+    public EnemyState curState;
     private EnemyMove enemyMove;
     private EnemyAnimator enemyAnimator;
+    EnemyStatus enemyStatus;
 
     void Awake()
     {
         enemyMove = GetComponent<EnemyMove>();
+        enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }
 
@@ -35,88 +31,90 @@ public class EnemyManager : CharacterManager
 
     void FixedUpdate()
     {
-        HandleCurrentAction();
+        HandleStateMachine();
     }
 
-    void HandleCurrentAction()
+    void HandleStateMachine()
     {
-        if (enemyMove.currentTarget != null)
+        if (curState != null)
         {
-            enemyMove.targetDistance = Vector3.Distance(enemyMove.currentTarget.transform.position, transform.position);
-        }
+            EnemyState nextState = curState.Tick(this, enemyStatus, enemyAnimator);
 
-        if (enemyMove.currentTarget == null)
-        {
-            enemyMove.HandleDetection();
-        }
-        else if (enemyMove.targetDistance > enemyMove.stopDistance)
-        {
-            enemyMove.HandleMoveTarget();
-        }
-        else if (enemyMove.targetDistance <= enemyMove.stopDistance)
-        {
-            AttackTarget();
+            if (nextState != null)
+            {
+                SwitchNextState(nextState);
+            }
         }
     }
 
-    void AttackTarget()
+    void SwitchNextState(EnemyState state)
     {
-        if (isPreformingAction)
-            return;
+        curState = state;
+    }
 
-        if (currentAttack == null)
-        {
-            GetNewAttack();
-        }
-        else
-        {
-            isPreformingAction = true;
-            currentRecoveryTime = currentAttack.recoveryTime;
-            enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
-            currentAttack = null;
-        }
+    void SelectAttackAction()
+    {
+        //if (isPreformingAction)
+        //    return;
+
+        //if (currentAttack == null)
+        //{
+        //    GetNewAttack();
+        //}
+        //else
+        //{
+        //    Attack();
+        //}
     }
 
     void GetNewAttack()
     {
-        Vector3 targetDir = enemyMove.currentTarget.transform.position - transform.position;
-        float viewableAngle = Vector3.Angle(targetDir, transform.forward);
-        enemyMove.targetDistance = Vector3.Distance(enemyMove.currentTarget.transform.position, transform.position);
+        //Vector3 targetDir = enemyMove.currentTarget.transform.position - transform.position;
+        //float viewableAngle = Vector3.Angle(targetDir, transform.forward);
+        //enemyMove.targetDistance = Vector3.Distance(enemyMove.currentTarget.transform.position, transform.position);
 
-        int maxScore = 0;
+        //int maxScore = 0;
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
-        {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+        //for (int i = 0; i < enemyAttacks.Length; i++)
+        //{
+        //    EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin &&
-                viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
-            {
-                maxScore += enemyAttackAction.attackScore;
-            }
-        }
+        //    if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin &&
+        //        viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
+        //    {
+        //        maxScore += enemyAttackAction.attackScore;
+        //    }
+        //}
 
-        int randomValue = Random.Range(0, maxScore);
-        int tempScore = 0;
+        //int randomValue = Random.Range(0, maxScore);
+        //int tempScore = 0;
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
-        {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+        //for (int i = 0; i < enemyAttacks.Length; i++)
+        //{
+        //    EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin &&
-                viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
-            {
-                if (currentAttack != null)
-                    return;
+        //    if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin &&
+        //        viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
+        //    {
+        //        if (currentAttack != null)
+        //            return;
 
-                tempScore += enemyAttackAction.attackScore;
+        //        tempScore += enemyAttackAction.attackScore;
 
-                if (tempScore > randomValue)
-                {
-                    currentAttack = enemyAttackAction;
-                }
-            }
-        }
+        //        if (tempScore > randomValue)
+        //        {
+        //            currentAttack = enemyAttackAction;
+        //        }
+        //    }
+        //}
+    }
+
+    void Attack()
+    {
+        //isPreformingAction = true;
+        //currentRecoveryTime = currentAttack.recoveryTime;
+        //enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
+        //currentAttack = null;
     }
 
     void HandleRecoveryTimer()
