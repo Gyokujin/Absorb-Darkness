@@ -8,11 +8,11 @@ public class DamagePlayer : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+        PlayerStatus playerStatus = collision.gameObject.GetComponent<PlayerStatus>();
 
-        if (playerStats != null)
+        if (playerStatus != null)
         {
-            playerStats.TakeDamage(damage);
+            playerStatus.TakeDamage(damage);
         }
     }
 }
