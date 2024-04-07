@@ -14,20 +14,17 @@ public class EnemyManager : CharacterManager
     public bool isPreformingAction;
 
     [Header("Attack")]
-    [SerializeField]
-    private EnemyAttackAction[] enemyAttacks;
+    public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
     public float currentRecoveryTime = 0;
 
     [Header("Component")]
     private EnemyMove enemyMove;
-    private EnemyStats enemyStats;
     private EnemyAnimator enemyAnimator;
 
     void Awake()
     {
         enemyMove = GetComponent<EnemyMove>();
-        enemyStats = GetComponent<EnemyStats>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }
 
@@ -43,6 +40,11 @@ public class EnemyManager : CharacterManager
 
     void HandleCurrentAction()
     {
+        if (enemyMove.currentTarget != null)
+        {
+            enemyMove.targetDistance = Vector3.Distance(enemyMove.currentTarget.transform.position, transform.position);
+        }
+
         if (enemyMove.currentTarget == null)
         {
             enemyMove.HandleDetection();
@@ -53,7 +55,7 @@ public class EnemyManager : CharacterManager
         }
         else if (enemyMove.targetDistance <= enemyMove.stopDistance)
         {
-
+            AttackTarget();
         }
     }
 
@@ -69,7 +71,9 @@ public class EnemyManager : CharacterManager
         else
         {
             isPreformingAction = true;
+            currentRecoveryTime = currentAttack.recoveryTime;
             enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
+            currentAttack = null;
         }
     }
 
@@ -85,8 +89,8 @@ public class EnemyManager : CharacterManager
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin
-                && viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
+            if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin &&
+                viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
             {
                 maxScore += enemyAttackAction.attackScore;
             }
@@ -99,8 +103,8 @@ public class EnemyManager : CharacterManager
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin
-                && viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
+            if (enemyMove.targetDistance <= enemyAttackAction.attackDisMax && enemyMove.targetDistance >= enemyAttackAction.attackDisMin &&
+                viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
             {
                 if (currentAttack != null)
                     return;

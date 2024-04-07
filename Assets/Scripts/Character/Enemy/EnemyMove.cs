@@ -58,6 +58,9 @@ public class EnemyMove : MonoBehaviour
 
     public void HandleMoveTarget()
     {
+        if (enemyManager.isPreformingAction && targetDistance > stopDistance)
+            return;
+
         Vector3 targetDirection = currentTarget.transform.position - transform.position;
         targetDistance = Vector3.Distance(currentTarget.transform.position, transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
