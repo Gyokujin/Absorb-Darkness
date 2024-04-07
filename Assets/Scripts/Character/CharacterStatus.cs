@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStatus : MonoBehaviour
 {
     [Header("Speed")]
     public float walkSpeed = 3;
