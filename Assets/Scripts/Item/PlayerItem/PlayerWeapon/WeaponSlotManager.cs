@@ -23,7 +23,7 @@ public class WeaponSlotManager : MonoBehaviour
     private Animator animator;
     private QuickSlotsUI quickSlotsUI;
     private PlayerInput playerInput;
-    private PlayerStats playerStats;
+    private PlayerStatus playerStatus;
 
     void Awake()
     {
@@ -35,7 +35,7 @@ public class WeaponSlotManager : MonoBehaviour
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerInput = GetComponentInParent<PlayerInput>();
-        playerStats = GetComponentInParent<PlayerStats>();
+        playerStatus = GetComponentInParent<PlayerStatus>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         
@@ -136,11 +136,11 @@ public class WeaponSlotManager : MonoBehaviour
 
     public void DrainStaminaLightAttack() 
     {
-        playerStats.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
+        playerStatus.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
     }
 
     public void DrainStaminaHeavyAttack()
     {
-        playerStats.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
+        playerStatus.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
     }
 }

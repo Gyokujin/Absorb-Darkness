@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerManager playerManager;
     private Transform playerTransform;
     private PlayerInput playerInput;
-    private PlayerStats playerStats;
+    private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
     private PlayerCamera playerCamera;
 
@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
-        playerStats = GetComponent<PlayerStats>();
+        playerStatus = GetComponent<PlayerStatus>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerCamera = FindObjectOfType<PlayerCamera>();
 
@@ -71,16 +71,16 @@ public class PlayerMove : MonoBehaviour
         moveDirection.y = 0;
 
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
-        float speed = playerStats.runSpeed;
+        float speed = playerStatus.runSpeed;
         
         if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
         {
             playerManager.isSprinting = true;
-            moveDirection *= playerStats.sprintSpeed;
+            moveDirection *= playerStatus.sprintSpeed;
         }
         else if (playerInput.moveAmount < 0.5f)
         {
-            moveDirection *= playerStats.walkSpeed;
+            moveDirection *= playerStatus.walkSpeed;
             playerManager.isSprinting = false;
         }
         else
@@ -127,7 +127,7 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 Quaternion tr = Quaternion.LookRotation(targetDir);
-                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStats.rotationSpeed * Time.deltaTime);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
                 transform.rotation = targetRotation;
             }
             else
@@ -138,7 +138,7 @@ public class PlayerMove : MonoBehaviour
                 rotationDir.Normalize();
                 
                 Quaternion tr = Quaternion.LookRotation(rotationDir);
-                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStats.rotationSpeed * Time.deltaTime);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
                 transform.rotation = targetRotation;
             }
         }
@@ -155,7 +155,7 @@ public class PlayerMove : MonoBehaviour
             if (targetDir == Vector3.zero)
                 targetDir = playerTransform.forward;
 
-            float rs = playerStats.rotationSpeed;
+            float rs = playerStatus.rotationSpeed;
             Quaternion tr = Quaternion.LookRotation(targetDir);
             Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
             playerTransform.rotation = targetRotation;
@@ -250,7 +250,7 @@ public class PlayerMove : MonoBehaviour
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
-                rigidbody.velocity = velocity * (playerStats.runSpeed / fallingSpeedRatio);
+                rigidbody.velocity = velocity * (playerStatus.runSpeed / fallingSpeedRatio);
                 playerManager.isInAir = true;
             }
         }

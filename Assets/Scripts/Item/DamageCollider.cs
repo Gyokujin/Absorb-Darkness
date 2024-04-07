@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnemyManager;
 
 [RequireComponent(typeof(Collider))]
 public class DamageCollider : MonoBehaviour
@@ -31,21 +32,21 @@ public class DamageCollider : MonoBehaviour
     {
         if (collision.tag == "Hittalbe")
         {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+            PlayerStatus playerStatus = collision.GetComponent<PlayerStatus>();
 
-            if (playerStats != null)
+            if (playerStatus != null)
             {
-                playerStats.TakeDamage(weaponDamage);
+                playerStatus.TakeDamage(weaponDamage);
             }
         }
 
         if (collision.tag == "Enemy")
         {
-            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+            EnemyStatus enemyStatus = collision.GetComponent<EnemyStatus>();
 
-            if (enemyStats != null)
+            if (enemyStatus != null)
             {
-                enemyStats.TakeDamage(weaponDamage);
+                enemyStatus.TakeDamage(weaponDamage);
             }
         }
     }
