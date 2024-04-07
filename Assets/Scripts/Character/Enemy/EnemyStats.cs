@@ -8,7 +8,6 @@ public class EnemyStats : CharacterStats
     public float detectionRadius = 20;
     public float detectionAngleMax = 50;
     public float detectionAngleMin = -50;
-    public float stopDistance = 2f;
 
     [Header("Component")]
     private Animator animator;

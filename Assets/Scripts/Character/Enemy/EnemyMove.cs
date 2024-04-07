@@ -6,10 +6,11 @@ using static EnemyManager;
 
 public class EnemyMove : MonoBehaviour
 {
-    [Header("Detection")]
+    [Header("Patrol")]
     public LayerMask detectionLayer;
     public CharacterStats currentTarget;
     public float targetDistance;
+    public float stopDistance = 2f;
 
     [Header("Component")]
     public new Rigidbody rigidbody;
@@ -25,7 +26,7 @@ public class EnemyMove : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
         enemyStats = GetComponent<EnemyStats>();
-        navMeshAgent.stoppingDistance = enemyStats.stopDistance;
+        navMeshAgent.stoppingDistance = stopDistance;
     }
 
     void Start()
@@ -68,7 +69,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            if (targetDistance > enemyStats.stopDistance)
+            if (targetDistance > stopDistance)
             {
                 enemyManager.state = EnemyState.Move;
                 enemyAnimator.animator.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
@@ -80,7 +81,7 @@ public class EnemyMove : MonoBehaviour
                 Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
                 rigidbody.velocity = projectedVelocity;
             }
-            else if (targetDistance <= enemyStats.stopDistance)
+            else if (targetDistance <= stopDistance)
             {
                 enemyManager.state = EnemyState.Idle;
                 enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
