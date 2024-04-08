@@ -8,6 +8,10 @@ public class EnemyStatus : CharacterStatus
     public float detectionRadius = 20;
     public float detectionAngleMax = 50;
     public float detectionAngleMin = -50;
+    public float viewableAngle;
+
+    [Header("Attack")]
+    public float attackRangeMax = 1.5f;
 
     [Header("Component")]
     private Animator animator;
