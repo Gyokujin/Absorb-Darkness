@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f6462ff55ad4444a571d617acd9f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatStanceState: {fileID: 419443280984586120}
 --- !u!1 &3127689529441758357
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08966ea576998148b3424010b617101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackState: {fileID: 5683857690690920215}
+  pursueTargetState: {fileID: 3152080744267454742}
 --- !u!1 &3547421693471543229
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e619330fbd141e4098ed64896575aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAttacks:
+  - {fileID: 11400000, guid: 5dc3ec99c81912640aef5968fae7ed8e, type: 2}
+  currentAttack: {fileID: 11400000, guid: 5dc3ec99c81912640aef5968fae7ed8e, type: 2}
+  combatStanceState: {fileID: 419443280984586120}
 --- !u!1 &5256624613381146393
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +231,6 @@ GameObject:
   - component: {fileID: 4910829137236622607}
   - component: {fileID: 142081681564000534}
   - component: {fileID: 8226064185287231384}
-  - component: {fileID: 5848304182540115004}
   m_Layer: 7
   m_Name: Skeleton Knight
   m_TagString: Enemy
@@ -314,9 +320,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 3027419130651067874}
   isPreformingAction: 0
+  targetDistance: 0
+  stopDistance: 2
   currentRecoveryTime: 3
+  navMeshAgent: {fileID: 0}
+  rigidbody: {fileID: 0}
   currentTarget: {fileID: 0}
   curState: {fileID: 504815323898920206}
+  enemyStatus: {fileID: 0}
 --- !u!114 &8226064185287231384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,21 +354,8 @@ MonoBehaviour:
   detectionRadius: 20
   detectionAngleMax: 50
   detectionAngleMin: -50
---- !u!114 &5848304182540115004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256624613381146393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3418565719b4cd349b8d715fdffc9f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetDistance: 0
-  stopDistance: 2
-  rigidbody: {fileID: 0}
+  viewableAngle: 0
+  attackRangeMax: 1.5
 --- !u!1 &8845663963963755084
 GameObject:
   m_ObjectHideFlags: 0
