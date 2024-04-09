@@ -176,9 +176,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
   camTransform: {fileID: 0}
-  layerMask:
+  targetLayer:
     serializedVersion: 2
-    m_Bits: 3080
+    m_Bits: 1544
   minPivot: -35
   maxPivot: 35
   lookAngle: 0.033
@@ -187,6 +187,9 @@ MonoBehaviour:
   nearestLockOnTarget: {fileID: 0}
   leftLockTarget: {fileID: 0}
   rightLockTarget: {fileID: 0}
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 256
   lockRadius: 26
   maxLockOnDistance: 20
   lockOnAngleLimit: 35
