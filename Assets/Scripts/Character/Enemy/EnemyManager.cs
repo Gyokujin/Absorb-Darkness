@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyManager : CharacterManager
 {
     [Header("State")]
+    public bool isInteracting;
     public bool isPreformingAction;
 
     [Header("PursueTarget")]
@@ -21,14 +22,12 @@ public class EnemyManager : CharacterManager
     public CharacterStatus currentTarget;
     public EnemyState curState;
     public EnemyStatus enemyStatus;
-    // private EnemyMove enemyMove;
     private EnemyAnimator enemyAnimator;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
-        // enemyMove = GetComponent<EnemyMove>();
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }
@@ -43,6 +42,7 @@ public class EnemyManager : CharacterManager
     void Update()
     {
         HandleRecoveryTimer();
+        isInteracting = enemyAnimator.animator.GetBool("isInteracting");
     }
 
     void FixedUpdate()

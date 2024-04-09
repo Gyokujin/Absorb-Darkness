@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AmbushState : EnemyState
 {
-    public bool isIdle;
-    public string idleAnimation;
+    public bool isSleeping;
+    public string sleepAnimation;
     public string wakeAnimation;
     public float detectionRadius = 2;
     public LayerMask detectionLayer;
@@ -14,9 +14,9 @@ public class AmbushState : EnemyState
 
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
-        if (isIdle && !enemyManager.isPreformingAction)
+        if (isSleeping && !enemyManager.isInteracting)
         {
-            enemyAnimator.PlayTargetAnimation(idleAnimation, true);
+            enemyAnimator.PlayTargetAnimation(sleepAnimation, true);
         }
 
         Collider[] colliders = Physics.OverlapSphere(enemyManager.transform.position, detectionRadius, detectionLayer);
@@ -33,7 +33,7 @@ public class AmbushState : EnemyState
                 if (enemyStatus.viewableAngle > enemyStatus.detectionAngleMin && enemyStatus.viewableAngle < enemyStatus.detectionAngleMax)
                 {
                     enemyManager.currentTarget = characterStatus;
-                    isIdle = false;
+                    isSleeping = false;
                     enemyAnimator.PlayTargetAnimation(wakeAnimation, true);
                 }
             }
