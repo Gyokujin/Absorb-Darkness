@@ -29,7 +29,7 @@ public class PlayerCamera : MonoBehaviour
     public Transform camTransform;
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
-    public LayerMask layerMask;
+    public LayerMask targetLayer;
 
     [Header("Angle")]
     [SerializeField]
@@ -48,6 +48,7 @@ public class PlayerCamera : MonoBehaviour
     public Transform nearestLockOnTarget;
     public Transform leftLockTarget;
     public Transform rightLockTarget;
+    public LayerMask environmentLayer;
     [SerializeField]
     private float lockRadius = 26;
     [SerializeField]
@@ -58,7 +59,6 @@ public class PlayerCamera : MonoBehaviour
     private float lockedPivotPosition = 2.25f;
     [SerializeField]
     private float unlockedPivotPosition = 1.65f;
-    private LayerMask environmentLayer;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -231,7 +231,7 @@ public class PlayerCamera : MonoBehaviour
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), layerMask))
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
             playerPosition = -(distance - cameraCollisionOffset);

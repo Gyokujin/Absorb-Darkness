@@ -91,7 +91,7 @@ public class PlayerManager : CharacterManager
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, playerCamera.layerMask))
+        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, playerCamera.targetLayer))
         {
             if (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Interactable>() != null)
             {
