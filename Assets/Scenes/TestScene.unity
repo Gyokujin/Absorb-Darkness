@@ -1627,6 +1627,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8226064185287231384, guid: 4cb5b58d3cb7d144db6bdb6838d3b702, type: 3}
+      propertyPath: runSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226064185287231384, guid: 4cb5b58d3cb7d144db6bdb6838d3b702, type: 3}
+      propertyPath: attackRangeMax
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226064185287231384, guid: 4cb5b58d3cb7d144db6bdb6838d3b702, type: 3}
       propertyPath: detectionAngleMax
       value: 60
       objectReference: {fileID: 0}
