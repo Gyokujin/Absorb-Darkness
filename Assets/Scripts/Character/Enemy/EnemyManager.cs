@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyManager : CharacterManager
 {
     [Header("State")]
+    public EnemyState curState;
     public bool isInteracting;
     public bool isPreformingAction;
 
@@ -19,7 +20,6 @@ public class EnemyManager : CharacterManager
     public NavMeshAgent navMeshAgent;
     public new Rigidbody rigidbody;
     public CharacterStatus currentTarget;
-    public EnemyState curState;
     public EnemyStatus enemyStatus;
     private EnemyAnimator enemyAnimator;
 
