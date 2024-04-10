@@ -93,7 +93,7 @@ Rigidbody:
   m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   runSpeed: 6
-  rotationSpeed: 45
+  rotationSpeed: 135
   healthLevel: 10
   healthLevelAmount: 10
   maxHealth: 30
@@ -166,8 +166,8 @@ MonoBehaviour:
   maxStamina: 0
   currentStamina: 0
   detectionRadius: 20
-  detectionAngleMax: 90
-  detectionAngleMin: -90
+  detectionAngleMax: 25
+  detectionAngleMin: -25
   attackRangeMax: 3
 --- !u!1 &6837963467060611643
 GameObject:
@@ -1774,6 +1774,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8180844430159405329}
     m_Modifications:
+    - target: {fileID: 4229795681312453397, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}
+      propertyPath: pursueTargetState
+      value: 
+      objectReference: {fileID: 6162023741408651728}
     - target: {fileID: 5881344655848673350, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1824,6 +1828,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}
+--- !u!114 &6162023741408651728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8127302012158197528, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}
+  m_PrefabInstance: {fileID: 2686993041174959816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f6462ff55ad4444a571d617acd9f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7440158907284766626 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4758858896800786794, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}

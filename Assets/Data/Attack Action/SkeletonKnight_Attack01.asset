@@ -15,7 +15,7 @@ MonoBehaviour:
   actionAnimation: Attack01
   attackScore: 3
   recoveryTime: 2
-  attackAngleMax: 60
-  attackAngleMin: -60
+  attackAngleMax: 25
+  attackAngleMin: -25
   attackDisMin: 0
   attackDisMax: 3
