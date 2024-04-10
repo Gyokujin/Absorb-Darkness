@@ -20,4 +20,11 @@ public class EnemyAnimator : AnimatorManager
         Vector3 velocity = deltaPoistion / Time.deltaTime;
         enemyManager.rigidbody.velocity = velocity;
     }
+
+    public void AttackEnd()
+    {
+        animator.SetBool("onAttack", false);
+        animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
+        enemyManager.isPreformingAction = false;
+    }
 }
