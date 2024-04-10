@@ -84,11 +84,13 @@ public class AttackState : EnemyState
 
     void Attack(EnemyManager enemyManager, EnemyAnimator enemyAnimator)
     {
+        enemyManager.navMeshAgent.enabled = false;
+        enemyAnimator.animator.SetBool("onAttack", true);
         enemyAnimator.animator.SetFloat("horizontal", 0, 0.1f, Time.deltaTime);
         enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
         enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
         enemyManager.isPreformingAction = true;
         enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
         currentAttack = null;
-    }   
+    }
 }
