@@ -10,7 +10,6 @@ public class EnemyManager : CharacterManager
     public bool isPreformingAction;
 
     [Header("PursueTarget")]
-    public float targetDistance;
     public float stopDistance = 2f;
 
     [Header("Attack")]

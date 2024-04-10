@@ -11,6 +11,7 @@ public class AttackState : EnemyState
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+        float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
         if (enemyManager.isPreformingAction)
@@ -18,17 +19,16 @@ public class AttackState : EnemyState
 
         if (currentAttack != null)
         {
-            if (enemyManager.targetDistance < currentAttack.attackDisMin)
+            if (targetDistance < currentAttack.attackDisMin)
             {
                 return this;
             }
-            else if (enemyManager.targetDistance < currentAttack.attackAngleMax)
+            else if (targetDistance < currentAttack.attackAngleMax)
             {
-                if (enemyStatus.viewableAngle <= currentAttack.attackAngleMax && enemyStatus.viewableAngle >= currentAttack.attackAngleMin &&
+                if (viewableAngle <= currentAttack.attackAngleMax && viewableAngle >= currentAttack.attackAngleMin &&
                     enemyManager.currentRecoveryTime <= 0 && !enemyManager.isPreformingAction)
                 {
                     Attack(enemyManager, enemyAnimator);
-                    // return combatStanceState;
                 }
             }
         }
@@ -44,7 +44,7 @@ public class AttackState : EnemyState
     {
         Vector3 targetDir = enemyManager.currentTarget.transform.position - transform.position;
         float viewableAngle = Vector3.Angle(targetDir, transform.forward);
-        enemyManager.targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
+        float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
 
         int maxScore = 0;
 
@@ -52,7 +52,7 @@ public class AttackState : EnemyState
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            if (enemyManager.targetDistance <= enemyAttackAction.attackDisMax && enemyManager.targetDistance >= enemyAttackAction.attackDisMin &&
+            if (targetDistance <= enemyAttackAction.attackDisMax && targetDistance >= enemyAttackAction.attackDisMin &&
                 viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
             {
                 maxScore += enemyAttackAction.attackScore;
@@ -66,7 +66,7 @@ public class AttackState : EnemyState
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            if (enemyManager.targetDistance <= enemyAttackAction.attackDisMax && enemyManager.targetDistance >= enemyAttackAction.attackDisMin &&
+            if (targetDistance <= enemyAttackAction.attackDisMax && targetDistance >= enemyAttackAction.attackDisMin &&
                 viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
             {
                 if (currentAttack != null)
