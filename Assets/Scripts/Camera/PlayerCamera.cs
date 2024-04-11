@@ -59,6 +59,8 @@ public class PlayerCamera : MonoBehaviour
     private float lockedPivotPosition = 2.25f;
     [SerializeField]
     private float unlockedPivotPosition = 1.65f;
+    [SerializeField]
+    private GameObject lockOnUI;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -85,6 +87,11 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         environmentLayer = LayerMask.NameToLayer("Environment");
+    }
+
+    void Update()
+    {
+        ControlLockOn();
     }
 
     void Init()
@@ -172,6 +179,7 @@ public class PlayerCamera : MonoBehaviour
                         }
                         else
                         {
+                            lockOnUI.SetActive(true);
                             availableTargets.Add(character);
                         }
                     }
@@ -215,6 +223,24 @@ public class PlayerCamera : MonoBehaviour
         availableTargets.Clear();
         nearestLockOnTarget = null;
         currentLockOnTarget = null;
+        lockOnUI.SetActive(false);
+    }
+
+    public void ControlLockOn()
+    {
+        if (playerInput.lockOnFlag) 
+        {
+            float distance = Vector3.Distance(currentLockOnTarget.gameObject.transform.position, player.transform.position);
+
+            if (distance > maxLockOnDistance) 
+            {
+                playerInput.OffLockOn();
+            }
+            else
+            {
+
+            }
+        }
     }
 
     public void SetCameraHeight()
