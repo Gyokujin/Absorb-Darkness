@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -59,8 +60,14 @@ public class PlayerCamera : MonoBehaviour
     private float lockedPivotPosition = 2.25f;
     [SerializeField]
     private float unlockedPivotPosition = 1.65f;
+
+    [Header("Lock On UI")]
     [SerializeField]
-    private GameObject lockOnUI;
+    private Image lockOnUI;
+    [SerializeField]
+    private float lockOnUIDisMin = 0.3f; // 이 값보다 거리가 짧으면 크기가 변하지 않는다.
+    [SerializeField]
+    private float lockOnUIScaleMin = 0.3f;
 
     [Header("Camera Collision")]
     [SerializeField]
@@ -179,7 +186,7 @@ public class PlayerCamera : MonoBehaviour
                         }
                         else
                         {
-                            lockOnUI.SetActive(true);
+                            lockOnUI.gameObject.SetActive(true);
                             availableTargets.Add(character);
                         }
                     }
@@ -223,7 +230,7 @@ public class PlayerCamera : MonoBehaviour
         availableTargets.Clear();
         nearestLockOnTarget = null;
         currentLockOnTarget = null;
-        lockOnUI.SetActive(false);
+        lockOnUI.gameObject.SetActive(false);
     }
 
     public void ControlLockOn()
@@ -238,7 +245,16 @@ public class PlayerCamera : MonoBehaviour
             }
             else
             {
+                float scale = distance / maxLockOnDistance;
 
+                if (scale > lockOnUIScaleMin)
+                {
+                    lockOnUI.rectTransform.localScale = new Vector3(scale, scale, 1);
+                }
+                else
+                {
+                    lockOnUI.rectTransform.localScale = new Vector3(lockOnUIScaleMin, lockOnUIScaleMin, 1);
+                }
             }
         }
     }
