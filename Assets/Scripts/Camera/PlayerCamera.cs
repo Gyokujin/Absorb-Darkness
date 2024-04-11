@@ -27,7 +27,7 @@ public class PlayerCamera : MonoBehaviour
     public Transform cameraTransform;
     [SerializeField]
     private Transform cameraPivotTransform;
-    public Transform camTransform;
+    private Transform camTransform;
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask targetLayer;
@@ -49,7 +49,8 @@ public class PlayerCamera : MonoBehaviour
     public Transform nearestLockOnTarget;
     public Transform leftLockTarget;
     public Transform rightLockTarget;
-    public LayerMask environmentLayer;
+    [SerializeField]
+    private LayerMask environmentLayer;
     [SerializeField]
     private float lockRadius = 26;
     [SerializeField]

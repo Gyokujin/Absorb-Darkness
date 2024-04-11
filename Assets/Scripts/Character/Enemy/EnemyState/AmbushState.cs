@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class AmbushState : EnemyState
 {
-    public bool isSleeping;
-    public string sleepAnimation;
-    public string wakeAnimation;
-    public float detectionRadius = 2;
-    public LayerMask detectionLayer;
+    private bool isSleeping = true;
+    [SerializeField]
+    private string sleepAnimation;
+    [SerializeField]
+    private string wakeAnimation;
+    [SerializeField]
+    private float detectionRadius = 2;
+    [SerializeField]
+    private LayerMask detectionLayer;
 
-    public PursueTargetState pursueTargetState;
+    [SerializeField]
+    private PursueTargetState pursueTargetState;
 
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
