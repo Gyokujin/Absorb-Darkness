@@ -192,7 +192,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleGameSystemInput()
     {
-        if (gameSystemInput)
+        if (gameSystemInput && !lockOnFlag)
         {
             if (!gameSystemFlag)
             {
@@ -225,9 +225,7 @@ public class PlayerInput : MonoBehaviour
             }
             else
             {
-                lockOnFlag = false;
-                playerAnimator.animator.SetBool("onStance", false);
-                playerCamera.ClearLockOnTargets();
+                OffLockOn();
             }
         }
 
@@ -254,5 +252,12 @@ public class PlayerInput : MonoBehaviour
         }
 
         playerCamera.SetCameraHeight();
+    }
+
+    public void OffLockOn()
+    {
+        lockOnFlag = false;
+        playerAnimator.animator.SetBool("onStance", false);
+        playerCamera.ClearLockOnTargets();
     }
 }
