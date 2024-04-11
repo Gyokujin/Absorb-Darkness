@@ -166,8 +166,8 @@ MonoBehaviour:
   maxStamina: 0
   currentStamina: 0
   detectionRadius: 20
-  detectionAngleMax: 25
-  detectionAngleMin: -25
+  detectionAngleMax: 60
+  detectionAngleMin: -60
   attackRangeMax: 3
 --- !u!1 &6837963467060611643
 GameObject:
@@ -1196,7 +1196,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7296129083151434798}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.05
+  m_Radius: 0.035
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
