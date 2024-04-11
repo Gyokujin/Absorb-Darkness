@@ -97,7 +97,7 @@ public class PlayerCamera : MonoBehaviour
         environmentLayer = LayerMask.NameToLayer("Environment");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         ControlLockOn();
     }

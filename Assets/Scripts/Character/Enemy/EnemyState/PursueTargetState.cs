@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PursueTargetState : EnemyState
 {
@@ -15,7 +14,6 @@ public class PursueTargetState : EnemyState
 
         if (enemyManager.isPreformingAction && targetDistance > enemyManager.stopDistance)
         {
-            // enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
             enemyManager.navMeshAgent.enabled = false;
             return this;
         }
@@ -29,9 +27,6 @@ public class PursueTargetState : EnemyState
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
             enemyManager.rigidbody.velocity = projectedVelocity;
         }
-
-        // enemyManager.navMeshAgent.enabled = true;
-        // enemyAnimator.animator.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
 
         HandleRotateTarget(enemyManager, enemyStatus);
         enemyManager.navMeshAgent.transform.localPosition = Vector3.zero;
@@ -69,8 +64,9 @@ public class PursueTargetState : EnemyState
 
             enemyManager.navMeshAgent.enabled = true;
             enemyManager.navMeshAgent.velocity = targetVelocity;
-            enemyManager.navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);            
+            enemyManager.navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
             enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navMeshAgent.transform.rotation, enemyStatus.rotationSpeed / Time.deltaTime);
+        
         }
     }
 }
