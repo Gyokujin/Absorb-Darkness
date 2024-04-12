@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static EnemyManager;
 
 [RequireComponent(typeof(Collider))]
 public class DamageCollider : MonoBehaviour
 {
-    private Collider damageCollider;
+    [Header("Weapon Info")]
     [SerializeField]
     private int weaponDamage = 25;
+    private Collider damageCollider;
 
     void Awake()
     {

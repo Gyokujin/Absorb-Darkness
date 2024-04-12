@@ -9,17 +9,17 @@ public class PlayerInventory : MonoBehaviour
     public WeaponItem rightWeapon;
     public WeaponItem unarmedWeapon;
 
+    [Header("Weapon Slot")]
     public WeaponItem[] weaponInLeftSlots = new WeaponItem[1];
     public WeaponItem[] weaponInRightSlots = new WeaponItem[1];
-
+    [HideInInspector]
     public int currentLeftWeaponIndex = 0;
+    [HideInInspector]
     public int currentRightWeaponIndex = 0;
+    private WeaponSlotManager weaponSlotManager;
 
     [Header("Inventory")]
     public List<WeaponItem> weaponsInventory;
-
-    [Header("Component")]
-    private WeaponSlotManager weaponSlotManager;
 
     void Awake()
     {

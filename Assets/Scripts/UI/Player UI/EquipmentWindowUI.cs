@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class EquipmentWindowUI : MonoBehaviour
 {
-    public bool leftHandSlot01Selected;
-    public bool leftHandSlot02Selected;
-    public bool rightHandSlot01Selected;
-    public bool rightHandSlot02Selected;
-
-    public HandEquipmentSlotUI[] handEquipmentSlotUI;
+    [Header("Equipt Slot")]
+    [SerializeField]
+    private HandEquipmentSlotUI[] handEquipmentSlotUI;
 
     public void OpenEquipmentsUI()
     {
@@ -37,25 +34,5 @@ public class EquipmentWindowUI : MonoBehaviour
                 handEquipmentSlotUI[i].AddItem(playerInventory.weaponInRightSlots[1]);
             }
         }
-    }
-
-    public void SelectLeftHandSlot01()
-    {
-        leftHandSlot01Selected = true;
-    }
-
-    public void SelectLeftHandSlot02()
-    {
-        leftHandSlot02Selected = true;
-    }
-
-    public void SelectRightHandSlot01()
-    {
-        rightHandSlot01Selected = true;
-    }
-
-    public void SelectRightHandSlot02()
-    {
-        rightHandSlot02Selected = true;
     }
 }
