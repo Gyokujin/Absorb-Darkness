@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class HandEquipmentSlotUI : MonoBehaviour
 {
+    [Header("Weapon Info")]
+    // [SerializeField]
     public Image icon;
     private WeaponItem weapon;
 
+    [Header("Weapon Slot")]
     public bool leftHandSlot01;
     public bool leftHandSlot02;
     public bool rightHandSlot01;
