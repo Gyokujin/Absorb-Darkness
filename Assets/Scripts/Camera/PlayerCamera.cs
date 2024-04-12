@@ -66,8 +66,6 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private Image lockOnUI;
     [SerializeField]
-    private float lockOnUIDisMin = 0.3f; // 이 값보다 거리가 짧으면 크기가 변하지 않는다.
-    [SerializeField]
     private float lockOnUIScaleMin = 0.3f;
 
     [Header("Camera Collision")]
