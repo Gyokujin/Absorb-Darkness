@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class WeaponPickUp : Interactable
 {
-    public WeaponItem weapon;
+    [Header("Weapon")]
+    [SerializeField]
+    private WeaponItem weapon;
 
     public override void Interact(PlayerManager playerManager)
     {

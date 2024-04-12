@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
+    [Header("Animator")]
     [SerializeField]
     private float animacionFadeAmount = 0.2f;
-
     [HideInInspector]
     public Animator animator;
 
