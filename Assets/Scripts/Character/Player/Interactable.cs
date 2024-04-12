@@ -8,14 +8,14 @@ public class Interactable : MonoBehaviour
     public float interactRadius = 1f;
     public string interactableText;
 
+    public virtual void Interact(PlayerManager playerManager)
+    {
+        Debug.Log("Interact");
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, interactRadius);
-    }
-
-    public virtual void Interact(PlayerManager playerManager)
-    {
-        Debug.Log("Interact");
     }
 }

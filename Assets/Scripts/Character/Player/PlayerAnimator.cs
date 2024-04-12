@@ -23,14 +23,12 @@ public class PlayerAnimator : AnimatorManager
 
     [Header("Component")]
     private PlayerManager playerManager;
-    private PlayerInput playerInput;
     private PlayerMove playerMove;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
         playerManager = GetComponentInParent<PlayerManager>();
-        playerInput = GetComponentInParent<PlayerInput>();
         playerMove = GetComponentInParent<PlayerMove>();
     }
 
@@ -115,9 +113,7 @@ public class PlayerAnimator : AnimatorManager
         if (!playerManager.isInteracting)
             return;
 
-        playerMove.rigidbody.drag = 0;
-        Vector3 deltaPosition = new Vector3(animator.deltaPosition.x, 0, animator.deltaPosition.z);
-        Vector3 velocity = deltaPosition / Time.deltaTime;
+        Vector3 velocity = new Vector3(animator.deltaPosition.x, 0, animator.deltaPosition.z) / Time.deltaTime;
         playerMove.rigidbody.velocity = velocity;
     }
 }

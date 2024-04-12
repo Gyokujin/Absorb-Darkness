@@ -15,6 +15,11 @@ public class EnemyStatus : CharacterStatus
 
     void Awake()
     {
+        Init();
+    }
+
+    void Init()
+    {
         animator = GetComponentInChildren<Animator>();
     }
 
