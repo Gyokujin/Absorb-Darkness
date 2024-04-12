@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -15,7 +14,8 @@ public class PlayerMove : MonoBehaviour
     private float distanceBeginFallMin = 1f;
     [SerializeField]
     private float groundDirRayDistance = 0.2f;
-    public LayerMask ignoreGroundCheck;
+    [SerializeField]
+    private LayerMask ignoreGroundCheck;
     public float inAirTimer;
 
     [Header("Physics")]
@@ -47,7 +47,6 @@ public class PlayerMove : MonoBehaviour
 
     void Init()
     {
-        rigidbody = GetComponent<Rigidbody>();
         playerManager = GetComponent<PlayerManager>();
         playerInput = GetComponent<PlayerInput>();
         playerStatus = GetComponent<PlayerStatus>();
@@ -100,7 +99,6 @@ public class PlayerMove : MonoBehaviour
         else
         {
             playerAnimator.AnimatorValue(playerInput.moveAmount, 0, playerManager.isSprinting);
-
         }
 
         // 회전이 가능한 경우에는 이동 방향으로 캐릭터를 회전한다.
@@ -276,22 +274,4 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-    //public void HandleJumping()
-    //{
-    //    if (playerManager.isInteracting)
-    //        return;
-
-    //    if (playerInput.jump_Input && playerInput.moveAmount > 0)
-    //    {
-    //        moveDirection = cameraPos.forward * playerInput.vertical;
-    //        moveDirection += cameraPos.right * playerInput.horizontal;
-    //        rigidbody.AddForce(moveDirection * 5000, ForceMode.Impulse);
-    //        playerAnimator.PlayTargetAnimation("Jump", true);
-
-    //        moveDirection.y = 0;
-    //        Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
-    //        playerTransform.rotation = jumpRotation;
-    //    }
-    //}
 }
