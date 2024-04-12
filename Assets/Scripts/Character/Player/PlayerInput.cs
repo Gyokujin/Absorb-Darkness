@@ -192,13 +192,17 @@ public class PlayerInput : MonoBehaviour
 
     void HandleGameSystemInput()
     {
-        if (gameSystemInput && !lockOnFlag)
+        if (gameSystemInput)
         {
             if (!gameSystemFlag)
             {
+                if (lockOnFlag)
+                {
+                    OffLockOn();
+                }
+
                 gameSystemFlag = true;
                 uiManager.OpenGameSystemUI();
-                playerCamera.ClearLockOnTargets();
             }
             else
             {
