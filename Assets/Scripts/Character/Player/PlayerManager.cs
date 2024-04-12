@@ -21,27 +21,28 @@ public class PlayerManager : CharacterManager
     public GameObject itemInteractableObj;
 
     [Header("Component")]
+    [HideInInspector]
+    public PlayerMove playerMove;
     private PlayerInput playerInput;
-    private PlayerMove playerMove;
+    [HideInInspector]
+    public PlayerAnimator playerAnimator;
+    [HideInInspector]
+    public PlayerInventory playerInventory;
     private PlayerCamera playerCamera;
-    private PlayerAnimator playerAnimator;
     private InteractableUI interactableUI;
 
     void Awake()
-    {
-        playerCamera = FindObjectOfType<PlayerCamera>();
-    }
-
-    void Start()
     {
         Init();
     }
 
     void Init()
     {
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
+        playerInput = GetComponent<PlayerInput>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerInventory = GetComponent<PlayerInventory>();
+        playerCamera = FindObjectOfType<PlayerCamera>();
         interactableUI = FindObjectOfType<InteractableUI>();
     }
 
