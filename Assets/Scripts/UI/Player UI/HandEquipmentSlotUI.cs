@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class HandEquipmentSlotUI : MonoBehaviour
 {
     [Header("Weapon Info")]
-    // [SerializeField]
-    public Image icon;
+    [SerializeField]
+    private Image icon;
     private WeaponItem weapon;
 
     [Header("Weapon Slot")]

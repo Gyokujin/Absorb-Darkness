@@ -12,9 +12,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("Weapon Slot")]
     public WeaponItem[] weaponInLeftSlots = new WeaponItem[1];
     public WeaponItem[] weaponInRightSlots = new WeaponItem[1];
-    [HideInInspector]
     public int currentLeftWeaponIndex = 0;
-    [HideInInspector]
     public int currentRightWeaponIndex = 0;
     private WeaponSlotManager weaponSlotManager;
 
