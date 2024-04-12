@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class WeaponHolderSlot : MonoBehaviour
 {
+    [Header("Weapon")]
+    public GameObject currentWeaponModel;
+
+    [Header("Weapon Slot")]
     [SerializeField]
     private Transform parentOverride;
     public WeaponItem currentWeapon;
     public bool isLeftHandSlot;
     public bool isRightHandSlot;
     public bool isBackSlot;
-
-    public GameObject currentWeaponModel;
 
     public void UnloadWeapon()
     {

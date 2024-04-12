@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
-    [Header("Weapon")]
-    public WeaponItem attackingWeapon;
+    [Header("Weapon Slot")]
     private WeaponHolderSlot leftHandSlot;
     private WeaponHolderSlot rightHandSlot;
     private WeaponHolderSlot backSlot;
 
+    [Header("Weapon Attack")]
+    [HideInInspector]
+    public WeaponItem attackingWeapon;
     private DamageCollider leftHandDamageCollider;
     private DamageCollider rightHandDamageCollider;
 
