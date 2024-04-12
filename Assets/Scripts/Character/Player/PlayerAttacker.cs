@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttacker : MonoBehaviour
 {
+    [Header("Attack")]
     [SerializeField]
     private string lastAttack;
 

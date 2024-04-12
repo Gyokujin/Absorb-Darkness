@@ -63,10 +63,10 @@ public class PlayerManager : CharacterManager
         playerInput.lightAttackInput = false;
         playerInput.heavyAttackInput = false;
         playerInput.gameSystemInput = false;
-        playerInput.quickSlotUp = false;
-        playerInput.quickSlotDown = false;
-        playerInput.quickSlotLeft = false;
-        playerInput.quickSlotRight = false;
+        playerInput.quickSlotUpInput = false;
+        playerInput.quickSlotDownInput = false;
+        playerInput.quickSlotLeftInput = false;
+        playerInput.quickSlotRightInput = false;
 
         if (playerCamera != null)
         {

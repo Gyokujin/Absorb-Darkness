@@ -11,22 +11,35 @@ public class PlayerInput : MonoBehaviour
     public float moveAmount;
     public float mouseX;
     public float mouseY;
-    public float rollInputTimer;
+    private float rollInputTimer;
 
     [Header("Input")]
     private Vector2 movementInput;
     private Vector2 cameraInput;
 
     [Header("Input System")]
+    [HideInInspector]
     public bool interactInput;
-    public bool rollingInput;
-    public bool twoHandInput;
+    private bool rollingInput;
+    private bool twoHandInput;
+    [HideInInspector]
     public bool lockOnInput;
-    public bool rightStickLeftInput;
-    public bool rightStickRightInput;
+    private bool rightStickLeftInput;
+    private bool rightStickRightInput;
+    [HideInInspector]
     public bool lightAttackInput;
+    [HideInInspector]
     public bool heavyAttackInput;
+    [HideInInspector]
     public bool gameSystemInput;
+    [HideInInspector]
+    public bool quickSlotUpInput;
+    [HideInInspector]
+    public bool quickSlotDownInput;
+    [HideInInspector]
+    public bool quickSlotLeftInput;
+    [HideInInspector]
+    public bool quickSlotRightInput;
 
     [Header("Action Flag")]
     public bool rollFlag;
@@ -36,12 +49,6 @@ public class PlayerInput : MonoBehaviour
     public bool comboFlag;
     public bool gameSystemFlag;
 
-    [Header("Quick Slots")]
-    public bool quickSlotUp;
-    public bool quickSlotDown;
-    public bool quickSlotLeft;
-    public bool quickSlotRight;
-
     [Header("Component")]
     private PlayerControls inputActions;
     private PlayerAnimator playerAnimator;
@@ -50,7 +57,6 @@ public class PlayerInput : MonoBehaviour
     private PlayerManager playerManager;
     private PlayerCamera playerCamera;
     private WeaponSlotManager weaponSlotManager;
-    private UIManager uiManager;
 
     void Awake()
     {
@@ -65,7 +71,6 @@ public class PlayerInput : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerCamera = FindObjectOfType<PlayerCamera>();
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
-        uiManager = FindObjectOfType<UIManager>();
     }
 
     void OnEnable()
@@ -80,8 +85,8 @@ public class PlayerInput : MonoBehaviour
             inputActions.PlayerActions.LightAttack.performed += i => lightAttackInput = true;
             inputActions.PlayerActions.HeavyAttack.performed += i => heavyAttackInput = true;
             inputActions.PlayerActions.GameSystem.performed += i => gameSystemInput = true;
-            inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeft = true;
-            inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRight = true;
+            inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeftInput = true;
+            inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRightInput = true;
             inputActions.PlayerMovement.LockOnTargetLeft.performed += i => rightStickLeftInput = true;
             inputActions.PlayerMovement.LockOnTargetRight.performed += i => rightStickRightInput = true;
             inputActions.PlayerActions.TwoHand.performed += i => twoHandInput = true;
@@ -180,11 +185,11 @@ public class PlayerInput : MonoBehaviour
 
     void HandleQuickSlotsInput()
     {
-        if (quickSlotLeft)
+        if (quickSlotLeftInput)
         {
             playerInventory.ChangeLeftWeapon();
         }
-        else if (quickSlotRight)
+        else if (quickSlotRightInput)
         {
             playerInventory.ChangeRightWeapon();
         }
@@ -202,12 +207,12 @@ public class PlayerInput : MonoBehaviour
                 }
 
                 gameSystemFlag = true;
-                uiManager.OpenGameSystemUI();
+                UIManager.instance.OpenGameSystemUI();
             }
             else
             {
                 gameSystemFlag = false;
-                uiManager.CloseGameSystemUI();
+                UIManager.instance.CloseGameSystemUI();
             }
         }
     }
