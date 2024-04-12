@@ -6,27 +6,26 @@ using UnityEngine.AI;
 public class EnemyManager : CharacterManager
 {
     [Header("State")]
-    public EnemyState curState;
+    [SerializeField]
+    private EnemyState curState;
     public bool isInteracting;
     public bool isPreformingAction;
 
-    [Header("PursueTarget")]
-    public float stopDistance = 2f;
-
-    [Header("Attack")]
+    [Header("Status")]
+    [SerializeField]
+    private float stopDistance = 2f;
     public float currentRecoveryTime = 0;
 
     [Header("Component")]
-    public NavMeshAgent navMeshAgent;
     public new Rigidbody rigidbody;
+    public NavMeshAgent navMeshAgent;
     public CharacterStatus currentTarget;
-    public EnemyStatus enemyStatus;
+    private EnemyStatus enemyStatus;
     private EnemyAnimator enemyAnimator;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }

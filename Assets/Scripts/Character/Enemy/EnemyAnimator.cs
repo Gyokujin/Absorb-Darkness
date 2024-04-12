@@ -5,13 +5,11 @@ using UnityEngine;
 public class EnemyAnimator : AnimatorManager
 {
     private EnemyManager enemyManager;
-    private EnemyStatus enemyStatus;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         enemyManager = GetComponentInParent<EnemyManager>();
-        enemyStatus = GetComponentInParent<EnemyStatus>();
     }
 
     private void OnAnimatorMove()

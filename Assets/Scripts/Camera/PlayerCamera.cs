@@ -179,11 +179,7 @@ public class PlayerCamera : MonoBehaviour
                     {
                         Debug.DrawLine(player.lockOnTransform.position, character.lockOnTransform.position);
 
-                        if (hit.transform.gameObject.layer == environmentLayer)
-                        {
-                            Debug.Log("Block");
-                        }
-                        else
+                        if (hit.transform.gameObject.layer != environmentLayer)
                         {
                             lockOnUI.gameObject.SetActive(true);
                             availableTargets.Add(character);
