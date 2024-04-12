@@ -384,26 +384,21 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
-  rollInputTimer: 0
   interactInput: 0
-  rollingInput: 0
-  twoHandInput: 0
   lockOnInput: 0
-  rightStickLeftInput: 0
-  rightStickRightInput: 0
   lightAttackInput: 0
   heavyAttackInput: 0
   gameSystemInput: 0
+  quickSlotUpInput: 0
+  quickSlotDownInput: 0
+  quickSlotLeftInput: 0
+  quickSlotRightInput: 0
   rollFlag: 0
   sprintFlag: 0
   twoHandFlag: 0
   lockOnFlag: 0
   comboFlag: 0
   gameSystemFlag: 0
-  quickSlotUp: 0
-  quickSlotDown: 0
-  quickSlotLeft: 0
-  quickSlotRight: 0
 --- !u!114 &1912785350997228117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +419,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inAirTimer: 0
-  rigidbody: {fileID: 0}
+  rigidbody: {fileID: 8617979884866548014}
   moveDirection: {x: 0, y: 0, z: 0}
   fallingFactor: 0.1
   fallingSpeedRatio: 2
