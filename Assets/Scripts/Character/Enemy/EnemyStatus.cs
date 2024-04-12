@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class EnemyStatus : CharacterStatus
 {
-    [Header("Detection")]
+    [Header("Status")]
     public float detectionRadius = 20;
     public float detectionAngleMax = 50;
     public float detectionAngleMin = -50;
-
-    [Header("Attack")]
     public float attackRangeMax = 1.5f;
-    public float attackDelayMin = 0.5f;
-    public float attackDelayMax = 2f;
 
     [Header("Component")]
     private Animator animator;
