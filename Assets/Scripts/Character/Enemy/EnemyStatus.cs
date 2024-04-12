@@ -11,6 +11,8 @@ public class EnemyStatus : CharacterStatus
 
     [Header("Attack")]
     public float attackRangeMax = 1.5f;
+    public float attackDelayMin = 0.5f;
+    public float attackDelayMax = 2f;
 
     [Header("Component")]
     private Animator animator;
