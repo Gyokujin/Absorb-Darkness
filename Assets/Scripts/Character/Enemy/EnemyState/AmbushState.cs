@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AmbushState : EnemyState
 {
+    [Header("Ambush")]
     private bool isSleeping = true;
     [SerializeField]
     private string sleepAnimation;
@@ -14,6 +15,7 @@ public class AmbushState : EnemyState
     [SerializeField]
     private LayerMask detectionLayer;
 
+    [Header("States")]
     [SerializeField]
     private PursueTargetState pursueTargetState;
 

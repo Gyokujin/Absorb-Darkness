@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class IdleState : EnemyState
 {
+    [Header("Idle")]
     public LayerMask detectionLayer;
+
+    [Header("States")]
     public PursueTargetState pursueTargetState;
 
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)

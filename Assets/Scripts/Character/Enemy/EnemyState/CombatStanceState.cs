@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class CombatStanceState : EnemyState
 {
+    [Header("States")]
     public AttackState attackState;
     public PursueTargetState pursueTargetState;
 
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
         float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
-
-        if (enemyManager.isPreformingAction)
-        {
-            enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
-        }
 
         if (targetDistance <= enemyStatus.attackRangeMax)
         {
