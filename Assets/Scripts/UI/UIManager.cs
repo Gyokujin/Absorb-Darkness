@@ -7,7 +7,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     [Header("Game System")]
-    public GameObject hudWindow;
+    [SerializeField]
+    private GameObject hudWindow;
     [SerializeField]
     private GameObject selectWindow;
 
@@ -24,7 +25,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform weaponInventorySlotsParent;
     private WeaponInventorySlot[] weaponInventorySlots;
-    public EquipmentWindowUI equipmentWindowUI;
 
     [Header("Equipment Window Slot Selected")]
     public bool leftHandSlot01Selected;
@@ -85,6 +85,7 @@ public class UIManager : MonoBehaviour
         selectWindow.SetActive(false);
         hudWindow.SetActive(true);
         CloseAllInventoryUI();
+        ResetAllSelectedSlots();
         GameManager.instance.LockCamera(true);
     }
 
