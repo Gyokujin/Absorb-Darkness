@@ -25,7 +25,9 @@ public class AttackState : EnemyState
         }
         else
         {
-            GetNewAttack(enemyManager);
+            currentAttack = enemyAttacks[Random.Range(0, enemyAttacks.Length)];
+            // enemyManager.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
+            // GetNewAttack(enemyManager);
         }
 
         return pursueTargetState;
@@ -33,55 +35,54 @@ public class AttackState : EnemyState
 
     void GetNewAttack(EnemyManager enemyManager)
     {
-        Vector3 targetDir = enemyManager.currentTarget.transform.position - transform.position;
-        float viewableAngle = Vector3.Angle(targetDir, transform.forward);
-        float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
+        //Vector3 targetDir = enemyManager.currentTarget.transform.position - transform.position;
+        //float viewableAngle = Vector3.Angle(targetDir, transform.forward);
+        //float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
+        
 
-        int maxScore = 0;
+        //for (int i = 0; i < enemyAttacks.Length; i++)
+        //{
+        //    EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
-        {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+        //    if (targetDistance <= enemyAttackAction.attackDisMax && targetDistance >= enemyAttackAction.attackDisMin &&
+        //        viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
+        //    {
+        //        maxScore += enemyAttackAction.attackScore;
+        //    }
+        //}
 
-            if (targetDistance <= enemyAttackAction.attackDisMax && targetDistance >= enemyAttackAction.attackDisMin &&
-                viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
-            {
-                maxScore += enemyAttackAction.attackScore;
-            }
-        }
+        //int randomValue = Random.Range(0, maxScore);
+        //int tempScore = 0;
 
-        int randomValue = Random.Range(0, maxScore);
-        int tempScore = 0;
+        //for (int i = 0; i < enemyAttacks.Length; i++)
+        //{
+        //    EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
-        {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+        //    if (targetDistance <= enemyAttackAction.attackDisMax && targetDistance >= enemyAttackAction.attackDisMin &&
+        //        viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
+        //    {
+        //        if (currentAttack != null)
+        //            return;
 
-            if (targetDistance <= enemyAttackAction.attackDisMax && targetDistance >= enemyAttackAction.attackDisMin &&
-                viewableAngle <= enemyAttackAction.attackAngleMax && viewableAngle >= enemyAttackAction.attackAngleMin)
-            {
-                if (currentAttack != null)
-                    return;
+        //        tempScore += enemyAttackAction.attackScore;
 
-                tempScore += enemyAttackAction.attackScore;
-
-                if (tempScore > randomValue)
-                {
-                    currentAttack = enemyAttackAction;
-                }
-            }
-        }
+        //        if (tempScore > randomValue)
+        //        {
+        //            currentAttack = enemyAttackAction;
+        //        }
+        //    }
+        //}
     }
 
     void Attack(EnemyManager enemyManager, EnemyAnimator enemyAnimator)
     {
+        enemyManager.isPreformingAction = true;
         enemyManager.navMeshAgent.enabled = false;
-        enemyAnimator.animator.SetBool("onAttack", true);
-        enemyAnimator.animator.SetFloat("horizontal", 0, 0.1f, Time.deltaTime);
-        enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
+        enemyAnimator.animator.SetFloat("horizontal", 0); // 공격은 즉시 애니메이션을 정지하게 한다.
+        enemyAnimator.animator.SetFloat("vertical", 0);
         enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
         enemyManager.isPreformingAction = true;
-        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+        enemyManager.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
         currentAttack = null;
     }
 }

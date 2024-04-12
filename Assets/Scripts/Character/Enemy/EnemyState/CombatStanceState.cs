@@ -16,7 +16,7 @@ public class CombatStanceState : EnemyState
             enemyAnimator.animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
         }
 
-        if (enemyManager.currentRecoveryTime <= 0 && targetDistance <= enemyStatus.attackRangeMax)
+        if (targetDistance <= enemyStatus.attackRangeMax)
         {
             return attackState;
         }

@@ -35,12 +35,14 @@ public class EnemyManager : CharacterManager
     {
         rigidbody.isKinematic = false;
         navMeshAgent.enabled = false;
+        navMeshAgent.speed = enemyStatus.runSpeed;
+        navMeshAgent.acceleration = enemyStatus.runSpeed;
+        navMeshAgent.angularSpeed = enemyStatus.rotationSpeed;
         navMeshAgent.stoppingDistance = stopDistance;
     }
 
     void Update()
     {
-        HandleRecoveryTimer();
         isInteracting = enemyAnimator.animator.GetBool("isInteracting");
     }
 
@@ -65,17 +67,5 @@ public class EnemyManager : CharacterManager
     void SwitchNextState(EnemyState state)
     {
         curState = state;
-    }
-
-    void HandleRecoveryTimer()
-    {
-        if (currentRecoveryTime > 0)
-        {
-            currentRecoveryTime -= Time.deltaTime;
-        }
-        else if (isPreformingAction)
-        {
-            isPreformingAction = false;
-        }
     }
 }

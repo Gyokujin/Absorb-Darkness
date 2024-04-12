@@ -10,9 +10,8 @@ public class PursueTargetState : EnemyState
     {
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
         float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
-        float viewableAngle = Vector3.Angle(targetDirection, enemyManager.transform.forward);
 
-        if (enemyManager.isPreformingAction && targetDistance > enemyManager.stopDistance)
+        if (enemyManager.isPreformingAction)
         {
             enemyManager.navMeshAgent.enabled = false;
             return this;
@@ -66,7 +65,6 @@ public class PursueTargetState : EnemyState
             enemyManager.navMeshAgent.velocity = targetVelocity;
             enemyManager.navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
             enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navMeshAgent.transform.rotation, enemyStatus.rotationSpeed / Time.deltaTime);
-        
         }
     }
 }

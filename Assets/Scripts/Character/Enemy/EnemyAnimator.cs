@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyAnimator : AnimatorManager
 {
     private EnemyManager enemyManager;
+    private EnemyStatus enemyStatus;
 
     void Awake()
     {
-        enemyManager = GetComponentInParent<EnemyManager>();
         animator = GetComponent<Animator>();
+        enemyManager = GetComponentInParent<EnemyManager>();
+        enemyStatus = GetComponentInParent<EnemyStatus>();
     }
 
     private void OnAnimatorMove()
@@ -21,10 +23,15 @@ public class EnemyAnimator : AnimatorManager
         enemyManager.rigidbody.velocity = velocity;
     }
 
-    public void AttackEnd()
+    public void AttackDelay()
     {
         animator.SetBool("onAttack", false);
         animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
+        Invoke("AttackEnd", enemyManager.currentRecoveryTime);
+    }
+
+    void AttackEnd()
+    {
         enemyManager.isPreformingAction = false;
     }
 }
