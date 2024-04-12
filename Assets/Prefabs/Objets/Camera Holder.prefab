@@ -175,10 +175,9 @@ MonoBehaviour:
   playerFollowRate: 0.2
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
-  camTransform: {fileID: 0}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 1544
+    m_Bits: 3592
   minPivot: -35
   maxPivot: 35
   lookAngle: 0.033
@@ -195,6 +194,8 @@ MonoBehaviour:
   lockOnAngleLimit: 35
   lockedPivotPosition: 3
   unlockedPivotPosition: 2.4
+  lockOnUI: {fileID: 0}
+  lockOnUIScaleMin: 0.5
   cameraSphereRadius: 0.2
   cameraCollisionOffset: 0.2
   minCollisionOffset: 0.2

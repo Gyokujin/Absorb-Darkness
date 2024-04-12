@@ -687,14 +687,6 @@ PrefabInstance:
       propertyPath: lockOnUI
       value: 
       objectReference: {fileID: 1932912358}
-    - target: {fileID: 7631947022005300, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
-      propertyPath: lockOnUIScaleMin
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7631947022005300, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
-      propertyPath: targetLayer.m_Bits
-      value: 3592
-      objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -898,22 +890,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1296478113482215089, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2711669621791103031, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2711669621791103031, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2711669621791103031, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3303484276473554134, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
       propertyPath: playerInventory
       value: 
@@ -1013,18 +989,6 @@ PrefabInstance:
     - target: {fileID: 7761594251671800462, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7801748808062246571, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7801748808062246571, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_Color.g
-      value: 0.7210171
-      objectReference: {fileID: 0}
-    - target: {fileID: 7801748808062246571, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-      propertyPath: m_Color.r
-      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 7975925210535395057, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
       propertyPath: m_Name
