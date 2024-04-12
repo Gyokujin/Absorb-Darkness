@@ -706,10 +706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f9fc1490a5b5845b3679e3f7859eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandSlot01Selected: 0
-  leftHandSlot02Selected: 0
-  rightHandSlot01Selected: 0
-  rightHandSlot02Selected: 0
   handEquipmentSlotUI:
   - {fileID: 1728190934954322385}
   - {fileID: 8637233493420881437}
@@ -913,18 +909,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8531770773149952815}
-        m_TargetAssemblyTypeName: EquiptmentWindowUI, Assembly-CSharp
-        m_MethodName: SelectRightHandSlot02
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2004828423489757173}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -1838,18 +1822,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8531770773149952815}
-        m_TargetAssemblyTypeName: EquiptmentWindowUI, Assembly-CSharp
-        m_MethodName: SelectRightHandSlot01
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2004828423489757173}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -2785,18 +2757,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8531770773149952815}
-        m_TargetAssemblyTypeName: EquiptmentWindowUI, Assembly-CSharp
-        m_MethodName: SelectLeftHandSlot01
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2004828423489757173}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3426,18 +3386,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8531770773149952815}
-        m_TargetAssemblyTypeName: EquiptmentWindowUI, Assembly-CSharp
-        m_MethodName: SelectLeftHandSlot02
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2004828423489757173}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -4163,7 +4111,6 @@ MonoBehaviour:
   equipmentScreenWindow: {fileID: 7794613031416857408}
   weaponInventorySlotPrefab: {fileID: 6681123800048564503}
   weaponInventorySlotsParent: {fileID: 3629632311309717461}
-  equipmentWindowUI: {fileID: 8531770773149952815}
   leftHandSlot01Selected: 0
   leftHandSlot02Selected: 0
   rightHandSlot01Selected: 0
