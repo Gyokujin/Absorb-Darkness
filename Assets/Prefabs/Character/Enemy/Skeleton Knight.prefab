@@ -138,10 +138,9 @@ MonoBehaviour:
   isPreformingAction: 0
   stopDistance: 2
   currentRecoveryTime: 3
-  navMeshAgent: {fileID: 0}
   rigidbody: {fileID: 0}
+  navMeshAgent: {fileID: 1450195169768672182}
   currentTarget: {fileID: 0}
-  enemyStatus: {fileID: 0}
 --- !u!114 &8226064185287231384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +165,8 @@ MonoBehaviour:
   maxStamina: 0
   currentStamina: 0
   detectionRadius: 20
-  detectionAngleMax: 60
-  detectionAngleMin: -60
+  detectionAngleMax: 90
+  detectionAngleMin: -90
   attackRangeMax: 3
   attackDelayMin: 0.5
   attackDelayMax: 1.75
@@ -250,7 +249,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 0.9
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: -0.1, y: 1.2, z: 0.3}

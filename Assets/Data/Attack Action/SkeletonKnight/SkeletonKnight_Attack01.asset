@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionAnimation: Attack01
   recoveryTimeMin: 0.25
-  recoveryTimeMax: 1.5
-  attackAngleMax: 25
-  attackAngleMin: -25
+  recoveryTimeMax: 1
+  attackAngleMax: 45
+  attackAngleMin: -45
   attackDisMin: 0
   attackDisMax: 3
