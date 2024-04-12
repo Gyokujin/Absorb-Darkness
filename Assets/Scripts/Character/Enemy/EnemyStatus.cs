@@ -38,7 +38,7 @@ public class EnemyStatus : CharacterStatus
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        animator.SetBool("onHit", true);
+        animator.SetTrigger("doHit");
 
         if (currentHealth <= 0)
         {
