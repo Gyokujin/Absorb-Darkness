@@ -25,6 +25,11 @@ public class EnemyManager : CharacterManager
 
     void Awake()
     {
+        Init();
+    }
+
+    void Init()
+    {
         rigidbody = GetComponent<Rigidbody>();
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();

@@ -8,6 +8,11 @@ public class EnemyAnimator : AnimatorManager
 
     void Awake()
     {
+        Init();
+    }
+
+    void Init()
+    {
         animator = GetComponent<Animator>();
         enemyManager = GetComponentInParent<EnemyManager>();
     }
