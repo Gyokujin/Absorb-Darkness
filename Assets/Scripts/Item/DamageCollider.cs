@@ -46,7 +46,7 @@ public class DamageCollider : MonoBehaviour
 
             if (enemyStatus != null)
             {
-                enemyStatus.TakeDamage(weaponDamage);
+                enemyStatus.TakeDamage(weaponDamage, GetComponentInParent<CharacterStatus>());
             }
         }
     }

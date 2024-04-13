@@ -116,10 +116,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.34
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 2.35
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0.4}
+  m_Center: {x: 0, y: 1.18, z: 0.4}
 --- !u!114 &142081681564000534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   curState: {fileID: 7440158907284766626}
   isInteracting: 0
   isPreformingAction: 0
+  onDie: 0
   stopDistance: 2
   currentRecoveryTime: 3
   rigidbody: {fileID: 0}
@@ -156,20 +157,20 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 6
   rotationSpeed: 135
-  healthLevel: 10
-  healthLevelAmount: 10
-  maxHealth: 30
+  healthLevel: 15
+  healthLevelAmount: 1
+  maxHealth: 0
   currentHealth: 0
   staminaLevel: 10
   staminaLevelAmount: 10
   maxStamina: 0
   currentStamina: 0
   detectionRadius: 20
-  detectionAngleMax: 90
-  detectionAngleMin: -90
+  detectionAngleMax: 105
+  detectionAngleMin: -105
   attackRangeMax: 3
-  attackDelayMin: 0.5
-  attackDelayMax: 1.75
+  hitTime: 1
+  pursueTargetState: {fileID: 0}
 --- !u!1 &6837963467060611643
 GameObject:
   m_ObjectHideFlags: 0

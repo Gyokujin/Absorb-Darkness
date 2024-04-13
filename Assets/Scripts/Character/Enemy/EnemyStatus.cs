@@ -10,8 +10,18 @@ public class EnemyStatus : CharacterStatus
     public float detectionAngleMin = -50;
     public float attackRangeMax = 1.5f;
 
+    [Header("Damage")]
+    [SerializeField]
+    private float hitTime = 1f;
+    private WaitForSeconds hitWait;
+    private WaitForSeconds smashWait;
+
     [Header("Component")]
     private Animator animator;
+    private new Collider collider;
+    private EnemyManager enemyManager;
+    [SerializeField]
+    private PursueTargetState pursueTargetState;
 
     void Awake()
     {
@@ -20,7 +30,11 @@ public class EnemyStatus : CharacterStatus
 
     void Init()
     {
+        hitWait = new WaitForSeconds(hitTime);
+        smashWait = new WaitForSeconds(hitTime * 1.5f);
         animator = GetComponentInChildren<Animator>();
+        collider = GetComponent<Collider>();
+        enemyManager = GetComponent<EnemyManager>();
     }
 
     void Start()
@@ -35,15 +49,29 @@ public class EnemyStatus : CharacterStatus
         return maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, CharacterStatus player)
     {
         currentHealth -= damage;
-        animator.SetTrigger("doHit");
 
-        if (currentHealth <= 0)
+        if (currentHealth > 0 && !enemyManager.onDie)
         {
+            StartCoroutine("DamageProcess", player);
+        }
+        else
+        {
+            StopCoroutine("DamageProcess");
             currentHealth = 0;
+            enemyManager.onDie = true;
+            collider.enabled = false;
             animator.SetTrigger("doDie");
         }
+    }
+
+    IEnumerator DamageProcess(CharacterStatus player)
+    {
+        animator.SetTrigger("doHit");
+        yield return hitWait;
+        enemyManager.currentTarget = player;
+        enemyManager.isPreformingAction = false;
     }
 }

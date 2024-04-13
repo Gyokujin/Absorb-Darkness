@@ -6,10 +6,12 @@ using UnityEngine.AI;
 public class EnemyManager : CharacterManager
 {
     [Header("State")]
-    [SerializeField]
-    private EnemyState curState;
+    public EnemyState curState;
+
+    [Header("Action")]
     public bool isInteracting;
     public bool isPreformingAction;
+    public bool onDie;
 
     [Header("Status")]
     [SerializeField]
@@ -57,7 +59,7 @@ public class EnemyManager : CharacterManager
 
     void HandleStateMachine()
     {
-        if (curState != null)
+        if (curState != null && !onDie)
         {
             EnemyState nextState = curState.Tick(this, enemyStatus, enemyAnimator);
 
