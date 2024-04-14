@@ -26,6 +26,7 @@ public class EnemyStatus : CharacterStatus
     private new Rigidbody rigidbody;
     private new Collider collider;
     private EnemyManager enemyManager;
+    private EnemyAudio enemyAudio;
     [SerializeField]
     private PursueTargetState pursueTargetState;
 
@@ -40,6 +41,7 @@ public class EnemyStatus : CharacterStatus
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
         enemyManager = GetComponent<EnemyManager>();
+        enemyAudio = GetComponent<EnemyAudio>();
 
         hitWait = new WaitForSeconds(hitTime);
         knockbackWait = new WaitForSeconds(knockbackTime);
@@ -78,16 +80,14 @@ public class EnemyStatus : CharacterStatus
         }
         else
         {
-            currentHealth = 0;
-            enemyManager.onDie = true;
-            collider.enabled = false;
-            animator.SetTrigger("doDie");
+            DieProcess();
         }
     }
 
     IEnumerator DamageProcess(CharacterStatus player)
     {
         animator.SetTrigger("doHit");
+        enemyAudio.PlaySFX(enemyAudio.hitClip);
 
         yield return hitWait;
         enemyManager.currentTarget = player;
@@ -101,10 +101,21 @@ public class EnemyStatus : CharacterStatus
         transform.rotation = Quaternion.LookRotation(-attackDir);
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
+
         animator.SetTrigger("doKnockback");
+        enemyAudio.PlaySFX(enemyAudio.hitClip);
 
         yield return knockbackWait; // 플레이어 재추적
         enemyManager.currentTarget = player;
         enemyManager.isPreformingAction = false;
+    }
+
+    void DieProcess()
+    {
+        currentHealth = 0;
+        enemyManager.onDie = true;
+        collider.enabled = false;
+        animator.SetTrigger("doDie");
+        enemyAudio.PlaySFX(enemyAudio.dieClip);
     }
 }
