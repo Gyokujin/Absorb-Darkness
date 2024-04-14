@@ -6,6 +6,7 @@ public class EnemyAnimator : AnimatorManager
 {
     private EnemyManager enemyManager;
     private EnemyStatus enemyStatus;
+    private EnemyAudio enemyAudio;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class EnemyAnimator : AnimatorManager
         animator = GetComponent<Animator>();
         enemyManager = GetComponentInParent<EnemyManager>();
         enemyStatus = GetComponentInParent<EnemyStatus>();
+        enemyAudio = GetComponentInParent<EnemyAudio>();
     }
 
     void OnAnimatorMove()
@@ -29,6 +31,16 @@ public class EnemyAnimator : AnimatorManager
         deltaPoistion.y = 0;
         Vector3 velocity = deltaPoistion / Time.deltaTime;
         enemyManager.rigidbody.velocity = velocity;
+    }
+
+    public void IdleProcess()
+    {
+        enemyAudio.PlaySFX(enemyAudio.idleClip);
+    }
+
+    public void AttackProcess()
+    {
+        enemyAudio.PlaySFX(enemyAudio.attackClip);
     }
 
     public void AttackDelay()
