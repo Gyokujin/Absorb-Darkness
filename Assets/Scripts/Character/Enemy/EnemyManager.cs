@@ -11,6 +11,7 @@ public class EnemyManager : CharacterManager
     [Header("Action")]
     public bool isInteracting;
     public bool isPreformingAction;
+    public bool onHit;
     public bool onDie;
 
     [Header("Status")]

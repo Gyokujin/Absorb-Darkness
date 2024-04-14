@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAnimator : AnimatorManager
 {
     private EnemyManager enemyManager;
+    private EnemyStatus enemyStatus;
 
     void Awake()
     {
@@ -15,10 +16,14 @@ public class EnemyAnimator : AnimatorManager
     {
         animator = GetComponent<Animator>();
         enemyManager = GetComponentInParent<EnemyManager>();
+        enemyStatus = GetComponentInParent<EnemyStatus>();
     }
 
-    private void OnAnimatorMove()
+    void OnAnimatorMove()
     {
+        if (enemyManager.onHit)
+            return;
+
         enemyManager.rigidbody.drag = 0;
         Vector3 deltaPoistion = animator.deltaPosition;
         deltaPoistion.y = 0;
@@ -36,5 +41,11 @@ public class EnemyAnimator : AnimatorManager
     void AttackEnd()
     {
         enemyManager.isPreformingAction = false;
+    }
+
+    public void HitEnd()
+    {
+        enemyManager.onHit = false;
+        enemyStatus.damageAmount = 0;
     }
 }

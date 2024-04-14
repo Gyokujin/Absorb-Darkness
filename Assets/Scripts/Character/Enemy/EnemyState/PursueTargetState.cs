@@ -12,7 +12,7 @@ public class PursueTargetState : EnemyState
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
         float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
 
-        if (enemyManager.isPreformingAction)
+        if (enemyManager.isPreformingAction || enemyManager.onHit)
         {
             enemyManager.navMeshAgent.enabled = false;
             return this;
