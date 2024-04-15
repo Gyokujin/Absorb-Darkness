@@ -10,6 +10,8 @@ public class PlayerManager : CharacterManager
     public bool isInAir;
     public bool isGrounded;
     public bool canDoCombo;
+    public bool isUsingLeftHand;
+    public bool isUsingRightHand;
 
     [Header("Interact")]
     [SerializeField]
@@ -48,9 +50,12 @@ public class PlayerManager : CharacterManager
 
     void Update()
     {
-        canDoCombo = playerAnimator.animator.GetBool("canDoCombo");
         isInteracting = playerAnimator.animator.GetBool("isInteracting");
+        canDoCombo = playerAnimator.animator.GetBool("canDoCombo");
+        isUsingLeftHand = playerAnimator.animator.GetBool("usingLeftHand");
+        isUsingRightHand = playerAnimator.animator.GetBool("usingRightHand");
         playerAnimator.animator.SetBool("isInAir", isInAir);
+
         playerInput.TickInput(Time.deltaTime);
         playerMove.HandleRollingAndSprinting(Time.deltaTime);
         CheckInteractableObject();
@@ -85,7 +90,6 @@ public class PlayerManager : CharacterManager
     {
         playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
-
     }
 
     public void CheckInteractableObject()

@@ -23,6 +23,7 @@ public class WeaponSlotManager : MonoBehaviour
 
     [Header("Component")]
     private Animator animator;
+    private PlayerManager playerManager;
     private QuickSlotsUI quickSlotsUI;
     private PlayerInput playerInput;
     private PlayerStatus playerStatus;
@@ -34,6 +35,7 @@ public class WeaponSlotManager : MonoBehaviour
 
     void Init()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerInput = GetComponentInParent<PlayerInput>();
@@ -116,23 +118,21 @@ public class WeaponSlotManager : MonoBehaviour
         rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
     }
 
-    public void OpenLeftDamageCollider()
+    public void OpenDamageCollider()
     {
-        leftHandDamageCollider.AbleDamageCollider(true);
+        if (playerManager.isUsingLeftHand)
+        {
+            leftHandDamageCollider.AbleDamageCollider(true);
+        }
+        else if (playerManager.isUsingRightHand)
+        {
+            rightHandDamageCollider.AbleDamageCollider(true);
+        }
     }
 
-    public void OpenRightDamageCollider()
-    {
-        rightHandDamageCollider.AbleDamageCollider(true);
-    }
-
-    public void CloseLeftDamageCollider()
+    public void CloseDamageCollider()
     {
         leftHandDamageCollider.AbleDamageCollider(false);
-    }
-
-    public void CloseRightDamageCollider()
-    {
         rightHandDamageCollider.AbleDamageCollider(false);
     }
 
