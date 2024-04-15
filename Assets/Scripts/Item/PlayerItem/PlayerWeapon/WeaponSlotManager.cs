@@ -124,7 +124,8 @@ public class WeaponSlotManager : MonoBehaviour
         {
             leftHandDamageCollider.AbleDamageCollider(true);
         }
-        else if (playerManager.isUsingRightHand)
+
+        if (playerManager.isUsingRightHand)
         {
             rightHandDamageCollider.AbleDamageCollider(true);
         }
@@ -132,8 +133,11 @@ public class WeaponSlotManager : MonoBehaviour
 
     public void CloseDamageCollider()
     {
-        leftHandDamageCollider.AbleDamageCollider(false);
-        rightHandDamageCollider.AbleDamageCollider(false);
+        if (leftHandDamageCollider != null)
+            leftHandDamageCollider.AbleDamageCollider(false);
+
+        if (rightHandDamageCollider != null)
+            rightHandDamageCollider.AbleDamageCollider(false);
     }
 
     public void DrainStaminaLightAttack() 

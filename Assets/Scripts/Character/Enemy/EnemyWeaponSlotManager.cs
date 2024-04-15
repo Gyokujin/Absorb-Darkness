@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyWeaponSlotManager : MonoBehaviour
 {
+    public WeaponItem leftHandWeapon;
+    public WeaponItem rightHandWeapon;
+
     [Header("Weapon Slot")]
     private WeaponHolderSlot rightHandSlot;
     private WeaponHolderSlot leftHandSlot;
@@ -34,6 +37,11 @@ public class EnemyWeaponSlotManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        LoadWeaponsHands();
+    }
+
     public void LoadWeaponOnSlot(WeaponItem weapon, bool isLeft)
     {
         if (isLeft)
@@ -47,6 +55,19 @@ public class EnemyWeaponSlotManager : MonoBehaviour
             rightHandSlot.currentWeapon = weapon;
             rightHandSlot.LoadWeaponModel(weapon);
             LoadWeaponsDamageCollider(false);
+        }
+    }
+
+    public void LoadWeaponsHands()
+    {
+        if (leftHandWeapon != null)
+        {
+            LoadWeaponOnSlot(leftHandWeapon, true);
+        }
+
+        if (rightHandWeapon != null)
+        {
+            LoadWeaponOnSlot(rightHandWeapon, false);
         }
     }
 
