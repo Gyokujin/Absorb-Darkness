@@ -173,6 +173,7 @@ public class PlayerInput : MonoBehaviour
             }
             else if (!playerManager.isInteracting && !playerManager.canDoCombo)
             {
+                playerAnimator.animator.SetBool("usingRightHand", true);
                 playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
             }
         }
