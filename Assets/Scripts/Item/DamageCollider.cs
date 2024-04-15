@@ -30,7 +30,7 @@ public class DamageCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Hittalbe")
+        if (collision.tag == "Player")
         {
             PlayerStatus playerStatus = collision.GetComponent<PlayerStatus>();
 

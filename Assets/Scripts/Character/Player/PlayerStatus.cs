@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerStatus : CharacterStatus
@@ -14,10 +15,12 @@ public class PlayerStatus : CharacterStatus
     private StaminaBar staminaBar;
 
     [Header("Component")]
+    private PlayerManager playerManager;
     private PlayerAnimator playerAnimator;
 
     void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
     }
 
@@ -43,12 +46,16 @@ public class PlayerStatus : CharacterStatus
 
     public void TakeDamage(int damage)
     {
+        if (playerManager.onDie)
+            return;
+
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
         playerAnimator.PlayTargetAnimation("Damage", true);
 
         if (currentHealth <= 0)
         {
+            playerManager.onDie = true;
             currentHealth = 0;
             playerAnimator.PlayTargetAnimation("Dead", true);
         }
