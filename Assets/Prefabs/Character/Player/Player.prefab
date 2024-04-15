@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 275335256395614252}
   - component: {fileID: 4128431584090350251}
   - component: {fileID: 1408009259693044163}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: Character Collider Blocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,6 +337,8 @@ MonoBehaviour:
   isInAir: 0
   isGrounded: 0
   canDoCombo: 0
+  isUsingLeftHand: 0
+  isUsingRightHand: 0
   checkRadius: 0.3
   checkMaxDis: 1
   interactableUIObj: {fileID: 0}
@@ -428,6 +430,8 @@ MonoBehaviour:
   fallingSpeedRatio: 2
   fallingDownForce: 750
   fallingFrontForce: 5
+  playerCollider: {fileID: 8488239234627549522}
+  playerBlockerCollider: {fileID: 1408009259693044163}
 --- !u!114 &8704254429465697172
 MonoBehaviour:
   m_ObjectHideFlags: 0
