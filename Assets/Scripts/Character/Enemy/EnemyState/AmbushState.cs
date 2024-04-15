@@ -12,8 +12,6 @@ public class AmbushState : EnemyState
     private string wakeAnimation;
     [SerializeField]
     private float detectionRadius = 2;
-    [SerializeField]
-    private LayerMask detectionLayer;
 
     [Header("States")]
     [SerializeField]
@@ -26,7 +24,7 @@ public class AmbushState : EnemyState
             enemyAnimator.PlayTargetAnimation(sleepAnimation, true);
         }
 
-        Collider[] colliders = Physics.OverlapSphere(enemyManager.transform.position, detectionRadius, detectionLayer);
+        Collider[] colliders = Physics.OverlapSphere(enemyManager.transform.position, detectionRadius, enemyManager.detectionLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {

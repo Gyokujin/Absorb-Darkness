@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class IdleState : EnemyState
 {
-    [Header("Idle")]
-    public LayerMask detectionLayer;
-
     [Header("States")]
     public PursueTargetState pursueTargetState;
 
@@ -15,7 +12,7 @@ public class IdleState : EnemyState
         if (enemyManager.onHit)
             return this;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyStatus.detectionRadius, detectionLayer);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyStatus.detectionRadius, enemyManager.detectionLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {

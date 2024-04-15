@@ -12,7 +12,7 @@ public class EnemyManager : CharacterManager
     public bool isInteracting;
     public bool isPreformingAction;
     public bool onHit;
-    public bool onDie;
+    public LayerMask detectionLayer;
 
     [Header("Status")]
     [SerializeField]
