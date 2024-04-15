@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    public bool onDie;
+
     [Header("LockOn")]
     public Transform lockOnTransform;
 }

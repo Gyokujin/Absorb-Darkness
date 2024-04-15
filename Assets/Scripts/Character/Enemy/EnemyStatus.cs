@@ -61,11 +61,14 @@ public class EnemyStatus : CharacterStatus
 
     public void TakeDamage(int damage, CharacterStatus player)
     {
+        if (enemyManager.onDie)
+            return;
+
         StopCoroutine("DamageProcess");
         enemyManager.onHit = true;
         currentHealth -= damage;
 
-        if (currentHealth > 0 && !enemyManager.onDie)
+        if (currentHealth > 0)
         {
             damageAmount += damage;
 
