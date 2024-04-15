@@ -33,8 +33,13 @@ public class PlayerMove : MonoBehaviour
     private float fallingFrontForce = 5f;
 
     [Header("Component")]
-    private PlayerManager playerManager;
     private Transform playerTransform;
+    [SerializeField]
+    private Collider playerCollider;
+    [SerializeField]
+    private Collider playerBlockerCollider;
+
+    private PlayerManager playerManager;
     private PlayerInput playerInput;
     private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
@@ -56,6 +61,7 @@ public class PlayerMove : MonoBehaviour
         playerTransform = transform;
         playerAnimator.Init();
         playerManager.isGrounded = true;
+        Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
     public void HandleMovement(float delta)
