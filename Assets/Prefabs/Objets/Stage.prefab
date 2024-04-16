@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &763046667945177458
 Transform:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6257781298025678794
 Transform:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4bdf3f62ca60849982ecf1846ebfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1.5
+  interactRadius: 1
   interactableText: "\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD55C\uB2E4 E"
   weapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
 --- !u!1 &7090340658498111432
@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &213232139582608569
 Transform:
   m_ObjectHideFlags: 0
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4bdf3f62ca60849982ecf1846ebfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1.5
+  interactRadius: 1
   interactableText: "\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD55C\uB2E4 E"
   weapon: {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
 --- !u!1 &7634530287515804099
@@ -741,7 +741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6808474780194328171
 Transform:
   m_ObjectHideFlags: 0
@@ -903,6 +903,10 @@ MonoBehaviour:
   detectionAngleMax: 50
   detectionAngleMin: -50
   attackRangeMax: 1.5
+  hitTime: 1
+  knockbackTime: 2.5
+  knockbackPower: 50
+  damageAmount: 0
 --- !u!1 &8438862212848706530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1310,10 @@ PrefabInstance:
     - target: {fileID: 6539238455079488446, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539238455079488446, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6539238455079488446, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_StaticEditorFlags
