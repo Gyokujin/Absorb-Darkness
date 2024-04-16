@@ -39,6 +39,7 @@ public class EnemyManager : CharacterManager
     {
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }

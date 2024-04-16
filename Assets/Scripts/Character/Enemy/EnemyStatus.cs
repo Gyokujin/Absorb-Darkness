@@ -25,8 +25,6 @@ public class EnemyStatus : CharacterStatus
     private Animator animator;
     private EnemyManager enemyManager;
     private EnemyAudio enemyAudio;
-    [SerializeField]
-    private PursueTargetState pursueTargetState;
 
     void Awake()
     {
