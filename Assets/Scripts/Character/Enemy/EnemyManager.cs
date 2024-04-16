@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class EnemyManager : CharacterManager
 {
     [Header("State")]
