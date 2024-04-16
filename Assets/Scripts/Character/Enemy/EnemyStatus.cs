@@ -23,8 +23,6 @@ public class EnemyStatus : CharacterStatus
 
     [Header("Component")]
     private Animator animator;
-    private new Rigidbody rigidbody;
-    private new Collider collider;
     private EnemyManager enemyManager;
     private EnemyAudio enemyAudio;
     [SerializeField]
@@ -38,11 +36,8 @@ public class EnemyStatus : CharacterStatus
     void Init()
     {
         animator = GetComponentInChildren<Animator>();
-        collider = GetComponent<Collider>();
-        rigidbody = GetComponent<Rigidbody>();
         enemyManager = GetComponent<EnemyManager>();
         enemyAudio = GetComponent<EnemyAudio>();
-
         hitWait = new WaitForSeconds(hitTime);
         knockbackWait = new WaitForSeconds(knockbackTime);
     }
@@ -102,8 +97,8 @@ public class EnemyStatus : CharacterStatus
         Vector3 attackDir = Vector3.Normalize(transform.position - player.transform.position); // ∏ÛΩ∫≈Õ ≥ÀπÈ
         attackDir.y = 0;
         transform.rotation = Quaternion.LookRotation(-attackDir);
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
+        enemyManager.rigidbody.velocity = Vector3.zero;
+        enemyManager.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
 
         animator.SetTrigger("doKnockback");
         enemyAudio.PlaySFX(enemyAudio.hitClip);
@@ -117,7 +112,8 @@ public class EnemyStatus : CharacterStatus
     {
         currentHealth = 0;
         enemyManager.onDie = true;
-        collider.enabled = false;
+        enemyManager.collider.enabled = false;
+
         animator.SetTrigger("doDie");
         enemyAudio.PlaySFX(enemyAudio.dieClip);
     }

@@ -21,6 +21,8 @@ public class EnemyManager : CharacterManager
 
     [Header("Component")]
     public new Rigidbody rigidbody;
+    public new Collider collider;
+    public Collider blockerCollider;
     public NavMeshAgent navMeshAgent;
     public CharacterStatus currentTarget;
     private EnemyStatus enemyStatus;
@@ -34,6 +36,7 @@ public class EnemyManager : CharacterManager
     void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }

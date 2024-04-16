@@ -6,12 +6,13 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     [Header("Component")]
-    [SerializeField]
-    private Collider enemyCollider;
-    [SerializeField]
-    private Collider enemyBlockerCollider;
     private EnemyManager enemyManager;
-    private EnemyAnimator enemyAnimator;
+
+    //[SerializeField]
+    //private Collider enemyCollider;
+    //[SerializeField]
+    //private Collider enemyBlockerCollider;
+    //private EnemyAnimator enemyAnimator;
 
     void Awake()
     {
@@ -21,11 +22,11 @@ public class EnemyMove : MonoBehaviour
     void Init()
     {
         enemyManager = GetComponent<EnemyManager>();
-        enemyAnimator = GetComponentInChildren<EnemyAnimator>();
+        // enemyAnimator = GetComponentInChildren<EnemyAnimator>();
     }
 
     void Start()
     {
-        Physics.IgnoreCollision(enemyCollider, enemyBlockerCollider, true);
+        Physics.IgnoreCollision(enemyManager.collider, enemyManager.blockerCollider, true);
     }
 }
