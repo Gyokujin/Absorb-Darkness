@@ -22,4 +22,12 @@ public class Meteor : MonoBehaviour
     {
         rigidbody.velocity = shootDir * fallSpeed;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 3 || other.gameObject.layer == 6)
+        {
+
+        }
+    }
 }

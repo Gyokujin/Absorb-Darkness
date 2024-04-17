@@ -6,14 +6,11 @@ public class Sorceress : MonoBehaviour
 {
     [Header("Meteor")]
     [SerializeField]
-    private Meteor meteor;
-    [SerializeField]
-    private GameObject meteorObject;
-    [SerializeField]
     private Transform MeteorTransform;
 
     [Header("Compnent")]
     private EnemyManager enemyManager;
+    private Meteor meteor;
 
     void Awake()
     {
@@ -27,7 +24,7 @@ public class Sorceress : MonoBehaviour
 
     public void SpawnMeteor()
     {
-        meteor = Instantiate(meteorObject, MeteorTransform.position, Quaternion.identity).GetComponent<Meteor>();
+        meteor = PoolManager.instance.GetSpell(0).GetComponent<Meteor>();
     }
 
     public void FallMeteor()
