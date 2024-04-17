@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5888122139433223606}
   - component: {fileID: 3732717160323538958}
   - component: {fileID: 7149744476801449244}
+  - component: {fileID: 4039832167187126047}
   m_Layer: 0
   m_Name: ppfxExplosionHeavyShockwave
   m_TagString: Untagged
@@ -47,7 +48,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 4
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4996,6 +4997,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4039832167187126047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2175745908364168256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ec02338338d624da6f29fe8d08899e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3255169011910675866
 GameObject:
   m_ObjectHideFlags: 0
