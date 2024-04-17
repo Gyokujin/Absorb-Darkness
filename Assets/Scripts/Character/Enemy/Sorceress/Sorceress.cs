@@ -12,6 +12,19 @@ public class Sorceress : MonoBehaviour
     [SerializeField]
     private Transform MeteorTransform;
 
+    [Header("Compnent")]
+    private EnemyManager enemyManager;
+
+    void Awake()
+    {
+        Init();
+    }
+
+    void Init()
+    {
+        enemyManager = GetComponent<EnemyManager>();
+    }
+
     public void SpawnMeteor()
     {
         meteor = Instantiate(meteorObject, MeteorTransform.position, Quaternion.identity).GetComponent<Meteor>();
@@ -19,6 +32,7 @@ public class Sorceress : MonoBehaviour
 
     public void FallMeteor()
     {
-        meteor.Falling(Vector3.down);
+        Vector3 attackDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
+        meteor.Falling(attackDir);
     }
 }

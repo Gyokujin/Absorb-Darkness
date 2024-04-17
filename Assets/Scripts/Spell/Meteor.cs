@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
+    [SerializeField]
+    private float fallSpeed = 1.2f;
     private new Rigidbody rigidbody;
 
     void Awake()
@@ -16,8 +18,8 @@ public class Meteor : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Falling(Vector3 dir)
+    public void Falling(Vector3 shootDir)
     {
-        rigidbody.useGravity = true;
+        rigidbody.velocity = shootDir * fallSpeed;
     }
 }
