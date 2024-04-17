@@ -35,7 +35,7 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        foreach (GameObject spellObj in spellPool[0])
+        foreach (GameObject spellObj in spellPool[index])
         {
             if (!spellObj.activeSelf)
             {
@@ -52,5 +52,12 @@ public class PoolManager : MonoBehaviour
         }
 
         return select;
+    }
+
+    public void Return(GameObject obj)
+    {
+        obj.transform.position = Vector3.zero;
+        obj.transform.rotation = Quaternion.identity;
+        obj.SetActive(false);
     }
 }
