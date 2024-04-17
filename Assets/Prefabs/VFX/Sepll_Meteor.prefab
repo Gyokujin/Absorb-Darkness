@@ -4905,6 +4905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf6d18d7b0a24d41a7525b110d9f632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 328
   fallSpeed: 1.2
 --- !u!1 &7810816794252018545
 GameObject:
