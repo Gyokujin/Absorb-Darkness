@@ -21,19 +21,21 @@ public class Meteor : MonoBehaviour
         rigidbody.velocity = shootDir * speed;
     }
 
-    void Explosion()
+    IEnumerator Explosion()
     {
         GameObject explosion = PoolManager.instance.GetSpell(1);
         explosion.transform.position = transform.position;
         rigidbody.velocity = Vector3.zero;
-        gameObject.SetActive(false);
+
+        yield return null;
+        PoolManager.instance.Return(gameObject);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 3 || other.gameObject.layer == 6)
         {
-            Explosion();
+            StartCoroutine("Explosion");
         }
     }
 }
