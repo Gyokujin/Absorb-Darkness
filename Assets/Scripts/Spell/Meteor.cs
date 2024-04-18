@@ -16,9 +16,9 @@ public class Meteor : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Falling(Vector3 shootDir, float speed)
+    public void Falling(Vector3 fallDir, float speed)
     {
-        rigidbody.velocity = shootDir * speed;
+        rigidbody.velocity = fallDir * speed;
     }
 
     IEnumerator Explosion()

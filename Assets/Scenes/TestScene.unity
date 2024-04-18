@@ -170,6 +170,7 @@ MonoBehaviour:
   spells:
   - {fileID: 4783806108879355279, guid: 70341d748b46b8845baa9c439ace83df, type: 3}
   - {fileID: 8478448050771093120, guid: fb20571e1b544634da8bf04c235045d4, type: 3}
+  - {fileID: 2227999677048980329, guid: 0a87f172a0b090d4fa2014e64ebdc5ac, type: 3}
 --- !u!1 &186743800
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,63 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6da007868321e44481ccda439cae2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &834663794
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 100006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_Name
-      value: LightningSpear
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.79982877
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.60022837
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -73.773
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5d9f502b743c47540b1c4e90179064af, type: 3}
 --- !u!1001 &1006653716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -957,14 +901,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sorceress
       objectReference: {fileID: 0}
-    - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6095023924948939310, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
-      propertyPath: meteorFallSpeed
-      value: 3.1
-      objectReference: {fileID: 0}
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1149,4 +1085,3 @@ SceneRoots:
   - {fileID: 1258716566}
   - {fileID: 1006653716}
   - {fileID: 5829129283358340014}
-  - {fileID: 834663794}

@@ -25,4 +25,14 @@ public class SorceressAnimator : MonoBehaviour
     {
         sorceress.FallMeteor();
     }
+
+    public void SpawnLightningAnimation()
+    {
+        sorceress.SpawnLightning();
+    }
+
+    public void ShootLightningAnimation()
+    {
+        sorceress.ShootLightning();
+    }
 }
