@@ -445,7 +445,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -498,7 +498,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -4835,7 +4835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400002
 Transform:
   m_ObjectHideFlags: 0
@@ -5139,7 +5139,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5192,7 +5192,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5245,7 +5245,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -5298,7 +5298,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -10917,9 +10917,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0, g: 0.58431375, b: 1, a: 0}
-        key2: {r: 0, g: 0.19215687, b: 0.7490196, a: 0}
+        key0: {r: 0.8867924, g: 0.5186084, b: 0.13803846, a: 1}
+        key1: {r: 0.8773585, g: 0.263473, b: 0.120016046, a: 0}
+        key2: {r: 1, g: 0.13861386, b: 0, a: 0}
         key3: {r: 0.06666667, g: 0.05882353, b: 0.050980393, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -10942,7 +10942,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 3
         m_NumAlphaKeys: 3
       minGradient:
@@ -14461,7 +14461,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 11400006}
   m_Layer: 0
-  m_Name: ppfxRayHorizontal
+  m_Name: LightningSpear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14475,8 +14475,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100006}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.60022837, y: -0, z: -0, w: 0.79982877}
+  m_LocalPosition: {x: 0, y: 5.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14485,7 +14485,7 @@ Transform:
   - {fileID: 400000}
   - {fileID: 400008}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -73.773, y: 0, z: 0}
 --- !u!198 &19800006
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -15726,8 +15726,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0, g: 0.58431375, b: 1, a: 0.8235294}
-        key2: {r: 0, g: 0.19215687, b: 0.7490196, a: 0.59607846}
+        key1: {r: 1, g: 0.21557546, b: 0, a: 0.8235294}
+        key2: {r: 0.7490196, g: 0.34918773, b: 0, a: 0.59607846}
         key3: {r: 0.44313726, g: 0.03137255, b: 0.03137255, a: 0}
         key4: {r: 0.06666667, g: 0.05882353, b: 0.050980393, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -15750,7 +15750,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 3
         m_NumAlphaKeys: 4
       minGradient:
