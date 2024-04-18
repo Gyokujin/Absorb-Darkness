@@ -111,7 +111,7 @@ public class EnemyStatus : CharacterStatus
         currentHealth = 0;
         enemyManager.onDie = true;
         enemyManager.collider.enabled = false;
-
+        enemyManager.blockerCollider.enabled = false;
         animator.SetTrigger("doDie");
         enemyAudio.PlaySFX(enemyAudio.dieClip);
     }
