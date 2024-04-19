@@ -5,15 +5,17 @@ using UnityEngine;
 public class Sorceress : MonoBehaviour
 {
     [Header("Spell")]
-    private Meteor meteor;
+    [SerializeField]
+    private Meteor[] meteors;
     private LightningImpact lightningImpact;
-    private PoisonMist poisonMist;
 
     [Header("Meteor")]
     [SerializeField]
-    private Transform meteorTransform;
+    private Transform[] meteorTransform;
     [SerializeField]
     private float meteorFallSpeed = 1.2f;
+    [SerializeField]
+    private float meteorFallDelay = 0.5f;
 
     [Header("LightningImpact")]
     [SerializeField]
@@ -40,18 +42,30 @@ public class Sorceress : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
     }
 
-    public void SpawnMeteor()
+    void Start()
     {
-        meteor = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
-        meteor.transform.position = meteorTransform.position;
-        Quaternion rotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position);
-        meteor.gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+        meteors = new Meteor[meteorTransform.Length];
     }
 
-    public void FallMeteor()
+    public void SpawnMeteors()
     {
-        Vector3 fallDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
-        meteor.Falling(fallDir, meteorFallSpeed);
+        for (int i = 0; i < meteors.Length; i++)
+        {
+            meteors[i] = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
+            meteors[i].transform.position = meteorTransform[i].position;
+            Quaternion rotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position);
+            meteors[i].gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+        }
+    }
+
+    public IEnumerator FallMeteors()
+    {
+        foreach (Meteor meteor in meteors)
+        {
+            Vector3 fallDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
+            meteor.Falling(fallDir, meteorFallSpeed);
+            yield return new WaitForSeconds(meteorFallDelay);
+        }
     }
 
     public void SpawnLightning()
