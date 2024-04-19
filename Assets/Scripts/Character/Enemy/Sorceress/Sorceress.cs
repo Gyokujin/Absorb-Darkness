@@ -18,6 +18,8 @@ public class Sorceress : MonoBehaviour
     [SerializeField]
     private Transform lightningImpactTransform;
     [SerializeField]
+    private float lightningImpactOffsetY = 0.5f;
+    [SerializeField]
     private float lightningImpactSpeed = 12;
 
     [Header("Compnent")]
@@ -57,7 +59,7 @@ public class Sorceress : MonoBehaviour
 
     public void ShootLightning()
     {
-        Vector3 shootDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - lightningImpact.transform.position);
+        Vector3 shootDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - lightningImpact.transform.position + new Vector3(0, lightningImpactOffsetY, 0));
         lightningImpact.Shoot(shootDir, lightningImpactSpeed);
     }
 }
