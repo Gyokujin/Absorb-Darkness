@@ -47,7 +47,7 @@ public class Meteor : MonoBehaviour
 
     IEnumerator Explosion()
     {
-        GameObject explosion = PoolManager.instance.GetSpell(1);
+        GameObject explosion = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.MeteorExplosion);
         explosion.transform.position = transform.position;
         yield return null;
         Return();

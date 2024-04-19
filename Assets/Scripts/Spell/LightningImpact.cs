@@ -50,7 +50,7 @@ public class LightningImpact : MonoBehaviour
 
     IEnumerator ElectricShock()
     {
-        GameObject electricShock = PoolManager.instance.GetSpell(3);
+        GameObject electricShock = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.ElectricShock);
         electricShock.transform.position = transform.position;
         rigidbody.velocity = Vector3.zero;
 

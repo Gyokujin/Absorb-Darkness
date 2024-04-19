@@ -7,6 +7,7 @@ public class Sorceress : MonoBehaviour
     [Header("Spell")]
     private Meteor meteor;
     private LightningImpact lightningImpact;
+    private PoisonMist poisonMist;
 
     [Header("Meteor")]
     [SerializeField]
@@ -21,6 +22,10 @@ public class Sorceress : MonoBehaviour
     private float lightningImpactOffsetY = 0.5f;
     [SerializeField]
     private float lightningImpactSpeed = 12;
+
+    [Header("PoisonMist")]
+    [SerializeField]
+    private Transform poisonMistTransform;
 
     [Header("Compnent")]
     private EnemyManager enemyManager;
@@ -37,7 +42,7 @@ public class Sorceress : MonoBehaviour
 
     public void SpawnMeteor()
     {
-        meteor = PoolManager.instance.GetSpell(0).GetComponent<Meteor>();
+        meteor = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
         meteor.transform.position = meteorTransform.position;
         Quaternion rotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position);
         meteor.gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
@@ -51,7 +56,7 @@ public class Sorceress : MonoBehaviour
 
     public void SpawnLightning()
     {
-        lightningImpact = PoolManager.instance.GetSpell(2).GetComponent<LightningImpact>();
+        lightningImpact = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.LightningImpact).GetComponent<LightningImpact>();
         lightningImpact.transform.position = lightningImpactTransform.position;
         Quaternion spellRotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position - transform.position);
         lightningImpact.transform.rotation = spellRotation;
@@ -61,5 +66,11 @@ public class Sorceress : MonoBehaviour
     {
         Vector3 shootDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - lightningImpact.transform.position + new Vector3(0, lightningImpactOffsetY, 0));
         lightningImpact.Shoot(shootDir, lightningImpactSpeed);
+    }
+
+    public void PoisonMist()
+    {
+        GameObject poisonMist = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.PosionMist);
+        poisonMist.transform.position = poisonMistTransform.position;
     }
 }

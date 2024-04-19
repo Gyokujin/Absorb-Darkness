@@ -35,4 +35,9 @@ public class SorceressAnimator : MonoBehaviour
     {
         sorceress.ShootLightning();
     }
+
+    public void SpawnPoisonMist()
+    {
+        sorceress.PoisonMist();
+    }
 }
