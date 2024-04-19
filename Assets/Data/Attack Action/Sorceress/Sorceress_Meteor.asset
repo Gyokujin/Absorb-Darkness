@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Sorceress_Meteor
   m_EditorClassIdentifier: 
   actionAnimation: Casting Meteor
-  recoveryTimeMin: 0.5
-  recoveryTimeMax: 1.75
+  recoveryTimeMin: 3
+  recoveryTimeMax: 5
   attackAngleMax: 35
   attackAngleMin: -35
   attackDisMin: 0
-  attackDisMax: 20
+  attackDisMax: 40

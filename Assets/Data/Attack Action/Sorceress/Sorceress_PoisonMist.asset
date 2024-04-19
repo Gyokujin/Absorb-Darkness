@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 137342359ad86204e88529c0b9b9a356, type: 3}
-  m_Name: Sorceress_A
+  m_Name: Sorceress_PoisonMist
   m_EditorClassIdentifier: 
-  actionAnimation: Magic Attack3
-  recoveryTimeMin: 0.5
-  recoveryTimeMax: 1.75
-  attackAngleMax: 35
-  attackAngleMin: -35
+  actionAnimation: Casting Poison Mist
+  recoveryTimeMin: 3
+  recoveryTimeMax: 3.5
+  attackAngleMax: 180
+  attackAngleMin: -180
   attackDisMin: 0
   attackDisMax: 20
