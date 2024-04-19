@@ -32,6 +32,37 @@ Transform:
   - {fileID: 1567916981165661694}
   m_Father: {fileID: 6306910829586246484}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &69722050550145528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5814877241757488315}
+  m_Layer: 0
+  m_Name: Meteor Transform5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5814877241757488315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69722050550145528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 6.25, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151847829774597353
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,11 +482,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72dc550ca0653e459092593f35227d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorTransform: {fileID: 2152312393805079624}
-  meteorFallSpeed: 5.5
+  meteors: []
+  meteorTransform:
+  - {fileID: 2152312393805079624}
+  - {fileID: 6962966294297418728}
+  - {fileID: 261833712856375576}
+  - {fileID: 4333471157798698483}
+  - {fileID: 5814877241757488315}
+  meteorFallSpeed: 22
+  meteorFallDelay: 0.5
   lightningImpactTransform: {fileID: 5282769393375881160}
   lightningImpactOffsetY: 1.75
-  lightningImpactSpeed: 28
+  lightningImpactSpeed: 34
   poisonMistTransform: {fileID: 8967081879668770238}
 --- !u!114 &8812117213106071051
 MonoBehaviour:
@@ -612,15 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttacks:
-  - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
   - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
   currentAttack: {fileID: 0}
   combatStanceState: {fileID: 7819910582564810956}
   pursueTargetState: {fileID: 4274514487120093332}
@@ -1028,7 +1058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2152312393805079624}
   m_Layer: 0
-  m_Name: Meteor Transform
+  m_Name: Meteor Transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1043,7 +1073,7 @@ Transform:
   m_GameObject: {fileID: 3604395663675937410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.5, z: 3.5}
+  m_LocalPosition: {x: -4, y: 6.25, z: 1.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1208,6 +1238,37 @@ Transform:
   - {fileID: 6306910829586246484}
   m_Father: {fileID: 7539617017004073338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4554349047616450651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4333471157798698483}
+  m_Layer: 0
+  m_Name: Meteor Transform4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4333471157798698483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554349047616450651}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 6.25, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4796401146832742199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,6 +1348,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pursueTargetState: {fileID: 4274514487120093332}
+--- !u!1 &4891808002737123190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261833712856375576}
+  m_Layer: 0
+  m_Name: Meteor Transform3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &261833712856375576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891808002737123190}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.25, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4929229781488887910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,6 +2316,37 @@ Transform:
   - {fileID: 5102772642961043740}
   m_Father: {fileID: 6047847286277136948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7013525545300959662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6962966294297418728}
+  m_Layer: 0
+  m_Name: Meteor Transform2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6962966294297418728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013525545300959662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 6.25, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7232778310048481663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,6 +2605,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2152312393805079624}
+  - {fileID: 6962966294297418728}
+  - {fileID: 261833712856375576}
+  - {fileID: 4333471157798698483}
+  - {fileID: 5814877241757488315}
   - {fileID: 5282769393375881160}
   - {fileID: 8967081879668770238}
   m_Father: {fileID: 7323164783708159819}
