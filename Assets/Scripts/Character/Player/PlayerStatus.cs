@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class PlayerStatus : CharacterStatus
 {
+    [Header("Hit")]
+    [SerializeField]
+    private int defaultLayer = 3;
+    [SerializeField]
+    private int invincibleLayer = 13;
+    [SerializeField]
+    private float invincibleTime = 2f;
+    private bool onHit;
+
     [Header("Move")]
     public float sprintSpeed = 7;
 
@@ -44,14 +53,19 @@ public class PlayerStatus : CharacterStatus
         staminaBar.SetMaxStamina(maxStamina);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool hitStun)
     {
         if (playerManager.onDie)
             return;
 
+        gameObject.layer = invincibleLayer;
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
-        playerAnimator.PlayTargetAnimation("Damage", true);
+
+        if (hitStun)
+        {
+            playerAnimator.PlayTargetAnimation("Damage", true);
+        }
 
         if (currentHealth <= 0)
         {
@@ -59,6 +73,15 @@ public class PlayerStatus : CharacterStatus
             currentHealth = 0;
             playerAnimator.PlayTargetAnimation("Dead", true);
         }
+        else
+        {
+            Invoke("GetbackInvincible", invincibleTime);
+        }
+    }
+
+    void GetbackInvincible()
+    {
+        gameObject.layer = defaultLayer;
     }
 
     public void TakeStamina(int amount)

@@ -167,11 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aabac84524e72549827964fd5f416ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells:
+  enemySpells:
   - {fileID: 4783806108879355279, guid: 70341d748b46b8845baa9c439ace83df, type: 3}
   - {fileID: 8478448050771093120, guid: fb20571e1b544634da8bf04c235045d4, type: 3}
   - {fileID: 2227999677048980329, guid: 0a87f172a0b090d4fa2014e64ebdc5ac, type: 3}
   - {fileID: 100000, guid: af067a5b770756e42823cb73cf3e4a4c, type: 3}
+  - {fileID: 6541688638125035441, guid: 4a9f077c524b2d541be42174327af803, type: 3}
 --- !u!1 &186743800
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +628,10 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 4405031280907552392}
+    - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: invincibleTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -901,6 +906,10 @@ PrefabInstance:
     - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_Name
       value: Sorceress
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095023924948939310, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: meteorFallSpeed
+      value: 9.25
       objectReference: {fileID: 0}
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalPosition.x
