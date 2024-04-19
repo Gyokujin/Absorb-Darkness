@@ -7,10 +7,15 @@ public class PoolManager : MonoBehaviour
 {
     public static PoolManager instance = null;
 
+    public enum EnemySpell
+    {
+        Meteor, MeteorExplosion, LightningImpact, ElectricShock, PosionMist
+    }
+
     [Header("Spell")]
     [SerializeField]
-    private GameObject[] spells;
-    private List<GameObject>[] spellPool;
+    private GameObject[] enemySpells;
+    private List<GameObject>[] enemySpellPool;
 
     void Awake()
     {
@@ -23,19 +28,19 @@ public class PoolManager : MonoBehaviour
             Destroy(this);
         }
 
-        spellPool = new List<GameObject>[spells.Length];
+        enemySpellPool = new List<GameObject>[enemySpells.Length];
 
-        for (int i = 0; i < spellPool.Length; i++)
+        for (int i = 0; i < enemySpellPool.Length; i++)
         {
-            spellPool[i] = new List<GameObject>();
+            enemySpellPool[i] = new List<GameObject>();
         }
     }
 
-    public GameObject GetSpell(int index)
+    public GameObject GetEnemySpell(int index)
     {
         GameObject select = null;
 
-        foreach (GameObject spellObj in spellPool[index])
+        foreach (GameObject spellObj in enemySpellPool[index])
         {
             if (!spellObj.activeSelf)
             {
@@ -47,8 +52,8 @@ public class PoolManager : MonoBehaviour
 
         if (!select)
         {
-            select = Instantiate(spells[index], transform);
-            spellPool[index].Add(select);
+            select = Instantiate(enemySpells[index], transform);
+            enemySpellPool[index].Add(select);
         }
 
         return select;
