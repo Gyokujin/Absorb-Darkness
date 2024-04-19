@@ -18,12 +18,13 @@ public class SorceressAnimator : MonoBehaviour
 
     public void SpawnMeteorAnimation()
     {
-        sorceress.SpawnMeteor();
+        sorceress.SpawnMeteors();
     }
 
     public void FallMeteorAnimation()
     {
-        sorceress.FallMeteor();
+        StartCoroutine(sorceress.FallMeteors());
+        // sorceress.FallMeteors();
     }
 
     public void SpawnLightningAnimation()

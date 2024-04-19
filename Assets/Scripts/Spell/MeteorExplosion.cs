@@ -14,7 +14,7 @@ public class MeteorExplosion : MonoBehaviour
     void OnEnable()
     {
         collider.enabled = true;
-        Invoke("OffCollider", 0.1f);
+        Invoke("OffCollider", 0.05f);
     }
 
     void OffCollider()
