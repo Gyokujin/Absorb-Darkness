@@ -150,7 +150,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Casting Lightning Impact
-  m_Speed: 2
+  m_Speed: 2.8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5033119945590735877}
@@ -240,7 +240,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Casting Meteor
-  m_Speed: 0.85
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 711007009005852148}

@@ -6,7 +6,7 @@ public class LightningImpact : MonoBehaviour
 {
     [Header("Shooting")]
     [SerializeField]
-    private float shootTime = 20; // 메테오 풀링 버그방지용
+    private float shootTime = 20;
     private float curShootTime;
     private bool onShooting;
 
