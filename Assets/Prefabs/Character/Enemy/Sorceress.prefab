@@ -401,7 +401,7 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
-  stopDistance: 10
+  stopDistance: 20
   currentRecoveryTime: 0
   rigidbody: {fileID: 0}
   collider: {fileID: 0}
@@ -423,7 +423,8 @@ MonoBehaviour:
   meteorTransform: {fileID: 2152312393805079624}
   meteorFallSpeed: 3.1
   lightningImpactTransform: {fileID: 5282769393375881160}
-  lightningImpactSpeed: 22.5
+  lightningImpactOffsetY: 1.75
+  lightningImpactSpeed: 25
 --- !u!114 &8812117213106071051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +451,7 @@ MonoBehaviour:
   detectionRadius: 15
   detectionAngleMax: 50
   detectionAngleMin: -50
-  attackRangeMax: 10
+  attackRangeMax: 25
   hitTime: 1
   knockbackTime: 2.5
   knockbackPower: 50
