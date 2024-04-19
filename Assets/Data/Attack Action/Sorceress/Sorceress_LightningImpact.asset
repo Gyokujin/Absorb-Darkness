@@ -18,4 +18,4 @@ MonoBehaviour:
   attackAngleMax: 35
   attackAngleMin: -35
   attackDisMin: 0
-  attackDisMax: 20
+  attackDisMax: 35
