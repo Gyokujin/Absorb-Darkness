@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2937721339537062253}
   - component: {fileID: 2732260821871943438}
   - component: {fileID: 5184662997848930070}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spell_LightningImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14603,9 +14603,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.5
-  m_Range: 4
+  m_Color: {r: 0.9433962, g: 0.6136245, b: 0.19134924, a: 1}
+  m_Intensity: 1.25
+  m_Range: 6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

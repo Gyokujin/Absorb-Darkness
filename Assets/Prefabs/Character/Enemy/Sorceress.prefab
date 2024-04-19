@@ -159,6 +159,37 @@ Transform:
   - {fileID: 2013231661275153153}
   m_Father: {fileID: 5154725266699984768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &561417566607216175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8967081879668770238}
+  m_Layer: 0
+  m_Name: PoisonMist Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8967081879668770238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561417566607216175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &782300444550976456
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,10 +259,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4485789632038293139}
+  - {fileID: 3823108923368413742}
   - {fileID: 7081273940025020003}
   - {fileID: 7790592378129280624}
   - {fileID: 4575604216957081403}
-  - {fileID: 3823108923368413742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7365873495875009557
@@ -421,10 +452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteorTransform: {fileID: 2152312393805079624}
-  meteorFallSpeed: 3.1
+  meteorFallSpeed: 5.5
   lightningImpactTransform: {fileID: 5282769393375881160}
   lightningImpactOffsetY: 1.75
-  lightningImpactSpeed: 25
+  lightningImpactSpeed: 28
+  poisonMistTransform: {fileID: 8967081879668770238}
 --- !u!114 &8812117213106071051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +612,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttacks:
+  - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
   - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
+  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
+  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
+  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
+  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
+  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
+  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
+  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
   currentAttack: {fileID: 0}
   combatStanceState: {fileID: 7819910582564810956}
   pursueTargetState: {fileID: 4274514487120093332}
@@ -2443,5 +2483,6 @@ Transform:
   m_Children:
   - {fileID: 2152312393805079624}
   - {fileID: 5282769393375881160}
+  - {fileID: 8967081879668770238}
   m_Father: {fileID: 7323164783708159819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -19865,7 +19865,8 @@ GameObject:
   - component: {fileID: 6945687642133635651}
   - component: {fileID: 7982023354317671801}
   - component: {fileID: 6648127115147505182}
-  m_Layer: 0
+  - component: {fileID: -2191165595202390066}
+  m_Layer: 14
   m_Name: Spell_MeteorExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19950,3 +19951,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackType: 3
   damage: 50
+--- !u!114 &-2191165595202390066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478448050771093120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bbc0cc42918b7409b07a3570cbb1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

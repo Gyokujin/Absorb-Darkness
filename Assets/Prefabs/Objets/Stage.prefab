@@ -269,7 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 8
+  attackType: 0
+  damage: 10
 --- !u!1 &5087894930702496008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 8
+  attackType: 0
+  damage: 10
 --- !u!1 &8503588040319468915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4931088057855660501, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4931088057855660501, guid: f76b2b1e7783705418818e8f1bca972c, type: 3}
       propertyPath: m_StaticEditorFlags
