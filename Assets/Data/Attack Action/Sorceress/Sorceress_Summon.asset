@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 137342359ad86204e88529c0b9b9a356, type: 3}
-  m_Name: Sorceress_LightningImpact
+  m_Name: Sorceress_Summon
   m_EditorClassIdentifier: 
-  actionAnimation: Casting Lightning Impact
-  recoveryTimeMin: 1.2
-  recoveryTimeMax: 1.75
-  attackAngleMax: 60
-  attackAngleMin: -60
+  actionAnimation: Casting Summon
+  recoveryTimeMin: 3
+  recoveryTimeMax: 3.5
+  attackAngleMax: 180
+  attackAngleMin: -180
   attackDisMin: 0
-  attackDisMax: 30
+  attackDisMax: 20
