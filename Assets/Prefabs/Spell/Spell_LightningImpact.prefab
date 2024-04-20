@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootTime: 5
+  onShooting: 0
   lightningEffect: {fileID: 7855951014405498844}
 --- !u!114 &5184662997848930070
 MonoBehaviour:
