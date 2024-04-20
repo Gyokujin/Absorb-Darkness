@@ -8,16 +8,29 @@ public class LightningImpact : MonoBehaviour
     [SerializeField]
     private float shootTime = 20;
     private float curShootTime;
+    [SerializeField]
     private bool onShooting;
 
     [Header("Component")]
     [SerializeField]
     private GameObject lightningEffect;
+    private new Collider collider;
     private new Rigidbody rigidbody;
 
     void Awake()
     {
         Init();
+    }
+
+    void Init()
+    {
+        collider = GetComponent<Collider>();
+        rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void OnEnable()
+    {
+        collider.enabled = false;
     }
 
     void Update()
@@ -35,14 +48,10 @@ public class LightningImpact : MonoBehaviour
         }
     }
 
-    void Init()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-
     public void Shoot(Vector3 shootDir, float speed)
     {
         onShooting = true;
+        collider.enabled = true;
         curShootTime = shootTime;
         lightningEffect.SetActive(true);
         rigidbody.velocity = shootDir * speed;
@@ -50,9 +59,9 @@ public class LightningImpact : MonoBehaviour
 
     IEnumerator ElectricShock()
     {
+        rigidbody.velocity = Vector3.zero;
         GameObject electricShock = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.ElectricShock);
         electricShock.transform.position = transform.position;
-        rigidbody.velocity = Vector3.zero;
 
         yield return null;
         Return();
@@ -60,7 +69,6 @@ public class LightningImpact : MonoBehaviour
 
     void Return()
     {
-        onShooting = false;
         rigidbody.velocity = Vector3.zero;
         lightningEffect.SetActive(false);
         PoolManager.instance.Return(gameObject);

@@ -1255,9 +1255,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 627337151530297000, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: enemyAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
     - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_Name
       value: Sorceress
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095023924948939310, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: lightningImpactSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalPosition.x

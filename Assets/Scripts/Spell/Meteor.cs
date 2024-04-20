@@ -62,7 +62,7 @@ public class Meteor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3 || other.gameObject.layer == 6)
+        if (other.gameObject.layer == 6)
         {
             StartCoroutine("Explosion");
         }
