@@ -5,7 +5,6 @@ using UnityEngine;
 public class Sorceress : MonoBehaviour
 {
     [Header("Spell")]
-    [SerializeField]
     private Meteor[] meteors;
     private LightningImpact lightningImpact;
 
@@ -24,10 +23,17 @@ public class Sorceress : MonoBehaviour
     private float lightningImpactOffsetY = 0.5f;
     [SerializeField]
     private float lightningImpactSpeed = 12;
+    [SerializeField]
+    private float lightningImpactRotateLimit = 60;
 
     [Header("PoisonMist")]
     [SerializeField]
     private Transform poisonMistTransform;
+
+    [Header("Summon")]
+    [SerializeField]
+    private Transform[] summonTransforms;
+    private int summonCount;
 
     [Header("Compnent")]
     private EnemyManager enemyManager;
@@ -78,7 +84,14 @@ public class Sorceress : MonoBehaviour
 
     public void ShootLightning()
     {
-        Vector3 shootDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - lightningImpact.transform.position + new Vector3(0, lightningImpactOffsetY, 0));
+        Vector3 shootDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - lightningImpactTransform.position + Vector3.up * lightningImpactOffsetY);
+        float angle = Vector3.Angle(transform.forward, shootDir);
+
+        if (angle > lightningImpactRotateLimit) // 만약 범위 밖으로 벗어난다면 정면으로 쏘게한다.
+        {
+            shootDir = transform.forward;
+        }
+
         lightningImpact.Shoot(shootDir, lightningImpactSpeed);
     }
 
@@ -86,5 +99,13 @@ public class Sorceress : MonoBehaviour
     {
         GameObject poisonMist = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.PosionMist);
         poisonMist.transform.position = poisonMistTransform.position;
+    }
+
+    public void SummonBat()
+    {
+        GameObject summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat);
+        summonBat.transform.position = summonTransforms[summonCount % 2].position;
+        summonBat.transform.rotation = transform.rotation;
+        summonCount++;
     }
 }
