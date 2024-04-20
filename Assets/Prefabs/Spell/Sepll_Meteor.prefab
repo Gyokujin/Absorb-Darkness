@@ -9717,7 +9717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf6d18d7b0a24d41a7525b110d9f632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallTime: 15
+  fallTime: 10
 --- !u!1 &6294875344551358889
 GameObject:
   m_ObjectHideFlags: 0

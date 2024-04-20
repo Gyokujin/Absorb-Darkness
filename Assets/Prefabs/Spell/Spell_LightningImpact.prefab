@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bbd9e8be587bf47b56b4d448d528a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 5
+  shootTime: 3
   onShooting: 0
   lightningEffect: {fileID: 7855951014405498844}
 --- !u!114 &5184662997848930070
