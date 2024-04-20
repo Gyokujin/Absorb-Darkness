@@ -30,6 +30,7 @@ public class LightningImpact : MonoBehaviour
 
     void OnEnable()
     {
+        onShooting = false;
         collider.enabled = false;
     }
 

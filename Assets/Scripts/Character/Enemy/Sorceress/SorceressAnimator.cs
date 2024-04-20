@@ -24,7 +24,6 @@ public class SorceressAnimator : MonoBehaviour
     public void FallMeteorAnimation()
     {
         StartCoroutine(sorceress.FallMeteors());
-        // sorceress.FallMeteors();
     }
 
     public void SpawnLightningAnimation()
@@ -40,5 +39,10 @@ public class SorceressAnimator : MonoBehaviour
     public void SpawnPoisonMist()
     {
         sorceress.PoisonMist();
+    }
+
+    public void Summon()
+    {
+        sorceress.SummonBat();
     }
 }
