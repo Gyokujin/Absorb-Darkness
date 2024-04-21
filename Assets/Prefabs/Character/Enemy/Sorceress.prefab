@@ -463,7 +463,7 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
-  stopDistance: 20
+  stopDistance: 5
   currentRecoveryTime: 0
   rigidbody: {fileID: 0}
   collider: {fileID: 0}
@@ -498,6 +498,7 @@ MonoBehaviour:
   summonTransforms:
   - {fileID: 2611485775698470171}
   - {fileID: 2903739390681913720}
+  summonDelay: 1
 --- !u!114 &8812117213106071051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +525,7 @@ MonoBehaviour:
   detectionRadius: 15
   detectionAngleMax: 50
   detectionAngleMin: -50
-  attackRangeMax: 25
+  attackRangeMax: 20
   hitTime: 1
   knockbackTime: 2.5
   knockbackPower: 50
@@ -827,7 +828,7 @@ Transform:
   m_GameObject: {fileID: 2172360512960909327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.246, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
