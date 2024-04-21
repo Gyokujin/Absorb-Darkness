@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Collider))]
 public class DamageCollider : MonoBehaviour
 {
     public enum AttackType
     {
-        PlayerWeapon, PlayerSpell, EnemyWeapon, EnemySpell
+        PlayerWeapon, PlayerSpell, EnemyUnarmed, EnemyWeapon, EnemySpell
     }
 
     [SerializeField]
@@ -29,15 +30,20 @@ public class DamageCollider : MonoBehaviour
         damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
 
-        if (attackType == AttackType.PlayerWeapon || attackType == AttackType.EnemyWeapon)
+        if (attackType == AttackType.EnemyUnarmed || attackType == AttackType.PlayerWeapon || attackType == AttackType.EnemyWeapon)
         {
             damageCollider.enabled = false;
         }
     }
 
-    public void AbleDamageCollider(bool able)
+    public void OpenDamageCollider()
     {
-        damageCollider.enabled = able;
+        damageCollider.enabled = true;
+    }
+
+    public void CloseDamageCollider()
+    {
+        damageCollider.enabled = false;
     }
 
     void OnTriggerEnter(Collider collision)
@@ -58,6 +64,7 @@ public class DamageCollider : MonoBehaviour
 
                 break;
 
+            case AttackType.EnemyUnarmed:
             case AttackType.EnemyWeapon:
             case AttackType.EnemySpell:
                 if (collision.tag == "Player")
