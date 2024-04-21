@@ -15,6 +15,7 @@ public class Sorceress : MonoBehaviour
     private float meteorFallSpeed = 1.2f;
     [SerializeField]
     private float meteorFallDelay = 0.5f;
+    private WaitForSeconds meteorFallWait;
 
     [Header("LightningImpact")]
     [SerializeField]
@@ -34,6 +35,9 @@ public class Sorceress : MonoBehaviour
     [SerializeField]
     private Transform[] summonTransforms;
     private int summonCount;
+    [SerializeField]
+    private float summonDelay = 1f;
+    private WaitForSeconds summonWait;
 
     [Header("Compnent")]
     private EnemyManager enemyManager;
@@ -51,6 +55,8 @@ public class Sorceress : MonoBehaviour
     void Start()
     {
         meteors = new Meteor[meteorTransform.Length];
+        meteorFallWait = new WaitForSeconds(meteorFallDelay);
+        summonWait = new WaitForSeconds(summonDelay);
     }
 
     public void SpawnMeteors()
@@ -70,7 +76,7 @@ public class Sorceress : MonoBehaviour
         {
             Vector3 fallDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
             meteor.Falling(fallDir, meteorFallSpeed);
-            yield return new WaitForSeconds(meteorFallDelay);
+            yield return meteorFallWait;
         }
     }
 
@@ -101,11 +107,16 @@ public class Sorceress : MonoBehaviour
         poisonMist.transform.position = poisonMistTransform.position;
     }
 
-    public void SummonBat()
+    public IEnumerator SummonBat()
     {
-        GameObject summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat);
-        summonBat.transform.position = summonTransforms[summonCount % 2].position;
-        summonBat.transform.rotation = transform.rotation;
         summonCount++;
+        Vector3 summonPos = summonTransforms[summonCount % 2].position;
+        GameObject summonSFX = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Summon);
+        summonSFX.transform.position = summonPos;
+
+        yield return summonWait;
+        GameObject summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat);
+        summonBat.transform.position = summonPos;
+        summonBat.transform.rotation = transform.rotation;
     }
 }
