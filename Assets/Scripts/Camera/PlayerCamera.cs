@@ -42,7 +42,7 @@ public class PlayerCamera : MonoBehaviour
     private float lookAngle = 0.033f;
     private float pivotAngle;
 
-    [Header("Lock On")]
+    [Header("LockOn Target")]
     [SerializeField]
     private List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
@@ -51,12 +51,16 @@ public class PlayerCamera : MonoBehaviour
     public Transform rightLockTarget;
     [SerializeField]
     private LayerMask environmentLayer;
+
+    [Header("LockOn Parameter")]
     [SerializeField]
     private float lockRadius = 26;
     [SerializeField]
     private float maxLockOnDistance = 30;
     [SerializeField]
     private float lockOnAngleLimit = 50;
+    [SerializeField]
+    private float lockOnRotateMax = 30;
     [SerializeField]
     private float lockedPivotPosition = 2.25f;
     [SerializeField]
@@ -148,6 +152,7 @@ public class PlayerCamera : MonoBehaviour
 
             targetRotation = Quaternion.LookRotation(dir);
             Vector3 eulerAngle = targetRotation.eulerAngles;
+            eulerAngle.x = Mathf.Min(eulerAngle.x, lockOnRotateMax);
             eulerAngle.y = 0;
             cameraPivotTransform.localEulerAngles = eulerAngle;
         }
