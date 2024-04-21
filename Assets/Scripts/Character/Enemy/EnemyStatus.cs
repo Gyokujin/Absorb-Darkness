@@ -22,6 +22,7 @@ public class EnemyStatus : CharacterStatus
     private WaitForSeconds knockbackWait;
 
     [Header("Component")]
+    private new Rigidbody rigidbody;
     private Animator animator;
     private EnemyManager enemyManager;
     private EnemyAudio enemyAudio;
@@ -33,6 +34,7 @@ public class EnemyStatus : CharacterStatus
 
     void Init()
     {
+        rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         enemyManager = GetComponent<EnemyManager>();
         enemyAudio = GetComponent<EnemyAudio>();
@@ -109,6 +111,7 @@ public class EnemyStatus : CharacterStatus
     void DieProcess()
     {
         currentHealth = 0;
+        rigidbody.isKinematic = true;
         enemyManager.onDie = true;
         enemyManager.collider.enabled = false;
         enemyManager.blockerCollider.enabled = false;

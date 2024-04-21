@@ -23,7 +23,7 @@ public class EnemyAnimator : AnimatorManager
 
     void OnAnimatorMove()
     {
-        if (enemyManager.onHit)
+        if (enemyManager.onHit || enemyManager.onDie)
             return;
 
         enemyManager.rigidbody.drag = 0;
