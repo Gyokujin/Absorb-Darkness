@@ -191,7 +191,8 @@ MonoBehaviour:
     m_Bits: 256
   lockRadius: 26
   maxLockOnDistance: 20
-  lockOnAngleLimit: 35
+  lockOnAngleLimit: 60
+  lockOnRotateMax: 20
   lockedPivotPosition: 2.8
   unlockedPivotPosition: 2.4
   lockOnUI: {fileID: 0}
