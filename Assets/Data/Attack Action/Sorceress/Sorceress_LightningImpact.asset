@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sorceress_LightningImpact
   m_EditorClassIdentifier: 
   actionAnimation: Casting Lightning Impact
-  recoveryTimeMin: 1.2
-  recoveryTimeMax: 1.75
+  recoveryTimeMin: 1.5
+  recoveryTimeMax: 2.25
   attackAngleMax: 60
   attackAngleMin: -60
   attackDisMin: 0
