@@ -43,6 +43,7 @@ public class SorceressAnimator : MonoBehaviour
 
     public void Summon()
     {
-        sorceress.SummonBat();
+        StartCoroutine(sorceress.SummonBat());
+        // sorceress.SummonBat();
     }
 }
