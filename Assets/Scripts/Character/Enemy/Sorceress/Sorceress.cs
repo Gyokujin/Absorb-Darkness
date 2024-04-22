@@ -41,6 +41,7 @@ public class Sorceress : MonoBehaviour
 
     [Header("Compnent")]
     private EnemyManager enemyManager;
+    private CharacterAudio characterAudio;
 
     void Awake()
     {
@@ -50,6 +51,7 @@ public class Sorceress : MonoBehaviour
     void Init()
     {
         enemyManager = GetComponent<EnemyManager>();
+        characterAudio = GetComponent<CharacterAudio>();
     }
 
     void Start()
@@ -65,6 +67,7 @@ public class Sorceress : MonoBehaviour
         lightningImpact.transform.position = lightningImpactTransform.position;
         Quaternion spellRotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position - transform.position);
         lightningImpact.transform.rotation = spellRotation;
+        characterAudio.PlaySFX(characterAudio.audioClips[4]);
     }
 
     public void ShootLightning()
@@ -78,6 +81,7 @@ public class Sorceress : MonoBehaviour
         }
 
         lightningImpact.Shoot(shootDir, lightningImpactSpeed);
+        characterAudio.PlaySFX(characterAudio.audioClips[5]);
     }
 
     public void PoisonMist()
