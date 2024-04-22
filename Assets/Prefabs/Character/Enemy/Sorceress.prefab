@@ -267,11 +267,12 @@ GameObject:
   - component: {fileID: 7384724975378014323}
   - component: {fileID: 878149315805515896}
   - component: {fileID: 6095023924948939310}
+  - component: {fileID: 7280089006342407748}
   - component: {fileID: 8812117213106071051}
   - component: {fileID: 6114479074017587493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sorceress
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,7 +317,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -456,6 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDie: 0
   lockOnTransform: {fileID: 7790592378129280624}
+  enemyType: 2
   curState: {fileID: 1985222649722456806}
   isInteracting: 0
   isPreformingAction: 0
@@ -463,6 +465,7 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
+  attackColliders: []
   stopDistance: 5
   currentRecoveryTime: 0
   rigidbody: {fileID: 0}
@@ -499,6 +502,18 @@ MonoBehaviour:
   - {fileID: 2611485775698470171}
   - {fileID: 2903739390681913720}
   summonDelay: 1
+--- !u!114 &7280089006342407748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957284572224849543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297b61fba3d5b9040b74d832bf153bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8812117213106071051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,8 +529,8 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   rotationSpeed: 10
-  healthLevel: 10
-  healthLevelAmount: 10
+  healthLevel: 3
+  healthLevelAmount: 50
   maxHealth: 0
   currentHealth: 0
   staminaLevel: 10
@@ -654,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttacks:
-  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
+  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
   currentAttack: {fileID: 0}
   combatStanceState: {fileID: 7819910582564810956}
   pursueTargetState: {fileID: 4274514487120093332}
