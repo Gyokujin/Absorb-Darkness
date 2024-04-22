@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6095023924948939310}
   - component: {fileID: 7280089006342407748}
   - component: {fileID: 8812117213106071051}
-  - component: {fileID: 6114479074017587493}
+  - component: {fileID: 7969736347837725267}
   m_Layer: 7
   m_Name: GoblinSorceress
   m_TagString: Enemy
@@ -359,7 +359,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -473,6 +473,7 @@ MonoBehaviour:
   blockerCollider: {fileID: 5758493670866006236}
   navMeshAgent: {fileID: 0}
   currentTarget: {fileID: 0}
+  characterAudio: {fileID: 0}
 --- !u!114 &6095023924948939310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,14 +486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72dc550ca0653e459092593f35227d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorTransform:
-  - {fileID: 2152312393805079624}
-  - {fileID: 6962966294297418728}
-  - {fileID: 261833712856375576}
-  - {fileID: 4333471157798698483}
-  - {fileID: 5814877241757488315}
-  meteorFallSpeed: 22
-  meteorFallDelay: 0.5
   lightningImpactTransform: {fileID: 5282769393375881160}
   lightningImpactOffsetY: 1.75
   lightningImpactSpeed: 36
@@ -502,6 +495,16 @@ MonoBehaviour:
   - {fileID: 2611485775698470171}
   - {fileID: 2903739390681913720}
   summonDelay: 1
+  meteorTransform:
+  - {fileID: 2152312393805079624}
+  - {fileID: 6962966294297418728}
+  - {fileID: 261833712856375576}
+  - {fileID: 4333471157798698483}
+  - {fileID: 5814877241757488315}
+  meteorFallSpeed: 22
+  meteorFallDelay: 0.5
+  lightningSpawnClip: {fileID: 0}
+  lightningShootClip: {fileID: 0}
 --- !u!114 &7280089006342407748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +548,7 @@ MonoBehaviour:
   knockbackTime: 2.5
   knockbackPower: 50
   damageAmount: 0
---- !u!114 &6114479074017587493
+--- !u!114 &7969736347837725267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -554,13 +557,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 957284572224849543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4160bf545baaa03419bf0eb38a3b37d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 153d34a2546f77f44aaf2c6dfe9c627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleClip: {fileID: 0}
-  attackClip: {fileID: 0}
-  hitClip: {fileID: 0}
-  dieClip: {fileID: 0}
+  audioVolume: 0
+  enemyCh: 0
+  audioClips: []
 --- !u!1 &960180742257226813
 GameObject:
   m_ObjectHideFlags: 0

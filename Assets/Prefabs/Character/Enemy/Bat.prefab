@@ -1206,7 +1206,7 @@ GameObject:
   - component: {fileID: 2072149044931096992}
   - component: {fileID: 1316856293422706529}
   - component: {fileID: 2042603856108357006}
-  - component: {fileID: 2289088927293803542}
+  - component: {fileID: 1646684256437070726}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Enemy
@@ -1302,7 +1302,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   blockerCollider: {fileID: 3988145368780504335}
   navMeshAgent: {fileID: 4953912797558887378}
   currentTarget: {fileID: 0}
-  enemyAudio: {fileID: 0}
+  characterAudio: {fileID: 0}
 --- !u!114 &2042603856108357006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
   knockbackTime: 2
   knockbackPower: 0.85
   damageAmount: 0
---- !u!114 &2289088927293803542
+--- !u!114 &1646684256437070726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1448,13 +1448,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4636373201134749058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4160bf545baaa03419bf0eb38a3b37d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 153d34a2546f77f44aaf2c6dfe9c627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectClip: {fileID: 8300000, guid: 2a3d44abd336aee46a40b1038fa57a6a, type: 3}
-  attackClip: {fileID: 8300000, guid: 4d2d043122db1794e913f04758b28ad9, type: 3}
-  hitClip: {fileID: 8300000, guid: d1b733a0379e1454a8c15f14bd5c4595, type: 3}
-  dieClip: {fileID: 8300000, guid: 39d2907d8f026a94d83aaf31ab9f765f, type: 3}
+  audioVolume: 0.6
+  enemyCh: 3
+  audioClips:
+  - {fileID: 8300000, guid: 2a3d44abd336aee46a40b1038fa57a6a, type: 3}
+  - {fileID: 8300000, guid: 4d2d043122db1794e913f04758b28ad9, type: 3}
+  - {fileID: 8300000, guid: d1b733a0379e1454a8c15f14bd5c4595, type: 3}
+  - {fileID: 8300000, guid: 39d2907d8f026a94d83aaf31ab9f765f, type: 3}
 --- !u!1 &5415231045576273130
 GameObject:
   m_ObjectHideFlags: 0

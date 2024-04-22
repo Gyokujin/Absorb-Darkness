@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 142081681564000534}
   - component: {fileID: 581091572636157188}
   - component: {fileID: 8226064185287231384}
-  - component: {fileID: 764690348005586}
+  - component: {fileID: 4095427700864287220}
   m_Layer: 7
   m_Name: Skeleton Knight
   m_TagString: Enemy
@@ -280,7 +280,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -385,7 +385,7 @@ MonoBehaviour:
   blockerCollider: {fileID: 6254917671041462624}
   navMeshAgent: {fileID: 0}
   currentTarget: {fileID: 0}
-  enemyAudio: {fileID: 0}
+  characterAudio: {fileID: 0}
 --- !u!114 &581091572636157188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +429,7 @@ MonoBehaviour:
   knockbackTime: 2
   knockbackPower: 0.85
   damageAmount: 0
---- !u!114 &764690348005586
+--- !u!114 &4095427700864287220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,13 +438,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5256624613381146393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4160bf545baaa03419bf0eb38a3b37d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 153d34a2546f77f44aaf2c6dfe9c627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectClip: {fileID: 8300000, guid: a48f9b9ca1708eb4f8cab777ad5be522, type: 3}
-  attackClip: {fileID: 8300000, guid: 8e4851963e3ebde4b948020b48d7cd78, type: 3}
-  hitClip: {fileID: 8300000, guid: a9b58be744936c94298dba2580eb3779, type: 3}
-  dieClip: {fileID: 8300000, guid: df0d06b890f02964b897172a133f4afe, type: 3}
+  audioVolume: 0.7
+  enemyCh: 3
+  audioClips:
+  - {fileID: 8300000, guid: a48f9b9ca1708eb4f8cab777ad5be522, type: 3}
+  - {fileID: 8300000, guid: 8e4851963e3ebde4b948020b48d7cd78, type: 3}
+  - {fileID: 8300000, guid: a9b58be744936c94298dba2580eb3779, type: 3}
+  - {fileID: 8300000, guid: df0d06b890f02964b897172a133f4afe, type: 3}
 --- !u!1 &6685448713027061803
 GameObject:
   m_ObjectHideFlags: 0
