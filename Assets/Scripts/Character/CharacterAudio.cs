@@ -5,24 +5,50 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class CharacterAudio : MonoBehaviour
 {
-    [Header("Sound Clips")]
-    public AudioClip detectClip;
-    public AudioClip attackClip;
-    public AudioClip hitClip;
-    public AudioClip dieClip;
+    [Header("Audio")]
+    [SerializeField]
+    [Range(0, 1)]
+    private float audioVolume;
+    [SerializeField]
+    private int enemyCh;
+    private int enemyIndex;
 
-    [Header("Component")]
-    private AudioSource audioSource;
+    [Header("Sound Clip")]
+    public AudioClip[] audioClips;
+    private AudioSource[] enemyAudios;
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        Init();
+    }
+
+    void Init()
+    {
+        GameObject enemyAudio = new GameObject("EnemyAudio");
+        enemyAudio.transform.parent = transform;
+        enemyAudios = new AudioSource[enemyCh];
+
+        for (int k = 0; k < enemyCh; k++)
+        {
+            enemyAudios[k] = enemyAudio.AddComponent<AudioSource>();
+            enemyAudios[k].playOnAwake = false;
+            enemyAudios[k].volume = audioVolume;
+        }
     }
 
     public void PlaySFX(AudioClip audioClip)
     {
-        audioSource.Stop();
-        audioSource.clip = audioClip;
-        audioSource.Play();
+        for (int i = 0; i < enemyAudios.Length; i++)
+        {
+            int loopIndex = (i + enemyIndex) % enemyAudios.Length;
+
+            if (enemyAudios[loopIndex].isPlaying)
+                continue;
+
+            enemyIndex = loopIndex;
+            enemyAudios[loopIndex].clip = audioClip;
+            enemyAudios[loopIndex].Play();
+            break;
+        }
     }
 }

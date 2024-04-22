@@ -38,7 +38,7 @@ public class EnemyManager : CharacterManager
     private EnemyStatus enemyStatus;
     private EnemyAnimator enemyAnimator;
     [HideInInspector]
-    public EnemyAudio enemyAudio;
+    public CharacterAudio characterAudio;
 
     void Awake()
     {
@@ -52,7 +52,7 @@ public class EnemyManager : CharacterManager
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
-        enemyAudio = GetComponent<EnemyAudio>();
+        characterAudio = GetComponent<CharacterAudio>();
     }
 
     void Start()
