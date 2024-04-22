@@ -25,7 +25,7 @@ public class EnemyStatus : CharacterStatus
     private new Rigidbody rigidbody;
     private Animator animator;
     private EnemyManager enemyManager;
-    private EnemyAudio enemyAudio;
+    private CharacterAudio characterAudio;
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class EnemyStatus : CharacterStatus
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         enemyManager = GetComponent<EnemyManager>();
-        enemyAudio = GetComponent<EnemyAudio>();
+        characterAudio = GetComponent<CharacterAudio>();
         hitWait = new WaitForSeconds(hitTime);
         knockbackWait = new WaitForSeconds(knockbackTime);
     }
@@ -88,7 +88,7 @@ public class EnemyStatus : CharacterStatus
     IEnumerator DamageProcess(CharacterStatus player)
     {
         animator.SetTrigger("doHit");
-        enemyAudio.PlaySFX(enemyAudio.hitClip);
+        characterAudio.PlaySFX(characterAudio.audioClips[2]);
 
         yield return hitWait;
         enemyManager.currentTarget = player;
@@ -104,7 +104,7 @@ public class EnemyStatus : CharacterStatus
         enemyManager.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
 
         animator.SetTrigger("doKnockback");
-        enemyAudio.PlaySFX(enemyAudio.hitClip);
+        characterAudio.PlaySFX(characterAudio.audioClips[2]);
 
         yield return knockbackWait; // 플레이어 재추적
         enemyManager.currentTarget = player;
@@ -125,6 +125,6 @@ public class EnemyStatus : CharacterStatus
         }
 
         animator.SetTrigger("doDie");
-        enemyAudio.PlaySFX(enemyAudio.dieClip);
+        characterAudio.PlaySFX(characterAudio.audioClips[3]);
     }
 }
