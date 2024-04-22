@@ -503,8 +503,6 @@ MonoBehaviour:
   - {fileID: 5814877241757488315}
   meteorFallSpeed: 22
   meteorFallDelay: 0.5
-  lightningSpawnClip: {fileID: 0}
-  lightningShootClip: {fileID: 0}
 --- !u!114 &7280089006342407748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,9 +558,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153d34a2546f77f44aaf2c6dfe9c627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVolume: 0
-  enemyCh: 0
-  audioClips: []
+  audioVolume: 0.6
+  enemyCh: 7
+  audioClips:
+  - {fileID: 8300000, guid: d703680eb83155d4e9cd081f6c7ecf8c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 0d99ae3cc23d9a44e9ae488df426a4e5, type: 3}
+  - {fileID: 8300000, guid: 439874acb32b3cd498fde67f81380c69, type: 3}
+  - {fileID: 8300000, guid: 907af6344618f9a48855882483daa642, type: 3}
+  - {fileID: 8300000, guid: 75ea001c3cc1c4946a1d915d2d8f1816, type: 3}
+  - {fileID: 8300000, guid: e0e8b92bbb4ea28419fff8883773073b, type: 3}
+  - {fileID: 8300000, guid: 2a7b79f830c327c45a00cdc3249a98e0, type: 3}
+  - {fileID: 8300000, guid: 1c9b00924e7dc9440924bb48e651bbf2, type: 3}
+  - {fileID: 0}
 --- !u!1 &960180742257226813
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttacks:
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
+  - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
   currentAttack: {fileID: 0}
   combatStanceState: {fileID: 7819910582564810956}
   pursueTargetState: {fileID: 4274514487120093332}
