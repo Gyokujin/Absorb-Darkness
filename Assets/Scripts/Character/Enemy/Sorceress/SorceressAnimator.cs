@@ -16,16 +16,6 @@ public class SorceressAnimator : MonoBehaviour
         sorceress = GetComponentInParent<Sorceress>();
     }
 
-    public void SpawnMeteorAnimation()
-    {
-        sorceress.SpawnMeteors();
-    }
-
-    public void FallMeteorAnimation()
-    {
-        StartCoroutine(sorceress.FallMeteors());
-    }
-
     public void SpawnLightningAnimation()
     {
         sorceress.SpawnLightning();
@@ -41,9 +31,18 @@ public class SorceressAnimator : MonoBehaviour
         sorceress.PoisonMist();
     }
 
+    public void SpawnMeteorAnimation()
+    {
+        sorceress.SpawnMeteors();
+    }
+
+    public void FallMeteorAnimation()
+    {
+        StartCoroutine(sorceress.FallMeteors());
+    }
+
     public void Summon()
     {
         StartCoroutine(sorceress.SummonBat());
-        // sorceress.SummonBat();
     }
 }

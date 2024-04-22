@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyType
+{
+    Normal, Named, Boss
+}
+
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
 public class EnemyManager : CharacterManager
 {
+    public EnemyType enemyType;
+
     [Header("State")]
     public EnemyState curState;
 
@@ -15,6 +22,7 @@ public class EnemyManager : CharacterManager
     public bool isPreformingAction;
     public bool onHit;
     public LayerMask detectionLayer;
+    public DamageCollider[] attackColliders;
 
     [Header("Status")]
     [SerializeField]
@@ -52,6 +60,7 @@ public class EnemyManager : CharacterManager
         navMeshAgent.acceleration = enemyStatus.runSpeed;
         navMeshAgent.angularSpeed = enemyStatus.rotationSpeed;
         navMeshAgent.stoppingDistance = stopDistance;
+        attackColliders = GetComponentsInChildren<DamageCollider>();
     }
 
     void Update()
