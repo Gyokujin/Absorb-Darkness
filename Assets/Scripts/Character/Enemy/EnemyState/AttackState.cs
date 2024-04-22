@@ -39,6 +39,9 @@ public class AttackState : EnemyState
 
     void Attack(EnemyManager enemyManager, EnemyAnimator enemyAnimator)
     {
+        if (enemyManager.onDie)
+            return;
+
         enemyManager.isPreformingAction = true;
         enemyManager.navMeshAgent.enabled = false;
         enemyManager.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
