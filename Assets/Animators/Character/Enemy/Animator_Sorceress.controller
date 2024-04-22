@@ -541,13 +541,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -4164980491041468860}
-    m_Position: {x: 140, y: -70, z: 0}
+    m_Position: {x: 760, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8904085734958646530}
     m_Position: {x: 390, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2415510418211191945}
-    m_Position: {x: 760, y: 20, z: 0}
+    m_Position: {x: 660, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8449625573993099850}
     m_Position: {x: 310, y: 480, z: 0}
@@ -556,10 +556,10 @@ AnimatorStateMachine:
     m_Position: {x: 270, y: 1030, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7297755455400714903}
-    m_Position: {x: 390, y: -70, z: 0}
+    m_Position: {x: 120, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8049880611114976947}
-    m_Position: {x: 630, y: -70, z: 0}
+    m_Position: {x: 390, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2955617433922071929}
     m_Position: {x: 240, y: 260, z: 0}
@@ -597,7 +597,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Casting Summon
-  m_Speed: 1
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -526351753819790040}

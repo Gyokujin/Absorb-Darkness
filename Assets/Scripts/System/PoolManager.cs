@@ -14,7 +14,7 @@ public class PoolManager : MonoBehaviour
 
     public enum EnemySpell
     {
-        Meteor, MeteorExplosion, LightningImpact, ElectricShock, PosionMist, Summon
+        LightningImpact, ElectricShock, PosionMist, Summon, Meteor, MeteorExplosion
     }
 
     [Header("Enemy")]
