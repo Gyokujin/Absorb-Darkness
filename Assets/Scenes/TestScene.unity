@@ -884,10 +884,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8226064185287231384, guid: 4cb5b58d3cb7d144db6bdb6838d3b702, type: 3}
-      propertyPath: healthLevel
-      value: 18
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -908,8 +904,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_Name
-      value: Sorceress
+      value: GoblinSorceress
       objectReference: {fileID: 0}
+    - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114479074017587493, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dieClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d99ae3cc23d9a44e9ae488df426a4e5, type: 3}
+    - target: {fileID: 6114479074017587493, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: detectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d703680eb83155d4e9cd081f6c7ecf8c, type: 3}
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

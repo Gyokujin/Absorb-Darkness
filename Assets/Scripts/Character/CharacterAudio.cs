@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterAudio : MonoBehaviour
 {
     [Header("Sound Clips")]
-    public AudioClip idleClip;
+    public AudioClip detectClip;
     public AudioClip attackClip;
     public AudioClip hitClip;
     public AudioClip dieClip;

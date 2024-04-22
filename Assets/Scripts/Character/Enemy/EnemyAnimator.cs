@@ -33,11 +33,6 @@ public class EnemyAnimator : AnimatorManager
         enemyManager.rigidbody.velocity = velocity;
     }
 
-    public void IdleProcess()
-    {
-        enemyAudio.PlaySFX(enemyAudio.idleClip);
-    }
-
     public void AttackProcess()
     {
         enemyAudio.PlaySFX(enemyAudio.attackClip);
