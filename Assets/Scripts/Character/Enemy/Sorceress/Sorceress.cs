@@ -88,6 +88,7 @@ public class Sorceress : MonoBehaviour
     {
         GameObject poisonMist = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.PosionMist);
         poisonMist.transform.position = poisonMistTransform.position;
+        characterAudio.PlaySFX(characterAudio.audioClips[6]);
     }
 
     public IEnumerator SummonBat()
@@ -96,6 +97,7 @@ public class Sorceress : MonoBehaviour
         Vector3 summonPos = summonTransforms[summonCount % 2].position;
         GameObject summonSFX = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Summon);
         summonSFX.transform.position = summonPos;
+        characterAudio.PlaySFX(characterAudio.audioClips[7]);
 
         yield return summonWait;
         GameObject summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat);
@@ -105,6 +107,8 @@ public class Sorceress : MonoBehaviour
 
     public void SpawnMeteors()
     {
+        characterAudio.PlaySFX(characterAudio.audioClips[8]);
+
         for (int i = 0; i < meteors.Length; i++)
         {
             meteors[i] = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
@@ -120,6 +124,7 @@ public class Sorceress : MonoBehaviour
         {
             Vector3 fallDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
             meteor.Falling(fallDir, meteorFallSpeed);
+            characterAudio.PlaySFX(characterAudio.audioClips[9]);
             yield return meteorFallWait;
         }
     }
