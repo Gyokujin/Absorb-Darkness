@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDie: 0
   lockOnTransform: {fileID: 3027419130651067874}
+  enemyType: 0
   curState: {fileID: 7440158907284766626}
   isInteracting: 0
   isPreformingAction: 0
@@ -376,6 +377,7 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
+  attackColliders: []
   stopDistance: 2
   currentRecoveryTime: 3
   rigidbody: {fileID: 0}
@@ -383,6 +385,7 @@ MonoBehaviour:
   blockerCollider: {fileID: 6254917671041462624}
   navMeshAgent: {fileID: 0}
   currentTarget: {fileID: 0}
+  enemyAudio: {fileID: 0}
 --- !u!114 &581091572636157188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +413,7 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 6
   rotationSpeed: 135
-  healthLevel: 20
+  healthLevel: 18
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
@@ -438,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4160bf545baaa03419bf0eb38a3b37d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleClip: {fileID: 8300000, guid: a48f9b9ca1708eb4f8cab777ad5be522, type: 3}
+  detectClip: {fileID: 8300000, guid: a48f9b9ca1708eb4f8cab777ad5be522, type: 3}
   attackClip: {fileID: 8300000, guid: 8e4851963e3ebde4b948020b48d7cd78, type: 3}
   hitClip: {fileID: 8300000, guid: a9b58be744936c94298dba2580eb3779, type: 3}
   dieClip: {fileID: 8300000, guid: df0d06b890f02964b897172a133f4afe, type: 3}
