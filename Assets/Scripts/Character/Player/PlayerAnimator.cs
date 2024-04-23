@@ -103,12 +103,11 @@ public class PlayerAnimator : AnimatorManager
     public void DodgeEnd()
     {
         playerManager.onDodge = false;
+    }
 
-        //if (playerStatus.invincibleTime <= 0)
-        //{
-
-        //}
-        // playerStatus.ini
+    public void HitEnd()
+    {
+        playerManager.onDamage = false;
     }
 
     public void EnableCombo()
