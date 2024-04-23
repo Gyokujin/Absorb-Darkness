@@ -39,16 +39,19 @@ public class PlayerStatus : CharacterStatus
         InitStamina();
     }
 
-    void Update()
+    void Update() 
     {
-        if (curInvincibleTime > 0)
+        if (!playerManager.onDie)
         {
-            curInvincibleTime -= Time.deltaTime;
-            gameObject.layer = playerManager.invincibleLayer;
-        }
-        else if (!playerManager.onDodge)
-        {
-            gameObject.layer = playerManager.defaultLayer;
+            if (curInvincibleTime > 0)
+            {
+                curInvincibleTime -= Time.deltaTime;
+                gameObject.layer = playerManager.invincibleLayer;
+            }
+            else if (!playerManager.onDodge)
+            {
+                gameObject.layer = playerManager.defaultLayer;
+            }
         }
     }
 
@@ -82,14 +85,20 @@ public class PlayerStatus : CharacterStatus
 
         if (currentHealth <= 0)
         {
-            playerManager.onDie = true;
-            currentHealth = 0;
-            playerAnimator.PlayTargetAnimation("Dead", true);
+            DieProcess();
         }
         else
         {
             curInvincibleTime += invincibleTime;
         }
+    }
+
+    void DieProcess()
+    {
+        playerManager.onDie = true;
+        gameObject.layer = playerManager.invincibleLayer;
+        currentHealth = 0;
+        playerAnimator.PlayTargetAnimation("Dead", true);
     }
 
     public void TakeStamina(int amount)
