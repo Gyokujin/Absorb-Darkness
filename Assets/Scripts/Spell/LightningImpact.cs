@@ -63,7 +63,6 @@ public class LightningImpact : MonoBehaviour
         rigidbody.velocity = Vector3.zero;
         GameObject electricShock = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.ElectricShock);
         electricShock.transform.position = transform.position;
-        AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)AudioManager.ActionSFX.Electric]);
 
         yield return null;
         Return();
