@@ -50,11 +50,11 @@ public class PlayerInput : MonoBehaviour
     public bool gameSystemFlag;
 
     [Header("Component")]
+    private PlayerManager playerManager;
     private PlayerControls inputActions;
     private PlayerAnimator playerAnimator;
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
-    private PlayerManager playerManager;
     private PlayerCamera playerCamera;
     private WeaponSlotManager weaponSlotManager;
 

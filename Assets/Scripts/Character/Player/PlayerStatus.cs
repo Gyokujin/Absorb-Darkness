@@ -17,7 +17,6 @@ public class PlayerStatus : CharacterStatus
     private int invincibleLayer = 13;
     [SerializeField]
     private float invincibleTime = 2f;
-    private bool onHit;
 
     [Header("Move")]
     public float sprintSpeed = 7;
