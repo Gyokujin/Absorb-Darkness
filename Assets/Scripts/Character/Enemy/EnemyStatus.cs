@@ -88,7 +88,7 @@ public class EnemyStatus : CharacterStatus
     IEnumerator DamageProcess(CharacterStatus player)
     {
         animator.SetTrigger("doHit");
-        characterAudio.PlaySFX(characterAudio.audioClips[2]);
+        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
 
         yield return hitWait;
         enemyManager.currentTarget = player;
@@ -104,7 +104,7 @@ public class EnemyStatus : CharacterStatus
         enemyManager.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
 
         animator.SetTrigger("doKnockback");
-        characterAudio.PlaySFX(characterAudio.audioClips[2]);
+        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
 
         yield return knockbackWait; // 플레이어 재추적
         enemyManager.currentTarget = player;
@@ -125,6 +125,6 @@ public class EnemyStatus : CharacterStatus
         }
 
         animator.SetTrigger("doDie");
-        characterAudio.PlaySFX(characterAudio.audioClips[3]);
+        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Die]);
     }
 }

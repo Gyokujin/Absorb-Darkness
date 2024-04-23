@@ -35,7 +35,7 @@ public class EnemyAnimator : AnimatorManager
 
     public void AttackProcess()
     {
-        characterAudio.PlaySFX(characterAudio.audioClips[1]);
+        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Attack]);
     }
 
     public void AttackDelay()
