@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     [HideInInspector]
-    public bool onHit;
+    public bool onDamage;
     [HideInInspector]
     public bool onDie;
 

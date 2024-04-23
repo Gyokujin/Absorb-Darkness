@@ -70,7 +70,7 @@ public class EnemyStatus : CharacterStatus
             if (enemyManager.enemyType != EnemyType.Boss)
             {
                 StopCoroutine("DamageProcess");
-                enemyManager.onHit = true;
+                enemyManager.onDamage = true;
                 damageAmount += damage;
 
                 if (damageAmount >= (float)maxHealth * 0.6f) // 한번에 최대 체력의 절반 이상의 피해가 들어오면 스매시를 실행

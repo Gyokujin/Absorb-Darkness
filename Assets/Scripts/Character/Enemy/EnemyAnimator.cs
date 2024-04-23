@@ -23,7 +23,7 @@ public class EnemyAnimator : AnimatorManager
 
     void OnAnimatorMove()
     {
-        if (enemyManager.onHit || enemyManager.onDie)
+        if (enemyManager.onDamage || enemyManager.onDie)
             return;
 
         enemyManager.rigidbody.drag = 0;
@@ -52,7 +52,7 @@ public class EnemyAnimator : AnimatorManager
 
     public void HitEnd()
     {
-        enemyManager.onHit = false;
+        enemyManager.onDamage = false;
         enemyStatus.damageAmount = 0;
     }
 }
