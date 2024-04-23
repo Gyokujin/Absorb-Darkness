@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioVolume: 0.6
-  enemyCh: 7
+  enemyCh: 2
   audioClips:
   - {fileID: 8300000, guid: d703680eb83155d4e9cd081f6c7ecf8c, type: 3}
   - {fileID: 0}
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttacks:
-  - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
+  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
   currentAttack: {fileID: 0}
   combatStanceState: {fileID: 7819910582564810956}
   pursueTargetState: {fileID: 4274514487120093332}
