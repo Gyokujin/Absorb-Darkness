@@ -173,6 +173,8 @@ public class PlayerMove : MonoBehaviour
 
         if (playerInput.rollFlag)
         {
+            playerManager.onDodge = true;
+            gameObject.layer = playerManager.invincibleLayer;
             moveDirection = playerCamera.transform.forward * playerInput.vertical;
             moveDirection += playerCamera.transform.right * playerInput.horizontal;
 
@@ -183,7 +185,7 @@ public class PlayerMove : MonoBehaviour
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 playerTransform.rotation = rollRotation;
             }
-            else // 회피키를 누르지 않으면 백스텝
+            else // 이동키를 누르지 않으면 백스텝
             {
                 playerAnimator.PlayTargetAnimation("Backstep", true);
             }

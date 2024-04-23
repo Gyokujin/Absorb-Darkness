@@ -24,12 +24,14 @@ public class PlayerAnimator : AnimatorManager
     [Header("Component")]
     private PlayerManager playerManager;
     private PlayerMove playerMove;
+    private PlayerStatus playerStatus;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerMove = GetComponentInParent<PlayerMove>();
+        playerStatus = GetComponentInParent<PlayerStatus>();
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
@@ -96,6 +98,17 @@ public class PlayerAnimator : AnimatorManager
     public void CanRotate(bool isCan)
     {
         canRotate = isCan;
+    }
+
+    public void DodgeEnd()
+    {
+        playerManager.onDodge = false;
+
+        //if (playerStatus.invincibleTime <= 0)
+        //{
+
+        //}
+        // playerStatus.ini
     }
 
     public void EnableCombo()

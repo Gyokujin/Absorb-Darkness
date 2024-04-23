@@ -12,6 +12,11 @@ public class PlayerManager : CharacterManager
     public bool canDoCombo;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
+    public bool onDodge;
+
+    [Header("Combat")]
+    public int defaultLayer = 3;
+    public int invincibleLayer = 13;
 
     [Header("Interact")]
     [SerializeField]

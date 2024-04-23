@@ -11,12 +11,8 @@ public class PlayerStatus : CharacterStatus
     public int currentStamina;
 
     [Header("Hit")]
-    [SerializeField]
-    private int defaultLayer = 3;
-    [SerializeField]
-    private int invincibleLayer = 13;
-    [SerializeField]
-    private float invincibleTime = 2f;
+    public float invincibleTime;
+    private float curInvincibleTime;
 
     [Header("Move")]
     public float sprintSpeed = 7;
@@ -43,6 +39,19 @@ public class PlayerStatus : CharacterStatus
         InitStamina();
     }
 
+    void Update()
+    {
+        if (curInvincibleTime > 0)
+        {
+            curInvincibleTime -= Time.deltaTime;
+            gameObject.layer = playerManager.invincibleLayer;
+        }
+        else if (!playerManager.onDodge)
+        {
+            gameObject.layer = playerManager.defaultLayer;
+        }
+    }
+
     void InitHealth()
     {
         maxHealth = healthLevel * healthLevelAmount;
@@ -62,7 +71,7 @@ public class PlayerStatus : CharacterStatus
         if (playerManager.onDie)
             return;
 
-        gameObject.layer = invincibleLayer;
+        gameObject.layer = playerManager.invincibleLayer;
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
 
@@ -79,13 +88,8 @@ public class PlayerStatus : CharacterStatus
         }
         else
         {
-            Invoke("GetbackInvincible", invincibleTime);
+            curInvincibleTime += invincibleTime;
         }
-    }
-
-    void GetbackInvincible()
-    {
-        gameObject.layer = defaultLayer;
     }
 
     public void TakeStamina(int amount)
