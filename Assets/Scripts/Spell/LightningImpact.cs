@@ -11,6 +11,12 @@ public class LightningImpact : MonoBehaviour
     [SerializeField]
     private bool onShooting;
 
+    [Header("Attack")]
+    [SerializeField]
+    private int playerLayer = 3;
+    [SerializeField]
+    private int groundLayer = 6;
+
     [Header("Component")]
     [SerializeField]
     private GameObject lightningEffect;
@@ -77,11 +83,11 @@ public class LightningImpact : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3)
+        if (other.gameObject.layer == playerLayer)
         {
             StartCoroutine("ElectricShock");
         }
-        else if (other.gameObject.layer == 6)
+        else if (other.gameObject.layer == groundLayer)
         {
             Return();
         }

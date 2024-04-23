@@ -13,6 +13,10 @@ public class Meteor : MonoBehaviour
     [SerializeField]
     private GameObject smokeEffect;
 
+    [Header("Attack")]
+    [SerializeField]
+    private int groundLayer = 6;
+
     [Header("Component")]
     private new Rigidbody rigidbody;
 
@@ -65,7 +69,7 @@ public class Meteor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        if (other.gameObject.layer == groundLayer)
         {
             StartCoroutine("Explosion");
         }
