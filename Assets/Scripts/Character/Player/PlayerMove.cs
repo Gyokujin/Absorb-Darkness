@@ -174,7 +174,6 @@ public class PlayerMove : MonoBehaviour
         if (playerInput.rollFlag)
         {
             playerManager.onDodge = true;
-            gameObject.layer = playerManager.invincibleLayer;
             moveDirection = playerCamera.transform.forward * playerInput.vertical;
             moveDirection += playerCamera.transform.right * playerInput.horizontal;
 

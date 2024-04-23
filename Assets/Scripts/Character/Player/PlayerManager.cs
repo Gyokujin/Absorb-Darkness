@@ -12,6 +12,7 @@ public class PlayerManager : CharacterManager
     public bool canDoCombo;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
+    [HideInInspector]
     public bool onDodge;
 
     [Header("Combat")]

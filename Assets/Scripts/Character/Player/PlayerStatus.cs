@@ -41,18 +41,24 @@ public class PlayerStatus : CharacterStatus
 
     void Update() 
     {
-        if (!playerManager.onDie)
+        if (curInvincibleTime > 0)
         {
-            if (curInvincibleTime > 0)
-            {
-                curInvincibleTime -= Time.deltaTime;
-                gameObject.layer = playerManager.invincibleLayer;
-            }
-            else if (!playerManager.onDodge)
-            {
-                gameObject.layer = playerManager.defaultLayer;
-            }
+            curInvincibleTime -= Time.deltaTime;
         }
+
+        gameObject.layer = Invincible();
+    }
+
+    int Invincible() 
+    {
+        int curLayer = playerManager.defaultLayer;
+
+        if (playerManager.onDodge || playerManager.onDamage || playerManager.onDie || curInvincibleTime > 0)
+        {
+            curLayer = playerManager.invincibleLayer;
+        }
+
+        return curLayer;
     }
 
     void InitHealth()
@@ -74,6 +80,7 @@ public class PlayerStatus : CharacterStatus
         if (playerManager.onDie)
             return;
 
+        playerManager.onDamage = true;
         gameObject.layer = playerManager.invincibleLayer;
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
