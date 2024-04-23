@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerStatus : CharacterStatus
 {
+    [Header("Stamina")]
+    public int staminaLevel = 10;
+    public int staminaLevelAmount = 10;
+    public int maxStamina;
+    public int currentStamina;
+
     [Header("Hit")]
     [SerializeField]
     private int defaultLayer = 3;

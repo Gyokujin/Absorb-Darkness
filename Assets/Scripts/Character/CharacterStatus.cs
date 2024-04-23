@@ -14,10 +14,4 @@ public class CharacterStatus : MonoBehaviour
     public int healthLevelAmount = 10;
     public int maxHealth;
     public int currentHealth;
-
-    [Header("Stamina")]
-    public int staminaLevel = 10;
-    public int staminaLevelAmount = 10;
-    public int maxStamina;
-    public int currentStamina;
 }
