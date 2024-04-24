@@ -865,7 +865,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624cc331db166c34b9da61a17053e58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1796425945909417034
+--- !u!114 &4405031280907552392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2619189320025741619, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
+  m_PrefabInstance: {fileID: 7617665624545831163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772acc942aca6b54cafb170f5ea30d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &5071552706540946730
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -913,31 +924,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4407735725698778408, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7743642056720601897, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
       propertyPath: m_Name
       value: Stage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4407735725698778408, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
---- !u!114 &4405031280907552392 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2619189320025741619, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
-  m_PrefabInstance: {fileID: 7617665624545831163}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 772acc942aca6b54cafb170f5ea30d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5513381390833737408 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6195718862487404923, guid: 6182090a58c64ba42a710d7e9961e57a, type: 3}
@@ -1131,7 +1126,7 @@ SceneRoots:
   - {fileID: 72981797}
   - {fileID: 186743801}
   - {fileID: 2111331581}
-  - {fileID: 1796425945909417034}
+  - {fileID: 5071552706540946730}
   - {fileID: 311036931605300319}
   - {fileID: 850225193821203767}
   - {fileID: 7617665624545831163}

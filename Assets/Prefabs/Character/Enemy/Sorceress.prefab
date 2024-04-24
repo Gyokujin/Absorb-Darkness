@@ -269,7 +269,6 @@ GameObject:
   - component: {fileID: 6095023924948939310}
   - component: {fileID: 7280089006342407748}
   - component: {fileID: 8022805038950295454}
-  - component: {fileID: 8812117213106071051}
   - component: {fileID: 7969736347837725267}
   - component: {fileID: 3474494247507360311}
   m_Layer: 7
@@ -527,33 +526,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7daa95845abba1449a436122f27ed53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 3
-  runSpeed: 5
-  rotationSpeed: 10
-  healthLevel: 3
-  healthLevelAmount: 50
-  maxHealth: 0
-  currentHealth: 0
-  detectionRadius: 15
-  detectionAngleMax: 50
-  detectionAngleMin: -50
-  attackRangeMax: 20
-  hitTime: 1
-  knockbackTime: 2.5
-  knockbackPower: 50
-  damageAmount: 0
---- !u!114 &8812117213106071051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957284572224849543}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c139f58744eb814a8b0aed0b9b080fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 3
