@@ -736,6 +736,18 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 4405031280907552392}
+    - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: actionLimitStamina
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: rollingStaminaAmount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446244042411737521, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: backStapStaminaAmount
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
