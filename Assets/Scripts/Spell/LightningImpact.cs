@@ -12,9 +12,7 @@ public class LightningImpact : MonoBehaviour
     private bool onShooting;
 
     [Header("Attack")]
-    [SerializeField]
     private int playerLayer = 3;
-    [SerializeField]
     private int groundLayer = 6;
 
     [Header("Component")]
@@ -32,6 +30,12 @@ public class LightningImpact : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+        playerLayer = LayerMask.NameToLayer("Player");
+        groundLayer = LayerMask.NameToLayer("Ground");
     }
 
     void OnEnable()

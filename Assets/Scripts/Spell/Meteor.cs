@@ -14,7 +14,6 @@ public class Meteor : MonoBehaviour
     private GameObject smokeEffect;
 
     [Header("Attack")]
-    [SerializeField]
     private int groundLayer = 6;
 
     [Header("Component")]
@@ -28,6 +27,11 @@ public class Meteor : MonoBehaviour
     void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+        groundLayer = LayerMask.NameToLayer("Ground");
     }
 
     void Update()

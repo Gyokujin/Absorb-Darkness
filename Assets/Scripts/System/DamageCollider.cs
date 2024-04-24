@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Collider))]
 public class DamageCollider : MonoBehaviour
@@ -11,8 +10,11 @@ public class DamageCollider : MonoBehaviour
         PlayerWeapon, PlayerSpell, EnemyUnarmed, EnemyWeapon, EnemySpell
     }
 
+    [Header("Attack")]
     [SerializeField]
     private AttackType attackType;
+    [SerializeField]
+    private int targetLayer;
 
     [Header("Weapon Info")]
     private Collider damageCollider;
@@ -36,6 +38,23 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        switch (attackType)
+        {
+            case AttackType.PlayerWeapon:
+            case AttackType.PlayerSpell:
+                targetLayer = LayerMask.NameToLayer("Enemy");
+                break;
+
+            case AttackType.EnemyUnarmed:
+            case AttackType.EnemyWeapon:
+            case AttackType.EnemySpell:
+                targetLayer = LayerMask.NameToLayer("Player");
+                break;
+        }
+    }
+
     public void OpenDamageCollider()
     {
         damageCollider.enabled = true;
@@ -48,36 +67,33 @@ public class DamageCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        switch (attackType)
+        if (collision.gameObject.layer == targetLayer)
         {
-            case AttackType.PlayerWeapon:
-            case AttackType.PlayerSpell:
-                if (collision.tag == "Enemy")
-                {
+            switch (attackType)
+            {
+                case AttackType.PlayerWeapon:
+                case AttackType.PlayerSpell:
                     EnemyStatus enemyStatus = collision.GetComponent<EnemyStatus>();
 
                     if (enemyStatus != null)
                     {
                         enemyStatus.TakeDamage(damage, GetComponentInParent<CharacterStatus>());
                     }
-                }
 
-                break;
+                    break;
 
-            case AttackType.EnemyUnarmed:
-            case AttackType.EnemyWeapon:
-            case AttackType.EnemySpell:
-                if (collision.tag == "Player")
-                {
+                case AttackType.EnemyUnarmed:
+                case AttackType.EnemyWeapon:
+                case AttackType.EnemySpell:
                     PlayerStatus playerStatus = collision.GetComponent<PlayerStatus>();
 
                     if (playerStatus != null)
                     {
                         playerStatus.TakeDamage(damage, true);
                     }
-                }
 
-                break;
+                    break;
+            }
         }
     }
 }

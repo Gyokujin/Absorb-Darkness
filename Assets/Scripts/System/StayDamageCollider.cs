@@ -5,11 +5,17 @@ using UnityEngine;
 public class StayDamageCollider : MonoBehaviour
 {
     [SerializeField]
-    private int damage = 3;
+    private int damage = 1;
+    private int targetLayer;
+
+    void Start()
+    {
+        targetLayer = LayerMask.NameToLayer("Player");
+    }
 
     void OnTriggerStay(Collider collision)
     {
-        if (collision.tag == "Player")
+        if (collision.gameObject.layer == targetLayer)
         {
             PlayerStatus playerStatus = collision.GetComponent<PlayerStatus>();
 

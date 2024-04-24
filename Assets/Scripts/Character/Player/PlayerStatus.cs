@@ -119,14 +119,14 @@ public class PlayerStatus : CharacterStatus
     {
         if (playerManager.onDie)
             return;
-
-        playerManager.onDamage = true;
-        gameObject.layer = playerManager.invincibleLayer;
+        
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
 
         if (hitStun)
         {
+            playerManager.onDamage = true;
+            gameObject.layer = playerManager.invincibleLayer;
             playerAnimator.PlayTargetAnimation("Damage", true);
         }
 
