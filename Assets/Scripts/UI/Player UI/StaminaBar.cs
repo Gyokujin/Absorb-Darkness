@@ -9,13 +9,13 @@ public class StaminaBar : MonoBehaviour
     [SerializeField]
     private Slider slider;
 
-    public void SetMaxStamina(int maxStamina)
+    public void SetMaxStamina(float maxStamina)
     {
         slider.maxValue = maxStamina;
         slider.value = maxStamina;
     }
 
-    public void SetCurrentStamina(int curStamina)
+    public void SetCurrentStamina(float curStamina)
     {
         slider.value = curStamina;
     }

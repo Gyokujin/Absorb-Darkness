@@ -331,15 +331,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0183a3fb0ab7d4bae677f2fae3ddb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDamage: 0
   onDie: 0
   lockOnTransform: {fileID: 2037056813837801136}
   isInteracting: 0
   isSprinting: 0
+  onDodge: 0
   isInAir: 0
   isGrounded: 0
   canDoCombo: 0
   isUsingLeftHand: 0
   isUsingRightHand: 0
+  defaultLayer: 3
+  invincibleLayer: 13
   checkRadius: 0.3
   checkMaxDis: 1
   interactableUIObj: {fileID: 0}
@@ -369,10 +373,12 @@ MonoBehaviour:
   staminaLevel: 10
   staminaLevelAmount: 10
   maxStamina: 100
-  currentStamina: 0
-  defaultLayer: 3
-  invincibleLayer: 13
-  invincibleTime: 0.5
+  actionLimitStamina: 5
+  staminaRecoveryAmount: 0.25
+  rollingStaminaAmount: 15
+  backStapStaminaAmount: 8
+  sprintStaminaAmount: 0.75
+  invincibleTime: 0.3
   sprintSpeed: 9
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}

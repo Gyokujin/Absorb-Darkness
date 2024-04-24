@@ -52,6 +52,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Component")]
     private PlayerManager playerManager;
     private PlayerControls inputActions;
+    private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
@@ -65,10 +66,11 @@ public class PlayerInput : MonoBehaviour
 
     void Init()
     {
+        playerManager = GetComponent<PlayerManager>();
+        playerStatus = GetComponent<PlayerStatus>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponent<PlayerInventory>();
-        playerManager = GetComponent<PlayerManager>();
         playerCamera = FindObjectOfType<PlayerCamera>();
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
     }
@@ -125,20 +127,23 @@ public class PlayerInput : MonoBehaviour
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
         sprintFlag = rollingInput;
 
-        if (rollingInput)
+        if (playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
         {
-            rollInputTimer += delta;
-            sprintFlag = true;
-        }
-        else
-        {
-            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
+            if (rollingInput)
             {
-                sprintFlag = false;
-                rollFlag = true;
+                rollInputTimer += delta;
+                sprintFlag = true;
             }
+            else
+            {
+                if (rollInputTimer > 0 && rollInputTimer < 0.5f)
+                {
+                    sprintFlag = false;
+                    rollFlag = true;
+                }
 
-            rollInputTimer = 0;
+                rollInputTimer = 0;
+            }
         }
     }
 
@@ -163,7 +168,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput(float delta)
     {
-        if (lightAttackInput && !gameSystemFlag)
+        if (lightAttackInput && !gameSystemFlag && playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
         {
             if (playerManager.canDoCombo)
             {

@@ -78,7 +78,7 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = playerStatus.runSpeed;
         
-        if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
+        if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f && playerStatus.CurrentStamina >= playerStatus.actionLimitStamina) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
         {
             playerManager.isSprinting = true;
             moveDirection *= playerStatus.sprintSpeed;
@@ -166,7 +166,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void HandleRollingAndSprinting(float delta)
+    public void HandleRolling(float delta)
     {
         if (playerAnimator.animator.GetBool("isInteracting")) // 현재 플레이어가 행동 중이지 않을 때만 실행
             return;
@@ -183,10 +183,12 @@ public class PlayerMove : MonoBehaviour
                 moveDirection.y = 0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 playerTransform.rotation = rollRotation;
+                playerStatus.TakeStamina(playerStatus.rollingStaminaAmount);
             }
             else // 이동키를 누르지 않으면 백스텝
             {
                 playerAnimator.PlayTargetAnimation("Backstep", true);
+                playerStatus.TakeStamina(playerStatus.backStapStaminaAmount);
             }
         }
     }
