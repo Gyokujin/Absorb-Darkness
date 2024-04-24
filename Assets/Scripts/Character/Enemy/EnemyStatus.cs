@@ -54,7 +54,7 @@ public class EnemyStatus : CharacterStatus
         return maxHealth;
     }
 
-    public void TakeDamage(int damage, CharacterStatus player)
+    public virtual void TakeDamage(int damage, CharacterStatus player)
     {
         if (enemyManager.onDie)
             return;
