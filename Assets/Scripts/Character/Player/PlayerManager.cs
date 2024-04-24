@@ -7,17 +7,16 @@ public class PlayerManager : CharacterManager
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
+    public bool onDodge;
     public bool isInAir;
     public bool isGrounded;
     public bool canDoCombo;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
-    [HideInInspector]
-    public bool onDodge;
 
     [Header("Combat")]
-    public int defaultLayer = 3;
-    public int invincibleLayer = 13;
+    public int defaultLayer;
+    public int invincibleLayer;
 
     [Header("Interact")]
     [SerializeField]
@@ -46,6 +45,9 @@ public class PlayerManager : CharacterManager
 
     void Init()
     {
+        defaultLayer = LayerMask.NameToLayer("Player");
+        invincibleLayer = LayerMask.NameToLayer("Invincible");
+
         playerMove = GetComponent<PlayerMove>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();

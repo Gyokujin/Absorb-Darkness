@@ -720,13 +720,25 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8842164406526633919, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: layer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842164406526633919, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: interactableUIObj
       value: 
       objectReference: {fileID: 7550657900844686191}
     - target: {fileID: 8842164406526633919, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: defaultLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842164406526633919, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: itemInteractableObj
       value: 
       objectReference: {fileID: 5513381390833737408}
+    - target: {fileID: 8842164406526633919, guid: b448eb40df46926429e39f76897876cb, type: 3}
+      propertyPath: invincibleLayer.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
