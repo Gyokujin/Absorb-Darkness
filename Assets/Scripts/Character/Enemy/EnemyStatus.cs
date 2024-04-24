@@ -24,7 +24,7 @@ public class EnemyStatus : CharacterStatus
     [Header("Component")]
     private new Rigidbody rigidbody;
     private Animator animator;
-    private EnemyManager enemyManager;
+    protected EnemyManager enemyManager;
     private CharacterAudio characterAudio;
 
     void Awake()
