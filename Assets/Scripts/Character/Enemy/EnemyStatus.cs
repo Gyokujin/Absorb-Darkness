@@ -111,7 +111,7 @@ public class EnemyStatus : CharacterStatus
         enemyManager.isPreformingAction = false;
     }
 
-    void DieProcess()
+    protected void DieProcess()
     {
         currentHealth = 0;
         rigidbody.isKinematic = true;
