@@ -1060,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 2
+  targetLayer: 0
   damage: 5
 --- !u!1 &4236012578103979771
 GameObject:
@@ -1389,13 +1390,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687d43efc3a135f4a87dc7048f338fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDamage: 0
   onDie: 0
   lockOnTransform: {fileID: 5428491561185675698}
   enemyType: 0
   curState: {fileID: 6824375812976821898}
   isInteracting: 0
   isPreformingAction: 0
-  onHit: 0
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1423,14 +1424,10 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 6
   rotationSpeed: 180
-  healthLevel: 10
+  healthLevel: 8
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
-  staminaLevel: 10
-  staminaLevelAmount: 10
-  maxStamina: 0
-  currentStamina: 0
   detectionRadius: 15
   detectionAngleMax: 90
   detectionAngleMin: -90
@@ -2032,6 +2029,10 @@ PrefabInstance:
       propertyPath: currentAttack
       value: 
       objectReference: {fileID: 11400000, guid: 903a2deb7744e6942b7e77c80e73c168, type: 2}
+    - target: {fileID: 4229795681312453397, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}
+      propertyPath: actionIndexMax
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4229795681312453397, guid: 7df37fbd8d084e045862bd492fe7a649, type: 3}
       propertyPath: pursueTargetState
       value: 

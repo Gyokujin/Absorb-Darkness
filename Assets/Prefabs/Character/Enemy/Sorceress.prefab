@@ -268,9 +268,8 @@ GameObject:
   - component: {fileID: 878149315805515896}
   - component: {fileID: 6095023924948939310}
   - component: {fileID: 7280089006342407748}
-  - component: {fileID: 8022805038950295454}
+  - component: {fileID: 7421784553130219315}
   - component: {fileID: 7969736347837725267}
-  - component: {fileID: 3474494247507360311}
   m_Layer: 7
   m_Name: Sorceress
   m_TagString: Enemy
@@ -286,8 +285,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957284572224849543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 8.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297,7 +296,7 @@ Transform:
   - {fileID: 7790592378129280624}
   - {fileID: 4575604216957081403}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &7365873495875009557
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -516,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297b61fba3d5b9040b74d832bf153bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8022805038950295454
+--- !u!114 &7421784553130219315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,7 +524,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 957284572224849543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7daa95845abba1449a436122f27ed53, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c139f58744eb814a8b0aed0b9b080fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 3
@@ -535,7 +534,7 @@ MonoBehaviour:
   healthLevelAmount: 50
   maxHealth: 0
   currentHealth: 0
-  detectionRadius: 15
+  detectionRadius: 20
   detectionAngleMax: 50
   detectionAngleMin: -50
   attackRangeMax: 20
@@ -562,51 +561,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 8300000, guid: 0d99ae3cc23d9a44e9ae488df426a4e5, type: 3}
---- !u!114 &3474494247507360311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957284572224849543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e78ffd4c4418b4099a6821642d23db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phase1Pattern:
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  phase2Pattern:
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
-  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
-  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
-  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
-  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
-  phase3Pattern:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &960180742257226813
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,12 +673,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
   - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
   - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
-  - {fileID: 11400000, guid: 47db913d494e3ab4b9961ce076bb198f, type: 2}
   - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
   - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
   - {fileID: 11400000, guid: 78b3d15dd909188468bf5f3e172d75ae, type: 2}
+  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
+  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
+  - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
+  - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
+  - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
   currentAttack: {fileID: 0}
   combatStanceState: {fileID: 7819910582564810956}
   pursueTargetState: {fileID: 4274514487120093332}

@@ -367,13 +367,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687d43efc3a135f4a87dc7048f338fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDamage: 0
   onDie: 0
   lockOnTransform: {fileID: 3027419130651067874}
   enemyType: 0
   curState: {fileID: 7440158907284766626}
   isInteracting: 0
   isPreformingAction: 0
-  onHit: 0
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -417,10 +417,6 @@ MonoBehaviour:
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
-  staminaLevel: 10
-  staminaLevelAmount: 10
-  maxStamina: 0
-  currentStamina: 0
   detectionRadius: 20
   detectionAngleMax: 105
   detectionAngleMin: -105
@@ -2093,5 +2089,7 @@ MonoBehaviour:
   enemyAttacks:
   - {fileID: 11400000, guid: 5dc3ec99c81912640aef5968fae7ed8e, type: 2}
   currentAttack: {fileID: 11400000, guid: 5dc3ec99c81912640aef5968fae7ed8e, type: 2}
+  actionIndexMin: 0
+  actionIndexMax: 1
   combatStanceState: {fileID: 8840187946217318209}
   pursueTargetState: {fileID: 6162023741408651728}
