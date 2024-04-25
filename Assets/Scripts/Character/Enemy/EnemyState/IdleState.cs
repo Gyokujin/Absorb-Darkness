@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class IdleState : EnemyState
 {
@@ -21,9 +22,21 @@ public class IdleState : EnemyState
             if (characterStatus != null)
             {
                 Vector3 targetDirection = characterStatus.transform.position - transform.position;
-                float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+                bool angleAble = Vector3.Angle(targetDirection, transform.forward) > enemyStatus.detectionAngleMin && 
+                    Vector3.Angle(targetDirection, transform.forward) < enemyStatus.detectionAngleMax;
+                
+                bool showAble = false;
+                RaycastHit hit;
 
-                if (viewableAngle > enemyStatus.detectionAngleMin && viewableAngle < enemyStatus.detectionAngleMax)
+                if (Physics.Raycast(enemyManager.lockOnTransform.position, targetDirection, out hit, enemyStatus.detectionRadius))
+                {
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                    {
+                        showAble = true;
+                    }
+                }
+
+                if (angleAble && showAble)
                 {
                     enemyManager.currentTarget = characterStatus;
                 }
