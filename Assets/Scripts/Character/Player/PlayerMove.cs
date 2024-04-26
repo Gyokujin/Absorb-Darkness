@@ -168,7 +168,7 @@ public class PlayerMove : MonoBehaviour
 
     public void HandleRolling(float delta)
     {
-        if (playerAnimator.animator.GetBool("isInteracting")) // 현재 플레이어가 행동 중이지 않을 때만 실행
+        if (playerAnimator.animator.GetBool("isInteracting") || playerManager.onDamage) // 현재 플레이어가 행동 중이지 않을 때만 실행
             return;
 
         if (playerInput.rollFlag && playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
