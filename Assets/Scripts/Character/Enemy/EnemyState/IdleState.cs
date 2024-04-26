@@ -21,10 +21,10 @@ public class IdleState : EnemyState
 
             if (characterStatus != null)
             {
-                Vector3 targetDirection = characterStatus.transform.position - transform.position;
+                Vector3 targetDirection = Vector3.Normalize(characterStatus.transform.position - transform.position);
                 bool angleAble = Vector3.Angle(targetDirection, transform.forward) > enemyStatus.detectionAngleMin && 
                     Vector3.Angle(targetDirection, transform.forward) < enemyStatus.detectionAngleMax;
-                
+
                 bool showAble = false;
                 RaycastHit hit;
 
