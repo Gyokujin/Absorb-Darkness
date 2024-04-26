@@ -373,10 +373,10 @@ MonoBehaviour:
   staminaLevel: 10
   staminaLevelAmount: 10
   maxStamina: 100
-  actionLimitStamina: 5
+  actionLimitStamina: 10
   staminaRecoveryAmount: 0.25
-  rollingStaminaAmount: 15
-  backStapStaminaAmount: 8
+  rollingStaminaAmount: 25
+  backStapStaminaAmount: 15
   sprintStaminaAmount: 0.75
   invincibleTime: 0.3
   sprintSpeed: 9

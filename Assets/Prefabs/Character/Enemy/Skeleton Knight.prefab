@@ -417,7 +417,7 @@ MonoBehaviour:
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
-  detectionRadius: 20
+  detectionRadius: 15
   detectionAngleMax: 105
   detectionAngleMin: -105
   attackRangeMax: 3
@@ -2089,7 +2089,5 @@ MonoBehaviour:
   enemyAttacks:
   - {fileID: 11400000, guid: 5dc3ec99c81912640aef5968fae7ed8e, type: 2}
   currentAttack: {fileID: 11400000, guid: 5dc3ec99c81912640aef5968fae7ed8e, type: 2}
-  actionIndexMin: 0
-  actionIndexMax: 1
   combatStanceState: {fileID: 8840187946217318209}
   pursueTargetState: {fileID: 6162023741408651728}

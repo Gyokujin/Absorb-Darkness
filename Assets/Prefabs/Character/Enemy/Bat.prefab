@@ -1428,7 +1428,7 @@ MonoBehaviour:
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
-  detectionRadius: 15
+  detectionRadius: 5
   detectionAngleMax: 90
   detectionAngleMin: -90
   attackRangeMax: 1.8
