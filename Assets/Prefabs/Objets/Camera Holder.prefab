@@ -177,7 +177,7 @@ MonoBehaviour:
   cameraPivotTransform: {fileID: 3159409154732173816}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 3592
+    m_Bits: 3848
   minPivot: -35
   maxPivot: 35
   lookAngle: 0.033
