@@ -216,7 +216,7 @@ public class PlayerMove : MonoBehaviour
         origin = origin + dir * groundDirRayDistance;
         targetPosition = playerTransform.position;
 
-        Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
+        // Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
 
         if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
         {
