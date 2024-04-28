@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterSound 
+public enum CharacterSound
 {
     Detect, Attack, Hit, Die
 }
@@ -28,7 +28,7 @@ public class CharacterAudio : MonoBehaviour
 
     void Init()
     {
-        GameObject characterAudio = new GameObject("CharacterAudio");
+        GameObject characterAudio = new GameObject("Character Audio");
         characterAudio.transform.parent = transform;
         characterAudio.transform.localPosition = Vector3.zero;
         characterAudios = new AudioSource[characterCh];

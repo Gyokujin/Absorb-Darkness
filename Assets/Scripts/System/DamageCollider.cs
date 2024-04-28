@@ -57,6 +57,7 @@ public class DamageCollider : MonoBehaviour
     public void OpenDamageCollider()
     {
         damageCollider.enabled = true;
+        AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Attack1]);
     }
 
     public void CloseDamageCollider()
