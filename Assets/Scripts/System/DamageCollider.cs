@@ -13,7 +13,6 @@ public class DamageCollider : MonoBehaviour
     [Header("Attack")]
     [SerializeField]
     private AttackType attackType;
-    [SerializeField]
     private int targetLayer;
 
     [Header("Weapon Info")]

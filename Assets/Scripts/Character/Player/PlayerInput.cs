@@ -182,6 +182,7 @@ public class PlayerInput : MonoBehaviour
 
         if (heavyAttackInput && !playerManager.isInteracting)
         {
+            playerAnimator.animator.SetBool("usingRightHand", true);
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
         }
     }
