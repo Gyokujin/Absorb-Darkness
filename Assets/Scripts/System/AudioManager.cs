@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum PlayerActionSound
 {
-    Attack1, Attack2
+    Attack1, Attack2, Rolling, Backstep
 }
 
 public class AudioManager : MonoBehaviour
