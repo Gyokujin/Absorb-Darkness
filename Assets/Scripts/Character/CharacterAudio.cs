@@ -7,7 +7,6 @@ public enum CharacterSound
     Detect, Attack, Hit, Die
 }
 
-[RequireComponent(typeof(AudioSource))]
 public class CharacterAudio : MonoBehaviour
 {
     [Header("Audio")]
@@ -15,12 +14,12 @@ public class CharacterAudio : MonoBehaviour
     [Range(0, 1)]
     private float audioVolume;
     [SerializeField]
-    private int enemyCh;
-    private int enemyIndex;
+    private int characterCh;
+    private int characterIndex;
 
     [Header("Sound Clip")]
     public AudioClip[] audioClips;
-    private AudioSource[] enemyAudios;
+    private AudioSource[] characterAudios;
 
     void Awake()
     {
@@ -29,30 +28,31 @@ public class CharacterAudio : MonoBehaviour
 
     void Init()
     {
-        GameObject enemyAudio = new GameObject("EnemyAudio");
-        enemyAudio.transform.parent = transform;
-        enemyAudios = new AudioSource[enemyCh];
+        GameObject characterAudio = new GameObject("CharacterAudio");
+        characterAudio.transform.parent = transform;
+        characterAudio.transform.localPosition = Vector3.zero;
+        characterAudios = new AudioSource[characterCh];
 
-        for (int k = 0; k < enemyCh; k++)
+        for (int i = 0; i < characterCh; i++)
         {
-            enemyAudios[k] = enemyAudio.AddComponent<AudioSource>();
-            enemyAudios[k].playOnAwake = false;
-            enemyAudios[k].volume = audioVolume;
+            characterAudios[i] = characterAudio.AddComponent<AudioSource>();
+            characterAudios[i].playOnAwake = false;
+            characterAudios[i].volume = audioVolume;
         }
     }
 
     public void PlaySFX(AudioClip audioClip)
     {
-        for (int i = 0; i < enemyAudios.Length; i++)
+        for (int i = 0; i < characterAudios.Length; i++)
         {
-            int loopIndex = (i + enemyIndex) % enemyAudios.Length;
+            int loopIndex = (i + characterIndex) % characterAudios.Length;
 
-            if (enemyAudios[loopIndex].isPlaying)
+            if (characterAudios[loopIndex].isPlaying)
                 continue;
 
-            enemyIndex = loopIndex;
-            enemyAudios[loopIndex].clip = audioClip;
-            enemyAudios[loopIndex].Play();
+            characterIndex = loopIndex;
+            characterAudios[loopIndex].clip = audioClip;
+            characterAudios[loopIndex].Play();
             break;
         }
     }
