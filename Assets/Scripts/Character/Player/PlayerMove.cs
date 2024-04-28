@@ -44,6 +44,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
     private PlayerCamera playerCamera;
+    private PlayerFootstep playerFootstep;
 
     void Start()
     {
@@ -56,6 +57,7 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerStatus = GetComponent<PlayerStatus>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerFootstep = GetComponentInChildren<PlayerFootstep>();
         playerCamera = FindObjectOfType<PlayerCamera>();
 
         playerTransform = transform;
@@ -78,22 +80,27 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = playerStatus.runSpeed;
         
-        if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f && playerStatus.CurrentStamina > 0) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
+        if (moveDirection != Vector3.zero)
         {
-            playerManager.isSprinting = true;
-            moveDirection *= playerStatus.sprintSpeed;
+            if (playerInput.sprintFlag && playerInput.moveAmount > 0.5f && playerStatus.CurrentStamina > 0) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
+            {
+                playerManager.isSprinting = true;
+                moveDirection *= playerStatus.sprintSpeed;
+                playerFootstep.PlaySplintSFX();
+            }
+            else if (playerInput.moveAmount < 0.5f)
+            {
+                moveDirection *= playerStatus.walkSpeed;
+                playerManager.isSprinting = false;
+            }
+            else
+            {
+                moveDirection *= speed;
+                playerManager.isSprinting = false;
+                playerFootstep.PlayMoveSFX();
+            }
         }
-        else if (playerInput.moveAmount < 0.5f)
-        {
-            moveDirection *= playerStatus.walkSpeed;
-            playerManager.isSprinting = false;
-        }
-        else
-        {
-            moveDirection *= speed;
-            playerManager.isSprinting = false;
-        }
-        
+
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
         rigidbody.velocity = projectedVelocity;
 
@@ -184,11 +191,13 @@ public class PlayerMove : MonoBehaviour
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 playerTransform.rotation = rollRotation;
                 playerStatus.TakeStamina(playerStatus.rollingStaminaAmount);
+                AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Rolling]);
             }
             else // 이동키를 누르지 않으면 백스텝
             {
                 playerAnimator.PlayTargetAnimation("Backstep", true);
                 playerStatus.TakeStamina(playerStatus.backStapStaminaAmount);
+                AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Backstep]);
             }
         }
     }

@@ -95,9 +95,23 @@ public class PlayerAnimator : AnimatorManager
         animator.SetFloat("horizontal", parameterHor, animationDampTime, Time.deltaTime);
     }
 
+    void OnAnimatorMove()
+    {
+        if (!playerManager.isInteracting)
+            return;
+
+        Vector3 velocity = new Vector3(animator.deltaPosition.x, 0, animator.deltaPosition.z) / Time.deltaTime;
+        playerMove.rigidbody.velocity = velocity;
+    }
+
     public void CanRotate(bool isCan)
     {
         canRotate = isCan;
+    }
+
+    public void PlayAttackSFX()
+    {
+        AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Attack1]);
     }
 
     public void DodgeEnd()
@@ -118,14 +132,5 @@ public class PlayerAnimator : AnimatorManager
     public void DisableCombo()
     {
         animator.SetBool("canDoCombo", false);
-    }
-
-    void OnAnimatorMove()
-    {
-        if (!playerManager.isInteracting)
-            return;
-
-        Vector3 velocity = new Vector3(animator.deltaPosition.x, 0, animator.deltaPosition.z) / Time.deltaTime;
-        playerMove.rigidbody.velocity = velocity;
     }
 }
