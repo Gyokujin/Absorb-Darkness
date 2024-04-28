@@ -25,18 +25,18 @@ public class IdleState : EnemyState
                 bool angleAble = Vector3.Angle(targetDirection, transform.forward) > enemyStatus.detectionAngleMin && 
                     Vector3.Angle(targetDirection, transform.forward) < enemyStatus.detectionAngleMax;
 
-                bool showAble = false;
-                RaycastHit hit;
+                // bool showAble = false;
+                // RaycastHit hit;
 
-                if (Physics.Raycast(enemyManager.lockOnTransform.position, targetDirection, out hit, enemyStatus.detectionRadius))
-                {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-                    {
-                        showAble = true;
-                    }
-                }
+                //if (Physics.Raycast(enemyManager.lockOnTransform.position, targetDirection, out hit, enemyStatus.detectionRadius))
+                //{
+                //    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                //    {
+                //        showAble = true;
+                //    }
+                //}
 
-                if (angleAble && showAble)
+                if (angleAble) // && showAble
                 {
                     enemyManager.currentTarget = characterStatus;
                 }
