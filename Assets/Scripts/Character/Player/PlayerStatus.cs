@@ -91,6 +91,7 @@ public class PlayerStatus : CharacterStatus
 
     int Invincible() 
     {
+        playerManager.onDamage = playerAnimator.animator.GetBool("onDamage");
         int curLayer = playerManager.defaultLayer;
 
         if (playerManager.onDodge || playerManager.onDamage || playerManager.onDie || curInvincibleTime > 0)
@@ -127,6 +128,7 @@ public class PlayerStatus : CharacterStatus
         {
             playerManager.onDamage = true;
             gameObject.layer = playerManager.invincibleLayer;
+            playerAnimator.animator.SetBool("onDamage", true);
             playerAnimator.PlayTargetAnimation("Damage", true);
         }
 
