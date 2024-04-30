@@ -83,6 +83,6 @@ public class WeaponInventorySlot : MonoBehaviour
         weaponSlotManager.LoadWeaponSlot(playerInventory.rightWeapon, false);
         equipmentWindow.LoadWeaponsOnEquipmentScreen(playerInventory);
         UIManager.instance.ResetAllSelectedSlots();
-        UIManager.instance.UpdateUI();
+        UIManager.instance.InventoryUIUpdate();
     }
 }

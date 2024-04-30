@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,7 +33,24 @@ public class UIManager : MonoBehaviour
     public bool rightHandSlot01Selected;
     public bool rightHandSlot02Selected;
 
-    // [Header("Game Setting")]
+    [Header("Interact")]
+    public InteractableUI interactableUI;
+    [SerializeField]
+    private GameObject interactPopUpUI;
+    [SerializeField]
+    private Text interactMessage;
+
+    [Header("PopUp Item")]
+    public GameObject itemPopUpUI;
+    [SerializeField]
+    private Text itemPopUpName;
+    [SerializeField]
+    private RawImage itemPopUpIcon;
+
+    [Header("Game Message")]
+    public GameObject messagePopUp;
+    [SerializeField]
+    private Text messageText;
 
     void Awake()
     {
@@ -49,10 +67,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-        UpdateUI();
+        InventoryUIUpdate();
     }
 
-    public void UpdateUI()
+    public void InventoryUIUpdate()
     {
         for (int i = 0; i < weaponInventorySlots.Length; i++)
         {
@@ -102,5 +120,39 @@ public class UIManager : MonoBehaviour
         leftHandSlot02Selected = false;
         rightHandSlot01Selected = false;
         rightHandSlot02Selected = false;
+    }
+
+    public void OpenInteractUI(string message)
+    {
+        interactMessage.text = message;
+        interactPopUpUI.SetActive(true);
+    }
+
+    public void CloseInteractUI()
+    {
+        interactPopUpUI.SetActive(false);
+    }
+
+    public void OpenItemPopUpUI(string itemName, Texture itemIcon)
+    {
+        itemPopUpName.text = itemName;
+        itemPopUpIcon.texture = itemIcon;
+        itemPopUpUI.SetActive(true);
+    }
+
+    public void CloseItemPopUpUI()
+    {
+        itemPopUpUI.SetActive(false);
+    }
+
+    public void OpenMessagePopUpUI(string message)
+    {
+        messagePopUp.SetActive(true);
+        messageText.text = message;
+    }
+
+    public void CloseMessagePopUpUI()
+    {
+        messagePopUp.SetActive(false);
     }
 }
