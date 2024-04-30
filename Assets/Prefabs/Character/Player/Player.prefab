@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 1912785350997228117}
   - component: {fileID: 8704254429465697172}
   - component: {fileID: 5664519629810846392}
+  - component: {fileID: 502133196265639890}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -585,10 +586,6 @@ MonoBehaviour:
   isUsingRightHand: 0
   defaultLayer: 3
   invincibleLayer: 13
-  checkRadius: 0.3
-  checkMaxDis: 1
-  interactableUIObj: {fileID: 0}
-  itemInteractableObj: {fileID: 0}
   playerMove: {fileID: 0}
   playerAnimator: {fileID: 0}
   playerInventory: {fileID: 0}
@@ -720,6 +717,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttack: 
+--- !u!114 &502133196265639890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf88cd773a1fbe4a8183aa37046ebde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRadius: 0.3
+  checkMaxDis: 1
+  itemInteractableObj: {fileID: 0}
 --- !u!1001 &8633419180313039681
 PrefabInstance:
   m_ObjectHideFlags: 0

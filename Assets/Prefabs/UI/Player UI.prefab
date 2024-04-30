@@ -4115,6 +4115,12 @@ MonoBehaviour:
   leftHandSlot02Selected: 0
   rightHandSlot01Selected: 0
   rightHandSlot02Selected: 0
+  interactableUI: {fileID: 5663372105763692253}
+  interactPopUpUI: {fileID: 8192532642667889876}
+  interactMessage: {fileID: 5929420798525464258}
+  itemPopUpUI: {fileID: 6195718862487404923}
+  itemPopUpName: {fileID: 1156523550643933523}
+  itemPopUpIcon: {fileID: 1803928184062197894}
 --- !u!1 &7979710107852157995
 GameObject:
   m_ObjectHideFlags: 0
