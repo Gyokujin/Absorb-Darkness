@@ -50,9 +50,9 @@ public class EnemyAnimator : AnimatorManager
         enemyManager.isPreformingAction = false;
     }
 
-    //public void HitEnd()
-    //{
-    //    enemyManager.onDamage = false;
-    //    enemyStatus.damageAmount = 0;
-    //}
+    public void HitEnd()
+    {
+        enemyManager.onDamage = false;
+        enemyStatus.damageAmount = 0;
+    }
 }

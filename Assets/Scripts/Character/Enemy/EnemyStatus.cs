@@ -48,6 +48,11 @@ public class EnemyStatus : CharacterStatus
         currentHealth = maxHealth;
     }
 
+    //void Update()
+    //{
+    //    enemyManager.onDamage = animator.GetBool("onDamage");
+    //}
+
     int SetMaxHealthLevel()
     {
         maxHealth = healthLevel * healthLevelAmount;
