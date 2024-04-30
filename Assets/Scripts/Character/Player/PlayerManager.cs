@@ -18,15 +18,6 @@ public class PlayerManager : CharacterManager
     public int defaultLayer;
     public int invincibleLayer;
 
-    [Header("Interact")]
-    [SerializeField]
-    private float checkRadius = 0.3f;
-    [SerializeField]
-    private float checkMaxDis = 1f;
-    [SerializeField]
-    private GameObject interactableUIObj;
-    public GameObject itemInteractableObj;
-
     [Header("Component")]
     [HideInInspector]
     public PlayerMove playerMove;
@@ -36,7 +27,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerInventory playerInventory;
     private PlayerCamera playerCamera;
-    private InteractableUI interactableUI;
+    private PlayerInteract playerInteract;
 
     void Awake()
     {
@@ -53,7 +44,7 @@ public class PlayerManager : CharacterManager
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponent<PlayerInventory>();
         playerCamera = FindObjectOfType<PlayerCamera>();
-        interactableUI = FindObjectOfType<InteractableUI>();
+        playerInteract = GetComponent<PlayerInteract>();
     }
 
     void Update()
@@ -66,7 +57,7 @@ public class PlayerManager : CharacterManager
 
         playerInput.TickInput(Time.deltaTime);
         playerMove.HandleRolling(Time.deltaTime);
-        CheckInteractableObject();
+        playerInteract.CheckInteractableObject(this);
     }
 
     void LateUpdate()
@@ -98,40 +89,5 @@ public class PlayerManager : CharacterManager
     {
         playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
-    }
-
-    public void CheckInteractableObject()
-    {
-        RaycastHit hit;
-
-        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, playerCamera.targetLayer))
-        {
-            if (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Interactable>() != null)
-            {
-                Interactable interactableObj = hit.collider.GetComponent<Interactable>();
-
-                string interactableText = interactableObj.interactableText;
-                interactableUI.interactableText.text = interactableText;
-                interactableUIObj.SetActive(true);
-
-                if (playerInput.interactInput)
-                {
-                    interactableObj.Interact(this);
-                    UIManager.instance.UpdateUI();
-                }
-            }
-        }
-        else
-        {
-            if (interactableUIObj != null)
-            {
-                interactableUIObj.SetActive(false);
-
-                if (playerInput.interactInput)
-                {
-                    itemInteractableObj.SetActive(false);
-                }
-            }
-        }
     }
 }
