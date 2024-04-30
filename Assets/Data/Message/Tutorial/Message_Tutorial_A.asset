@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74644b7c290c64aa26565b5ecb92c7, type: 3}
   m_Name: Message_Tutorial_A
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  message: "\uC57D\uACF5\uACA9 : \uB9C8\uC6B0\uC2A4 \uC88C\uD074\uB9AD \\n \uAC15\uACF5\uACA9
-    : \uB9C8\uC6B0\uC2A4 \uC6B0\uD074\uB9AD"
+  message: "\uC57D\uACF5\uACA9 : \uB9C8\uC6B0\uC2A4 \uC88C\uD074\uB9AD                         
+    \uAC15\uACF5\uACA9 : \uB9C8\uC6B0\uC2A4 \uC6B0\uD074\uB9AD"
