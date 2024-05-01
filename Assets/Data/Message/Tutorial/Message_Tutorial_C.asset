@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74644b7c290c64aa26565b5ecb92c7, type: 3}
   m_Name: Message_Tutorial_C
   m_EditorClassIdentifier: 
-  message: "\uC870\uC774\uBCF4\uC774\uAC00 \uB3CC\uC544\uC654\uB2E4"
+  message: "\uB85D\uC628 : Q"
