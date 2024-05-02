@@ -20,6 +20,7 @@ public class ItemPickUp : Interactable
         playerManager.playerInventory.weaponsInventory.Add(weapon);
 
         UIManager.instance.OpenItemPopUpUI(weapon.itemName, weapon.itemIcon.texture);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.PickUp]);
         gameObject.SetActive(false);
     }
 }

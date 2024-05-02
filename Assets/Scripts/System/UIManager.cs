@@ -149,6 +149,7 @@ public class UIManager : MonoBehaviour
     {
         messagePopUp.SetActive(true);
         messageText.text = message;
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Interact1]);
     }
 
     public void CloseMessagePopUpUI()
