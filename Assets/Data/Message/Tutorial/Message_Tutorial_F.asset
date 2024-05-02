@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74644b7c290c64aa26565b5ecb92c7, type: 3}
   m_Name: Message_Tutorial_F
   m_EditorClassIdentifier: 
-  message: "\uC774\uAC70\uB77C\uB3C4 \uB108\uC5D0\uAC8C \uB0A8\uAE34\uB2E4"
+  message: "\uB09C \uC774\uC81C \uD2C0\uB838\uB2E4..                                  
+    \uC6D0\uD55C\uB2E4\uBA74 \uB0B4 \uAC80\uC744 \uAC00\uC838\uAC00\uB77C"
