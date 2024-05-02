@@ -15,17 +15,20 @@ public class UIManager : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField]
-    private GameObject weaponInventoryWindow;
+    private GameObject inventoryWindow;
+    [SerializeField]
+    private GameObject inventorySlotPrefab;
+    [SerializeField]
+    private Transform inventorySlotsParent;
     public PlayerInventory playerInventory;
 
     [Header("Equipment")]
     [SerializeField]
-    private GameObject equipmentScreenWindow;
+    private GameObject equipmentWindow;
     [SerializeField]
-    private GameObject weaponInventorySlotPrefab;
-    [SerializeField]
-    private Transform weaponInventorySlotsParent;
-    private WeaponInventorySlot[] weaponInventorySlots;
+    private EquipmentWindowUI equipmentWindowUI;
+
+    private WeaponInventorySlot[] equipmentSlots;
 
     [Header("Equipment Window Slot Selected")]
     public bool leftHandSlot01Selected;
@@ -66,29 +69,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+        equipmentSlots = inventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
         InventoryUIUpdate();
-    }
-
-    public void InventoryUIUpdate()
-    {
-        for (int i = 0; i < weaponInventorySlots.Length; i++)
-        {
-            if (i < playerInventory.weaponsInventory.Count)
-            {
-                if (weaponInventorySlots.Length < playerInventory.weaponsInventory.Count)
-                {
-                    Instantiate(weaponInventorySlotPrefab, weaponInventorySlotsParent);
-                    weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-                }
-
-                weaponInventorySlots[i].AddItem(playerInventory.weaponsInventory[i]);
-            }
-            else
-            {
-                weaponInventorySlots[i].ClearInventorySlot();
-            }
-        }
     }
 
     public void OpenGameSystemUI()
@@ -96,6 +78,7 @@ public class UIManager : MonoBehaviour
         selectWindow.SetActive(true);
         hudWindow.SetActive(false);
         GameManager.instance.LockCamera(false);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.GameSystem]);
     }
 
     public void CloseGameSystemUI()
@@ -105,13 +88,50 @@ public class UIManager : MonoBehaviour
         CloseAllInventoryUI();
         ResetAllSelectedSlots();
         GameManager.instance.LockCamera(true);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Interact2]);
+    }
+
+    public void OpenInventoryUI()
+    {
+        CloseAllInventoryUI();
+        inventoryWindow.SetActive(true);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Click]);
+    }
+
+    public void InventoryUIUpdate()
+    {
+        for (int i = 0; i < equipmentSlots.Length; i++)
+        {
+            if (i < playerInventory.weaponsInventory.Count)
+            {
+                if (equipmentSlots.Length < playerInventory.weaponsInventory.Count)
+                {
+                    Instantiate(inventorySlotPrefab, inventorySlotsParent);
+                    equipmentSlots = inventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+                }
+
+                equipmentSlots[i].AddItem(playerInventory.weaponsInventory[i]);
+            }
+            else
+            {
+                equipmentSlots[i].ClearInventorySlot();
+            }
+        }
+    }
+
+    public void OpenEquipmentUI()
+    {
+        CloseAllInventoryUI();
+        equipmentWindow.SetActive(true);
+        equipmentWindowUI.OpenEquipmentsUI();
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Click]);
     }
 
     public void CloseAllInventoryUI()
     {
         ResetAllSelectedSlots();
-        weaponInventoryWindow.SetActive(false);
-        equipmentScreenWindow.SetActive(false);
+        inventoryWindow.SetActive(false);
+        equipmentWindow.SetActive(false);
     }
 
     public void ResetAllSelectedSlots()
