@@ -14,8 +14,7 @@ public class UIManager : MonoBehaviour
     private GameObject selectWindow;
 
     [Header("Inventory")]
-    [SerializeField]
-    private GameObject inventoryWindow;
+    public GameObject inventoryWindow;
     [SerializeField]
     private GameObject inventorySlotPrefab;
     [SerializeField]
@@ -23,8 +22,7 @@ public class UIManager : MonoBehaviour
     public PlayerInventory playerInventory;
 
     [Header("Equipment")]
-    [SerializeField]
-    private GameObject equipmentWindow;
+    public GameObject equipmentWindow;
     [SerializeField]
     private EquipmentWindowUI equipmentWindowUI;
 
