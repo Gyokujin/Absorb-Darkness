@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74644b7c290c64aa26565b5ecb92c7, type: 3}
   m_Name: Message_Tutorial_E
   m_EditorClassIdentifier: 
-  message: "\uC67C\uCABD \uC8FC\uC778\uC744 \uAE30\uB2E4\uB9AC\uACE0 \uC788\uB2E4"
+  message: "\uC67C\uCABD, \uC8FC\uC778\uC744 \uAE30\uB2E4\uB9AC\uACE0 \uC788\uB2E4"
