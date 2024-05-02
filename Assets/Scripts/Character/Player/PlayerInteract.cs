@@ -49,7 +49,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 UIManager.instance.CloseInteractUI();
 
-                if (playerInput.interactInput)
+                if (itemInteractableObj != null && playerInput.interactInput)
                 {
                     switch (itemInteractableObj.interactType)
                     {
@@ -61,6 +61,8 @@ public class PlayerInteract : MonoBehaviour
                             UIManager.instance.CloseMessagePopUpUI();
                             break;
                     }
+
+                    AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Interact2]);
                 }
             }
         }
