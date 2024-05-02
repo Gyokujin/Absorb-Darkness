@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SystemSound
 {
-    Interact1, Interact2, PickUp
+    GameSystem, Click, Interact1, Interact2, PickUp
 }
 
 public enum PlayerActionSound
