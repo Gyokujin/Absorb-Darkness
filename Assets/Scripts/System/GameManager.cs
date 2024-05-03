@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +19,21 @@ public class GameManager : MonoBehaviour
 
         Application.targetFrameRate = 60;
         LockCamera(true);
+    }
+
+    void Start()
+    {
+        GameStart();
+    }
+
+    void GameStart()
+    {
+        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)GameBGM.Stage0Field]);
+    }
+
+    public void EntranceBossRoom()
+    {
+        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)GameBGM.Stage0Boss]);
     }
 
     public void LockCamera(bool onLock)
