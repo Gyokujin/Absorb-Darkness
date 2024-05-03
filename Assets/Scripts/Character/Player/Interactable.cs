@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum InteractType
 {
-    Item, Message
+    Item, Message, Gate
 }
 
 public class Interactable : MonoBehaviour
@@ -28,6 +28,10 @@ public class Interactable : MonoBehaviour
 
             case InteractType.Message:
                 interactableText = "메시지를 확인한다 E";
+                break;
+
+            case InteractType.Gate:
+                interactableText = "안갯속으로 들어간다 E";
                 break;
         }
     }

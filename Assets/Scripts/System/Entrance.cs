@@ -9,9 +9,11 @@ public enum EntranceType
 
 public class Entrance : MonoBehaviour
 {
-    private int playerLayer;
     [SerializeField]
     private EntranceType entranceType;
+    [SerializeField]
+    private GateEntrance targetGate;
+    private int playerLayer;
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class Entrance : MonoBehaviour
 
                 case EntranceType.BossRoom:
                     GameManager.instance.EntranceBossRoom();
+                    targetGate.Close();
                     break;
             }
 
