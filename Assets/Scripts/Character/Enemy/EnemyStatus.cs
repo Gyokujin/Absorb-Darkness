@@ -23,8 +23,8 @@ public class EnemyStatus : CharacterStatus
 
     [Header("Component")]
     private new Rigidbody rigidbody;
-    private Animator animator;
-    protected EnemyManager enemyManager;
+    private EnemyAnimator enemyAnimator;
+    private EnemyManager enemyManager;
     private CharacterAudio characterAudio;
 
     void Awake()
@@ -35,7 +35,7 @@ public class EnemyStatus : CharacterStatus
     void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        enemyAnimator = GetComponentInChildren<EnemyAnimator>();
         enemyManager = GetComponent<EnemyManager>();
         characterAudio = GetComponent<CharacterAudio>();
         hitWait = new WaitForSeconds(hitTime);
@@ -47,11 +47,6 @@ public class EnemyStatus : CharacterStatus
         maxHealth = SetMaxHealthLevel();
         currentHealth = maxHealth;
     }
-
-    //void Update()
-    //{
-    //    enemyManager.onDamage = animator.GetBool("onDamage");
-    //}
 
     int SetMaxHealthLevel()
     {
@@ -93,7 +88,7 @@ public class EnemyStatus : CharacterStatus
 
     IEnumerator DamageProcess(CharacterStatus player)
     {
-        animator.SetTrigger("doHit");
+        enemyAnimator.animator.SetTrigger("doHit");
         characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
 
         yield return hitWait;
@@ -109,7 +104,7 @@ public class EnemyStatus : CharacterStatus
         enemyManager.rigidbody.velocity = Vector3.zero;
         enemyManager.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
 
-        animator.SetTrigger("doKnockback");
+        enemyAnimator.animator.SetTrigger("doKnockback");
         characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
 
         yield return knockbackWait; // 플레이어 재추적
@@ -130,7 +125,7 @@ public class EnemyStatus : CharacterStatus
             attackCollider.CloseDamageCollider();
         }
 
-        animator.SetTrigger("doDie");
+        enemyAnimator.PlayTargetAnimation("Die", true);
         characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Die]);
     }
 }
