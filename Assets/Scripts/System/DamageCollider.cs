@@ -14,6 +14,8 @@ public class DamageCollider : MonoBehaviour
     [SerializeField]
     private AttackType attackType;
     private int targetLayer;
+    [SerializeField]
+    private TrailRenderer trailRenderer;
 
     [Header("Weapon Info")]
     private Collider damageCollider;
@@ -57,11 +59,21 @@ public class DamageCollider : MonoBehaviour
     public void OpenDamageCollider()
     {
         damageCollider.enabled = true;
+
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = true;
+        }
     }
 
     public void CloseDamageCollider()
     {
         damageCollider.enabled = false;
+
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false;
+        }
     }
 
     void OnTriggerEnter(Collider collision)
