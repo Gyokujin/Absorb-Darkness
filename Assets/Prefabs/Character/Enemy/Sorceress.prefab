@@ -342,7 +342,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.95
   m_Height: 2.8
   m_Direction: 1
   m_Center: {x: -0.1, y: 1.4, z: 0}
@@ -361,7 +361,7 @@ MonoBehaviour:
   onDamage: 0
   onDie: 0
   lockOnTransform: {fileID: 7790592378129280624}
-  enemyType: 0
+  enemyType: 2
   curState: {fileID: 1985222649722456806}
   isInteracting: 0
   isPreformingAction: 0

@@ -1125,7 +1125,7 @@ BoxCollider:
   m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.03, y: 0.03, z: 0.03}
-  m_Center: {x: 0, y: 0.007, z: 0.01}
+  m_Center: {x: 0, y: 0.007, z: 0.015}
 --- !u!95 &273112792458133285
 Animator:
   serializedVersion: 5
@@ -1410,12 +1410,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 0.8, y: 2, z: 0.85}
+  m_Center: {x: 0, y: 1.75, z: 0.27}
 --- !u!114 &1316856293422706529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,7 +1861,7 @@ Transform:
   m_GameObject: {fileID: 8341569506083490012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.814, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1913,10 +1913,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
-  m_Height: 0.05
+  m_Radius: 0.575
+  m_Height: 1.96
   m_Direction: 1
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Center: {x: 0, y: 0.2, z: 0.2}
 --- !u!1 &8370844500299283692
 GameObject:
   m_ObjectHideFlags: 0
