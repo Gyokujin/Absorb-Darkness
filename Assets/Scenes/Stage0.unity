@@ -287,6 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079f5b2472f02f4e8de904ff3e6c3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmClips:
+  - {fileID: 8300000, guid: 748c55d98c351d049861655bcc6359db, type: 3}
+  - {fileID: 8300000, guid: 74b15811ee71ab042ace98148c0a30f4, type: 3}
+  bgmVolume: 0.6
   systemClips:
   - {fileID: 8300000, guid: 3dfbad97152060344a28fa1c433027d5, type: 3}
   - {fileID: 8300000, guid: 005b95d2925a1f54a93b7dd715e18db7, type: 3}
@@ -1383,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7743642056720601897, guid: 81dbd6986fcc3c3408136fb3b674f465, type: 3}
       propertyPath: m_Name
-      value: Stage
+      value: Stage0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1512,8 +1516,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1949015462}
-  - {fileID: 72981797}
   - {fileID: 186743801}
+  - {fileID: 72981797}
   - {fileID: 5071552706540946730}
   - {fileID: 311036931605300319}
   - {fileID: 850225193821203767}
