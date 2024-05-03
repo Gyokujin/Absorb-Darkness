@@ -24,14 +24,12 @@ public class PlayerAnimator : AnimatorManager
     [Header("Component")]
     private PlayerManager playerManager;
     private PlayerMove playerMove;
-    private PlayerStatus playerStatus;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerMove = GetComponentInParent<PlayerMove>();
-        playerStatus = GetComponentInParent<PlayerStatus>();
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
