@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameBGM
+{
+    Stage0Field, Stage0Boss
+}
+
 public enum SystemSound
 {
     GameSystem, Click, Interact1, Interact2, PickUp
@@ -16,9 +21,17 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance = null;
 
+    [Header("BGM")]
+    public AudioClip[] bgmClips;
+    [SerializeField]
+    [Range(0, 1)]
+    private float bgmVolume;
+    private AudioSource bgmAudio;
+
     [Header("System")]
     public AudioClip[] systemClips;
     [SerializeField]
+    [Range(0, 1)]
     private float systemVolume;
     [SerializeField]
     private int systemCh;
@@ -28,6 +41,7 @@ public class AudioManager : MonoBehaviour
     [Header("Action")]
     public AudioClip[] actionClips;
     [SerializeField]
+    [Range(0, 1)]
     private float actionVolume;
     [SerializeField]
     private int actionCh;
@@ -50,6 +64,13 @@ public class AudioManager : MonoBehaviour
 
     void Init()
     {
+        // BGM
+        bgmAudio = new GameObject("Bgm Audio").AddComponent<AudioSource>();
+        bgmAudio.transform.parent = transform;
+        bgmAudio.playOnAwake = true;
+        bgmAudio.loop = true;
+        bgmAudio.volume = bgmVolume;
+
         // System
         GameObject systemAudio = new GameObject("System Audio");
         systemAudio.transform.parent = transform;
@@ -73,6 +94,13 @@ public class AudioManager : MonoBehaviour
             actionAudios[i].playOnAwake = false;
             actionAudios[i].volume = actionVolume;
         }
+    }
+
+    public void PlayBGM(AudioClip audioClip)
+    {
+        bgmAudio.Stop();
+        bgmAudio.clip = audioClip;
+        bgmAudio.Play();
     }
 
     public void PlaySystemSFX(AudioClip audioClip)
