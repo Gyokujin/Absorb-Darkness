@@ -27,6 +27,8 @@ public class Sorceress : MonoBehaviour
     private Transform[] summonTransforms;
     private int summonCount;
     [SerializeField]
+    private float summonOffsetY = -2;
+    [SerializeField]
     private float summonDelay = 1f;
     private WaitForSeconds summonWait;
 
@@ -95,6 +97,7 @@ public class Sorceress : MonoBehaviour
 
         yield return summonWait;
         GameObject summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat);
+        summonPos.y += summonOffsetY; // 몬스터 오브젝트의 Y좌표는 0
         summonBat.transform.position = summonPos;
         summonBat.transform.rotation = transform.rotation;
     }
