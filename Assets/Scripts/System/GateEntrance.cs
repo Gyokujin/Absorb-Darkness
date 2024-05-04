@@ -22,6 +22,7 @@ public class GateEntrance : Interactable
     {
         collider.isTrigger = true;
         playerManager.playerAnimator.PlayTargetAnimation("Entrance", true);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.FogEntrance]);
     }
 
     public void Close()

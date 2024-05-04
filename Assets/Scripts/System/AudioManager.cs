@@ -9,7 +9,7 @@ public enum GameBGM
 
 public enum SystemSound
 {
-    GameSystem, Click, Interact1, Interact2, PickUp
+    GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance
 }
 
 public enum PlayerActionSound
