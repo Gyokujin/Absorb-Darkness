@@ -123,6 +123,7 @@ public class PlayerStatus : CharacterStatus
         
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
+        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
 
         if (hitStun)
         {
@@ -148,6 +149,7 @@ public class PlayerStatus : CharacterStatus
         gameObject.layer = playerManager.invincibleLayer;
         currentHealth = 0;
         playerAnimator.PlayTargetAnimation("Dead", true);
+        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Die]);
     }
 
     void RecoveryStamina()

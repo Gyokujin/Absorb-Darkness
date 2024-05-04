@@ -14,7 +14,7 @@ public enum SystemSound
 
 public enum PlayerActionSound
 {
-    Attack1, Attack2, Rolling, Backstep
+    Attack1, Attack2, Rolling, Backstep, Hit, Die
 }
 
 public class AudioManager : MonoBehaviour
@@ -38,15 +38,15 @@ public class AudioManager : MonoBehaviour
     private int systemIndex;
     private AudioSource[] systemAudios;
 
-    [Header("Action")]
-    public AudioClip[] actionClips;
+    [Header("Player Action")]
+    public AudioClip[] playerActionClips;
     [SerializeField]
     [Range(0, 1)]
-    private float actionVolume;
+    private float playerActionVolume;
     [SerializeField]
-    private int actionCh;
-    private int actionIndex;
-    private AudioSource[] actionAudios;
+    private int playerActionCh;
+    private int playerActionIndex;
+    private AudioSource[] playerActionAudios;
 
     void Awake()
     {
@@ -86,13 +86,13 @@ public class AudioManager : MonoBehaviour
         // Action
         GameObject actionAudio = new GameObject("Action Audio");
         actionAudio.transform.parent = transform;
-        actionAudios = new AudioSource[actionCh];
+        playerActionAudios = new AudioSource[playerActionCh];
 
-        for (int i = 0; i < actionCh; i++)
+        for (int i = 0; i < playerActionCh; i++)
         {
-            actionAudios[i] = actionAudio.AddComponent<AudioSource>();
-            actionAudios[i].playOnAwake = false;
-            actionAudios[i].volume = actionVolume;
+            playerActionAudios[i] = actionAudio.AddComponent<AudioSource>();
+            playerActionAudios[i].playOnAwake = false;
+            playerActionAudios[i].volume = playerActionVolume;
         }
     }
 
@@ -119,18 +119,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayActionSFX(AudioClip audioClip)
+    public void PlayPlayerActionSFX(AudioClip audioClip)
     {
-        for (int i = 0; i < actionAudios.Length; i++)
+        for (int i = 0; i < playerActionAudios.Length; i++)
         {
-            int loopIndex = (i + actionIndex) % actionAudios.Length;
+            int loopIndex = (i + playerActionIndex) % playerActionAudios.Length;
 
-            if (actionAudios[loopIndex].isPlaying)
+            if (playerActionAudios[loopIndex].isPlaying)
                 continue;
 
-            actionIndex = loopIndex;
-            actionAudios[loopIndex].clip = audioClip;
-            actionAudios[loopIndex].Play();
+            playerActionIndex = loopIndex;
+            playerActionAudios[loopIndex].clip = audioClip;
+            playerActionAudios[loopIndex].Play();
             break;
         }
     }
