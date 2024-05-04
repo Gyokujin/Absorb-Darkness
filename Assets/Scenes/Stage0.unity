@@ -297,6 +297,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4f9a2c0ddc869194ea03eee3da9f6d97, type: 3}
   - {fileID: 8300000, guid: 5c4520c4082748b4ba95fa02d6e1e462, type: 3}
   - {fileID: 8300000, guid: 3f6dfcae372bddd43b4adea67ceed918, type: 3}
+  - {fileID: 8300000, guid: ecf1264c81d3f6c4482282e451c9ca63, type: 3}
   systemVolume: 0.6
   systemCh: 10
   actionClips:
@@ -1073,7 +1074,7 @@ PrefabInstance:
       objectReference: {fileID: 4405031280907552392}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 60.06
       objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1081,7 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 102.76
       objectReference: {fileID: 0}
     - target: {fileID: 6557882189825199704, guid: b448eb40df46926429e39f76897876cb, type: 3}
       propertyPath: m_LocalRotation.w
