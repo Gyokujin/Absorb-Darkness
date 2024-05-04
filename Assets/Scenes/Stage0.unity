@@ -299,14 +299,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3f6dfcae372bddd43b4adea67ceed918, type: 3}
   - {fileID: 8300000, guid: ecf1264c81d3f6c4482282e451c9ca63, type: 3}
   systemVolume: 0.6
-  systemCh: 10
-  actionClips:
+  systemCh: 5
+  playerActionClips:
   - {fileID: 8300000, guid: 6283f62da4ae5ed4c9d121fc05464c4d, type: 3}
   - {fileID: 8300000, guid: 57f2209bfdddc9c44878ae441cbeebff, type: 3}
   - {fileID: 8300000, guid: 2ccc90293367fed429a0275ac265e26c, type: 3}
   - {fileID: 8300000, guid: 3805fa6e2644a25488f7dd1e9f2c8dc9, type: 3}
-  actionVolume: 0.5
-  actionCh: 4
+  - {fileID: 8300000, guid: 887807fe06dbe854ea5afcd62bde87d0, type: 3}
+  - {fileID: 8300000, guid: ddcfc0fb780b3454ebdfdc5da2b3df6c, type: 3}
+  playerActionVolume: 0.6
+  playerActionCh: 5
 --- !u!1001 &1006653716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1139,11 +1141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.003923893
       objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalRotation.w
