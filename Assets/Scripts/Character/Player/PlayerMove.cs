@@ -191,13 +191,13 @@ public class PlayerMove : MonoBehaviour
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 playerTransform.rotation = rollRotation;
                 playerStatus.TakeStamina(playerStatus.rollingStaminaAmount);
-                AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Rolling]);
+                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
             }
             else // 이동키를 누르지 않으면 백스텝
             {
                 playerAnimator.PlayTargetAnimation("Backstep", true);
                 playerStatus.TakeStamina(playerStatus.backStapStaminaAmount);
-                AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Backstep]);
+                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
             }
         }
     }

@@ -60,7 +60,7 @@ public class EnemyStatus : CharacterStatus
             return;
 
         currentHealth -= damage;
-        AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Attack2]);
+        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
 
         if (currentHealth <= 0)
         {

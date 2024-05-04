@@ -109,7 +109,7 @@ public class PlayerAnimator : AnimatorManager
 
     public void PlayAttackSFX()
     {
-        AudioManager.instance.PlayActionSFX(AudioManager.instance.actionClips[(int)PlayerActionSound.Attack1]);
+        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack1]);
     }
 
     public void DodgeEnd()
