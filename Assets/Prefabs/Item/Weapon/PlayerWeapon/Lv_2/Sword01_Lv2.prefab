@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4bdf3f62ca60849982ecf1846ebfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRadius: 2
+  interactType: 0
   interactableText: "\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD55C\uB2E4 E"
   weapon: {fileID: 11400000, guid: 33e463ecf98df774594ae80033a7ffa0, type: 2}
 --- !u!1 &6593097936387914869
@@ -134,7 +134,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5492596274398922314}
   m_Father: {fileID: 8673550528851047182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8113187309494300204
@@ -221,4 +222,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 0
+  trailRenderer: {fileID: 224928295128997952}
   damage: 10
+--- !u!1001 &1014263756290211398
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4517922870056578866}
+    m_Modifications:
+    - target: {fileID: 184833966892008938, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_Name
+      value: Trail Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+--- !u!96 &224928295128997952 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 940259001631907334, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+  m_PrefabInstance: {fileID: 1014263756290211398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5492596274398922314 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4767901017630423052, guid: 02aad4662e3d09341972cc411b7f9276, type: 3}
+  m_PrefabInstance: {fileID: 1014263756290211398}
+  m_PrefabAsset: {fileID: 0}
