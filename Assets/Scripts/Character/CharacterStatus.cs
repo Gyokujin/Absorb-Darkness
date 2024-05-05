@@ -14,4 +14,8 @@ public class CharacterStatus : MonoBehaviour
     public int healthLevelAmount = 10;
     public int maxHealth;
     public int currentHealth;
+
+    [Header("Effect")]
+    [SerializeField]
+    protected Transform hitEffectTransform;
 }

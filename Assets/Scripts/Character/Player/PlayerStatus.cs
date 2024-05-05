@@ -123,7 +123,6 @@ public class PlayerStatus : CharacterStatus
         
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
-        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
 
         if (hitStun)
         {
@@ -131,6 +130,9 @@ public class PlayerStatus : CharacterStatus
             gameObject.layer = playerManager.invincibleLayer;
             playerAnimator.animator.SetBool("onDamage", true);
             playerAnimator.PlayTargetAnimation("Damage", true);
+            GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
+            hitEffect.transform.position = hitEffectTransform.position;
+            AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
         }
 
         if (currentHealth <= 0)

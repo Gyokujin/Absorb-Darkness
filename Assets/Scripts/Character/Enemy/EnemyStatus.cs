@@ -60,6 +60,8 @@ public class EnemyStatus : CharacterStatus
             return;
 
         currentHealth -= damage;
+        GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
+        hitEffect.transform.position = hitEffectTransform.position;
         AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
 
         if (currentHealth <= 0)
