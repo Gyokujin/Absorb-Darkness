@@ -467,6 +467,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1072069048093040576}
   m_LocalEulerAnglesHint: {x: 35.248, y: -185.398, z: 6.043}
+--- !u!1 &6250972066684996554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7554135495376589493}
+  m_Layer: 3
+  m_Name: HitEffect Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7554135495376589493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250972066684996554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6557882189825199704}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6995717877939349760
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +540,7 @@ Transform:
   - {fileID: 2037056813837801136}
   - {fileID: 6428740654593033129}
   - {fileID: 1064326202313982310}
+  - {fileID: 7554135495376589493}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8617979884866548014
@@ -617,6 +649,7 @@ MonoBehaviour:
   backStapStaminaAmount: 15
   sprintStaminaAmount: 0.75
   invincibleTime: 0.3
+  hitEffectTransform: {fileID: 7554135495376589493}
   sprintSpeed: 9
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}

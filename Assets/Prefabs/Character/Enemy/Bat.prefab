@@ -1196,6 +1196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 2
+  trailRenderer: {fileID: 0}
   damage: 5
 --- !u!1 &4236012578103979771
 GameObject:
@@ -1366,6 +1367,7 @@ Transform:
   - {fileID: 5428491561185675698}
   - {fileID: 5557840637019324326}
   - {fileID: 2116980215713304147}
+  - {fileID: 4713489725580802980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!54 &4702347327469195449
@@ -1466,6 +1468,7 @@ MonoBehaviour:
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
+  hitEffectTransform: {fileID: 4713489725580802980}
   detectionRadius: 13
   detectionAngleMax: 105
   detectionAngleMin: -105
@@ -1608,6 +1611,37 @@ MonoBehaviour:
   currentAttack: {fileID: 11400000, guid: 903a2deb7744e6942b7e77c80e73c168, type: 2}
   combatStanceState: {fileID: 4853583695578390121}
   pursueTargetState: {fileID: 7815481824792367352}
+--- !u!1 &5671601671262288195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4713489725580802980}
+  m_Layer: 3
+  m_Name: HitEffect Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4713489725580802980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5671601671262288195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 632694988008965867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5731668072008472282
 GameObject:
   m_ObjectHideFlags: 0
