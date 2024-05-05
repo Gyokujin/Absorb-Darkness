@@ -1,4 +1,5 @@
 using OpenCover.Framework.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class PoolManager : MonoBehaviour
         Bat
     }
 
+    public enum Effect
+    {
+        HitBlood
+    }
+
     public enum EnemySpell
     {
         LightningImpact, ElectricShock, PosionMist, Summon, Meteor, MeteorExplosion
@@ -21,6 +27,11 @@ public class PoolManager : MonoBehaviour
     [SerializeField]
     private GameObject[] enemies;
     private List<GameObject>[] enemyPool;
+
+    [Header("Effect")]
+    [SerializeField]
+    private GameObject[] effects;
+    private List<GameObject>[] effectPool;
 
     [Header("Spell")]
     [SerializeField]
@@ -44,11 +55,17 @@ public class PoolManager : MonoBehaviour
     void Init()
     {
         enemyPool = new List<GameObject>[enemies.Length];
+        effectPool = new List<GameObject>[effects.Length];
         enemySpellPool = new List<GameObject>[enemySpells.Length];
 
         for (int i = 0; i < enemyPool.Length; i++)
         {
             enemyPool[i] = new List<GameObject>();
+        }
+
+        for (int i = 0; i < effectPool.Length; i++)
+        {
+            effectPool[i] = new List<GameObject>();
         }
 
         for (int i = 0; i < enemySpellPool.Length; i++)
@@ -75,6 +92,29 @@ public class PoolManager : MonoBehaviour
         {
             select = Instantiate(enemies[index]);
             enemyPool[index].Add(select);
+        }
+
+        return select;
+    }
+
+    public GameObject GetEffect(int index)
+    {
+        GameObject select = null;
+
+        foreach (GameObject effectObj in effectPool[index])
+        {
+            if (!effectObj.activeSelf)
+            {
+                select = effectObj;
+                select.SetActive(true);
+                break;
+            }
+        }
+
+        if (!select)
+        {
+            select = Instantiate(effects[index]);
+            effectPool[index].Add(select);
         }
 
         return select;
