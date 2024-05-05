@@ -31,7 +31,7 @@ public class Interactable : MonoBehaviour
                 break;
 
             case InteractType.Gate:
-                interactableText = "안갯속으로 들어간다 E";
+                interactableText = "안개 속으로 들어간다 E";
                 break;
         }
     }
