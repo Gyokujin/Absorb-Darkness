@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 4636373201134749058, guid: 5fd1210210040d34e8810388185a6063, type: 3}
+  effects:
+  - {fileID: 7366913133744347035, guid: 0c988c57d13cfc64895a3fa51c2750d3, type: 3}
   enemySpells:
   - {fileID: 2227999677048980329, guid: 0a87f172a0b090d4fa2014e64ebdc5ac, type: 3}
   - {fileID: 100000, guid: af067a5b770756e42823cb73cf3e4a4c, type: 3}
