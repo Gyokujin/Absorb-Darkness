@@ -444,6 +444,7 @@ MonoBehaviour:
   detectionAngleMax: 90
   detectionAngleMin: -90
   attackRangeMax: 20
+  onStageBoss: 1
   hitTime: 1
   knockbackTime: 2.5
   knockbackPower: 50

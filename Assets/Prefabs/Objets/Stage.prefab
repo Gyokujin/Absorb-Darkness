@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entranceType: 1
   targetGate: {fileID: 602131411162153727}
+  bossInfo: {fileID: 11400000, guid: 0795e1474db2e91488707b7dd536f956, type: 2}
 --- !u!1 &2264846002530090823
 GameObject:
   m_ObjectHideFlags: 0
