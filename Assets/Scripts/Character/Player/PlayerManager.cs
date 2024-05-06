@@ -73,11 +73,11 @@ public class PlayerManager : CharacterManager
         playerInput.quickSlotLeftInput = false;
         playerInput.quickSlotRightInput = false;
 
-        if (playerCamera != null)
-        {
-            playerCamera.FollowTarget(Time.deltaTime);
-            playerCamera.HandleCameraRotation(Time.deltaTime, playerInput.mouseX, playerInput.mouseY);
-        }
+        //if (playerCamera != null)
+        //{
+        //    playerCamera.FollowTarget(Time.deltaTime);
+        //    playerCamera.HandleCameraRotation(Time.deltaTime, playerInput.mouseX, playerInput.mouseY);
+        //}
 
         if (isInAir)
         {
@@ -87,6 +87,12 @@ public class PlayerManager : CharacterManager
 
     void FixedUpdate()
     {
+        if (playerCamera != null)
+        {
+            playerCamera.FollowTarget(Time.fixedDeltaTime);
+            playerCamera.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
+        }
+
         playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
     }

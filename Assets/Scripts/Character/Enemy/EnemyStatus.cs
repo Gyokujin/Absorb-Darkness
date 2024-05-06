@@ -10,6 +10,10 @@ public class EnemyStatus : CharacterStatus
     public float detectionAngleMin = -50;
     public float attackRangeMax = 1.5f;
 
+    [Header("Info")]
+    [SerializeField]
+    private bool onStageBoss = false;
+
     [Header("Damage")]
     [SerializeField]
     private float hitTime = 1f;
@@ -60,6 +64,12 @@ public class EnemyStatus : CharacterStatus
             return;
 
         currentHealth -= damage;
+
+        if (onStageBoss)
+        {
+            UIManager.instance.BossHPUIModify(currentHealth, maxHealth);
+        }
+
         GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
         hitEffect.transform.position = hitEffectTransform.position;
         AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
@@ -129,5 +139,10 @@ public class EnemyStatus : CharacterStatus
 
         enemyAnimator.PlayTargetAnimation("Die", true);
         characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Die]);
+
+        if (onStageBoss)
+        {
+            UIManager.instance.CloseBossInfo();
+        }
     }
 }

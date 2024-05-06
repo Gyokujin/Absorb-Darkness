@@ -14,10 +14,24 @@ public class Entrance : MonoBehaviour
     [SerializeField]
     private GateEntrance targetGate;
     private int playerLayer;
+    [SerializeField]
+    private BossInfo bossInfo;
 
     void Awake()
     {
         playerLayer = LayerMask.NameToLayer("Player");
+    }
+
+    void BossEntrance()
+    {
+        GameManager.instance.EntranceBossRoom();
+
+        if (bossInfo != null)
+        {
+            UIManager.instance.OpenBossInfo(bossInfo.bossName);
+        }
+
+        targetGate.Close();
     }
 
     void OnTriggerEnter(Collider other)
@@ -30,8 +44,7 @@ public class Entrance : MonoBehaviour
                     break;
 
                 case EntranceType.BossRoom:
-                    GameManager.instance.EntranceBossRoom();
-                    targetGate.Close();
+                    BossEntrance();
                     break;
             }
 

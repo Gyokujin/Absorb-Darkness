@@ -53,6 +53,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text messageText;
 
+    [Header("Boss Info")]
+    [SerializeField]
+    private GameObject bossInfoUI;
+    [SerializeField]
+    private Text bossNameText;
+    [SerializeField]
+    private Slider bossHPSlider;
+
     void Awake()
     {
         if (instance == null)
@@ -173,5 +181,22 @@ public class UIManager : MonoBehaviour
     public void CloseMessagePopUpUI()
     {
         messagePopUp.SetActive(false);
+    }
+
+    public void OpenBossInfo(string name)
+    {
+        bossNameText.text = name;
+        bossHPSlider.value = 1;
+        bossInfoUI.SetActive(true);
+    }
+
+    public void BossHPUIModify(float curHP, float maxHP)
+    {
+        bossHPSlider.value = curHP / maxHP;
+    }
+
+    public void CloseBossInfo()
+    {
+        bossInfoUI.SetActive(false);
     }
 }
