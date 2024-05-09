@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GateEntrance : Interactable
 {
-    private int closeTag = 0;
     private new Collider collider;
 
     void Start()
@@ -12,13 +11,13 @@ public class GateEntrance : Interactable
         collider = GetComponent<Collider>();
     }
 
-    public override void Interact(PlayerManager playerManager, PlayerAction playerInteract)
+    public override void Interact(PlayerManager playerManager, PlayerInteract playerInteract)
     {
         base.Interact(playerManager, playerInteract);
         Entrance(playerManager, playerInteract);
     }
 
-    void Entrance(PlayerManager playerManager, PlayerAction playerInteract)
+    void Entrance(PlayerManager playerManager, PlayerInteract playerInteract)
     {
         collider.isTrigger = true;
         playerManager.playerAnimator.PlayTargetAnimation("Entrance", true);

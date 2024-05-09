@@ -27,7 +27,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerInventory playerInventory;
     private PlayerCamera playerCamera;
-    private PlayerAction playerInteract;
+    private PlayerInteract playerInteract;
+    public PlayerItemUse playerItemUse;
 
     void Awake()
     {
@@ -44,7 +45,8 @@ public class PlayerManager : CharacterManager
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponent<PlayerInventory>();
         playerCamera = FindObjectOfType<PlayerCamera>();
-        playerInteract = GetComponent<PlayerAction>();
+        playerInteract = GetComponent<PlayerInteract>();
+        playerItemUse = GetComponent<PlayerItemUse>();
     }
 
     void Update()
@@ -88,12 +90,6 @@ public class PlayerManager : CharacterManager
 
     void FixedUpdate()
     {
-        //if (playerCamera != null)
-        //{
-        //    playerCamera.FollowTarget(Time.fixedDeltaTime);
-        //    playerCamera.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
-        //}
-
         playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
     }
