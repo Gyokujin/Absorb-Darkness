@@ -24,6 +24,7 @@ public class PlayerAnimator : AnimatorManager
     [Header("Component")]
     private PlayerManager playerManager;
     private PlayerMove playerMove;
+    private PlayerStatus playerStatus;
     private PlayerItemUse playerItemUse;
 
     public void Init()
@@ -31,6 +32,7 @@ public class PlayerAnimator : AnimatorManager
         animator = GetComponent<Animator>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerMove = GetComponentInParent<PlayerMove>();
+        playerStatus = GetComponentInParent<PlayerStatus>();
         playerItemUse = GetComponentInParent<PlayerItemUse>();
     }
 
@@ -134,8 +136,13 @@ public class PlayerAnimator : AnimatorManager
         animator.SetBool("canDoCombo", false);
     }
 
+    public void DrinkEstus()
+    {
+        playerStatus.RecoveryHealth();
+    }
+
     public void ItemUseEnd()
     {
-        playerItemUse.ReturnWeapon();
+        playerItemUse.EndItemUse();
     }
 }
