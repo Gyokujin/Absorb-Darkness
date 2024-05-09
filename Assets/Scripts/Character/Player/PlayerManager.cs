@@ -64,6 +64,7 @@ public class PlayerManager : CharacterManager
     {
         playerInput.rollFlag = false;
         playerInput.interactInput = false;
+        playerInput.useItemInpt = false;
         playerInput.lockOnInput = false;
         playerInput.lightAttackInput = false;
         playerInput.heavyAttackInput = false;
@@ -72,12 +73,6 @@ public class PlayerManager : CharacterManager
         playerInput.quickSlotDownInput = false;
         playerInput.quickSlotLeftInput = false;
         playerInput.quickSlotRightInput = false;
-
-        //if (playerCamera != null)
-        //{
-        //    playerCamera.FollowTarget(Time.deltaTime);
-        //    playerCamera.HandleCameraRotation(Time.deltaTime, playerInput.mouseX, playerInput.mouseY);
-        //}
 
         if (isInAir)
         {

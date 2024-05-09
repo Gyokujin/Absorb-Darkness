@@ -24,6 +24,7 @@ public class PlayerInput : MonoBehaviour
     private bool twoHandInput;
     [HideInInspector]
     public bool lockOnInput;
+    public bool useItemInpt;
     private bool rightStickLeftInput;
     private bool rightStickRightInput;
     [HideInInspector]
@@ -82,6 +83,7 @@ public class PlayerInput : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerActions.Interact.performed += i => interactInput = true;
+            inputActions.PlayerActions.UseItem.performed += i => useItemInpt = true;
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
             inputActions.PlayerActions.LightAttack.performed += i => lightAttackInput = true;
@@ -106,6 +108,7 @@ public class PlayerInput : MonoBehaviour
     {
         HandleMoveInput(delta);
         HandleRollInput(delta);
+        HandleUseItemInput();
         HandleLockOnInput();
         HandleTwoHandInput();
         HandleAttackInput(delta);
@@ -141,6 +144,14 @@ public class PlayerInput : MonoBehaviour
             }
 
             rollInputTimer = 0;
+        }
+    }
+
+    void HandleUseItemInput()
+    {
+        if (useItemInpt)
+        {
+
         }
     }
 

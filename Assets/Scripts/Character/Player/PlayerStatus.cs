@@ -154,6 +154,11 @@ public class PlayerStatus : CharacterStatus
         AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Die]);
     }
 
+    public void RecoveryHealth()
+    {
+
+    }
+
     void RecoveryStamina()
     {
         if (CurrentStamina < maxStamina && !playerManager.isInteracting && !playerManager.onDamage && !playerManager.onDodge && !playerManager.isSprinting)
