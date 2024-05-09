@@ -162,7 +162,7 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        foreach (GameObject itemObj in enemySpellPool[index])
+        foreach (GameObject itemObj in itemPool[index])
         {
             if (!itemObj.activeSelf)
             {
