@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon Item")]
 public class WeaponItem : Item
 {
-    public GameObject modelPrefab;
+    [Header("Weapon Info")]
     [SerializeField]
     private bool isUnarmed;
 
