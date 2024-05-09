@@ -24,12 +24,14 @@ public class PlayerAnimator : AnimatorManager
     [Header("Component")]
     private PlayerManager playerManager;
     private PlayerMove playerMove;
+    private PlayerItemUse playerItemUse;
 
     public void Init()
     {
         animator = GetComponent<Animator>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerMove = GetComponentInParent<PlayerMove>();
+        playerItemUse = GetComponentInParent<PlayerItemUse>();
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
@@ -130,5 +132,10 @@ public class PlayerAnimator : AnimatorManager
     public void DisableCombo()
     {
         animator.SetBool("canDoCombo", false);
+    }
+
+    public void ItemUseEnd()
+    {
+        playerItemUse.ReturnWeapon();
     }
 }

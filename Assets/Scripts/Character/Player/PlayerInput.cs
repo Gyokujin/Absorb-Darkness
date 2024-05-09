@@ -52,7 +52,6 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Component")]
     private PlayerManager playerManager;
-    private PlayerAction playerAction;
     private PlayerControls inputActions;
     private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
@@ -69,7 +68,6 @@ public class PlayerInput : MonoBehaviour
     void Init()
     {
         playerManager = GetComponent<PlayerManager>();
-        playerAction = GetComponent<PlayerAction>();
         playerStatus = GetComponent<PlayerStatus>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
@@ -153,8 +151,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (useItemInpt)
         {
-            playerManager.isInteracting = true;
-            playerAction.UseItem();
+            playerManager.playerItemUse.UseItem(playerAnimator, playerInventory.curUsingItem);
         }
     }
 
