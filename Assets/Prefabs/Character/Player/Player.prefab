@@ -1741,6 +1741,7 @@ GameObject:
   - component: {fileID: 8704254429465697172}
   - component: {fileID: 5664519629810846392}
   - component: {fileID: 6987269647642140855}
+  - component: {fileID: 4508310102902069053}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1846,6 +1847,7 @@ MonoBehaviour:
   playerMove: {fileID: 0}
   playerAnimator: {fileID: 0}
   playerInventory: {fileID: 0}
+  playerItemUse: {fileID: 0}
 --- !u!114 &6446244042411737521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,6 +1877,7 @@ MonoBehaviour:
   backStapStaminaAmount: 15
   sprintStaminaAmount: 0.75
   invincibleTime: 0.3
+  recoveryAmount: 50
   sprintSpeed: 9
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
@@ -1994,6 +1997,19 @@ MonoBehaviour:
   checkRadius: 0.3
   checkMaxDis: 1
   itemInteractableObj: {fileID: 0}
+--- !u!114 &4508310102902069053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ddb6d5fc7620e40b6699f9fcaeed98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curUsingItem: {fileID: 0}
 --- !u!1 &7091192128901220387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,6 +2373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472ececd367ee914798284c027e80d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftHandSlot: {fileID: 0}
+  rightHandSlot: {fileID: 0}
+  backSlot: {fileID: 0}
   attackingWeapon: {fileID: 0}
   weaponArmIdleAnimations:
   - LeftArm Empty
