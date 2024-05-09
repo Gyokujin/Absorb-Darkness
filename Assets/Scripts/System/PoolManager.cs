@@ -21,6 +21,11 @@ public class PoolManager : MonoBehaviour
         LightningImpact, ElectricShock, PosionMist, Summon, Meteor, MeteorExplosion
     }
 
+    public enum Item
+    {
+        EstusFlask
+    }
+
     [Header("Enemy")]
     [SerializeField]
     private GameObject[] enemies;
@@ -35,6 +40,11 @@ public class PoolManager : MonoBehaviour
     [SerializeField]
     private GameObject[] enemySpells;
     private List<GameObject>[] enemySpellPool;
+
+    [Header("Item")]
+    [SerializeField]
+    private GameObject[] items;
+    private List<GameObject>[] itemPool;
 
     void Awake()
     {
@@ -55,6 +65,7 @@ public class PoolManager : MonoBehaviour
         enemyPool = new List<GameObject>[enemies.Length];
         effectPool = new List<GameObject>[effects.Length];
         enemySpellPool = new List<GameObject>[enemySpells.Length];
+        itemPool = new List<GameObject>[items.Length];
 
         for (int i = 0; i < enemyPool.Length; i++)
         {
@@ -69,6 +80,11 @@ public class PoolManager : MonoBehaviour
         for (int i = 0; i < enemySpellPool.Length; i++)
         {
             enemySpellPool[i] = new List<GameObject>();
+        }
+
+        for (int i = 0; i < itemPool.Length; i++)
+        {
+            itemPool[i] = new List<GameObject>();
         }
     }
 
@@ -136,6 +152,30 @@ public class PoolManager : MonoBehaviour
         {
             select = Instantiate(enemySpells[index]);
             enemySpellPool[index].Add(select);
+        }
+
+        select.transform.parent = null;
+        return select;
+    }
+
+    public GameObject GetItem(int index)
+    {
+        GameObject select = null;
+
+        foreach (GameObject itemObj in enemySpellPool[index])
+        {
+            if (!itemObj.activeSelf)
+            {
+                select = itemObj;
+                select.SetActive(true);
+                break;
+            }
+        }
+
+        if (!select)
+        {
+            select = Instantiate(items[index]);
+            itemPool[index].Add(select);
         }
 
         select.transform.parent = null;
