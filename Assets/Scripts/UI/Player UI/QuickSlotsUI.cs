@@ -12,6 +12,8 @@ public class QuickSlotsUI : MonoBehaviour
     private Image rightWeaponIcon;
     [SerializeField]
     private Image usingItemIcon;
+    [SerializeField]
+    private Text usingItemCountText;
 
     public void UpdateWeaponQuickSlotsUI(bool isLeft, WeaponItem weapon)
     {
@@ -49,6 +51,7 @@ public class QuickSlotsUI : MonoBehaviour
         {
             usingItemIcon.sprite = item.itemIcon;
             usingItemIcon.enabled = true;
+            usingItemCountText.text = item.itemCount.ToString();
         }
     }
 }

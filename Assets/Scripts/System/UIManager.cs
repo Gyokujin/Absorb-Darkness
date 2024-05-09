@@ -61,6 +61,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Slider bossHPSlider;
 
+    [Header("Component")]
+    public QuickSlotsUI quickSlotsUI;
+
     void Awake()
     {
         if (instance == null)

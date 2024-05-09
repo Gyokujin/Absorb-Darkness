@@ -11,6 +11,6 @@ public class UsingItem : Item
     }
 
     public UsingItemType itemType;
-    [Header("Action Animations")]
+    public int itemCount;
     public string usingAnimation;
 }

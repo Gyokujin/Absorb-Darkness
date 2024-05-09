@@ -40,6 +40,10 @@ public class PlayerStatus : CharacterStatus
     public float invincibleTime;
     private float curInvincibleTime;
 
+    [Header("Recovery")]
+    [SerializeField]
+    private int recoveryAmount = 50;
+
     [Header("Move")]
     public float sprintSpeed = 7;
 
@@ -51,11 +55,13 @@ public class PlayerStatus : CharacterStatus
 
     [Header("Component")]
     private PlayerManager playerManager;
+    private PlayerItemUse playerItemUse;
     private PlayerAnimator playerAnimator;
 
     void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerItemUse = GetComponent<PlayerItemUse>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
     }
 
@@ -120,7 +126,12 @@ public class PlayerStatus : CharacterStatus
     {
         if (playerManager.onDie)
             return;
-        
+
+        if (playerItemUse.curUsingItem != null)
+        {
+            playerItemUse.EndItemUse();
+        }
+
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
 
@@ -156,7 +167,8 @@ public class PlayerStatus : CharacterStatus
 
     public void RecoveryHealth()
     {
-
+        currentHealth = Mathf.Min(currentHealth + recoveryAmount, maxHealth);
+        healthBar.SetCurrentHealth(currentHealth);
     }
 
     void RecoveryStamina()

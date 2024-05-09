@@ -149,7 +149,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleUseItemInput()
     {
-        if (useItemInpt)
+        if (useItemInpt && !playerManager.isInteracting && moveAmount == 0)
         {
             playerManager.playerItemUse.UseItem(playerAnimator, playerInventory.curUsingItem);
         }
