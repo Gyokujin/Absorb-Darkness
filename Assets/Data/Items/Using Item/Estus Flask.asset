@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a051a482cb38894d8664972093d85c0, type: 3}
   m_Name: Estus Flask
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 0}
-  itemIcon: {fileID: 0}
+  modelPrefab: {fileID: 5981137663058868691, guid: b507c2a25721fca4ca380a7b008d17c6, type: 3}
+  itemIcon: {fileID: -1616757424, guid: 8e974a7d0606a0344b85b9531d51d797, type: 3}
   itemName: "\uC5D0\uC2A4\uD2B8 \uBCD1"
   usingAnimation: Drink
