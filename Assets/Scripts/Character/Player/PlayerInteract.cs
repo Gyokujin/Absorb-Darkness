@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour
+public class PlayerInteract : MonoBehaviour
 {
     [Header("Interact")]
     [SerializeField]
@@ -68,10 +68,5 @@ public class PlayerAction : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void UseItem()
-    {
-
     }
 }
