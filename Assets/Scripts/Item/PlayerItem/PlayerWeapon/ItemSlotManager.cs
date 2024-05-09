@@ -5,9 +5,9 @@ using UnityEngine;
 public class ItemSlotManager : MonoBehaviour
 {
     [Header("Weapon Slot")]
-    private WeaponHolderSlot leftHandSlot;
-    private WeaponHolderSlot rightHandSlot;
-    private WeaponHolderSlot backSlot;
+    public WeaponHolderSlot leftHandSlot;
+    public WeaponHolderSlot rightHandSlot;
+    public WeaponHolderSlot backSlot;
 
     [Header("Weapon Attack")]
     [HideInInspector]

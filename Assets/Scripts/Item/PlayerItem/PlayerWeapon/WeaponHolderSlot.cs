@@ -8,8 +8,7 @@ public class WeaponHolderSlot : MonoBehaviour
     public GameObject currentWeaponModel;
 
     [Header("Weapon Slot")]
-    [SerializeField]
-    private Transform parentOverride;
+    public Transform parentOverride;
     public WeaponItem currentWeapon;
     public bool isLeftHandSlot;
     public bool isRightHandSlot;
