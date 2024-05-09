@@ -14,12 +14,12 @@ public class WeaponInventorySlot : MonoBehaviour
     private EquipmentWindowUI equipmentWindow;
     private WeaponItem item;
     private PlayerInventory playerInventory;
-    private WeaponSlotManager weaponSlotManager;
+    private ItemSlotManager weaponSlotManager;
     
     void Awake()
     {
         playerInventory = FindObjectOfType<PlayerInventory>();
-        weaponSlotManager = FindObjectOfType<WeaponSlotManager>();
+        weaponSlotManager = FindObjectOfType<ItemSlotManager>();
     }
 
     public void AddItem(WeaponItem newItem)

@@ -8,13 +8,13 @@ public class ItemPickUp : Interactable
     [SerializeField]
     private WeaponItem weapon;
 
-    public override void Interact(PlayerManager playerManager, PlayerInteract playerInteract)
+    public override void Interact(PlayerManager playerManager, PlayerAction playerInteract)
     {
         base.Interact(playerManager, playerInteract);
         PickUpItem(playerManager, playerInteract);
     }
 
-    void PickUpItem(PlayerManager playerManager, PlayerInteract playerInteract)
+    void PickUpItem(PlayerManager playerManager, PlayerAction playerInteract)
     {
         playerManager.playerAnimator.PlayTargetAnimation("Pick Up", true);
         playerManager.playerInventory.weaponsInventory.Add(weapon);

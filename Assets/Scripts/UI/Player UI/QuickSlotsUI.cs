@@ -10,6 +10,8 @@ public class QuickSlotsUI : MonoBehaviour
     private Image leftWeaponIcon;
     [SerializeField]
     private Image rightWeaponIcon;
+    [SerializeField]
+    private Image usingItemIcon;
 
     public void UpdateWeaponQuickSlotsUI(bool isLeft, WeaponItem weapon)
     {
@@ -38,6 +40,15 @@ public class QuickSlotsUI : MonoBehaviour
                 rightWeaponIcon.sprite = null;
                 rightWeaponIcon.enabled = false;
             }
+        }
+    }
+
+    public void UpdateUsingItemUI(UsingItem item)
+    {
+        if (item.itemIcon != null)
+        {
+            usingItemIcon.sprite = item.itemIcon;
+            usingItemIcon.enabled = true;
         }
     }
 }

@@ -12,13 +12,13 @@ public class GateEntrance : Interactable
         collider = GetComponent<Collider>();
     }
 
-    public override void Interact(PlayerManager playerManager, PlayerInteract playerInteract)
+    public override void Interact(PlayerManager playerManager, PlayerAction playerInteract)
     {
         base.Interact(playerManager, playerInteract);
         Entrance(playerManager, playerInteract);
     }
 
-    void Entrance(PlayerManager playerManager, PlayerInteract playerInteract)
+    void Entrance(PlayerManager playerManager, PlayerAction playerInteract)
     {
         collider.isTrigger = true;
         playerManager.playerAnimator.PlayTargetAnimation("Entrance", true);
