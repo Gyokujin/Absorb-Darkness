@@ -36,7 +36,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public virtual void Interact(PlayerManager playerManager, PlayerInteract playerInteract)
+    public virtual void Interact(PlayerManager playerManager, PlayerAction playerInteract)
     {
         playerManager.playerMove.rigidbody.velocity = Vector3.zero;
     }

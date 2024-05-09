@@ -14,7 +14,11 @@ public class PlayerInventory : MonoBehaviour
     public WeaponItem[] weaponInRightSlots = new WeaponItem[1];
     public int currentLeftWeaponIndex = 0;
     public int currentRightWeaponIndex = 0;
-    private WeaponSlotManager weaponSlotManager;
+    private ItemSlotManager itemSlotManager;
+
+    [Header("Using Item")]
+    public UsingItem curUsingItem;
+    public UsingItem[] usingItemSlots = new UsingItem[1];
 
     [Header("Inventory")]
     public List<WeaponItem> weaponsInventory;
@@ -26,15 +30,18 @@ public class PlayerInventory : MonoBehaviour
 
     void Init()
     {
-        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        itemSlotManager = GetComponentInChildren<ItemSlotManager>();
     }
 
     void Start()
     {
         leftWeapon = weaponInLeftSlots[0];
         rightWeapon = weaponInRightSlots[0];
-        weaponSlotManager.LoadWeaponSlot(leftWeapon, true);
-        weaponSlotManager.LoadWeaponSlot(rightWeapon, false);
+        itemSlotManager.LoadWeaponSlot(leftWeapon, true);
+        itemSlotManager.LoadWeaponSlot(rightWeapon, false);
+
+        curUsingItem = usingItemSlots[0];
+        itemSlotManager.LoadUsingItemSlot(curUsingItem);
     }
 
     public void ChangeLeftWeapon()
@@ -45,12 +52,12 @@ public class PlayerInventory : MonoBehaviour
         {
             currentLeftWeaponIndex = -1;
             leftWeapon = unarmedWeapon;
-            weaponSlotManager.LoadWeaponSlot(unarmedWeapon, true);
+            itemSlotManager.LoadWeaponSlot(unarmedWeapon, true);
         }
         else if (weaponInLeftSlots[currentLeftWeaponIndex] != null) // 장착할 무기가 있는 경우
         {
             leftWeapon = weaponInLeftSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponSlot(weaponInLeftSlots[currentLeftWeaponIndex], true);
+            itemSlotManager.LoadWeaponSlot(weaponInLeftSlots[currentLeftWeaponIndex], true);
         }
         else
         {
@@ -66,12 +73,12 @@ public class PlayerInventory : MonoBehaviour
         {
             currentRightWeaponIndex = -1;
             rightWeapon = unarmedWeapon;
-            weaponSlotManager.LoadWeaponSlot(unarmedWeapon, false);
+            itemSlotManager.LoadWeaponSlot(unarmedWeapon, false);
         }
         else if (weaponInRightSlots[currentRightWeaponIndex] != null) // 장착할 무기가 있는 경우
         {
             rightWeapon = weaponInRightSlots[currentRightWeaponIndex];
-            weaponSlotManager.LoadWeaponSlot(weaponInRightSlots[currentRightWeaponIndex], false);
+            itemSlotManager.LoadWeaponSlot(weaponInRightSlots[currentRightWeaponIndex], false);
         }
         else
         {

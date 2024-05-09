@@ -27,7 +27,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerInventory playerInventory;
     private PlayerCamera playerCamera;
-    private PlayerInteract playerInteract;
+    private PlayerAction playerInteract;
 
     void Awake()
     {
@@ -44,7 +44,7 @@ public class PlayerManager : CharacterManager
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponent<PlayerInventory>();
         playerCamera = FindObjectOfType<PlayerCamera>();
-        playerInteract = GetComponent<PlayerInteract>();
+        playerInteract = GetComponent<PlayerAction>();
     }
 
     void Update()

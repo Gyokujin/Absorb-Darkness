@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSlotManager : MonoBehaviour
+public class ItemSlotManager : MonoBehaviour
 {
     [Header("Weapon Slot")]
     private WeaponHolderSlot leftHandSlot;
@@ -106,6 +106,11 @@ public class WeaponSlotManager : MonoBehaviour
             LoadRightWeaponDamageCollider();
             quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
         }
+    }
+
+    public void LoadUsingItemSlot(UsingItem usingItem)
+    {
+        quickSlotsUI.UpdateUsingItemUI(usingItem);
     }
 
     void LoadLeftWeaponDamageCollider()

@@ -52,13 +52,14 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Component")]
     private PlayerManager playerManager;
+    private PlayerAction playerAction;
     private PlayerControls inputActions;
     private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
     private PlayerAttacker playerAttacker;
     private PlayerInventory playerInventory;
     private PlayerCamera playerCamera;
-    private WeaponSlotManager weaponSlotManager;
+    private ItemSlotManager weaponSlotManager;
 
     void Awake()
     {
@@ -68,12 +69,13 @@ public class PlayerInput : MonoBehaviour
     void Init()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerAction = GetComponent<PlayerAction>();
         playerStatus = GetComponent<PlayerStatus>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponent<PlayerInventory>();
         playerCamera = FindObjectOfType<PlayerCamera>();
-        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        weaponSlotManager = GetComponentInChildren<ItemSlotManager>();
     }
 
     void OnEnable()
@@ -151,7 +153,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (useItemInpt)
         {
-
+            playerManager.isInteracting = true;
+            playerAction.UseItem();
         }
     }
 

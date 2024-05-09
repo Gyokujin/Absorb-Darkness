@@ -12,7 +12,7 @@ public class PlayerAttacker : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
-    private WeaponSlotManager weaponSlotManager;
+    private ItemSlotManager weaponSlotManager;
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class PlayerAttacker : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerStatus = GetComponent<PlayerStatus>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        weaponSlotManager = GetComponentInChildren<ItemSlotManager>();
     }
 
     public void HandleLightAttack(WeaponItem weapon)

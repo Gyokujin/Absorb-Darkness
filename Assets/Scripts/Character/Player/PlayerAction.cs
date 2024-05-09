@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerAction : MonoBehaviour
 {
     [Header("Interact")]
     [SerializeField]
@@ -57,11 +57,9 @@ public class PlayerInteract : MonoBehaviour
                     switch (itemInteractableObj.interactType)
                     {
                         case InteractType.Item:
-                            // UIManager.instance.CloseItemPopUpUI();
                             break;
 
                         case InteractType.Message:
-                            // UIManager.instance.CloseMessagePopUpUI();
                             break;
                     }
 
@@ -70,5 +68,10 @@ public class PlayerInteract : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void UseItem()
+    {
+
     }
 }
