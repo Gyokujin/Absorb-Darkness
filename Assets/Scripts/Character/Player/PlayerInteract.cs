@@ -51,14 +51,17 @@ public class PlayerInteract : MonoBehaviour
 
                 if (itemInteractableObj != null && playerInput.interactInput)
                 {
+                    UIManager.instance.CloseItemPopUpUI();
+                    UIManager.instance.CloseMessagePopUpUI();
+
                     switch (itemInteractableObj.interactType)
                     {
                         case InteractType.Item:
-                            UIManager.instance.CloseItemPopUpUI();
+                            // UIManager.instance.CloseItemPopUpUI();
                             break;
 
                         case InteractType.Message:
-                            UIManager.instance.CloseMessagePopUpUI();
+                            // UIManager.instance.CloseMessagePopUpUI();
                             break;
                     }
 

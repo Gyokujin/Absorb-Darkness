@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0ec76935b051840999df4453c1bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSpeed: 0.033
+  lookSpeed: 0.037
   followSpeed: 0.5
   pivotSpeed: 0.015
   playerFollowRate: 0.2
