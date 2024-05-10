@@ -321,11 +321,12 @@ MonoBehaviour:
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
-  hitEffectTransform: {fileID: 5857352363635155302}
+  effectTransform: {fileID: 5857352363635155302}
   detectionRadius: 15
   detectionAngleMax: 105
   detectionAngleMin: -105
   attackRangeMax: 3
+  onStageBoss: 0
   hitTime: 1
   knockbackTime: 2
   knockbackPower: 0.85
@@ -2006,7 +2007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5857352363635155302}
   m_Layer: 3
-  m_Name: HitEffect Transform
+  m_Name: Effect Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

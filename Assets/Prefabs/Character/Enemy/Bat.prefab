@@ -1358,8 +1358,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4636373201134749058}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 48.21, y: 0, z: 78.99}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1369,7 +1369,7 @@ Transform:
   - {fileID: 2116980215713304147}
   - {fileID: 4713489725580802980}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4702347327469195449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1468,11 +1468,12 @@ MonoBehaviour:
   healthLevelAmount: 1
   maxHealth: 0
   currentHealth: 0
-  hitEffectTransform: {fileID: 4713489725580802980}
+  effectTransform: {fileID: 4713489725580802980}
   detectionRadius: 13
   detectionAngleMax: 105
   detectionAngleMin: -105
   attackRangeMax: 1.8
+  onStageBoss: 0
   hitTime: 1
   knockbackTime: 2
   knockbackPower: 0.85
@@ -1621,7 +1622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4713489725580802980}
   m_Layer: 3
-  m_Name: HitEffect Transform
+  m_Name: Effect Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

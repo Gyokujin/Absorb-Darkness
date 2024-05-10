@@ -1607,7 +1607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7554135495376589493}
   m_Layer: 3
-  m_Name: HitEffect Transform
+  m_Name: Effect Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   healthLevelAmount: 10
   maxHealth: 100
   currentHealth: 0
-  hitEffectTransform: {fileID: 7554135495376589493}
+  effectTransform: {fileID: 7554135495376589493}
   staminaLevel: 10
   staminaLevelAmount: 10
   maxStamina: 100
@@ -1968,6 +1968,7 @@ MonoBehaviour:
   curUsingItem: {fileID: 0}
   usingItemSlots:
   - {fileID: 11400000, guid: f0d4b617cc6429f49b6d991ac10ec0ab, type: 2}
+  estusCount: 3
   weaponsInventory: []
 --- !u!114 &5664519629810846392
 MonoBehaviour:
