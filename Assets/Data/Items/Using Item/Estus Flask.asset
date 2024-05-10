@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Estus Flask
   m_EditorClassIdentifier: 
   modelPrefab: {fileID: 5981137663058868691, guid: b507c2a25721fca4ca380a7b008d17c6, type: 3}
-  itemIcon: {fileID: -1616757424, guid: 8e974a7d0606a0344b85b9531d51d797, type: 3}
+  itemIcon: {fileID: 21300000, guid: daeda8093c61297499db396638767869, type: 3}
   itemName: "\uC5D0\uC2A4\uD2B8 \uBCD1"
   itemType: 0
   itemCount: 3

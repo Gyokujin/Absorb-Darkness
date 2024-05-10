@@ -19,6 +19,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("Using Item")]
     public UsingItem curUsingItem;
     public UsingItem[] usingItemSlots = new UsingItem[1];
+    public int estusCount = 3;
 
     [Header("Inventory")]
     public List<WeaponItem> weaponsInventory;
