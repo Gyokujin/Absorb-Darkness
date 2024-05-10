@@ -17,5 +17,5 @@ public class CharacterStatus : MonoBehaviour
 
     [Header("Effect")]
     [SerializeField]
-    protected Transform hitEffectTransform;
+    protected Transform effectTransform;
 }
