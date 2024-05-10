@@ -136,7 +136,12 @@ public class PlayerAnimator : AnimatorManager
         animator.SetBool("canDoCombo", false);
     }
 
-    public void DrinkEstus()
+    public void Drink()
+    {
+        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Drink]);
+    }
+
+    public void Recovery()
     {
         playerStatus.RecoveryHealth();
     }

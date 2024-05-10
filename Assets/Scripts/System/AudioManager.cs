@@ -14,7 +14,7 @@ public enum SystemSound
 
 public enum PlayerActionSound
 {
-    Attack1, Attack2, Rolling, Backstep, Hit, Die
+    Attack1, Attack2, Rolling, Backstep, Hit, Die, Drink, Recovery
 }
 
 public class AudioManager : MonoBehaviour

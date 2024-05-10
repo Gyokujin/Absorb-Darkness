@@ -18,33 +18,48 @@ public class PlayerItemUse : MonoBehaviour
 
     public void UseItem(PlayerAnimator playerAnimator, UsingItem item)
     {
+        if (itemSlotManager.leftHandSlot.currentWeaponModel != null)
+        {
+            leftHandWeapon = itemSlotManager.leftHandSlot.currentWeaponModel.gameObject;
+            leftHandWeapon.SetActive(false);
+        }
+
         switch (item.itemType)
         {
             case UsingItem.UsingItemType.EstusFlask:
-                if (playerInventory.estusCount <= 0)
+                if (playerInventory.estusCount > 0)
+                {
+                    UseEstus(item);
+                }
+                else
+                {
                     return;
-
-                curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
-                playerInventory.estusCount--;
+                }
                 break;
         }
-
-        curUsingItem = item.GameObject();
-        leftHandWeapon = itemSlotManager.leftHandSlot.currentWeaponModel.gameObject;
-        leftHandWeapon.SetActive(false);
 
         curUsingItem.transform.parent = itemSlotManager.leftHandSlot.parentOverride;
         curUsingItem.transform.position = itemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
-        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item);
         playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
+    }
+
+    void UseEstus(UsingItem item)
+    {
+        curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
+        playerInventory.estusCount--;
+        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, playerInventory.estusCount);
     }
 
     public void EndItemUse()
     {
         PoolManager.instance.Return(curUsingItem);
         curUsingItem = null;
-        leftHandWeapon.SetActive(true);
-        leftHandWeapon = null;
+
+        if (leftHandWeapon != null)
+        {
+            leftHandWeapon.SetActive(true);
+            leftHandWeapon = null;
+        }
     }
 }

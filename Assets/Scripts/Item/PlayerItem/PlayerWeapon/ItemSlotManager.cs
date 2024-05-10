@@ -26,6 +26,7 @@ public class ItemSlotManager : MonoBehaviour
     private PlayerManager playerManager;
     private QuickSlotsUI quickSlotsUI;
     private PlayerInput playerInput;
+    private PlayerInventory playerInventory;
     private PlayerStatus playerStatus;
 
     void Awake()
@@ -39,6 +40,7 @@ public class ItemSlotManager : MonoBehaviour
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerInput = GetComponentInParent<PlayerInput>();
+        playerInventory = GetComponentInParent<PlayerInventory>();
         playerStatus = GetComponentInParent<PlayerStatus>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
@@ -110,7 +112,15 @@ public class ItemSlotManager : MonoBehaviour
 
     public void LoadUsingItemSlot(UsingItem usingItem)
     {
-        quickSlotsUI.UpdateUsingItemUI(usingItem);
+        int itemCount = 0;
+
+        switch (usingItem.itemType)
+        {
+            case UsingItem.UsingItemType.EstusFlask:
+                itemCount = playerInventory.estusCount;
+                break;
+        }
+        quickSlotsUI.UpdateUsingItemUI(usingItem, itemCount);
     }
 
     void LoadLeftWeaponDamageCollider()

@@ -142,7 +142,7 @@ public class PlayerStatus : CharacterStatus
             playerAnimator.animator.SetBool("onDamage", true);
             playerAnimator.PlayTargetAnimation("Damage", true);
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
-            hitEffect.transform.position = hitEffectTransform.position;
+            hitEffect.transform.position = effectTransform.position;
             AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
         }
 
@@ -169,6 +169,10 @@ public class PlayerStatus : CharacterStatus
     {
         currentHealth = Mathf.Min(currentHealth + recoveryAmount, maxHealth);
         healthBar.SetCurrentHealth(currentHealth);
+
+        GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
+        estusEffect.transform.position = effectTransform.position;
+        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Recovery]);
     }
 
     void RecoveryStamina()

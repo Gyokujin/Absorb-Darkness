@@ -45,13 +45,13 @@ public class QuickSlotsUI : MonoBehaviour
         }
     }
 
-    public void UpdateUsingItemUI(UsingItem item)
+    public void UpdateUsingItemUI(UsingItem item, int itemCount)
     {
         if (item.itemIcon != null)
         {
             usingItemIcon.sprite = item.itemIcon;
             usingItemIcon.enabled = true;
-            usingItemCountText.text = item.itemCount.ToString();
+            usingItemCountText.text = itemCount.ToString();
         }
     }
 }
