@@ -312,8 +312,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3805fa6e2644a25488f7dd1e9f2c8dc9, type: 3}
   - {fileID: 8300000, guid: 887807fe06dbe854ea5afcd62bde87d0, type: 3}
   - {fileID: 8300000, guid: ddcfc0fb780b3454ebdfdc5da2b3df6c, type: 3}
-  - {fileID: 8300000, guid: 5a40c3b026c89964992416110024efb1, type: 3}
-  - {fileID: 8300000, guid: 85e738967c2c3d845adeb7e6941a70c0, type: 3}
+  - {fileID: 8300000, guid: ccbfd76efcbdbd24ea491315391dd216, type: 3}
+  - {fileID: 8300000, guid: 5ca907e6365b28d46985705cdd9353ee, type: 3}
   playerActionVolume: 0.6
   playerActionCh: 5
 --- !u!1001 &1006653716
