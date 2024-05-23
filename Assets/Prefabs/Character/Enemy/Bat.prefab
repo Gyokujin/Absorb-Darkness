@@ -1470,8 +1470,8 @@ MonoBehaviour:
   currentHealth: 0
   effectTransform: {fileID: 4713489725580802980}
   detectionRadius: 13
-  detectionAngleMax: 105
-  detectionAngleMin: -105
+  detectionAngleMax: 180
+  detectionAngleMin: -180
   attackRangeMax: 1.8
   onStageBoss: 0
   hitTime: 1

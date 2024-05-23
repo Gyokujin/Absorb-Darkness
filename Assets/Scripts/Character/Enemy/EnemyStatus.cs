@@ -100,7 +100,8 @@ public class EnemyStatus : CharacterStatus
 
     IEnumerator DamageProcess(CharacterStatus player)
     {
-        enemyAnimator.animator.SetTrigger("doHit");
+        enemyAnimator.PlayTargetAnimation("Hit", true);
+        // enemyAnimator.animator.SetTrigger("doHit");
         characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
 
         yield return hitWait;
