@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="@PlayerControls" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEASAAAAEigIIDAAAJhBCBILIAAAIGBGCAAgkARQAAA=</HashCode>
+      <FileName>Assets\Input Actions\PlayerControls.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlayerCamera" Collapsed="true">
+    <Position X="6.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFABBAAAE6iiAAEAAqSA4ARggQJMgBwBABAWAQAAoEA=</HashCode>
+      <FileName>Assets\Scripts\Camera\PlayerCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimatorManager" Collapsed="true">
+    <Position X="6.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAQAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\AnimatorManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterAudio" Collapsed="true">
+    <Position X="28.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAggAAAABAAAAAAAAAAABQAAAAAAAAAACAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\CharacterAudio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterManager" Collapsed="true">
+    <Position X="12.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\CharacterManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterStatus" Collapsed="true">
+    <Position X="1.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAQAAAAAAAAECAAAAABAAgAAggA=</HashCode>
+      <FileName>Assets\Scripts\Character\CharacterStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BossInfo" Collapsed="true">
+    <Position X="26.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\Boss\BossInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sorceress" Collapsed="true">
+    <Position X="14" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADQAECAAAgAFAABSAIBQAAgQgQAAAAAGAAhACFA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\Boss\Sorceress\Sorceress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SorceressAnimator" Collapsed="true">
+    <Position X="14" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgQAAAAAAAkAABAAAAAEAAAAAAAAACAACAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\Boss\Sorceress\SorceressAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAction" Collapsed="true">
+    <Position X="14.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAnimator" Collapsed="true">
+    <Position X="7.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAFABAAAABAAAAAAQAAAAAAAAAAACCAAAAEEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAttackAction" Collapsed="true">
+    <Position X="14.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAQBCAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyAttackAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyManager" Collapsed="true">
+    <Position X="16" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQIBAAkEiAAAABAAAAAgCIAABBAAAAAAAkCGAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyMove" Collapsed="true">
+    <Position X="16" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAABAAAAAAAAAAAAAAAAAAACAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AmbushState" Collapsed="true">
+    <Position X="17.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAACAAAAAAAAAAAAACAAAAAAAABAAAAAAIAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyState\AmbushState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttackState" Collapsed="true">
+    <Position X="19.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAQAAAAAAgAAAAIAAAABAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyState\AttackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombatStanceState" Collapsed="true">
+    <Position X="21.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAABAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyState\CombatStanceState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyState" Collapsed="true">
+    <Position X="21.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAQEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyState\EnemyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IdleState" Collapsed="true">
+    <Position X="23" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyState\IdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PursueTargetState" Collapsed="true">
+    <Position X="24.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyState\PursueTargetState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyStatus" Collapsed="true">
+    <Position X="0.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAIAAAAgSAAAAIRAAAKEAAAAAAAEEABAIAiiIAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyWeaponSlotManager" Collapsed="true">
+    <Position X="13" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAAQAAACgAAAAgAQEAAAAAAAAAAAAAYAACBAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyWeaponSlotManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interactable" Collapsed="true">
+    <Position X="4.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAQAAACAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\Interactable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerAnimator" Collapsed="true">
+    <Position X="5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAQAEBABQgECAkAACAABEgAgAAAAAACEgCCACAgACA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerAttacker" Collapsed="true">
+    <Position X="8.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAwAAQABAABAAAAACCAgAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerAttacker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerFootstep" Collapsed="true">
+    <Position X="0.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgQABAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerFootstep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInput" Collapsed="true">
+    <Position X="6.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>lAAQAEKoEIEAUBQCAAFBkUIAQBIiAAEYEEACBCIBCls=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInteract" Collapsed="true">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABgAAAAAAAAAAAAQAAAAACAAAAEAAAAACAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerInteract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerItemUse" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAQRAAACAAAAAAEAAAAAAAAAAAAAAAAAAACAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerItemUse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerManager" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAIABAAgAAAAAAACAgYAAAAhCAABAIAAgCACEAQEI=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMove" Collapsed="true">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAYGAAIAGAAAAAEAIQAQACAAJAAABhQEAASQCQAQJA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerStatus" Collapsed="true">
+    <Position X="2.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQEgARQAqAgAAAAAiBAAAAAEBgQECgBkAAAgAAQxEA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\PlayerStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResetAnimatorBool" Collapsed="true">
+    <Position X="29.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\ResetAnimatorBool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="6" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAgAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Item\PlayerItem\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInventory" Collapsed="true">
+    <Position X="4.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAAAAAAACGEAAAAQEAAAAAJAQAAAAAAAEACAgAAAFA=</HashCode>
+      <FileName>Assets\Scripts\Item\PlayerItem\PlayerInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemSlotManager" Collapsed="true">
+    <Position X="33.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAQAIIAAAAIAAA7AAAASAAEAAAAAAAAcABOAiAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Item\PlayerItem\PlayerWeapon\ItemSlotManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponHolderSlot" Collapsed="true">
+    <Position X="26.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAIAAASAAAAABAIIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Item\PlayerItem\PlayerWeapon\WeaponHolderSlot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponItem" Collapsed="true">
+    <Position X="4.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAAABAAQAACAhAAAAAQAAAEAAAAIAAAAAAAUAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Item\PlayerItem\PlayerWeapon\WeaponItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsingItem" Collapsed="true">
+    <Position X="7" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAACAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Item\PlayerItem\UsingItem\UsingItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LightningImpact" Collapsed="true">
+    <Position X="10.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAACAABAAAABAAAAAAAQAAAAAAwUECEAQACEA=</HashCode>
+      <FileName>Assets\Scripts\Spell\LightningImpact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Meteor" Collapsed="true">
+    <Position X="12.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAACAAAAAAAAgAgAAEAQAAAAAAQACKEAAAAUA=</HashCode>
+      <FileName>Assets\Scripts\Spell\Meteor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeteorExplosion" Collapsed="true">
+    <Position X="26.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAEAAACEA=</HashCode>
+      <FileName>Assets\Scripts\Spell\MeteorExplosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoisonMist" Collapsed="true">
+    <Position X="30.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spell\PoisonMist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioManager" Collapsed="true">
+    <Position X="31" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAgAAAAAAIUAAgCAAAJAAUAQAAACAIAAAFg=</HashCode>
+      <FileName>Assets\Scripts\System\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DamageCollider" Collapsed="true">
+    <Position X="10.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAACCAAiAAgAAAAAAAAAAIAAAAAQAACAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\System\DamageCollider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entrance" Collapsed="true">
+    <Position X="35.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAQAAAQQAAIAAAEEA=</HashCode>
+      <FileName>Assets\Scripts\System\Entrance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="31" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAAAAAAAAAEEAABAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\System\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMessage" Collapsed="true">
+    <Position X="26.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\System\GameMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GateEntrance" Collapsed="true">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAIAAAAAAAAAAAEACAABA=</HashCode>
+      <FileName>Assets\Scripts\System\GateEntrance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemPickUp" Collapsed="true">
+    <Position X="4.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\ItemPickUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessageShow" Collapsed="true">
+    <Position X="6.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\MessageShow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticleObject" Collapsed="true">
+    <Position X="28.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\ParticleObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoolManager" Collapsed="true">
+    <Position X="32.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAACAAAACAAAEAAEIgAAAAEAAhAAAABAAADEAAIAEA=</HashCode>
+      <FileName>Assets\Scripts\System\PoolManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StayDamageCollider" Collapsed="true">
+    <Position X="22.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgBAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\StayDamageCollider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager" Collapsed="true">
+    <Position X="29.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAIAICCICoAIxAAABCGEtChIAFRAyABIACAIBEI=</HashCode>
+      <FileName>Assets\Scripts\System\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponDamageCollider" Collapsed="true">
+    <Position X="10.5" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\WeaponDamageCollider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentWindowUI" Collapsed="true">
+    <Position X="18.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAADAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\EquipmentWindowUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HandEquipmentSlotUI" Collapsed="true">
+    <Position X="28.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAABAIiAAAAAAAAQCAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\HandEquipmentSlotUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealthBar" Collapsed="true">
+    <Position X="30.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\HealthBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractableUI" Collapsed="true">
+    <Position X="32" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAQAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\InteractableUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickSlotsUI" Collapsed="true">
+    <Position X="28" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAACAAAAAAABAABCQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\QuickSlotsUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaminaBar" Collapsed="true">
+    <Position X="21" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\StaminaBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponInventorySlot" Collapsed="true">
+    <Position X="28" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAQAgAAAgAgQAAAAAQAAACAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\Player UI\WeaponInventorySlot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CharacterSound" Collapsed="true">
+    <Position X="17.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAgAAIAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\CharacterAudio.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EnemyType" Collapsed="true">
+    <Position X="19.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Enemy\EnemyManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InteractType" Collapsed="true">
+    <Position X="4.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAgAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\Player\Interactable.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameBGM" Collapsed="true">
+    <Position X="22.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SystemSound" Collapsed="true">
+    <Position X="28" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAoAEAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\System\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PlayerActionSound" Collapsed="true">
+    <Position X="26.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAABAAggACAAgAAIgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EntranceType" Collapsed="true">
+    <Position X="21" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\System\Entrance.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
