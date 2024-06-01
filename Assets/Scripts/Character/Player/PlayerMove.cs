@@ -38,6 +38,10 @@ public class PlayerMove : MonoBehaviour
     private Collider playerCollider;
     [SerializeField]
     private Collider playerBlockerCollider;
+    [SerializeField]
+    private AudioSource moveAudio;
+    [SerializeField]
+    private AudioSource splintAudio;
 
     private PlayerManager playerManager;
     private PlayerInput playerInput;
@@ -86,7 +90,7 @@ public class PlayerMove : MonoBehaviour
             {
                 playerManager.isSprinting = true;
                 moveDirection *= playerStatus.sprintSpeed;
-                playerFootstep.PlaySplintSFX();
+                PlaySplintSFX();
             }
             else if (playerInput.moveAmount < 0.5f)
             {
@@ -97,7 +101,7 @@ public class PlayerMove : MonoBehaviour
             {
                 moveDirection *= speed;
                 playerManager.isSprinting = false;
-                playerFootstep.PlayMoveSFX();
+                PlayMoveSFX();
             }
         }
 
@@ -290,6 +294,22 @@ public class PlayerMove : MonoBehaviour
             {
                 playerTransform.position = targetPosition;
             }
+        }
+    }
+
+    void PlayMoveSFX()
+    {
+        if (!moveAudio.isPlaying)
+        {
+            moveAudio.Play();
+        }
+    }
+
+    void PlaySplintSFX()
+    {
+        if (!splintAudio.isPlaying)
+        {
+            splintAudio.Play();
         }
     }
 }
