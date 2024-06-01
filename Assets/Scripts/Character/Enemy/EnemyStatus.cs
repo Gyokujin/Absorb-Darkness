@@ -127,19 +127,20 @@ public class EnemyStatus : CharacterStatus
 
     protected void DieProcess()
     {
-        currentHealth = 0;
-        rigidbody.isKinematic = true;
         enemyManager.onDie = true;
         enemyManager.collider.enabled = false;
         enemyManager.blockerCollider.enabled = false;
-
-        foreach (DamageCollider attackCollider in enemyManager.attackColliders)
-        {
-            attackCollider.CloseDamageCollider();
-        }
+        currentHealth = 0;
+        rigidbody.isKinematic = true;
 
         enemyAnimator.PlayTargetAnimation("Die", true);
         characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Die]);
+
+        foreach (DamageCollider attackCollider in enemyManager.attackColliders)
+        {
+            Debug.Log(attackCollider.name);
+            attackCollider.CloseDamageCollider();
+        }
 
         if (onStageBoss)
         {
