@@ -92,4 +92,9 @@ public class EnemyManager : CharacterManager
     {
         curState = state;
     }
+
+    public void CloseColliders()
+    {
+
+    }
 }

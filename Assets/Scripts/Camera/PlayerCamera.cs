@@ -2,26 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SystemDatas;
 
 public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera instance;
 
-    [Header("Status")]
-    [SerializeField]
-    private float lookSpeed = 0.025f;
-    [SerializeField]
-    private float followSpeed = 0.5f;
-    [SerializeField]
-    private float pivotSpeed = 0.01f;
-
     [Header("Player")]
     private PlayerManager player;
-    private Transform playerTransform;
     private PlayerInput playerInput; // 게임 시스템 사용시 카메라 제약
     private float playerPosition;
-    [SerializeField]
-    private float playerFollowRate = 0.2f;
 
     [Header("Camera")]
     public Transform cameraTransform;
@@ -33,17 +23,11 @@ public class PlayerCamera : MonoBehaviour
     public LayerMask targetLayer;
 
     [Header("Angle")]
-    [SerializeField]
-    private float minPivot = -35;
-    [SerializeField]
-    private float maxPivot = 35;
     private float defaultPosition;
-    [SerializeField]
-    private float lookAngle = 0.033f;
+    private float lookAngle;
     private float pivotAngle;
 
     [Header("LockOn Target")]
-    [SerializeField]
     private List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
@@ -80,6 +64,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private float minCollisionOffset = 0.2f;
 
+    [Header("Component")]
+    SystemData systemData;
+
     void Awake()
     {
         if (instance == null)
@@ -107,15 +94,16 @@ public class PlayerCamera : MonoBehaviour
     void Init()
     {
         player = FindObjectOfType<PlayerManager>();
-        playerTransform = player.transform;
         playerInput = player.GetComponent<PlayerInput>();
         camTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
+
+        systemData = new SystemData();
     }
 
     public void FollowTarget(float delta)
     {
-        Vector3 playerPos = Vector3.SmoothDamp(camTransform.position, playerTransform.position, ref cameraFollowVelocity, delta / followSpeed);
+        Vector3 playerPos = Vector3.SmoothDamp(camTransform.position, player.transform.position, ref cameraFollowVelocity, delta / systemData.followSpeed);
         camTransform.position = playerPos;
         HandleCameraCollision(delta);
     }
@@ -124,9 +112,9 @@ public class PlayerCamera : MonoBehaviour
     {
         if (!playerInput.lockOnFlag && currentLockOnTarget == null && !playerInput.gameSystemFlag)
         {
-            lookAngle += mouseX * lookSpeed / delta;
-            pivotAngle -= mouseY * pivotSpeed / delta;
-            pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);
+            lookAngle += mouseX * systemData.lookSpeed / delta;
+            pivotAngle -= mouseY * systemData.pivotSpeed / delta;
+            pivotAngle = Mathf.Clamp(pivotAngle, systemData.minPivot, systemData.maxPivot);
 
             Vector3 rotation = Vector3.zero;
             rotation.y = lookAngle;
@@ -163,7 +151,7 @@ public class PlayerCamera : MonoBehaviour
         float shortesDistance = Mathf.Infinity;
         float shortesDistanceLeftTarget = Mathf.Infinity;
         float shortesDistanceRightTarget = Mathf.Infinity;
-        Collider[] colliders = Physics.OverlapSphere(playerTransform.position, lockRadius);
+        Collider[] colliders = Physics.OverlapSphere(player.transform.position, lockRadius);
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -171,12 +159,12 @@ public class PlayerCamera : MonoBehaviour
 
             if (character != null)
             {
-                Vector3 lockTargetDirection = character.transform.position - playerTransform.position;
-                float distance = Vector3.Distance(playerTransform.position, character.transform.position);
+                Vector3 lockTargetDirection = character.transform.position - player.transform.position;
+                float distance = Vector3.Distance(player.transform.position, character.transform.position);
                 float viewAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
                 RaycastHit hit;
 
-                if (character.transform.root != playerTransform.transform.root
+                if (character.transform.root != player.transform.transform.root
                     && viewAngle > -lockOnAngleLimit && viewAngle < lockOnAngleLimit
                     && distance <= maxLockOnDistance)
                 {
@@ -196,7 +184,7 @@ public class PlayerCamera : MonoBehaviour
 
         for (int j = 0; j < availableTargets.Count; j++)
         {
-            float targetDistance = Vector3.Distance(playerTransform.position, availableTargets[j].transform.position);
+            float targetDistance = Vector3.Distance(player.transform.position, availableTargets[j].transform.position);
 
             if (targetDistance < shortesDistance)
             {
@@ -207,8 +195,8 @@ public class PlayerCamera : MonoBehaviour
             if (playerInput.lockOnFlag)
             {
                 Vector3 relativeEnemyPos = currentLockOnTarget.InverseTransformPoint(availableTargets[j].transform.position);
-                var distanceTargetLeft = currentLockOnTarget.transform.position.x - availableTargets[j].transform.position.x;
-                var distanceTargetRight = currentLockOnTarget.transform.position.x + availableTargets[j].transform.position.x;
+                var distanceTargetLeft = currentLockOnTarget.position.x - availableTargets[j].transform.position.x;
+                var distanceTargetRight = currentLockOnTarget.position.x + availableTargets[j].transform.position.x;
 
                 if (relativeEnemyPos.x > 0 && distanceTargetLeft < shortesDistanceLeftTarget) // 문제시 0을 0.00
                 {
@@ -237,11 +225,11 @@ public class PlayerCamera : MonoBehaviour
     {
         if (playerInput.lockOnFlag) 
         {
-            float distance = Vector3.Distance(currentLockOnTarget.gameObject.transform.position, player.transform.position);
+            float distance = Vector3.Distance(currentLockOnTarget.position, player.transform.position);
 
             if (distance > maxLockOnDistance) 
             {
-                playerInput.OffLockOn();
+                player.OffLockOn();
             }
             else
             {
@@ -284,7 +272,7 @@ public class PlayerCamera : MonoBehaviour
             playerPosition = -minCollisionOffset;
         }
 
-        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / playerFollowRate);
+        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / systemData.playerFollowRate);
         cameraTransform.localPosition = cameraPos;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TreeEditor.TreeGroup;
 
 public class PlayerManager : CharacterManager
 {
@@ -17,6 +18,7 @@ public class PlayerManager : CharacterManager
     [Header("Combat")]
     public int defaultLayer;
     public int invincibleLayer;
+    public EnemyManager currentLockEnemy;
 
     [Header("Component")]
     [HideInInspector]
@@ -60,6 +62,11 @@ public class PlayerManager : CharacterManager
         playerInput.TickInput(Time.deltaTime);
         playerMove.HandleRolling(Time.deltaTime);
         playerInteract.CheckInteractableObject(this);
+
+        if (playerInput.lockOnFlag)
+        {
+            LockOnCheck();
+        }
     }
 
     void LateUpdate()
@@ -92,5 +99,17 @@ public class PlayerManager : CharacterManager
     {
         playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
+    }
+
+    void LockOnCheck()
+    {
+        // Debug.Log(currentLockEnemy.name);
+    }
+
+    public void OffLockOn()
+    {
+        playerInput.lockOnFlag = false;
+        playerAnimator.animator.SetBool("onStance", false);
+        playerCamera.ClearLockOnTargets();
     }
 }

@@ -138,7 +138,6 @@ public class EnemyStatus : CharacterStatus
 
         foreach (DamageCollider attackCollider in enemyManager.attackColliders)
         {
-            Debug.Log(attackCollider.name);
             attackCollider.CloseDamageCollider();
         }
 

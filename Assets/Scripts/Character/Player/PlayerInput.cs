@@ -218,7 +218,7 @@ public class PlayerInput : MonoBehaviour
             {
                 if (lockOnFlag)
                 {
-                    OffLockOn();
+                    playerManager.OffLockOn();
                 }
 
                 gameSystemFlag = true;
@@ -245,11 +245,12 @@ public class PlayerInput : MonoBehaviour
                     lockOnFlag = true;
                     playerAnimator.animator.SetBool("onStance", true);
                     playerCamera.currentLockOnTarget = playerCamera.nearestLockOnTarget;
+                    playerManager.currentLockEnemy = playerCamera.currentLockOnTarget.gameObject.GetComponent<EnemyManager>();
                 }
             }
             else
             {
-                OffLockOn();
+                playerManager.OffLockOn();
             }
         }
 
@@ -276,12 +277,5 @@ public class PlayerInput : MonoBehaviour
         }
 
         playerCamera.SetCameraHeight();
-    }
-
-    public void OffLockOn()
-    {
-        lockOnFlag = false;
-        playerAnimator.animator.SetBool("onStance", false);
-        playerCamera.ClearLockOnTargets();
     }
 }
