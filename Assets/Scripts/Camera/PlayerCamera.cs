@@ -28,8 +28,10 @@ public class PlayerCamera : MonoBehaviour
     private float pivotAngle;
 
     [Header("LockOn")]
-    private List<CharacterManager> availableTargets = new List<CharacterManager>();
-    public Transform currentLockOnTarget;
+    private List<EnemyManager> availableTargets = new List<EnemyManager>();
+    // public Transform currentLockOnTarget;
+    public EnemyManager currentLockOnTarget;
+
     public Transform nearestLockOnTarget;
     public Transform leftLockTarget;
     public Transform rightLockTarget;
@@ -69,10 +71,10 @@ public class PlayerCamera : MonoBehaviour
         playerInput = player.GetComponent<PlayerInput>();
     }
 
-    void FixedUpdate()
-    {
-        ControlLockOn();
-    }
+    //void FixedUpdate()
+    //{
+    //    ControlLockOn();
+    //}
 
     public void FollowTarget(float delta)
     {
@@ -101,14 +103,14 @@ public class PlayerCamera : MonoBehaviour
         }
         else if (currentLockOnTarget != null)
         {
-            Vector3 dir = currentLockOnTarget.position - transform.position;
+            Vector3 dir = currentLockOnTarget.transform.position - transform.position;
             dir.Normalize();
             dir.y = 0;
 
             Quaternion targetRotation = Quaternion.LookRotation(dir);
             transform.rotation = targetRotation;
 
-            dir = currentLockOnTarget.position - cameraPivotTransform.position;
+            dir = currentLockOnTarget.transform.position - cameraPivotTransform.position;
             dir.Normalize();
 
             targetRotation = Quaternion.LookRotation(dir);
@@ -119,106 +121,113 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    public void HandleLockOn()
+    public GameObject FindLockOnTarget()
     {
-        float shortesDistance = Mathf.Infinity;
-        float shortesDistanceLeftTarget = Mathf.Infinity;
-        float shortesDistanceRightTarget = Mathf.Infinity;
-        Collider[] colliders = Physics.OverlapSphere(player.transform.position, systemData.lockRadius, lockOnLayer);
-
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            CharacterManager character = colliders[i].GetComponent<CharacterManager>();
-
-            if (character != null)
-            {
-                Vector3 lockTargetDirection = character.transform.position - player.transform.position;
-                float distance = Vector3.Distance(player.transform.position, character.transform.position);
-                float viewAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
-                RaycastHit hit;
-
-                if (character.transform.root != player.transform.transform.root
-                    && viewAngle > -systemData.lockOnAngleLimit && viewAngle < systemData.lockOnAngleLimit
-                    && distance <= systemData.maxLockOnDistance)
-                {
-                    if (Physics.Linecast(player.lockOnTransform.position, character.lockOnTransform.position, out hit))
-                    {
-                        Debug.DrawLine(player.lockOnTransform.position, character.lockOnTransform.position);
-
-                        if (hit.transform.gameObject.layer != environmentLayer)
-                        {
-                            lockOnUI.gameObject.SetActive(true);
-                            availableTargets.Add(character);
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int j = 0; j < availableTargets.Count; j++)
-        {
-            float targetDistance = Vector3.Distance(player.transform.position, availableTargets[j].transform.position);
-
-            if (targetDistance < shortesDistance)
-            {
-                shortesDistance = targetDistance;
-                nearestLockOnTarget = availableTargets[j].lockOnTransform;
-            }
-
-            if (playerInput.lockOnFlag)
-            {
-                Vector3 relativeEnemyPos = currentLockOnTarget.InverseTransformPoint(availableTargets[j].transform.position);
-                var distanceTargetLeft = currentLockOnTarget.position.x - availableTargets[j].transform.position.x;
-                var distanceTargetRight = currentLockOnTarget.position.x + availableTargets[j].transform.position.x;
-
-                if (relativeEnemyPos.x > 0 && distanceTargetLeft < shortesDistanceLeftTarget) // 문제시 0을 0.00
-                {
-                    shortesDistanceLeftTarget = distanceTargetLeft;
-                    leftLockTarget = availableTargets[j].lockOnTransform;
-                }
-
-                if (relativeEnemyPos.x < 0 && distanceTargetRight < shortesDistanceRightTarget)
-                {
-                    shortesDistanceRightTarget = distanceTargetRight;
-                    rightLockTarget = availableTargets[j].lockOnTransform;
-                }
-            }
-        }
+        // Collider[] findTarget = Physics.OverlapSphere(transform.position);
+        return null;
     }
 
-    public void ClearLockOnTargets()
-    {
-        availableTargets.Clear();
-        nearestLockOnTarget = null;
-        currentLockOnTarget = null;
-        lockOnUI.gameObject.SetActive(false);
-    }
+    //public void HandleLockOn()
+    //{
+    //    float shortesDistance = Mathf.Infinity;
+    //    float shortesDistanceLeftTarget = Mathf.Infinity;
+    //    float shortesDistanceRightTarget = Mathf.Infinity;
+    //    Collider[] colliders = Physics.OverlapSphere(player.transform.position, systemData.lockRadius, lockOnLayer);
 
-    public void ControlLockOn()
-    {
-        if (playerInput.lockOnFlag) 
-        {
-            float distance = Vector3.Distance(currentLockOnTarget.position, player.transform.position);
+    //    for (int i = 0; i < colliders.Length; i++)
+    //    {
+    //        EnemyManager character = colliders[i].GetComponent<EnemyManager>();
 
-            if (distance > systemData.maxLockOnDistance) 
-            {
-                player.OffLockOn();
-            }
-            else
-            {
-                float scale = distance / systemData.maxLockOnDistance;
+    //        if (character != null)
+    //        {
+    //            Vector3 lockTargetDirection = character.transform.position - player.transform.position;
+    //            float distance = Vector3.Distance(player.transform.position, character.transform.position);
+    //            float viewAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
+    //            RaycastHit hit;
 
-                if (scale > lockOnUIScaleMin)
-                {
-                    lockOnUI.rectTransform.localScale = new Vector3(scale, scale, 1);
-                }
-                else
-                {
-                    lockOnUI.rectTransform.localScale = new Vector3(lockOnUIScaleMin, lockOnUIScaleMin, 1);
-                }
-            }
-        }
-    }
+    //            if (character.transform.root != player.transform.transform.root
+    //                && viewAngle > -systemData.lockOnAngleLimit && viewAngle < systemData.lockOnAngleLimit
+    //                && distance <= systemData.maxLockOnDistance)
+    //            {
+    //                if (Physics.Linecast(player.lockOnTransform.position, character.lockOnTransform.position, out hit))
+    //                {
+    //                    if (hit.transform.gameObject.layer != environmentLayer)
+    //                    {
+    //                        lockOnUI.gameObject.SetActive(true);
+    //                        availableTargets.Add(character);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    for (int j = 0; j < availableTargets.Count; j++)
+    //    {
+    //        float targetDistance = Vector3.Distance(player.transform.position, availableTargets[j].transform.position);
+
+    //        if (targetDistance < shortesDistance)
+    //        {
+    //            shortesDistance = targetDistance;
+    //            nearestLockOnTarget = availableTargets[j].lockOnTransform;
+    //        }
+
+    //        if (playerInput.lockOnFlag)
+    //        {
+    //            Vector3 relativeEnemyPos = currentLockOnTarget.transform.InverseTransformPoint(availableTargets[j].transform.position);
+    //            var distanceTargetLeft = currentLockOnTarget.transform.position.x - availableTargets[j].transform.position.x;
+    //            var distanceTargetRight = currentLockOnTarget.transform.position.x + availableTargets[j].transform.position.x;
+
+    //            if (relativeEnemyPos.x > 0 && distanceTargetLeft < shortesDistanceLeftTarget) // 문제시 0을 0.00
+    //            {
+    //                shortesDistanceLeftTarget = distanceTargetLeft;
+    //                leftLockTarget = availableTargets[j].lockOnTransform;
+    //            }
+
+    //            if (relativeEnemyPos.x < 0 && distanceTargetRight < shortesDistanceRightTarget)
+    //            {
+    //                shortesDistanceRightTarget = distanceTargetRight;
+    //                rightLockTarget = availableTargets[j].lockOnTransform;
+    //            }
+    //        }
+    //    }
+    //}
+
+    //public void ClearLockOnTargets()
+    //{
+    //    availableTargets.Clear();
+    //    nearestLockOnTarget = null;
+    //    currentLockOnTarget = null;
+    //    lockOnUI.gameObject.SetActive(false);
+    //}
+
+    //public void ControlLockOn()
+    //{
+    //    if (currentLockOnTarget != null)
+    //        Debug.Log(currentLockOnTarget.gameObject.name);
+
+    //    if (playerInput.lockOnFlag) 
+    //    {
+    //        float distance = Vector3.Distance(currentLockOnTarget.transform.position, player.transform.position);
+
+    //        if (distance > systemData.maxLockOnDistance) 
+    //        {
+    //            player.OffLockOn();
+    //        }
+    //        else
+    //        {
+    //            float scale = distance / systemData.maxLockOnDistance;
+
+    //            if (scale > lockOnUIScaleMin)
+    //            {
+    //                lockOnUI.rectTransform.localScale = new Vector3(scale, scale, 1);
+    //            }
+    //            else
+    //            {
+    //                lockOnUI.rectTransform.localScale = new Vector3(lockOnUIScaleMin, lockOnUIScaleMin, 1);
+    //            }
+    //        }
+    //    }
+    //}
 
     public void SetCameraHeight()
     {

@@ -248,34 +248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0ec76935b051840999df4453c1bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSpeed: 0.037
-  followSpeed: 0.5
-  pivotSpeed: 0.015
-  playerFollowRate: 0.2
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
   targetLayer:
     serializedVersion: 2
     m_Bits: 102152
-  minPivot: -35
-  maxPivot: 35
-  lookAngle: 0.033
-  availableTargets: []
   currentLockOnTarget: {fileID: 0}
   nearestLockOnTarget: {fileID: 0}
   leftLockTarget: {fileID: 0}
   rightLockTarget: {fileID: 0}
-  environmentLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  lockRadius: 26
-  maxLockOnDistance: 20
-  lockOnAngleLimit: 60
-  lockOnRotateMax: 20
-  lockedPivotPosition: 2.8
-  unlockedPivotPosition: 2.4
-  lockOnUI: {fileID: 0}
   lockOnUIScaleMin: 0.5
-  cameraSphereRadius: 0.2
-  cameraCollisionOffset: 0.2
-  minCollisionOffset: 0.2
+  lockOnUI: {fileID: 0}

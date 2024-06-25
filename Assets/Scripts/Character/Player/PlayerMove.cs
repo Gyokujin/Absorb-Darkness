@@ -146,7 +146,7 @@ public class PlayerMove : MonoBehaviour
             else
             {
                 Vector3 rotationDir = moveDirection;
-                rotationDir = playerCamera.currentLockOnTarget.position - transform.position;
+                rotationDir = playerCamera.currentLockOnTarget.transform.position - transform.position;
                 rotationDir.y = 0;
                 rotationDir.Normalize();
                 

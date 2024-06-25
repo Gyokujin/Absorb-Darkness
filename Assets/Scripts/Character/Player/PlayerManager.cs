@@ -65,7 +65,7 @@ public class PlayerManager : CharacterManager
 
         if (playerInput.lockOnFlag)
         {
-            LockOnCheck();
+            // LockOnCheck();
         }
     }
 
@@ -101,15 +101,15 @@ public class PlayerManager : CharacterManager
         playerMove.HandleMovement(Time.fixedDeltaTime);
     }
 
-    void LockOnCheck()
-    {
-        // Debug.Log(currentLockEnemy.name);
-    }
+    //void LockOnCheck()
+    //{
+    //    // Debug.Log(currentLockEnemy.name);
+    //}
 
-    public void OffLockOn()
-    {
-        playerInput.lockOnFlag = false;
-        playerAnimator.animator.SetBool("onStance", false);
-        playerCamera.ClearLockOnTargets();
-    }
+    //public void OffLockOn()
+    //{
+    //    playerInput.lockOnFlag = false;
+    //    playerAnimator.animator.SetBool("onStance", false);
+    //    playerCamera.ClearLockOnTargets();
+    //}
 }
