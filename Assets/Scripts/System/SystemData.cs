@@ -5,8 +5,8 @@ namespace SystemDatas
     public struct SystemData
     {
         [Header("Angle")]
-        public float _minPivot;
-        public float _maxPivot;
+        private float _minPivot;
+        private float _maxPivot;
 
         public float minPivot
         {
@@ -21,10 +21,10 @@ namespace SystemDatas
         }
 
         [Header("Camera")]
-        public float _lookSpeed;
-        public float _followSpeed;
-        public float _pivotSpeed;
-        public float _playerFollowRate;
+        private float _lookSpeed;
+        private float _followSpeed;
+        private float _pivotSpeed;
+        private float _playerFollowRate;
 
         public float lookSpeed 
         {
@@ -48,6 +48,15 @@ namespace SystemDatas
         {
             get => _playerFollowRate == 0 ? 0.2f : _playerFollowRate;
             set => _playerFollowRate = value;
+        }
+
+        [Header("LockOn")]
+        private float _lockRadius;
+
+        public float lockRadius 
+        {
+            get => _lockRadius == 0 ? 0.2f : _lockRadius;
+            set => _lockRadius = value;
         }
     }
 }

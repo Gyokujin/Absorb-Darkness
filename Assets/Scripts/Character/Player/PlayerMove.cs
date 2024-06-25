@@ -48,7 +48,6 @@ public class PlayerMove : MonoBehaviour
     private PlayerStatus playerStatus;
     private PlayerAnimator playerAnimator;
     private PlayerCamera playerCamera;
-    // private PlayerFootstep playerFootstep;
 
     void Start()
     {
@@ -61,7 +60,6 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerStatus = GetComponent<PlayerStatus>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        // playerFootstep = GetComponentInChildren<PlayerFootstep>();
         playerCamera = FindObjectOfType<PlayerCamera>();
 
         playerTransform = transform;

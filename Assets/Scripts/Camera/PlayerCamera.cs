@@ -39,6 +39,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("LockOn Parameter")]
     [SerializeField]
     private float lockRadius = 26;
+
     [SerializeField]
     private float maxLockOnDistance = 30;
     [SerializeField]
