@@ -21,8 +21,6 @@ public class PlayerCamera : MonoBehaviour
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask targetLayer;
-    [SerializeField]
-    private LayerMask LockOnLayer;
 
     [Header("Angle")]
     private float defaultPosition;
@@ -38,9 +36,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private float lockOnUIScaleMin = 0.3f;
     [SerializeField]
-    private LayerMask environmentLayer;
-    [SerializeField]
     private Image lockOnUI;
+    private LayerMask lockOnLayer;
+    private LayerMask environmentLayer;
 
     [Header("Component")]
     SystemData systemData;
@@ -59,24 +57,21 @@ public class PlayerCamera : MonoBehaviour
         Init();
     }
 
-    void Start()
+    void Init()
     {
-        environmentLayer = LayerMask.NameToLayer("Environment");
+        camTransform = transform;
+        defaultPosition = cameraTransform.localPosition.z;
+        systemData = new SystemData(); // SystemData 구조체 생성
+        lockOnLayer = LayerMask.GetMask("Enemy");
+        environmentLayer = LayerMask.GetMask("Environment");
+
+        player = FindObjectOfType<PlayerManager>();
+        playerInput = player.GetComponent<PlayerInput>();
     }
 
     void FixedUpdate()
     {
         ControlLockOn();
-    }
-
-    void Init()
-    {
-        player = FindObjectOfType<PlayerManager>();
-        playerInput = player.GetComponent<PlayerInput>();
-        camTransform = transform;
-        defaultPosition = cameraTransform.localPosition.z;
-
-        systemData = new SystemData();
     }
 
     public void FollowTarget(float delta)
@@ -129,7 +124,7 @@ public class PlayerCamera : MonoBehaviour
         float shortesDistance = Mathf.Infinity;
         float shortesDistanceLeftTarget = Mathf.Infinity;
         float shortesDistanceRightTarget = Mathf.Infinity;
-        Collider[] colliders = Physics.OverlapSphere(player.transform.position, systemData.lockRadius, LockOnLayer);
+        Collider[] colliders = Physics.OverlapSphere(player.transform.position, systemData.lockRadius, lockOnLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {
