@@ -1738,6 +1738,10 @@ PrefabInstance:
       propertyPath: lockOnUI
       value: 
       objectReference: {fileID: 1932912358}
+    - target: {fileID: 7631947022005300, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
+      propertyPath: LockOnLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 8340138493931745744, guid: cb851309d311feb46b622e2b3934ae38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

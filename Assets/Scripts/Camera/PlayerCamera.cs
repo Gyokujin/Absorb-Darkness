@@ -21,49 +21,26 @@ public class PlayerCamera : MonoBehaviour
     private Vector3 cameraPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask targetLayer;
+    [SerializeField]
+    private LayerMask LockOnLayer;
 
     [Header("Angle")]
     private float defaultPosition;
     private float lookAngle;
     private float pivotAngle;
 
-    [Header("LockOn Target")]
+    [Header("LockOn")]
     private List<CharacterManager> availableTargets = new List<CharacterManager>();
     public Transform currentLockOnTarget;
     public Transform nearestLockOnTarget;
     public Transform leftLockTarget;
     public Transform rightLockTarget;
     [SerializeField]
+    private float lockOnUIScaleMin = 0.3f;
+    [SerializeField]
     private LayerMask environmentLayer;
-
-    [Header("LockOn Parameter")]
-    [SerializeField]
-    private float lockRadius = 26;
-
-    [SerializeField]
-    private float maxLockOnDistance = 30;
-    [SerializeField]
-    private float lockOnAngleLimit = 50;
-    [SerializeField]
-    private float lockOnRotateMax = 30;
-    [SerializeField]
-    private float lockedPivotPosition = 2.25f;
-    [SerializeField]
-    private float unlockedPivotPosition = 1.65f;
-
-    [Header("Lock On UI")]
     [SerializeField]
     private Image lockOnUI;
-    [SerializeField]
-    private float lockOnUIScaleMin = 0.3f;
-
-    [Header("Camera Collision")]
-    [SerializeField]
-    private float cameraSphereRadius = 0.2f;
-    [SerializeField]
-    private float cameraCollisionOffset = 0.2f;
-    [SerializeField]
-    private float minCollisionOffset = 0.2f;
 
     [Header("Component")]
     SystemData systemData;
@@ -141,7 +118,7 @@ public class PlayerCamera : MonoBehaviour
 
             targetRotation = Quaternion.LookRotation(dir);
             Vector3 eulerAngle = targetRotation.eulerAngles;
-            eulerAngle.x = Mathf.Min(eulerAngle.x, lockOnRotateMax);
+            eulerAngle.x = Mathf.Min(eulerAngle.x, systemData.lockOnRotateMax);
             eulerAngle.y = 0;
             cameraPivotTransform.localEulerAngles = eulerAngle;
         }
@@ -152,7 +129,7 @@ public class PlayerCamera : MonoBehaviour
         float shortesDistance = Mathf.Infinity;
         float shortesDistanceLeftTarget = Mathf.Infinity;
         float shortesDistanceRightTarget = Mathf.Infinity;
-        Collider[] colliders = Physics.OverlapSphere(player.transform.position, lockRadius);
+        Collider[] colliders = Physics.OverlapSphere(player.transform.position, systemData.lockRadius, LockOnLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -166,8 +143,8 @@ public class PlayerCamera : MonoBehaviour
                 RaycastHit hit;
 
                 if (character.transform.root != player.transform.transform.root
-                    && viewAngle > -lockOnAngleLimit && viewAngle < lockOnAngleLimit
-                    && distance <= maxLockOnDistance)
+                    && viewAngle > -systemData.lockOnAngleLimit && viewAngle < systemData.lockOnAngleLimit
+                    && distance <= systemData.maxLockOnDistance)
                 {
                     if (Physics.Linecast(player.lockOnTransform.position, character.lockOnTransform.position, out hit))
                     {
@@ -228,13 +205,13 @@ public class PlayerCamera : MonoBehaviour
         {
             float distance = Vector3.Distance(currentLockOnTarget.position, player.transform.position);
 
-            if (distance > maxLockOnDistance) 
+            if (distance > systemData.maxLockOnDistance) 
             {
                 player.OffLockOn();
             }
             else
             {
-                float scale = distance / maxLockOnDistance;
+                float scale = distance / systemData.maxLockOnDistance;
 
                 if (scale > lockOnUIScaleMin)
                 {
@@ -251,7 +228,7 @@ public class PlayerCamera : MonoBehaviour
     public void SetCameraHeight()
     {
         Vector3 velocity = Vector3.zero;
-        Vector3 targetPosition = new Vector3(0, currentLockOnTarget != null ? lockedPivotPosition : unlockedPivotPosition);
+        Vector3 targetPosition = new Vector3(0, currentLockOnTarget != null ? systemData.lockedPivotPosition : systemData.unlockedPivotPosition);
         cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.localPosition, targetPosition, ref velocity, Time.deltaTime);
     }
 
@@ -262,15 +239,15 @@ public class PlayerCamera : MonoBehaviour
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
+        if (Physics.SphereCast(cameraPivotTransform.position, systemData.cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
-            playerPosition = -(distance - cameraCollisionOffset);
+            playerPosition = -(distance - systemData.cameraCollisionOffset);
         }
 
-        if (Mathf.Abs(playerPosition) < minCollisionOffset)
+        if (Mathf.Abs(playerPosition) < systemData.minCollisionOffset)
         {
-            playerPosition = -minCollisionOffset;
+            playerPosition = -systemData.minCollisionOffset;
         }
 
         cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / systemData.playerFollowRate);
