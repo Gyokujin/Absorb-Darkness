@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SystemDatas
 {
-    public struct SystemData
+    public struct CameraData
     {
         [Header("Angle")]
         // MinPivot
@@ -60,14 +60,59 @@ namespace SystemDatas
             set => _playerFollowRate = value;
         }
 
+        // CameraCollisionOffset
+        private float? _cameraCollisionOffset;
+        private const float defaultCameraCollisionOffset = 0.2f;
+        public float cameraCollisionOffset
+        {
+            get => _cameraCollisionOffset ?? defaultCameraCollisionOffset;
+            set => _cameraCollisionOffset = value;
+        }
+
+        // MinCollisionOffset
+        private float? _minCollisionOffset;
+        private const float defaultMinCollisionOffset = 0.2f;
+        public float minCollisionOffset
+        {
+            get => _minCollisionOffset ?? defaultMinCollisionOffset;
+            set => _minCollisionOffset = value;
+        }
+
+        // UnlockedPivotPosition
+        private float? _unlockedPivotPosition;
+        private const float defaultUnlockedPivotPosition = 0.85f;
+        public float unlockedPivotPosition
+        {
+            get => _unlockedPivotPosition ?? defaultUnlockedPivotPosition;
+            set => _unlockedPivotPosition = value;
+        }
+
+        // LockedPivotPosition
+        private float? _lockedPivotPosition;
+        private const float defaultLockedPivotPosition = 2.25f;
+        public float lockedPivotPosition
+        {
+            get => _lockedPivotPosition ?? defaultLockedPivotPosition;
+            set => _lockOnRotateMax = value;
+        }
+
         [Header("LockOn")]
         // LockRadius
-        private float? _lockRadius;
-        private const float defaultLockRadius = 65;
-        public float lockRadius
+        private float? _lockOnRadius;
+        private const float defaultLockOnRadius = 32;
+        public float lockOnRadius
         {
-            get => _lockRadius ?? defaultLockRadius;
-            set => _lockRadius = value;
+            get => _lockOnRadius ?? defaultLockOnRadius;
+            set => _lockOnRadius = value;
+        }
+
+        // MinLockOnDistance
+        private float? _minLockOnDistance;
+        private const float defaultMinLockOnDistance = 5;
+        public float minLockOnDistance
+        {
+            get => _minLockOnDistance ?? defaultMinLockOnDistance;
+            set => _minLockOnDistance = value;
         }
 
         // MaxLockOnDistance
@@ -97,24 +142,6 @@ namespace SystemDatas
             set => _lockOnRotateMax = value;
         }
 
-        // LockedPivotPosition
-        private float? _lockedPivotPosition;
-        private const float defaultLockedPivotPosition = 2.25f;
-        public float lockedPivotPosition
-        {
-            get => _lockedPivotPosition ?? defaultLockedPivotPosition;
-            set => _lockOnRotateMax = value;
-        }
-
-        // UnlockedPivotPosition
-        private float? _unlockedPivotPosition;
-        private const float defaultUnlockedPivotPosition = 1.65f;
-        public float unlockedPivotPosition
-        {
-            get => _unlockedPivotPosition ?? defaultUnlockedPivotPosition;
-            set => _unlockedPivotPosition = value;
-        }
-
         // CameraSphereRadius
         private float? _cameraSphereRadius;
         private const float defaultCameraSphereRadius = 0.2f;
@@ -122,24 +149,6 @@ namespace SystemDatas
         {
             get => _cameraSphereRadius ?? defaultCameraSphereRadius;
             set => _cameraSphereRadius = value;
-        }
-
-        // CameraCollisionOffset
-        private float? _cameraCollisionOffset;
-        private const float defaultCameraCollisionOffset = 0.2f;
-        public float cameraCollisionOffset
-        {
-            get => _cameraCollisionOffset ?? defaultCameraCollisionOffset;
-            set => _cameraCollisionOffset = value;
-        }
-
-        // MinCollisionOffset
-        private float? _minCollisionOffset;
-        private const float defaultMinCollisionOffset = 0.2f;
-        public float minCollisionOffset
-        {
-            get => _minCollisionOffset ?? defaultMinCollisionOffset;
-            set => _minCollisionOffset = value;
         }
     }
 }
