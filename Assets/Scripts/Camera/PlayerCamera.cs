@@ -160,6 +160,7 @@ public class PlayerCamera : MonoBehaviour
     void LockOnTarget()
     {
         float shortDistance = Mathf.Infinity;
+        lockOnUI.gameObject.SetActive(true);
 
         for (int i = 0; i < availableTargets.Count; i++)
         {
