@@ -125,54 +125,70 @@ public class PlayerMove : MonoBehaviour
 
     void HandleRotation(float delta)
     {
-        if (playerInput.lockOnFlag)
-        {
-            if (playerInput.sprintFlag || playerInput.rollFlag)
-            {
-                Vector3 targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
-                targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
-                targetDir.Normalize();
-                targetDir.y = 0;
+        Vector3 targetDir = Vector3.zero;
+        float moveOverride = playerInput.moveAmount;
 
-                if (targetDir == Vector3.zero)
-                {
-                    targetDir = transform.forward;
-                }
+        targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
+        targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
+        targetDir.Normalize();
+        targetDir.y = 0;
 
-                Quaternion tr = Quaternion.LookRotation(targetDir);
-                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
-                transform.rotation = targetRotation;
-            }
-            else
-            {
-                Vector3 rotationDir = moveDirection;
-                rotationDir = playerCamera.currentLockOnTarget.transform.position - transform.position;
-                rotationDir.y = 0;
-                rotationDir.Normalize();
-                
-                Quaternion tr = Quaternion.LookRotation(rotationDir);
-                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
-                transform.rotation = targetRotation;
-            }
-        }
-        else
-        {
-            Vector3 targetDir = Vector3.zero;
-            float moveOverride = playerInput.moveAmount;
+        if (targetDir == Vector3.zero)
+            targetDir = playerTransform.forward;
 
-            targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
-            targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
-            targetDir.Normalize();
-            targetDir.y = 0;
+        float rs = playerStatus.rotationSpeed;
+        Quaternion tr = Quaternion.LookRotation(targetDir);
+        Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
+        playerTransform.rotation = targetRotation;
 
-            if (targetDir == Vector3.zero)
-                targetDir = playerTransform.forward;
+        //if (playerInput.lockOnFlag)
+        //{
+        //    if (playerInput.sprintFlag || playerInput.rollFlag)
+        //    {
+        //        Vector3 targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
+        //        targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
+        //        targetDir.Normalize();
+        //        targetDir.y = 0;
 
-            float rs = playerStatus.rotationSpeed;
-            Quaternion tr = Quaternion.LookRotation(targetDir);
-            Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
-            playerTransform.rotation = targetRotation;
-        }
+        //        if (targetDir == Vector3.zero)
+        //        {
+        //            targetDir = transform.forward;
+        //        }
+
+        //        Quaternion tr = Quaternion.LookRotation(targetDir);
+        //        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
+        //        transform.rotation = targetRotation;
+        //    }
+        //    else
+        //    {
+        //        Vector3 rotationDir = moveDirection;
+        //        rotationDir = playerCamera.currentLockOnTarget.transform.position - transform.position;
+        //        rotationDir.y = 0;
+        //        rotationDir.Normalize();
+
+        //        Quaternion tr = Quaternion.LookRotation(rotationDir);
+        //        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
+        //        transform.rotation = targetRotation;
+        //    }
+        //}
+        //else
+        //{
+        //    Vector3 targetDir = Vector3.zero;
+        //    float moveOverride = playerInput.moveAmount;
+
+        //    targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
+        //    targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
+        //    targetDir.Normalize();
+        //    targetDir.y = 0;
+
+        //    if (targetDir == Vector3.zero)
+        //        targetDir = playerTransform.forward;
+
+        //    float rs = playerStatus.rotationSpeed;
+        //    Quaternion tr = Quaternion.LookRotation(targetDir);
+        //    Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
+        //    playerTransform.rotation = targetRotation;
+        //}
     }
 
     public void HandleRolling(float delta)

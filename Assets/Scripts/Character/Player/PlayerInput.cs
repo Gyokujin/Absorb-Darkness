@@ -109,7 +109,7 @@ public class PlayerInput : MonoBehaviour
         HandleMoveInput(delta);
         HandleRollInput(delta);
         HandleUseItemInput();
-        // HandleLockOnInput();
+        HandleLockOnInput();
         HandleTwoHandInput();
         HandleAttackInput(delta);
         HandleQuickSlotsInput();
@@ -234,7 +234,10 @@ public class PlayerInput : MonoBehaviour
 
     void HandleLockOnInput()
     {
-        lockOnFlag = !lockOnFlag;
+        if (lockOnInput && !gameSystemFlag)
+        {
+            playerCamera.SwitchLockOn(lockOnFlag);
+        }
     }
 
     //void HandleLockOnInput()

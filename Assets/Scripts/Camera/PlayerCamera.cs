@@ -29,12 +29,7 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("LockOn")]
     private List<EnemyManager> availableTargets = new List<EnemyManager>();
-    // public Transform currentLockOnTarget;
-    public EnemyManager currentLockOnTarget;
-
-    public Transform nearestLockOnTarget;
-    public Transform leftLockTarget;
-    public Transform rightLockTarget;
+    private EnemyManager currentLockOnTarget;
     [SerializeField]
     private float lockOnUIScaleMin = 0.3f;
     [SerializeField]
@@ -43,7 +38,7 @@ public class PlayerCamera : MonoBehaviour
     private LayerMask environmentLayer;
 
     [Header("Component")]
-    SystemData systemData;
+    private CameraData cameraData;
 
     void Awake()
     {
@@ -63,7 +58,7 @@ public class PlayerCamera : MonoBehaviour
     {
         camTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
-        systemData = new SystemData(); // SystemData 구조체 생성
+        cameraData = new CameraData(); // SystemData 구조체 생성
         lockOnLayer = LayerMask.GetMask("Enemy");
         environmentLayer = LayerMask.GetMask("Environment");
 
@@ -71,15 +66,11 @@ public class PlayerCamera : MonoBehaviour
         playerInput = player.GetComponent<PlayerInput>();
     }
 
-    //void FixedUpdate()
-    //{
-    //    ControlLockOn();
-    //}
-
     public void FollowTarget(float delta)
     {
-        Vector3 playerPos = Vector3.SmoothDamp(camTransform.position, player.transform.position, ref cameraFollowVelocity, delta / systemData.followSpeed);
-        camTransform.position = playerPos;
+        Vector3 followPos = player.transform.position;
+        followPos.y += playerInput.lockOnFlag ? cameraData.lockedPivotPosition : cameraData.unlockedPivotPosition;
+        camTransform.position = followPos;
         HandleCameraCollision(delta);
     }
 
@@ -87,9 +78,9 @@ public class PlayerCamera : MonoBehaviour
     {
         if (!playerInput.lockOnFlag && currentLockOnTarget == null && !playerInput.gameSystemFlag)
         {
-            lookAngle += mouseX * systemData.lookSpeed / delta;
-            pivotAngle -= mouseY * systemData.pivotSpeed / delta;
-            pivotAngle = Mathf.Clamp(pivotAngle, systemData.minPivot, systemData.maxPivot);
+            lookAngle += mouseX * cameraData.lookSpeed / delta;
+            pivotAngle -= mouseY * cameraData.pivotSpeed / delta;
+            pivotAngle = Mathf.Clamp(pivotAngle, cameraData.minPivot, cameraData.maxPivot);
 
             Vector3 rotation = Vector3.zero;
             rotation.y = lookAngle;
@@ -115,16 +106,86 @@ public class PlayerCamera : MonoBehaviour
 
             targetRotation = Quaternion.LookRotation(dir);
             Vector3 eulerAngle = targetRotation.eulerAngles;
-            eulerAngle.x = Mathf.Min(eulerAngle.x, systemData.lockOnRotateMax);
+            eulerAngle.x = Mathf.Min(eulerAngle.x, cameraData.lockOnRotateMax);
             eulerAngle.y = 0;
             cameraPivotTransform.localEulerAngles = eulerAngle;
         }
     }
 
-    public GameObject FindLockOnTarget()
+    public void SwitchLockOn(bool onAble) 
     {
-        // Collider[] findTarget = Physics.OverlapSphere(transform.position);
-        return null;
+        if (!onAble) // 록온이 아닌 상태에서 탐색을 한후 적이 포착되면 활성화한다.
+        {
+            if (FindLockOnTarget())
+            {
+                playerInput.lockOnFlag = true;
+                LockOnTarget();
+            }
+        }
+        else
+        {
+            playerInput.lockOnFlag = false;
+            ResetTarget();
+        }
+    }
+
+    bool FindLockOnTarget()
+    {
+        Collider[] findTarget = Physics.OverlapSphere(player.transform.position, cameraData.lockOnRadius, lockOnLayer);
+
+        for (int i = 0; i < findTarget.Length; i++)
+        {
+            EnemyManager target = findTarget[i].gameObject.GetComponent<EnemyManager>();
+
+            if (target != null)
+            {
+                Vector3 targetDirection = target.transform.position - player.transform.position;
+                float viewAngle = Vector3.Angle(targetDirection, cameraTransform.forward);
+
+                if (viewAngle > cameraData.minLockOnDistance && viewAngle < cameraData.maxLockOnDistance)
+                {
+                    RaycastHit hit;
+
+                    if (Physics.Linecast(player.transform.position, target.lockOnTransform.position, out hit, lockOnLayer))
+                    {
+                        availableTargets.Add(target);
+                    }
+                }
+            }
+        }
+
+        return availableTargets.Count > 0;
+    }
+
+    void LockOnTarget()
+    {
+        float shortDistance = Mathf.Infinity;
+
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
+            if (availableTargets[i] != null)
+            {
+                float targetDistance = Vector3.Distance(player.transform.position, availableTargets[i].transform.position);
+                
+                if (targetDistance < shortDistance) // 가장 가까운 타겟을 찾는다
+                {
+                    shortDistance = targetDistance;
+                    currentLockOnTarget = availableTargets[i];
+                }
+            }
+        }
+    }
+
+    void ResetTarget()
+    {
+        currentLockOnTarget = null;
+        availableTargets.Clear();
+        lockOnUI.gameObject.SetActive(false);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(player.transform.position, cameraData.lockOnRadius);
     }
 
     //public void HandleLockOn()
@@ -192,14 +253,6 @@ public class PlayerCamera : MonoBehaviour
     //    }
     //}
 
-    //public void ClearLockOnTargets()
-    //{
-    //    availableTargets.Clear();
-    //    nearestLockOnTarget = null;
-    //    currentLockOnTarget = null;
-    //    lockOnUI.gameObject.SetActive(false);
-    //}
-
     //public void ControlLockOn()
     //{
     //    if (currentLockOnTarget != null)
@@ -232,7 +285,7 @@ public class PlayerCamera : MonoBehaviour
     public void SetCameraHeight()
     {
         Vector3 velocity = Vector3.zero;
-        Vector3 targetPosition = new Vector3(0, currentLockOnTarget != null ? systemData.lockedPivotPosition : systemData.unlockedPivotPosition);
+        Vector3 targetPosition = new Vector3(0, currentLockOnTarget != null ? cameraData.lockedPivotPosition : cameraData.unlockedPivotPosition);
         cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.localPosition, targetPosition, ref velocity, Time.deltaTime);
     }
 
@@ -243,18 +296,18 @@ public class PlayerCamera : MonoBehaviour
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, systemData.cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
-            playerPosition = -(distance - systemData.cameraCollisionOffset);
+            playerPosition = -(distance - cameraData.cameraCollisionOffset);
         }
 
-        if (Mathf.Abs(playerPosition) < systemData.minCollisionOffset)
+        if (Mathf.Abs(playerPosition) < cameraData.minCollisionOffset)
         {
-            playerPosition = -systemData.minCollisionOffset;
+            playerPosition = -cameraData.minCollisionOffset;
         }
 
-        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / systemData.playerFollowRate);
-        cameraTransform.localPosition = cameraPos;
+        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / cameraData.playerFollowRate);
+        // cameraTransform.localPosition = cameraPos;
     }
 }
