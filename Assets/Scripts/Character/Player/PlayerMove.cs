@@ -33,6 +33,8 @@ public class PlayerMove : MonoBehaviour
     private float fallingDownForce = 750;
     [SerializeField]
     private float fallingFrontForce = 5f;
+    [SerializeField]
+    private float lookAtSmoothing = 25;
 
     [Header("Component")]
     [SerializeField]
@@ -104,7 +106,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 회전이 가능한 경우에는 이동 방향으로 캐릭터를 회전한다.
-        if (player.playerAnimator.canRotate)
+        if (player.playerAnimator.canRotate && !PlayerCamera.instance.isLockOn)
         {
             HandleRotation(delta);
         }
@@ -112,69 +114,67 @@ public class PlayerMove : MonoBehaviour
 
     void HandleRotation(float delta)
     {
-        Vector3 targetDir = Vector3.zero;
-        float moveOverride = player.playerInput.moveAmount;
+        Vector3 targetdir = Vector3.zero;
+        float moveoverride = player.playerInput.moveAmount;
+        targetdir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
+        targetdir += PlayerCamera.instance.cameraTransform.right * player.playerInput.horizontal;
+        targetdir.Normalize();
+        targetdir.y = 0;
 
-        targetDir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
-        targetDir += PlayerCamera.instance.cameraTransform.right * player.playerInput.horizontal;
-        targetDir.Normalize();
-        targetDir.y = 0;
-
-        if (targetDir == Vector3.zero)
-            targetDir = player.transform.forward;
+        if (targetdir == Vector3.zero)
+            targetdir = player.transform.forward;
 
         float rs = player.playerStatus.rotationSpeed;
-        Quaternion tr = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(player.transform.rotation, tr, rs * delta);
-        player.transform.rotation = targetRotation;
+        Quaternion tr = Quaternion.LookRotation(targetdir);
+        Quaternion targetrotation = Quaternion.Slerp(player.transform.rotation, tr, rs * delta);
+        player.transform.rotation = targetrotation;
+    }
 
-        //if (PlayerCamera.instance.isLockOn)
+    public void LookRotation(Vector3 targetPos)
+    {
+        if (player.playerInput.sprintFlag || player.playerInput.rollFlag)
+            return;
+
+        Vector3 lookDir = (targetPos - player.lockOnTransform.position).normalized;
+        lookDir.y = transform.position.y;
+        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * lookAtSmoothing);
+
+        //Vector3 rotationdir = moveDirection;
+        //rotationdir = targetPos - transform.position;
+        //rotationdir.y = 0;
+        //rotationdir.Normalize();
+        //Quaternion tr = Quaternion.LookRotation(rotationdir);
+        //Quaternion targetrotation = Quaternion.Slerp(transform.rotation, tr, player.playerStatus.rotationSpeed * Time.deltaTime);
+        //transform.rotation = targetrotation;
+
+        //if (player.playerInput.sprintFlag || player.playerInput.rollFlag)
         //{
-        //    if (player.playerInput.sprintFlag || player.playerInput.rollFlag)
+        //    Vector3 targetdir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
+        //    targetdir += PlayerCamera.instance.cameraTransform.right * player.playerInput.horizontal;
+        //    Debug.Log(targetdir);
+        //    targetdir.Normalize();
+        //    Debug.Log(targetdir);
+        //    targetdir.y = 0;
+
+        //    if (targetdir == Vector3.zero)
         //    {
-        //        Vector3 targetDir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
-        //        targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
-        //        targetDir.Normalize();
-        //        targetDir.y = 0;
-
-        //        if (targetDir == Vector3.zero)
-        //        {
-        //            targetDir = transform.forward;
-        //        }
-
-        //        Quaternion tr = Quaternion.LookRotation(targetDir);
-        //        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
-        //        transform.rotation = targetRotation;
+        //        targetdir = transform.forward;
         //    }
-        //    else
-        //    {
-        //        Vector3 rotationDir = moveDirection;
-        //        rotationDir = playerCamera.currentLockOnTarget.transform.position - transform.position;
-        //        rotationDir.y = 0;
-        //        rotationDir.Normalize();
 
-        //        Quaternion tr = Quaternion.LookRotation(rotationDir);
-        //        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, playerStatus.rotationSpeed * Time.deltaTime);
-        //        transform.rotation = targetRotation;
-        //    }
+        //    Quaternion tr = Quaternion.LookRotation(targetdir);
+        //    Quaternion targetrotation = Quaternion.Slerp(transform.rotation, tr, player.playerStatus.rotationSpeed * Time.deltaTime);
+        //    transform.rotation = targetrotation;
         //}
         //else
         //{
-        //    Vector3 targetDir = Vector3.zero;
-        //    float moveOverride = playerInput.moveAmount;
+        //    Vector3 rotationdir = moveDirection;
+        //    rotationdir = targetPos - transform.position;
+        //    rotationdir.y = 0;
+        //    rotationdir.Normalize();
 
-        //    targetDir = playerCamera.cameraTransform.forward * playerInput.vertical;
-        //    targetDir += playerCamera.cameraTransform.right * playerInput.horizontal;
-        //    targetDir.Normalize();
-        //    targetDir.y = 0;
-
-        //    if (targetDir == Vector3.zero)
-        //        targetDir = playerTransform.forward;
-
-        //    float rs = playerStatus.rotationSpeed;
-        //    Quaternion tr = Quaternion.LookRotation(targetDir);
-        //    Quaternion targetRotation = Quaternion.Slerp(playerTransform.rotation, tr, rs * delta);
-        //    playerTransform.rotation = targetRotation;
+        //    Quaternion tr = Quaternion.LookRotation(rotationdir);
+        //    Quaternion targetrotation = Quaternion.Slerp(transform.rotation, tr, player.playerStatus.rotationSpeed * Time.deltaTime);
+        //    transform.rotation = targetrotation;
         //}
     }
 
