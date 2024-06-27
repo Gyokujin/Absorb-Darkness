@@ -25,8 +25,6 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector]
     public bool lockOnInput;
     public bool useItemInpt;
-    // private bool rightStickLeftInput;
-    // private bool rightStickRightInput;
     [HideInInspector]
     public bool lightAttackInput;
     [HideInInspector]
@@ -46,7 +44,6 @@ public class PlayerInput : MonoBehaviour
     public bool rollFlag;
     public bool sprintFlag;
     public bool twoHandFlag;
-    public bool lockOnFlag;
     public bool comboFlag;
     public bool gameSystemFlag;
 
@@ -216,10 +213,8 @@ public class PlayerInput : MonoBehaviour
         {
             if (!gameSystemFlag)
             {
-                if (lockOnFlag)
-                {
-                    // playerManager.OffLockOn();
-                }
+                if (playerCamera.isLockOn)
+                    playerCamera.SwitchLockOn();
 
                 gameSystemFlag = true;
                 UIManager.instance.OpenGameSystemUI();
@@ -236,7 +231,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (lockOnInput && !gameSystemFlag)
         {
-            playerCamera.SwitchLockOn(lockOnFlag);
+            playerCamera.SwitchLockOn();
         }
     }
 

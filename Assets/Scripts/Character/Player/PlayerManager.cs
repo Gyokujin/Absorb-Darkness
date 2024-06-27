@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static TreeEditor.TreeGroup;
 
 public class PlayerManager : CharacterManager
 {
@@ -62,11 +61,6 @@ public class PlayerManager : CharacterManager
         playerInput.TickInput(Time.deltaTime);
         playerMove.HandleRolling(Time.deltaTime);
         playerInteract.CheckInteractableObject(this);
-
-        if (playerInput.lockOnFlag)
-        {
-            // LockOnCheck();
-        }
     }
 
     void LateUpdate()

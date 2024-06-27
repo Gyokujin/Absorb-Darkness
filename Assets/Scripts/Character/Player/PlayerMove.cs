@@ -107,7 +107,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody.velocity = projectedVelocity;
 
         // 애니메이션 실행
-        if (playerInput.lockOnFlag && !playerInput.sprintFlag)
+        if (playerCamera.isLockOn && !playerInput.sprintFlag)
         {
             playerAnimator.AnimatorValue(playerInput.vertical, playerInput.horizontal, playerManager.isSprinting);
         }
