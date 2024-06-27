@@ -79,45 +79,45 @@ namespace SystemDatas
         }
 
         // UnlockedPivotPosition
-        private float? _unlockedPivotPosition;
-        private const float defaultUnlockedPivotPosition = 0.85f;
-        public float unlockedPivotPosition
+        private float? _unlockedPivotPositionY;
+        private const float defaultUnlockedPivotPositionY = 0.575f;
+        public float unlockedPivotPositionY
         {
-            get => _unlockedPivotPosition ?? defaultUnlockedPivotPosition;
-            set => _unlockedPivotPosition = value;
+            get => _unlockedPivotPositionY ?? defaultUnlockedPivotPositionY;
+            set => _unlockedPivotPositionY = value;
         }
 
         // LockedPivotPosition
-        private float? _lockedPivotPosition;
-        private const float defaultLockedPivotPosition = 2.25f;
-        public float lockedPivotPosition
+        private float? _lockedPivotPositionY;
+        private const float defaultLockedPivotPositionY = 1.2f;
+        public float lockedPivotPositionY
         {
-            get => _lockedPivotPosition ?? defaultLockedPivotPosition;
+            get => _lockedPivotPositionY ?? defaultLockedPivotPositionY;
             set => _lockOnRotateMax = value;
         }
 
         [Header("LockOn")]
         // LockOnRadius
         private float? _lockOnRadius;
-        private const float defaultLockOnRadius = 24;
+        private const float defaultLockOnRadius = 26;
         public float lockOnRadius
         {
             get => _lockOnRadius ?? defaultLockOnRadius;
             set => _lockOnRadius = value;
         }
 
-        // MinLockOnDistance
-        private float? _minLockOnDistance;
-        private const float defaultMinLockOnDistance = 5;
-        public float minLockOnDistance
-        {
-            get => _minLockOnDistance ?? defaultMinLockOnDistance;
-            set => _minLockOnDistance = value;
-        }
+        //// MinLockOnDistance
+        //private float? _minLockOnDistance;
+        //private const float defaultMinLockOnDistance = 5;
+        //public float minLockOnDistance
+        //{
+        //    get => _minLockOnDistance ?? defaultMinLockOnDistance;
+        //    set => _minLockOnDistance = value;
+        //}
 
         // MaxLockOnDistance
         private float? _maxLockOnDistance;
-        private const float defaultMaxLockOnDistance = 30;
+        private const float defaultMaxLockOnDistance = 36;
         public float maxLockOnDistance
         {
             get => _maxLockOnDistance ?? defaultMaxLockOnDistance;
