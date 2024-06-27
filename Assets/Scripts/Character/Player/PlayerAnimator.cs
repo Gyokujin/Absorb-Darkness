@@ -128,6 +128,11 @@ public class PlayerAnimator : AnimatorManager
         animator.SetBool("canDoCombo", false);
     }
 
+    public void SwitchStance(bool onStance)
+    {
+        animator.SetBool("onStance", onStance);
+    }
+
     public void Drink()
     {
         AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Drink]);

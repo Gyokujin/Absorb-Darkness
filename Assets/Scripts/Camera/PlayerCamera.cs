@@ -146,6 +146,8 @@ public class PlayerCamera : MonoBehaviour
             isLockOn = false;
             ResetTarget();
         }
+
+        player.playerAnimator.SwitchStance(isLockOn);
     }
 
     bool FindLockOnTarget()
@@ -205,7 +207,7 @@ public class PlayerCamera : MonoBehaviour
         {
             currentTargetPos = currentLockOnTarget.lockOnTransform.position;
             lockOnUI.position = Camera.main.WorldToScreenPoint(currentTargetPos);
-            // player.playerMove
+            player.playerMove.LookRotation(currentTargetPos);
         }
     }
 
