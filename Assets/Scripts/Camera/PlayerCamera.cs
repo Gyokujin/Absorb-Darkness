@@ -19,7 +19,6 @@ public class PlayerCamera : MonoBehaviour
     private Transform cameraPivotTransform;
     private Transform camTransform;
     private Vector3 cameraPos;
-    private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask targetLayer;
 
     [Header("Angle")]
@@ -28,12 +27,16 @@ public class PlayerCamera : MonoBehaviour
     private float pivotAngle;
 
     [Header("LockOn")]
+    [HideInInspector]
+    public bool isLockOn;
     private List<EnemyManager> availableTargets = new List<EnemyManager>();
     private EnemyManager currentLockOnTarget;
     [SerializeField]
+    private Vector3 currentTargetPos;
+    [SerializeField]
     private float lockOnUIScaleMin = 0.3f;
     [SerializeField]
-    private Image lockOnUI;
+    private Transform lockOnUI;
     private LayerMask lockOnLayer;
     private LayerMask environmentLayer;
 
@@ -66,17 +69,37 @@ public class PlayerCamera : MonoBehaviour
         playerInput = player.GetComponent<PlayerInput>();
     }
 
+    void Update()
+    {
+        TargetCheck();
+    }
+
+    void TargetCheck()
+    {
+        if (isLockOn)
+        {
+            if (IsTargetRange())
+            {
+                LookAtTarget();
+            }
+            else
+            {
+                SwitchLockOn();
+            }
+        }
+    }
+
     public void FollowTarget(float delta)
     {
         Vector3 followPos = player.transform.position;
-        followPos.y += playerInput.lockOnFlag ? cameraData.lockedPivotPosition : cameraData.unlockedPivotPosition;
+        followPos.y += isLockOn ? cameraData.lockedPivotPosition : cameraData.unlockedPivotPosition;
         camTransform.position = followPos;
         HandleCameraCollision(delta);
     }
 
     public void HandleCameraRotation(float delta, float mouseX, float mouseY)
     {
-        if (!playerInput.lockOnFlag && currentLockOnTarget == null && !playerInput.gameSystemFlag)
+        if (!isLockOn && currentLockOnTarget == null && !playerInput.gameSystemFlag)
         {
             lookAngle += mouseX * cameraData.lookSpeed / delta;
             pivotAngle -= mouseY * cameraData.pivotSpeed / delta;
@@ -112,19 +135,19 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    public void SwitchLockOn(bool onAble) 
+    public void SwitchLockOn() 
     {
-        if (!onAble) // 록온이 아닌 상태에서 탐색을 한후 적이 포착되면 활성화한다.
+        if (!isLockOn) // 록온이 아닌 상태에서 탐색을 한후 적이 포착되면 활성화한다.
         {
             if (FindLockOnTarget())
             {
-                playerInput.lockOnFlag = true;
+                isLockOn = true;
                 LockOnTarget();
             }
         }
         else
         {
-            playerInput.lockOnFlag = false;
+            isLockOn = false;
             ResetTarget();
         }
     }
@@ -146,9 +169,12 @@ public class PlayerCamera : MonoBehaviour
                 {
                     RaycastHit hit;
 
-                    if (Physics.Linecast(player.transform.position, target.lockOnTransform.position, out hit, lockOnLayer))
+                    if (Physics.Linecast(player.lockOnTransform.position, target.lockOnTransform.position, out hit))
                     {
-                        availableTargets.Add(target);
+                        if ((environmentLayer.value & (1 << hit.collider.gameObject.layer)) != 0) // 레이를 쏘았을때 벽을 먼저 감지한 경우
+                            continue;
+                        else // 벽보다 몬스터를 먼저 감지한 경우에 List에 추가
+                            availableTargets.Add(target);
                     }
                 }
             }
@@ -166,7 +192,7 @@ public class PlayerCamera : MonoBehaviour
         {
             if (availableTargets[i] != null)
             {
-                float targetDistance = Vector3.Distance(player.transform.position, availableTargets[i].transform.position);
+                float targetDistance = Vector3.Distance(player.lockOnTransform.position, availableTargets[i].transform.position);
                 
                 if (targetDistance < shortDistance) // 가장 가까운 타겟을 찾는다
                 {
@@ -177,16 +203,26 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
+    void LookAtTarget()
+    {
+        if (currentLockOnTarget != null)
+        {
+            currentTargetPos = currentLockOnTarget.lockOnTransform.position;
+            lockOnUI.position = Camera.main.WorldToScreenPoint(currentTargetPos);
+        }
+    }
+
+    bool IsTargetRange()
+    {
+        float targetDistance = (player.lockOnTransform.position - currentLockOnTarget.transform.position).magnitude;
+        return targetDistance <= cameraData.lockOnRadius;
+    }
+
     void ResetTarget()
     {
         currentLockOnTarget = null;
         availableTargets.Clear();
         lockOnUI.gameObject.SetActive(false);
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(player.transform.position, cameraData.lockOnRadius);
     }
 
     //public void HandleLockOn()
