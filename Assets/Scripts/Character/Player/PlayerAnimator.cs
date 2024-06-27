@@ -5,9 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : AnimatorManager
 {
-    public bool canRotate = true;
+    private PlayerManager player;
 
     [Header("Animator Parameters")]
+    public bool canRotate = true;
     private float parameterHor;
     private float parameterVer;
     [SerializeField]
@@ -21,19 +22,10 @@ public class PlayerAnimator : AnimatorManager
     [SerializeField]
     private float animationDampTime = 0.1f;
 
-    [Header("Component")]
-    private PlayerManager playerManager;
-    private PlayerMove playerMove;
-    private PlayerStatus playerStatus;
-    private PlayerItemUse playerItemUse;
-
     public void Init()
     {
         animator = GetComponent<Animator>();
-        playerManager = GetComponentInParent<PlayerManager>();
-        playerMove = GetComponentInParent<PlayerMove>();
-        playerStatus = GetComponentInParent<PlayerStatus>();
-        playerItemUse = GetComponentInParent<PlayerItemUse>();
+        player = GetComponentInParent<PlayerManager>();
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
@@ -99,11 +91,11 @@ public class PlayerAnimator : AnimatorManager
 
     void OnAnimatorMove()
     {
-        if (!playerManager.isInteracting)
+        if (!player.isInteracting)
             return;
 
         Vector3 velocity = new Vector3(animator.deltaPosition.x, 0, animator.deltaPosition.z) / Time.deltaTime;
-        playerMove.rigidbody.velocity = velocity;
+        player.playerMove.rigidbody.velocity = velocity;
     }
 
     public void CanRotate(bool isCan)
@@ -118,12 +110,12 @@ public class PlayerAnimator : AnimatorManager
 
     public void DodgeEnd()
     {
-        playerManager.onDodge = false;
+        player.onDodge = false;
     }
 
     public void HitEnd()
     {
-        playerManager.onDamage = false;
+        player.onDamage = false;
     }
 
     public void EnableCombo()
@@ -143,11 +135,11 @@ public class PlayerAnimator : AnimatorManager
 
     public void Recovery()
     {
-        playerStatus.RecoveryHealth();
+        player.playerStatus.RecoveryHealth();
     }
 
     public void ItemUseEnd()
     {
-        playerItemUse.EndItemUse();
+        player.playerItemUse.EndItemUse();
     }
 }

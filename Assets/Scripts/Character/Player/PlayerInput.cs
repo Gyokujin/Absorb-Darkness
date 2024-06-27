@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    private PlayerManager player;
+    private PlayerControls inputActions;
+
     [Header("Move & Action")]
     public float horizontal;
     public float vertical;
@@ -47,16 +50,6 @@ public class PlayerInput : MonoBehaviour
     public bool comboFlag;
     public bool gameSystemFlag;
 
-    [Header("Component")]
-    private PlayerManager playerManager;
-    private PlayerControls inputActions;
-    private PlayerStatus playerStatus;
-    private PlayerAnimator playerAnimator;
-    private PlayerAttacker playerAttacker;
-    private PlayerInventory playerInventory;
-    private PlayerCamera playerCamera;
-    private ItemSlotManager weaponSlotManager;
-
     void Awake()
     {
         Init();
@@ -64,13 +57,7 @@ public class PlayerInput : MonoBehaviour
 
     void Init()
     {
-        playerManager = GetComponent<PlayerManager>();
-        playerStatus = GetComponent<PlayerStatus>();
-        playerAttacker = GetComponent<PlayerAttacker>();
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        playerInventory = GetComponent<PlayerInventory>();
-        playerCamera = FindObjectOfType<PlayerCamera>();
-        weaponSlotManager = GetComponentInChildren<ItemSlotManager>();
+        player = GetComponent<PlayerManager>();
     }
 
     void OnEnable()
@@ -88,8 +75,6 @@ public class PlayerInput : MonoBehaviour
             inputActions.PlayerActions.GameSystem.performed += i => gameSystemInput = true;
             inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeftInput = true;
             inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRightInput = true;
-            // inputActions.PlayerMovement.LockOnTargetLeft.performed += i => rightStickLeftInput = true;
-            // inputActions.PlayerMovement.LockOnTargetRight.performed += i => rightStickRightInput = true;
             inputActions.PlayerActions.TwoHand.performed += i => twoHandInput = true;
         }
 
@@ -146,9 +131,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleUseItemInput()
     {
-        if (useItemInpt && !playerManager.isInteracting && moveAmount == 0)
+        if (useItemInpt && !player.isInteracting && moveAmount == 0)
         {
-            playerManager.playerItemUse.UseItem(playerAnimator, playerInventory.curUsingItem);
+            player.playerItemUse.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
         }
     }
 
@@ -161,37 +146,37 @@ public class PlayerInput : MonoBehaviour
 
             if (twoHandFlag)
             {
-                weaponSlotManager.LoadWeaponSlot(playerInventory.rightWeapon, false);
+                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
             }
             else
             {
-                weaponSlotManager.LoadWeaponSlot(playerInventory.rightWeapon, false);
-                weaponSlotManager.LoadWeaponSlot(playerInventory.leftWeapon, true);
+                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
+                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.leftWeapon, true);
             }
         }
     }
 
     void HandleAttackInput(float delta)
     {
-        if (lightAttackInput && !gameSystemFlag && playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
+        if (lightAttackInput && !gameSystemFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
-            if (playerManager.canDoCombo)
+            if (player.canDoCombo)
             {
                 comboFlag = true;
-                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon);
                 comboFlag = false;
             }
-            else if (!playerManager.isInteracting && !playerManager.canDoCombo)
+            else if (!player.isInteracting && !player.canDoCombo)
             {
-                playerAnimator.animator.SetBool("usingRightHand", true);
-                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                player.playerAnimator.animator.SetBool("usingRightHand", true);
+                player.playerAttacker.HandleLightAttack(player.playerInventory.rightWeapon);
             }
         }
 
-        if (heavyAttackInput && !playerManager.isInteracting)
+        if (heavyAttackInput && !player.isInteracting)
         {
-            playerAnimator.animator.SetBool("usingRightHand", true);
-            playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            player.playerAnimator.animator.SetBool("usingRightHand", true);
+            player.playerAttacker.HandleHeavyAttack(player.playerInventory.rightWeapon);
         }
     }
 
@@ -199,11 +184,11 @@ public class PlayerInput : MonoBehaviour
     {
         if (quickSlotLeftInput)
         {
-            playerInventory.ChangeLeftWeapon();
+            player.playerInventory.ChangeLeftWeapon();
         }
         else if (quickSlotRightInput)
         {
-            playerInventory.ChangeRightWeapon();
+            player.playerInventory.ChangeRightWeapon();
         }
     }
 
@@ -213,8 +198,8 @@ public class PlayerInput : MonoBehaviour
         {
             if (!gameSystemFlag)
             {
-                if (playerCamera.isLockOn)
-                    playerCamera.SwitchLockOn();
+                if (PlayerCamera.instance.isLockOn)
+                    PlayerCamera.instance.SwitchLockOn();
 
                 gameSystemFlag = true;
                 UIManager.instance.OpenGameSystemUI();
@@ -231,54 +216,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (lockOnInput && !gameSystemFlag)
         {
-            playerCamera.SwitchLockOn();
+            PlayerCamera.instance.SwitchLockOn();
         }
     }
-
-    //void HandleLockOnInput()
-    //{
-    //    if (lockOnInput && !gameSystemFlag)
-    //    {
-    //        if (!lockOnFlag)
-    //        {
-    //            playerCamera.HandleLockOn();
-
-    //            if (playerCamera.nearestLockOnTarget != null)
-    //            {
-    //                lockOnFlag = true;
-    //                playerAnimator.animator.SetBool("onStance", true);
-    //                playerCamera.currentLockOnTarget = playerCamera.nearestLockOnTarget.GetComponent<EnemyManager>();
-    //                playerManager.currentLockEnemy = playerCamera.currentLockOnTarget.gameObject.GetComponent<EnemyManager>();
-    //            }
-    //        }
-    //        else
-    //        {
-    //            playerManager.OffLockOn();
-    //        }
-    //    }
-
-    //    if (lockOnFlag && rightStickLeftInput)
-    //    {
-    //        rightStickLeftInput = false;
-    //        playerCamera.HandleLockOn();
-
-    //        if (playerCamera.leftLockTarget != null)
-    //        {
-    //            playerCamera.currentLockOnTarget = playerCamera.leftLockTarget.GetComponent<EnemyManager>();
-    //        }
-    //    }
-
-    //    if (lockOnFlag && rightStickRightInput)
-    //    {
-    //        rightStickRightInput = false;
-    //        playerCamera.HandleLockOn();
-
-    //        if (playerCamera.rightLockTarget != null)
-    //        {
-    //            playerCamera.currentLockOnTarget = playerCamera.rightLockTarget.GetComponent<EnemyManager>();
-    //        }
-    //    }
-
-    //    playerCamera.SetCameraHeight();
-    //}
 }

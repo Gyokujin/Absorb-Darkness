@@ -14,7 +14,7 @@ public class PlayerInventory : MonoBehaviour
     public WeaponItem[] weaponInRightSlots = new WeaponItem[1];
     public int currentLeftWeaponIndex = 0;
     public int currentRightWeaponIndex = 0;
-    private ItemSlotManager itemSlotManager;
+    private PlayerItemSlotManager itemSlotManager;
 
     [Header("Using Item")]
     public UsingItem curUsingItem;
@@ -31,7 +31,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Init()
     {
-        itemSlotManager = GetComponentInChildren<ItemSlotManager>();
+        itemSlotManager = GetComponentInChildren<PlayerItemSlotManager>();
     }
 
     void Start()

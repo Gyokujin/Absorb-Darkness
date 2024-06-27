@@ -5,29 +5,28 @@ using UnityEngine;
 
 public class PlayerItemUse : MonoBehaviour
 {
+    private PlayerManager player;
+
     public GameObject curUsingItem;
     private GameObject leftHandWeapon;
-    private ItemSlotManager itemSlotManager;
-    private PlayerInventory playerInventory;
 
     void Awake()
     {
-        itemSlotManager = GetComponentInChildren<ItemSlotManager>();
-        playerInventory = GetComponent<PlayerInventory>();
+        player = GetComponent<PlayerManager>();
     }
 
     public void UseItem(PlayerAnimator playerAnimator, UsingItem item)
     {
-        if (itemSlotManager.leftHandSlot.currentWeaponModel != null)
+        if (player.playerItemSlotManager.leftHandSlot.currentWeaponModel != null)
         {
-            leftHandWeapon = itemSlotManager.leftHandSlot.currentWeaponModel.gameObject;
+            leftHandWeapon = player.playerItemSlotManager.leftHandSlot.currentWeaponModel.gameObject;
             leftHandWeapon.SetActive(false);
         }
 
         switch (item.itemType)
         {
             case UsingItem.UsingItemType.EstusFlask:
-                if (playerInventory.estusCount > 0)
+                if (player.playerInventory.estusCount > 0)
                 {
                     UseEstus(item);
                 }
@@ -38,8 +37,8 @@ public class PlayerItemUse : MonoBehaviour
                 break;
         }
 
-        curUsingItem.transform.parent = itemSlotManager.leftHandSlot.parentOverride;
-        curUsingItem.transform.position = itemSlotManager.leftHandSlot.parentOverride.transform.position;
+        curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
+        curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
         playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
     }
@@ -47,8 +46,8 @@ public class PlayerItemUse : MonoBehaviour
     void UseEstus(UsingItem item)
     {
         curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
-        playerInventory.estusCount--;
-        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, playerInventory.estusCount);
+        player.playerInventory.estusCount--;
+        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.estusCount);
     }
 
     public void EndItemUse()

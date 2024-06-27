@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStatus : CharacterStatus
 {
+    private PlayerManager player;
+
     [Header("Stamina")]
     public int staminaLevel = 10;
     public int staminaLevelAmount = 10;
@@ -53,16 +55,9 @@ public class PlayerStatus : CharacterStatus
     [SerializeField]
     private StaminaBar staminaBar;
 
-    [Header("Component")]
-    private PlayerManager playerManager;
-    private PlayerItemUse playerItemUse;
-    private PlayerAnimator playerAnimator;
-
     void Awake()
     {
-        playerManager = GetComponent<PlayerManager>();
-        playerItemUse = GetComponent<PlayerItemUse>();
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        player = GetComponent<PlayerManager>();
     }
 
     void Start()
@@ -73,7 +68,7 @@ public class PlayerStatus : CharacterStatus
 
     void Update() 
     {
-        if (playerManager.onDie)
+        if (player.onDie)
             return;
 
         gameObject.layer = Invincible();
@@ -87,7 +82,7 @@ public class PlayerStatus : CharacterStatus
             curInvincibleTime -= Time.deltaTime;
         }
 
-        if (playerManager.isSprinting)
+        if (player.isSprinting)
         {
             TakeStamina(sprintStaminaAmount);
         }
@@ -97,12 +92,12 @@ public class PlayerStatus : CharacterStatus
 
     int Invincible() 
     {
-        playerManager.onDamage = playerAnimator.animator.GetBool("onDamage");
-        int curLayer = playerManager.defaultLayer;
+        player.onDamage = player.playerAnimator.animator.GetBool("onDamage");
+        int curLayer = player.defaultLayer;
 
-        if (playerManager.onDodge || playerManager.onDamage || playerManager.onDie || curInvincibleTime > 0)
+        if (player.onDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
         {
-            curLayer = playerManager.invincibleLayer;
+            curLayer = player.invincibleLayer;
         }
 
         return curLayer;
@@ -124,12 +119,12 @@ public class PlayerStatus : CharacterStatus
 
     public void TakeDamage(int damage, bool hitStun)
     {
-        if (playerManager.onDie)
+        if (player.onDie)
             return;
 
-        if (playerItemUse.curUsingItem != null)
+        if (player.playerItemUse.curUsingItem != null)
         {
-            playerItemUse.EndItemUse();
+            player.playerItemUse.EndItemUse();
         }
 
         currentHealth -= damage;
@@ -137,10 +132,10 @@ public class PlayerStatus : CharacterStatus
 
         if (hitStun)
         {
-            playerManager.onDamage = true;
-            gameObject.layer = playerManager.invincibleLayer;
-            playerAnimator.animator.SetBool("onDamage", true);
-            playerAnimator.PlayTargetAnimation("Damage", true);
+            player.onDamage = true;
+            gameObject.layer = player.invincibleLayer;
+            player.playerAnimator.animator.SetBool("onDamage", true);
+            player.playerAnimator.PlayTargetAnimation("Damage", true);
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
             AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
@@ -158,10 +153,10 @@ public class PlayerStatus : CharacterStatus
 
     void DieProcess()
     {
-        playerManager.onDie = true;
-        gameObject.layer = playerManager.invincibleLayer;
+        player.onDie = true;
+        gameObject.layer = player.invincibleLayer;
         currentHealth = 0;
-        playerAnimator.PlayTargetAnimation("Dead", true);
+        player.playerAnimator.PlayTargetAnimation("Dead", true);
         AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Die]);
     }
 
@@ -177,7 +172,7 @@ public class PlayerStatus : CharacterStatus
 
     void RecoveryStamina()
     {
-        if (CurrentStamina < maxStamina && !playerManager.isInteracting && !playerManager.onDamage && !playerManager.onDodge && !playerManager.isSprinting)
+        if (CurrentStamina < maxStamina && !player.isInteracting && !player.onDamage && !player.onDodge && !player.isSprinting)
         {
             CurrentStamina += staminaRecoveryAmount;
             staminaBar.SetCurrentStamina(CurrentStamina);

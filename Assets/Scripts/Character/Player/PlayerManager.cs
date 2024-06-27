@@ -17,19 +17,26 @@ public class PlayerManager : CharacterManager
     [Header("Combat")]
     public int defaultLayer;
     public int invincibleLayer;
-    public EnemyManager currentLockEnemy;
 
     [Header("Component")]
     [HideInInspector]
+    public PlayerStatus playerStatus;
+    [HideInInspector]
+    public PlayerInput playerInput;
+    [HideInInspector]
     public PlayerMove playerMove;
-    private PlayerInput playerInput;
+    [HideInInspector]
+    public PlayerInventory playerInventory;
+    [HideInInspector]
+    public PlayerAttacker playerAttacker;
+    [HideInInspector]
+    private PlayerInteract playerInteract;
+    [HideInInspector]
+    public PlayerItemUse playerItemUse;
     [HideInInspector]
     public PlayerAnimator playerAnimator;
     [HideInInspector]
-    public PlayerInventory playerInventory;
-    private PlayerCamera playerCamera;
-    private PlayerInteract playerInteract;
-    public PlayerItemUse playerItemUse;
+    public PlayerItemSlotManager playerItemSlotManager;
 
     void Awake()
     {
@@ -38,16 +45,20 @@ public class PlayerManager : CharacterManager
 
     void Init()
     {
-        defaultLayer = LayerMask.NameToLayer("Player");
-        invincibleLayer = LayerMask.NameToLayer("Invincible");
-
-        playerMove = GetComponent<PlayerMove>();
+        playerStatus = GetComponent<PlayerStatus>();
         playerInput = GetComponent<PlayerInput>();
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerMove = GetComponent<PlayerMove>();
         playerInventory = GetComponent<PlayerInventory>();
-        playerCamera = FindObjectOfType<PlayerCamera>();
+        playerAttacker = GetComponent<PlayerAttacker>();
         playerInteract = GetComponent<PlayerInteract>();
         playerItemUse = GetComponent<PlayerItemUse>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerItemSlotManager = GetComponentInChildren<PlayerItemSlotManager>();
+
+        isGrounded = true;
+        playerAnimator.Init();
+        defaultLayer = LayerMask.NameToLayer("Player");
+        invincibleLayer = LayerMask.NameToLayer("Invincible");
     }
 
     void Update()
@@ -77,11 +88,8 @@ public class PlayerManager : CharacterManager
         playerInput.quickSlotLeftInput = false;
         playerInput.quickSlotRightInput = false;
 
-        if (playerCamera != null)
-        {
-            playerCamera.FollowTarget(Time.fixedDeltaTime);
-            playerCamera.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
-        }
+        PlayerCamera.instance.FollowTarget(Time.fixedDeltaTime);
+        PlayerCamera.instance.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
 
         if (isInAir)
         {
@@ -94,16 +102,4 @@ public class PlayerManager : CharacterManager
         playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
     }
-
-    //void LockOnCheck()
-    //{
-    //    // Debug.Log(currentLockEnemy.name);
-    //}
-
-    //public void OffLockOn()
-    //{
-    //    playerInput.lockOnFlag = false;
-    //    playerAnimator.animator.SetBool("onStance", false);
-    //    playerCamera.ClearLockOnTargets();
-    //}
 }

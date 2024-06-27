@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    private PlayerManager player;
+
     [Header("Interact")]
     [SerializeField]
     private float checkRadius = 0.3f;
@@ -11,28 +13,23 @@ public class PlayerInteract : MonoBehaviour
     private float checkMaxDis = 1f;
     public Interactable itemInteractableObj;
 
-    [Header("Component")]
-    private PlayerInput playerInput;
-    private PlayerCamera playerCamera;
-
     void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerCamera = FindObjectOfType<PlayerCamera>();
+        player = GetComponent<PlayerManager>();
     }
 
     public void CheckInteractableObject(PlayerManager playerManager)
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, playerCamera.targetLayer))
+        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, PlayerCamera.instance.targetLayer))
         {
             if (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Interactable>() != null)
             {
                 itemInteractableObj = hit.collider.GetComponent<Interactable>();
                 UIManager.instance.OpenInteractUI(itemInteractableObj.interactableText);
 
-                if (playerInput.interactInput)
+                if (player.playerInput.interactInput)
                 {
                     itemInteractableObj.Interact(playerManager, this);
 
@@ -49,7 +46,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 UIManager.instance.CloseInteractUI();
 
-                if (itemInteractableObj != null && playerInput.interactInput)
+                if (itemInteractableObj != null && player.playerInput.interactInput)
                 {
                     UIManager.instance.CloseItemPopUpUI();
                     UIManager.instance.CloseMessagePopUpUI();

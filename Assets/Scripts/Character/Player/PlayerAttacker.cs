@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class PlayerAttacker : MonoBehaviour
 {
+    private PlayerManager player;
+
     [Header("Attack")]
     [SerializeField]
     private string lastAttack;
-
-    [Header("Component")]
-    private PlayerInput playerInput;
-    private PlayerStatus playerStatus;
-    private PlayerAnimator playerAnimator;
-    private ItemSlotManager weaponSlotManager;
 
     void Awake()
     {
@@ -21,26 +17,23 @@ public class PlayerAttacker : MonoBehaviour
 
     void Init()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerStatus = GetComponent<PlayerStatus>();
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        weaponSlotManager = GetComponentInChildren<ItemSlotManager>();
+        player = GetComponent<PlayerManager>();
     }
 
     public void HandleLightAttack(WeaponItem weapon)
     {
-        weaponSlotManager.attackingWeapon = weapon;
+        player.playerItemSlotManager.attackingWeapon = weapon;
 
-        if (playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
+        if (player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
-            if (!playerInput.twoHandFlag) // 한손
+            if (!player.playerInput.twoHandFlag) // 한손
             {
-                playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack1, true);
+                player.playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack1, true);
                 lastAttack = weapon.oneHand_LightAttack1;
             }
             else // 두손
             {
-                playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack1, true);
+                player.playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack1, true);
                 lastAttack = weapon.twoHand_LightAttack1;
             }
         }
@@ -48,18 +41,18 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleHeavyAttack(WeaponItem weapon)
     {
-        weaponSlotManager.attackingWeapon = weapon;
+        player.playerItemSlotManager.attackingWeapon = weapon;
 
-        if (playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
+        if (player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
-            if (!playerInput.twoHandFlag)
+            if (!player.playerInput.twoHandFlag)
             {
-                playerAnimator.PlayTargetAnimation(weapon.oneHand_HeavyAttack1, true);
+                player.playerAnimator.PlayTargetAnimation(weapon.oneHand_HeavyAttack1, true);
                 lastAttack = weapon.oneHand_HeavyAttack1;
             }
             else
             {
-                playerAnimator.PlayTargetAnimation(weapon.twoHand_HeavyAttack1, true);
+                player.playerAnimator.PlayTargetAnimation(weapon.twoHand_HeavyAttack1, true);
                 lastAttack = weapon.twoHand_HeavyAttack1;
             }
         }
@@ -67,17 +60,17 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleWeaponCombo(WeaponItem weapon)
     {
-        if (playerInput.comboFlag && playerStatus.CurrentStamina >= playerStatus.actionLimitStamina)
+        if (player.playerInput.comboFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
-            playerAnimator.animator.SetBool("canDoCombo", false);
+            player.playerAnimator.animator.SetBool("canDoCombo", false);
 
             if (lastAttack == weapon.oneHand_LightAttack1)
             {
-                playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack2, true);
+                player.playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack2, true);
             }
             else if (lastAttack == weapon.twoHand_LightAttack1)
             {
-                playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack2, true);
+                player.playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack2, true);
             }
         }
     }
