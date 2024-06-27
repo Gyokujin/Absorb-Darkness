@@ -97,9 +97,9 @@ namespace SystemDatas
         }
 
         [Header("LockOn")]
-        // LockRadius
+        // LockOnRadius
         private float? _lockOnRadius;
-        private const float defaultLockOnRadius = 32;
+        private const float defaultLockOnRadius = 24;
         public float lockOnRadius
         {
             get => _lockOnRadius ?? defaultLockOnRadius;
