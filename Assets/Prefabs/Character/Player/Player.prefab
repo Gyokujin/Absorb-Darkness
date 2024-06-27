@@ -729,7 +729,7 @@ Transform:
   m_GameObject: {fileID: 4563626810316549287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.87, z: 0}
+  m_LocalPosition: {x: 0, y: 1.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1797,6 +1797,7 @@ MonoBehaviour:
   isUsingRightHand: 0
   defaultLayer: 3
   invincibleLayer: 13
+  currentLockEnemy: {fileID: 0}
   playerMove: {fileID: 0}
   playerAnimator: {fileID: 0}
   playerInventory: {fileID: 0}
@@ -1864,7 +1865,6 @@ MonoBehaviour:
   rollFlag: 0
   sprintFlag: 0
   twoHandFlag: 0
-  lockOnFlag: 0
   comboFlag: 0
   gameSystemFlag: 0
 --- !u!114 &1912785350997228117
