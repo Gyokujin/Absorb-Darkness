@@ -145,7 +145,40 @@ namespace SystemDatas
 
     public struct PhysicsData
     {
-        [Header("Physics")]
+        [Header("Ground & Air Detection States")]
+        private float? _groundCheckDis;
+        private const float defaultGroundCheckDis = 0.4f;
+        public float groundCheckDis
+        {
+            get => _groundCheckDis ?? defaultGroundCheckDis;
+            set => _groundCheckDis = value;
+        }
+
+        private float? _groundDetectionRayStart;
+        private const float defaultGroundDetectionRayStart = 0.5f;
+        public float groundDetectionRayStart
+        {
+            get => _groundDetectionRayStart ?? defaultGroundDetectionRayStart;
+            set => _groundDetectionRayStart = value;
+        }
+
+        private float? _distanceBeginFallMin;
+        private const float defaultDistanceBeginFallMin = 1;
+        public float distanceBeginFallMin
+        {
+            get => _distanceBeginFallMin ?? defaultDistanceBeginFallMin;
+            set => _distanceBeginFallMin = value;
+        }
+
+        private float? _groundDirRayDistance;
+        private const float defaultGroundDirRayDistance = 0.2f;
+        public float groundDirRayDistance
+        {
+            get => _groundDirRayDistance ?? defaultGroundDirRayDistance;
+            set => _groundDirRayDistance = value;
+        }
+
+        [Header("Character Physics")]
         private float? _lookAtSmoothing;
         private const float defaultLookAtSmoothing = 25;
         public float lookAtSmoothing 

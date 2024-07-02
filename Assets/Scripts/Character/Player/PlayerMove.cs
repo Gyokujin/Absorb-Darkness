@@ -9,15 +9,6 @@ public class PlayerMove : MonoBehaviour
     private PlayerManager player;
 
     [Header("Ground & Air Detection States")]
-    [SerializeField]
-    private float groundCheckDis = 0.4f;
-    [SerializeField]
-    private float groundDetectionRayStart = 0.5f;
-    [SerializeField]
-    private float distanceBeginFallMin = 1f;
-    [SerializeField]
-    private float groundDirRayDistance = 0.2f;
-    [SerializeField]
     private LayerMask ignoreGroundCheck;
     public float inAirTimer;
 
@@ -47,6 +38,7 @@ public class PlayerMove : MonoBehaviour
     {
         player = GetComponent<PlayerManager>();
         physicsData = new PhysicsData();
+        ignoreGroundCheck = LayerMask.GetMask("Ground");
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
@@ -205,9 +197,9 @@ public class PlayerMove : MonoBehaviour
         player.isGrounded = false;
         RaycastHit hit;
         Vector3 origin = player.transform.position;
-        origin.y += groundDetectionRayStart;
+        origin.y += physicsData.groundDetectionRayStart;
 
-        if (Physics.Raycast(origin, player.transform.forward, out hit, groundCheckDis))
+        if (Physics.Raycast(origin, player.transform.forward, out hit, physicsData.groundCheckDis))
         {
             moveDirection = Vector3.zero;
         }
@@ -220,10 +212,10 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 dir = moveDirection;
         dir.Normalize();
-        origin = origin + dir * groundDirRayDistance;
+        origin = origin + dir * physicsData.groundDirRayDistance;
         targetPosition = player.transform.position;
 
-        if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
+        if (Physics.Raycast(origin, Vector3.down, out hit, physicsData.distanceBeginFallMin, ignoreGroundCheck))
         {
             normalVec = hit.normal;
             Vector3 transform = hit.point;
