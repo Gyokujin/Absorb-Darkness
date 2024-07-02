@@ -106,15 +106,6 @@ namespace SystemDatas
             set => _lockOnRadius = value;
         }
 
-        //// MinLockOnDistance
-        //private float? _minLockOnDistance;
-        //private const float defaultMinLockOnDistance = 5;
-        //public float minLockOnDistance
-        //{
-        //    get => _minLockOnDistance ?? defaultMinLockOnDistance;
-        //    set => _minLockOnDistance = value;
-        //}
-
         // MaxLockOnDistance
         private float? _maxLockOnDistance;
         private const float defaultMaxLockOnDistance = 36;
@@ -149,6 +140,50 @@ namespace SystemDatas
         {
             get => _cameraSphereRadius ?? defaultCameraSphereRadius;
             set => _cameraSphereRadius = value;
+        }
+    }
+
+    public struct PhysicsData
+    {
+        [Header("Physics")]
+        private float? _lookAtSmoothing;
+        private const float defaultLookAtSmoothing = 25;
+        public float lookAtSmoothing 
+        {
+            get => _lookAtSmoothing ?? defaultLookAtSmoothing;
+            set => _lookAtSmoothing = value;
+        }
+
+        private float? _fallingFactor;
+        private const float defaultFallingFactor = 0.1f;
+        public float fallingFactor 
+        {
+            get => _fallingFactor ?? defaultFallingFactor;
+            set => _fallingFactor = value;
+        }
+
+        private float? _fallingSpeedRatio;
+        private const float defaultFallingSpeedRatio = 2;
+        public float fallingSpeedRatio 
+        {
+            get => _fallingSpeedRatio ?? defaultFallingSpeedRatio;
+            set => _fallingSpeedRatio = value;
+        }
+
+        private float? _fallingFrontForce;
+        private const float defaultFallingFrontForce = 5;
+        public float fallingFrontForce 
+        {
+            get => _fallingFrontForce ?? defaultFallingFrontForce;
+            set => _fallingFrontForce = value;
+        }
+
+        private float? _fallingDownForce;
+        private const float defaultFallingDownForce = 750;
+        public float fallingDownForce
+        {
+            get => _fallingDownForce ?? defaultFallingDownForce;
+            set => _fallingDownForce = value;
         }
     }
 }

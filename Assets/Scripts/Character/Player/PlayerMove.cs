@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemDatas;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
@@ -25,16 +26,6 @@ public class PlayerMove : MonoBehaviour
     public Vector3 moveDirection;
     private Vector3 normalVec;
     private Vector3 targetPosition;
-    [SerializeField]
-    private float fallingFactor = 0.1f;
-    [SerializeField]
-    private float fallingSpeedRatio = 2;
-    [SerializeField]
-    private float fallingDownForce = 750;
-    [SerializeField]
-    private float fallingFrontForce = 5f;
-    [SerializeField]
-    private float lookAtSmoothing = 25;
 
     [Header("Component")]
     [SerializeField]
@@ -45,6 +36,7 @@ public class PlayerMove : MonoBehaviour
     private AudioSource moveAudio;
     [SerializeField]
     private AudioSource splintAudio;
+    PhysicsData physicsData;
 
     void Start()
     {
@@ -54,6 +46,7 @@ public class PlayerMove : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
+        physicsData = new PhysicsData();
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
@@ -137,7 +130,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 lookDir = (targetPos - player.lockOnTransform.position).normalized;
         lookDir.y = transform.position.y;
-        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * lookAtSmoothing);
+        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * physicsData.lookAtSmoothing);
 
         //Vector3 rotationdir = moveDirection;
         //rotationdir = targetPos - transform.position;
@@ -221,16 +214,14 @@ public class PlayerMove : MonoBehaviour
 
         if (player.isInAir)
         {
-            rigidbody.AddForce(Vector3.down * fallingDownForce); // 아래 낙하
-            rigidbody.AddForce(moveDirection * fallingDownForce / fallingFrontForce); // 끼임 방지를 위해 앞으로 이동
+            rigidbody.AddForce(Vector3.down * physicsData.fallingDownForce); // 아래 낙하
+            rigidbody.AddForce(moveDirection * physicsData.fallingDownForce / physicsData.fallingFrontForce); // 끼임 방지를 위해 앞으로 이동
         }
 
         Vector3 dir = moveDirection;
         dir.Normalize();
         origin = origin + dir * groundDirRayDistance;
         targetPosition = player.transform.position;
-
-        // Debug.DrawRay(origin, Vector3.down * distanceBeginFallMin, Color.red, 0.1f, false);
 
         if (Physics.Raycast(origin, Vector3.down, out hit, distanceBeginFallMin, ignoreGroundCheck))
         {
@@ -271,14 +262,14 @@ public class PlayerMove : MonoBehaviour
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
-                rigidbody.velocity = velocity * (player.playerStatus.runSpeed / fallingSpeedRatio);
+                rigidbody.velocity = velocity * (player.playerStatus.runSpeed / physicsData.fallingSpeedRatio);
                 player.isInAir = true;
             }
         }
 
         if (player.isInteracting || player.playerInput.moveAmount > 0)
         {
-            player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / fallingFactor);
+            player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / physicsData.fallingFactor);
         }
         else
         {
