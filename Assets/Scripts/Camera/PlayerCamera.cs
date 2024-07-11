@@ -203,7 +203,7 @@ public class PlayerCamera : MonoBehaviour
 
     void LookAtTarget()
     {
-        if (currentLockOnTarget != null)
+        if (currentLockOnTarget != null && !player.playerInput.rollFlag)
         {
             currentTargetPos = currentLockOnTarget.lockOnTransform.position;
             lockOnUI.position = Camera.main.WorldToScreenPoint(currentTargetPos);

@@ -42,6 +42,11 @@ public class PlayerMove : MonoBehaviour
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
+    void Update()
+    {
+        Debug.DrawLine(rigidbody.position, rigidbody.position + moveDirection);
+    }
+
     public void HandleMovement(float delta)
     {
         if (player.playerInput.rollFlag || player.isInteracting)
@@ -171,26 +176,55 @@ public class PlayerMove : MonoBehaviour
         if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
             player.onDodge = true;
-            moveDirection = PlayerCamera.instance.transform.forward * player.playerInput.vertical;
-            moveDirection += PlayerCamera.instance.transform.right * player.playerInput.horizontal;
 
-            if (player.playerInput.moveAmount > 0) // 이동중에 회피키를 누르면 구르기
+            if (player.playerInput.moveAmount > 0)
             {
+                player.transform.LookAt(transform.position + moveDirection);
                 player.playerAnimator.PlayTargetAnimation("Rolling", true);
-                moveDirection.y = 0;
-                Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-                player.transform.rotation = rollRotation;
-                player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
-                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
-            }
-            else // 이동키를 누르지 않으면 백스텝
-            {
-                player.playerAnimator.PlayTargetAnimation("Backstep", true);
-                player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
-                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
+
+                // player.transform.LookAt(transform.position + moveDirection);
+
+
+                //moveDirection.y = 0;
+                //Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                //player.transform.rotation = rollRotation;
+                //player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
+                //AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
+                //rigidbody.AddForce(moveDirection * 5, ForceMode.Impulse);
             }
         }
     }
+
+
+
+    //public void HandleRolling(float delta)
+    //{
+    //    if (player.playerAnimator.animator.GetBool("isInteracting") || player.onDamage) // 현재 플레이어가 행동 중이지 않을 때만 실행
+    //        return;
+
+    //    if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
+    //    {
+    //        player.onDodge = true;
+    //        moveDirection = PlayerCamera.instance.transform.forward * player.playerInput.vertical;
+    //        moveDirection += PlayerCamera.instance.transform.right * player.playerInput.horizontal;
+
+    //        if (player.playerInput.moveAmount > 0) // 이동중에 회피키를 누르면 구르기
+    //        {
+    //            player.playerAnimator.PlayTargetAnimation("Rolling", true);
+    //            moveDirection.y = 0;
+    //            Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+    //            player.transform.rotation = rollRotation;
+    //            player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
+    //            AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
+    //        }
+    //        else // 이동키를 누르지 않으면 백스텝
+    //        {
+    //            player.playerAnimator.PlayTargetAnimation("Backstep", true);
+    //            player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
+    //            AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
+    //        }
+    //    }
+    //}
 
     public void HandleFalling(float delta, Vector3 moveDirection)
     {
