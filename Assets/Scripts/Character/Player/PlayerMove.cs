@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawLine(rigidbody.position, rigidbody.position + moveDirection);
+        Debug.DrawLine(rigidbody.position, rigidbody.position + moveDirection, Color.red);
     }
 
     public void HandleMovement(float delta)
@@ -128,44 +128,6 @@ public class PlayerMove : MonoBehaviour
         Vector3 lookDir = (targetPos - player.lockOnTransform.position).normalized;
         lookDir.y = transform.position.y;
         transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * physicsData.lookAtSmoothing);
-
-        //Vector3 rotationdir = moveDirection;
-        //rotationdir = targetPos - transform.position;
-        //rotationdir.y = 0;
-        //rotationdir.Normalize();
-        //Quaternion tr = Quaternion.LookRotation(rotationdir);
-        //Quaternion targetrotation = Quaternion.Slerp(transform.rotation, tr, player.playerStatus.rotationSpeed * Time.deltaTime);
-        //transform.rotation = targetrotation;
-
-        //if (player.playerInput.sprintFlag || player.playerInput.rollFlag)
-        //{
-        //    Vector3 targetdir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
-        //    targetdir += PlayerCamera.instance.cameraTransform.right * player.playerInput.horizontal;
-        //    Debug.Log(targetdir);
-        //    targetdir.Normalize();
-        //    Debug.Log(targetdir);
-        //    targetdir.y = 0;
-
-        //    if (targetdir == Vector3.zero)
-        //    {
-        //        targetdir = transform.forward;
-        //    }
-
-        //    Quaternion tr = Quaternion.LookRotation(targetdir);
-        //    Quaternion targetrotation = Quaternion.Slerp(transform.rotation, tr, player.playerStatus.rotationSpeed * Time.deltaTime);
-        //    transform.rotation = targetrotation;
-        //}
-        //else
-        //{
-        //    Vector3 rotationdir = moveDirection;
-        //    rotationdir = targetPos - transform.position;
-        //    rotationdir.y = 0;
-        //    rotationdir.Normalize();
-
-        //    Quaternion tr = Quaternion.LookRotation(rotationdir);
-        //    Quaternion targetrotation = Quaternion.Slerp(transform.rotation, tr, player.playerStatus.rotationSpeed * Time.deltaTime);
-        //    transform.rotation = targetrotation;
-        //}
     }
 
     public void HandleRolling(float delta)
@@ -176,55 +138,24 @@ public class PlayerMove : MonoBehaviour
         if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
             player.onDodge = true;
+            player.playerInput.rollFlag = true;
 
-            if (player.playerInput.moveAmount > 0)
+            if (player.playerInput.moveAmount <= 0) // 이동키를 누르지 않으면 백스텝
             {
-                player.transform.LookAt(transform.position + moveDirection);
+                player.playerAnimator.PlayTargetAnimation("Backstep", true);
+                player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
+                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
+            }
+            else
+            {
+                moveDirection.y = 0;
+                player.transform.LookAt(rigidbody.position + moveDirection);
                 player.playerAnimator.PlayTargetAnimation("Rolling", true);
-
-                // player.transform.LookAt(transform.position + moveDirection);
-
-
-                //moveDirection.y = 0;
-                //Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-                //player.transform.rotation = rollRotation;
-                //player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
-                //AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
-                //rigidbody.AddForce(moveDirection * 5, ForceMode.Impulse);
+                player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
+                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
             }
         }
     }
-
-
-
-    //public void HandleRolling(float delta)
-    //{
-    //    if (player.playerAnimator.animator.GetBool("isInteracting") || player.onDamage) // 현재 플레이어가 행동 중이지 않을 때만 실행
-    //        return;
-
-    //    if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
-    //    {
-    //        player.onDodge = true;
-    //        moveDirection = PlayerCamera.instance.transform.forward * player.playerInput.vertical;
-    //        moveDirection += PlayerCamera.instance.transform.right * player.playerInput.horizontal;
-
-    //        if (player.playerInput.moveAmount > 0) // 이동중에 회피키를 누르면 구르기
-    //        {
-    //            player.playerAnimator.PlayTargetAnimation("Rolling", true);
-    //            moveDirection.y = 0;
-    //            Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-    //            player.transform.rotation = rollRotation;
-    //            player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
-    //            AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
-    //        }
-    //        else // 이동키를 누르지 않으면 백스텝
-    //        {
-    //            player.playerAnimator.PlayTargetAnimation("Backstep", true);
-    //            player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
-    //            AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
-    //        }
-    //    }
-    //}
 
     public void HandleFalling(float delta, Vector3 moveDirection)
     {
