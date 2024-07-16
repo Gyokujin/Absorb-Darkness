@@ -243,6 +243,5 @@ public class PlayerCamera : MonoBehaviour
         }
 
         cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / cameraData.playerFollowRate);
-        // cameraTransform.localPosition = cameraPos;
     }
 }

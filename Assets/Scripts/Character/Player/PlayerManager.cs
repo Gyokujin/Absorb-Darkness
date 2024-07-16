@@ -76,7 +76,6 @@ public class PlayerManager : CharacterManager
 
     void LateUpdate()
     {
-        playerInput.rollFlag = false;
         playerInput.interactInput = false;
         playerInput.useItemInpt = false;
         playerInput.lockOnInput = false;
