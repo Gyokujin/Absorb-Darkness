@@ -110,21 +110,25 @@ public class PlayerInput : MonoBehaviour
     void HandleRollInput(float delta)
     {
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
-        sprintFlag = rollingInput;
+        // sprintFlag = rollingInput;
 
         if (rollingInput)
         {
             rollInputTimer += delta;
-            sprintFlag = true;
+
+            if (rollInputTimer > 0.5f)
+            {
+                sprintFlag = true;
+            }
         }
         else
         {
             if (rollInputTimer > 0 && rollInputTimer < 0.5f) // playerStatus.CurrentStamina >= playerStatus.actionLimitStamina
             {
-                sprintFlag = false;
                 rollFlag = true;
             }
 
+            sprintFlag = false;
             rollInputTimer = 0;
         }
     }

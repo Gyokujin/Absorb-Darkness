@@ -60,26 +60,23 @@ public class PlayerMove : MonoBehaviour
 
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
-        
-        if (moveDirection != Vector3.zero)
+
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > 0.5f && player.playerStatus.CurrentStamina > 0) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
         {
-            if (player.playerInput.sprintFlag && player.playerInput.moveAmount > 0.5f && player.playerStatus.CurrentStamina > 0) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
-            {
-                player.isSprinting = true;
-                moveDirection *= player.playerStatus.sprintSpeed;
-                PlaySplintSFX();
-            }
-            else if (player.playerInput.moveAmount < 0.5f)
-            {
-                moveDirection *= player.playerStatus.walkSpeed;
-                player.isSprinting = false;
-            }
-            else
-            {
-                moveDirection *= speed;
-                player.isSprinting = false;
-                PlayMoveSFX();
-            }
+            moveDirection *= player.playerStatus.sprintSpeed;
+            player.isSprinting = true; // sprint를 하면서 while 등으로 체크를 하자(스페이스바 입력중인지 아닌지등)
+            PlaySplintSFX();
+        }
+        else if (player.playerInput.moveAmount < 0.5f)
+        {
+            moveDirection *= player.playerStatus.walkSpeed;
+            player.isSprinting = false;
+        }
+        else
+        {
+            moveDirection *= speed;
+            player.isSprinting = false;
+            PlayMoveSFX();
         }
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
