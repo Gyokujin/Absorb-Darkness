@@ -42,47 +42,14 @@ public class PlayerMove : MonoBehaviour
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
-    void Update()
-    {
-        Debug.DrawLine(rigidbody.position, rigidbody.position + moveDirection, Color.red);
-    }
-
     public void HandleMovement(float delta)
     {
         if (player.playerInput.rollFlag || player.isInteracting)
             return;
 
-        // 키 입력에 따른 방향 벡터를 구한다.
-        moveDirection = PlayerCamera.instance.transform.forward * player.playerInput.vertical;
-        moveDirection += PlayerCamera.instance.transform.right * player.playerInput.horizontal;
-        moveDirection.Normalize();
-        moveDirection.y = 0;
+        Movement();
 
-        // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
-        float speed = player.playerStatus.runSpeed;
-
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > 0.5f && player.playerStatus.CurrentStamina > 0) // sprintFlag가 활성화 되어 있지 않으면 기본속도. 되어 있으면 달리기 속도로 적용
-        {
-            moveDirection *= player.playerStatus.sprintSpeed;
-            player.isSprinting = true; // sprint를 하면서 while 등으로 체크를 하자(스페이스바 입력중인지 아닌지등)
-            PlaySplintSFX();
-        }
-        else if (player.playerInput.moveAmount < 0.5f)
-        {
-            moveDirection *= player.playerStatus.walkSpeed;
-            player.isSprinting = false;
-        }
-        else
-        {
-            moveDirection *= speed;
-            player.isSprinting = false;
-            PlayMoveSFX();
-        }
-
-        Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
-        rigidbody.velocity = projectedVelocity;
-
-        // 애니메이션 실행
+        // 플레이어의 LockOn에 따라 다른 애니메이션을 실행한다.
         if (PlayerCamera.instance.isLockOn && !player.playerInput.sprintFlag)
         {
             player.playerAnimator.AnimatorValue(player.playerInput.vertical, player.playerInput.horizontal, player.isSprinting);
@@ -97,6 +64,38 @@ public class PlayerMove : MonoBehaviour
         {
             HandleRotation(delta);
         }
+    }
+
+    void Movement()
+    {
+        // 키 입력에 따른 방향 벡터를 구한다.
+        moveDirection = PlayerCamera.instance.transform.forward * player.playerInput.vertical;
+        moveDirection += PlayerCamera.instance.transform.right * player.playerInput.horizontal;
+        moveDirection.Normalize();
+        moveDirection.y = 0;
+
+        // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
+        float speed = player.playerStatus.runSpeed;
+
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > 0.5f && player.playerStatus.CurrentStamina > 0) // sprint
+        {
+            moveDirection *= player.playerStatus.sprintSpeed;
+            player.isSprinting = true;
+            PlaySplintSFX();
+        }
+        else if (player.playerInput.moveAmount < 0.5f) // walk
+        {
+            moveDirection *= player.playerStatus.walkSpeed;
+            player.isSprinting = false;
+        }
+        else // run
+        {
+            moveDirection *= speed;
+            player.isSprinting = false;
+            PlayMoveSFX();
+        }
+
+        rigidbody.velocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
     }
 
     void HandleRotation(float delta)
@@ -129,13 +128,17 @@ public class PlayerMove : MonoBehaviour
 
     public void HandleRolling(float delta)
     {
-        if (player.playerAnimator.animator.GetBool("isInteracting") || player.onDamage) // 현재 플레이어가 행동 중이지 않을 때만 실행
+        if (player.isInteracting) // 현재 플레이어가 행동 중이지 않을 때만 실행
+        {
+            player.playerInput.rollFlag = false;
             return;
+        }
 
         if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
             player.onDodge = true;
             player.playerInput.rollFlag = true;
+            moveDirection.y = 0;
 
             if (player.playerInput.moveAmount <= 0) // 이동키를 누르지 않으면 백스텝
             {
@@ -145,7 +148,6 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                moveDirection.y = 0;
                 player.transform.LookAt(rigidbody.position + moveDirection);
                 player.playerAnimator.PlayTargetAnimation("Rolling", true);
                 player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);

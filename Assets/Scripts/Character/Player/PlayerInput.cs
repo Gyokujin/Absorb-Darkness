@@ -110,7 +110,6 @@ public class PlayerInput : MonoBehaviour
     void HandleRollInput(float delta)
     {
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
-        // sprintFlag = rollingInput;
 
         if (rollingInput)
         {
