@@ -70,7 +70,6 @@ public class PlayerManager : CharacterManager
         playerAnimator.animator.SetBool("isInAir", isInAir);
 
         playerInput.TickInput(Time.deltaTime);
-        playerMove.HandleRolling(Time.deltaTime);
         playerInteract.CheckInteractableObject(this);
     }
 

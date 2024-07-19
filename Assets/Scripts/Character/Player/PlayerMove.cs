@@ -128,12 +128,6 @@ public class PlayerMove : MonoBehaviour
 
     public void HandleRolling(float delta)
     {
-        if (player.isInteracting) // 현재 플레이어가 행동 중이지 않을 때만 실행
-        {
-            player.playerInput.rollFlag = false;
-            return;
-        }
-
         if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
             player.onDodge = true;

@@ -109,6 +109,11 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput(float delta)
     {
+        if (player.isInteracting) // 현재 플레이어가 행동 중이지 않을 때만 실행
+        {
+            return;
+        }
+
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
 
         if (rollingInput)
@@ -125,6 +130,7 @@ public class PlayerInput : MonoBehaviour
             if (rollInputTimer > 0 && rollInputTimer < 0.5f) // playerStatus.CurrentStamina >= playerStatus.actionLimitStamina
             {
                 rollFlag = true;
+                player.playerMove.HandleRolling(Time.deltaTime);
             }
 
             sprintFlag = false;
