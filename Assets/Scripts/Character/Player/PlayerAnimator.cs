@@ -29,21 +29,21 @@ public class PlayerAnimator : AnimatorManager
         // Vertical 파라미터
         parameterVer = animatorData.idleParameterValue;
 
-        if (moveVer > 0 && moveVer < 0.55f)
+        if (moveVer > 0 && moveVer < animatorData.runAnimationCondition)
         {
             parameterVer = animatorData.walkParameterValue;
         }
-        else if (moveVer > 0.55f)
+        else if (moveVer > animatorData.runAnimationCondition)
         {
             parameterVer = animatorData.runParameterValue;
         }
-        else if (moveVer < 0 && moveVer > -0.55f)
+        else if (moveVer < 0 && moveVer > -animatorData.runAnimationCondition)
         {
             parameterVer = animatorData.walkParameterValue ;
         }
-        else if (moveVer < -0.55f)
+        else if (moveVer < -animatorData.runAnimationCondition)
         {
-            parameterVer = animatorData.runParameterValue * -1;
+            parameterVer = -animatorData.runParameterValue;
         }
         else
         {
@@ -53,21 +53,21 @@ public class PlayerAnimator : AnimatorManager
         // Horizontal 파라미터
         parameterHor = animatorData.idleParameterValue;
 
-        if (moveHor > 0 && moveHor < 0.55f)
+        if (moveHor > 0 && moveHor < animatorData.runAnimationCondition)
         {
             parameterHor = animatorData.walkParameterValue;
         }
-        else if (moveHor > 0.55f)
+        else if (moveHor > animatorData.runAnimationCondition)
         {
             parameterHor = animatorData.runParameterValue;
         }
-        else if (moveHor < 0 && moveHor > -0.55f)
+        else if (moveHor < 0 && moveHor > -animatorData.runAnimationCondition)
         {
-            parameterHor = animatorData.walkParameterValue * -1;
+            parameterHor = -animatorData.walkParameterValue;
         }
-        else if (moveHor < -0.55f)
+        else if (moveHor < -animatorData.runAnimationCondition)
         {
-            parameterHor = animatorData.runParameterValue * -1;
+            parameterHor = -animatorData.runParameterValue;
         }
         else
         {

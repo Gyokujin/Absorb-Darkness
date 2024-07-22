@@ -49,5 +49,14 @@ namespace PlayerDatas
             get => _animationDampTime ?? defaultAnimationDampTime;
             set => _animationDampTime = value;
         }
+
+        // RunAnimationCondition
+        private float? _runAnimationCondition;
+        private const float defaultRunAnimationCondition = 0.55f;
+        public float runAnimationCondition
+        {
+            get => _runAnimationCondition ?? defaultRunAnimationCondition;
+            set => _runAnimationCondition = value;
+        }
     }
 }

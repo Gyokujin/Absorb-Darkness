@@ -146,6 +146,7 @@ namespace SystemDatas
     public struct PhysicsData
     {
         [Header("Ground & Air Detection States")]
+        // GroundCheckDistance
         private float? _groundCheckDis;
         private const float defaultGroundCheckDis = 0.4f;
         public float groundCheckDis
@@ -154,6 +155,7 @@ namespace SystemDatas
             set => _groundCheckDis = value;
         }
 
+        // GroundDetectionRayStart
         private float? _groundDetectionRayStart;
         private const float defaultGroundDetectionRayStart = 0.5f;
         public float groundDetectionRayStart
@@ -162,6 +164,7 @@ namespace SystemDatas
             set => _groundDetectionRayStart = value;
         }
 
+        // DistanceBeginFallMin
         private float? _distanceBeginFallMin;
         private const float defaultDistanceBeginFallMin = 1;
         public float distanceBeginFallMin
@@ -170,6 +173,7 @@ namespace SystemDatas
             set => _distanceBeginFallMin = value;
         }
 
+        // GroundDirRayDistance
         private float? _groundDirRayDistance;
         private const float defaultGroundDirRayDistance = 0.2f;
         public float groundDirRayDistance
@@ -179,6 +183,7 @@ namespace SystemDatas
         }
 
         [Header("Character Physics")]
+        // LookAtSmoothing
         private float? _lookAtSmoothing;
         private const float defaultLookAtSmoothing = 25;
         public float lookAtSmoothing 
@@ -187,6 +192,7 @@ namespace SystemDatas
             set => _lookAtSmoothing = value;
         }
 
+        // FallingFactor
         private float? _fallingFactor;
         private const float defaultFallingFactor = 0.1f;
         public float fallingFactor 
@@ -195,6 +201,7 @@ namespace SystemDatas
             set => _fallingFactor = value;
         }
 
+        // FallingSpeedRatio
         private float? _fallingSpeedRatio;
         private const float defaultFallingSpeedRatio = 2;
         public float fallingSpeedRatio 
@@ -203,6 +210,7 @@ namespace SystemDatas
             set => _fallingSpeedRatio = value;
         }
 
+        // FallingFrontForce
         private float? _fallingFrontForce;
         private const float defaultFallingFrontForce = 5;
         public float fallingFrontForce 
@@ -211,6 +219,7 @@ namespace SystemDatas
             set => _fallingFrontForce = value;
         }
 
+        // FallingDownForce
         private float? _fallingDownForce;
         private const float defaultFallingDownForce = 750;
         public float fallingDownForce
