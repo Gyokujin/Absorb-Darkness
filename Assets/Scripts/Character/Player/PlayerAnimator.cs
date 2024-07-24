@@ -11,8 +11,17 @@ public class PlayerAnimator : AnimatorManager
     [Header("Animator Parameters")]
     [HideInInspector]
     public bool canRotate = true;
-    private float parameterHor;
-    private float parameterVer;
+    private float parameterHor, parameterVer;
+
+    [Header("Parameter Name")]
+    [SerializeField]
+    private string verticalParameter = "vertical";
+    [SerializeField]
+    private string horizontalParameter = "horizontal";
+    [SerializeField]
+    private string stanceParameter = "onStance";
+    [SerializeField]
+    private string comboParameter = "canDoCombo";
 
     [Header("Component")]
     private PlayerAnimatorData animatorData;
@@ -81,8 +90,8 @@ public class PlayerAnimator : AnimatorManager
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat("vertical", parameterVer, animatorData.animationDampTime, Time.deltaTime);
-        animator.SetFloat("horizontal", parameterHor, animatorData.animationDampTime, Time.deltaTime);
+        animator.SetFloat(verticalParameter, parameterVer, animatorData.animationDampTime, Time.deltaTime);
+        animator.SetFloat(horizontalParameter, parameterHor, animatorData.animationDampTime, Time.deltaTime);
     }
 
     void OnAnimatorMove()
@@ -102,7 +111,6 @@ public class PlayerAnimator : AnimatorManager
     public void PlayAttackSFX()
     {
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack1]);
-        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack1]);
     }
 
     public void DodgeEnd()
@@ -118,23 +126,22 @@ public class PlayerAnimator : AnimatorManager
 
     public void EnableCombo()
     {
-        animator.SetBool("canDoCombo", true);
+        animator.SetBool(comboParameter, true);
     }
 
     public void DisableCombo()
     {
-        animator.SetBool("canDoCombo", false);
+        animator.SetBool(comboParameter, false);
     }
 
     public void SwitchStance(bool onStance)
     {
-        animator.SetBool("onStance", onStance);
+        animator.SetBool(stanceParameter, onStance);
     }
 
     public void Drink()
     {
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Drink]);
-        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Drink]);
     }
 
     public void Recovery()
