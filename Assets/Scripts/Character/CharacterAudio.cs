@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterSound
-{
-    Detect, Attack, Hit, Die
-}
-
 public class CharacterAudio : MonoBehaviour
 {
+    public enum CharacterSound
+    {
+        Hit, Die
+    }
+
     [Header("Audio")]
     [SerializeField]
     [Range(0, 1)]
@@ -18,7 +18,7 @@ public class CharacterAudio : MonoBehaviour
     private int characterIndex;
 
     [Header("Sound Clip")]
-    public AudioClip[] audioClips;
+    public AudioClip[] characterClips;
     private AudioSource[] characterAudios;
 
     void Awake()

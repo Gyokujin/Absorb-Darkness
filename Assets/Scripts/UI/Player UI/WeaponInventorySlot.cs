@@ -86,6 +86,6 @@ public class WeaponInventorySlot : MonoBehaviour
         UIManager.instance.ResetAllSelectedSlots();
         UIManager.instance.InventoryUIUpdate();
         UIManager.instance.inventoryWindow.SetActive(false);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Click]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
 }

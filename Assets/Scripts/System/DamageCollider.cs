@@ -88,6 +88,8 @@ public class DamageCollider : MonoBehaviour
 
                     if (enemyStatus != null)
                     {
+                        PlayerAudio playerAudio = collision.GetComponentInParent<PlayerAudio>();
+                        playerAudio.PlaySFX(playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack2]);
                         enemyStatus.TakeDamage(damage, GetComponentInParent<CharacterStatus>());
                     }
 

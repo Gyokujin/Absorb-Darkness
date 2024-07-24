@@ -60,7 +60,7 @@ public class PlayerInteract : MonoBehaviour
                             break;
                     }
 
-                    AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Interact2]);
+                    AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
                     itemInteractableObj = null;
                 }
             }

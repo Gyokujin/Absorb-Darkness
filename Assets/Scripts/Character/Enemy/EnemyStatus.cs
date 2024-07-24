@@ -72,7 +72,7 @@ public class EnemyStatus : CharacterStatus
 
         GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
         hitEffect.transform.position = effectTransform.position;
-        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
+        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
 
         if (currentHealth <= 0)
         {
@@ -102,7 +102,7 @@ public class EnemyStatus : CharacterStatus
     {
         enemyAnimator.PlayTargetAnimation("Hit", true);
         // enemyAnimator.animator.SetTrigger("doHit");
-        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
+        characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
 
         yield return hitWait;
         enemyManager.currentTarget = player;
@@ -118,7 +118,7 @@ public class EnemyStatus : CharacterStatus
         enemyManager.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
 
         enemyAnimator.animator.SetTrigger("doKnockback");
-        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Hit]);
+        characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
 
         yield return knockbackWait; // 플레이어 재추적
         enemyManager.currentTarget = player;
@@ -134,7 +134,7 @@ public class EnemyStatus : CharacterStatus
         rigidbody.isKinematic = true;
 
         enemyAnimator.PlayTargetAnimation("Die", true);
-        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Die]);
+        characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Die]);
 
         foreach (DamageCollider attackCollider in enemyManager.attackColliders)
         {

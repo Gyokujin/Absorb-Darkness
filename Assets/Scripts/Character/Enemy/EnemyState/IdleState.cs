@@ -44,8 +44,8 @@ public class IdleState : EnemyState
 
         if (enemyManager.currentTarget != null)
         {
-            CharacterAudio characterAudio = enemyManager.characterAudio;
-            characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Detect]);
+            EnemyAudio enemyAudio = enemyManager.enemyAudio;
+            enemyAudio.PlaySFX(enemyAudio.enemyClips[(int)EnemyAudio.EnemySound.Detect]);
             return pursueTargetState;
         }
         else

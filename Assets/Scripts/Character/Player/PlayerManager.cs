@@ -36,6 +36,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerAnimator playerAnimator;
     [HideInInspector]
+    public PlayerAudio playerAudio;
+    [HideInInspector]
     public PlayerItemSlotManager playerItemSlotManager;
 
     void Awake()
@@ -53,6 +55,7 @@ public class PlayerManager : CharacterManager
         playerInteract = GetComponent<PlayerInteract>();
         playerItemUse = GetComponent<PlayerItemUse>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerAudio = GetComponent<PlayerAudio>();
         playerItemSlotManager = GetComponentInChildren<PlayerItemSlotManager>();
 
         isGrounded = true;

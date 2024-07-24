@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
         selectWindow.SetActive(true);
         hudWindow.SetActive(false);
         GameManager.instance.LockCamera(false);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.GameSystem]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.GameSystem]);
     }
 
     public void CloseGameSystemUI()
@@ -97,14 +97,14 @@ public class UIManager : MonoBehaviour
         CloseAllInventoryUI();
         ResetAllSelectedSlots();
         GameManager.instance.LockCamera(true);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Interact2]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
     }
 
     public void OpenInventoryUI()
     {
         CloseAllInventoryUI();
         inventoryWindow.SetActive(true);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Click]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
 
     public void InventoryUIUpdate()
@@ -133,7 +133,7 @@ public class UIManager : MonoBehaviour
         CloseAllInventoryUI();
         equipmentWindow.SetActive(true);
         equipmentWindowUI.OpenEquipmentsUI();
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Click]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
 
     public void CloseAllInventoryUI()
@@ -178,7 +178,7 @@ public class UIManager : MonoBehaviour
     {
         messagePopUp.SetActive(true);
         messageText.text = message;
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)SystemSound.Interact1]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact1]);
     }
 
     public void CloseMessagePopUpUI()

@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameBGM
-{
-    Stage0Field, Stage0Boss
-}
-
-public enum SystemSound
-{
-    GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance
-}
-
-public enum PlayerActionSound
-{
-    Attack1, Attack2, Rolling, Backstep, Hit, Die, Drink, Recovery
-}
-
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance = null;
+
+    public enum GameBGM
+    {
+        Stage0Field, Stage0Boss
+    }
+
+    public enum SystemSound
+    {
+        GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance
+    }
+
+    //public enum PlayerActionSound
+    //{
+    //    Attack1, Attack2, Rolling, Backstep, Hit, Die, Drink, Recovery
+    //}
 
     [Header("BGM")]
     public AudioClip[] bgmClips;

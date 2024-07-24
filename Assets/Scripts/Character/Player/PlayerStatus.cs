@@ -138,7 +138,8 @@ public class PlayerStatus : CharacterStatus
             player.playerAnimator.PlayTargetAnimation("Damage", true);
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
-            AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
+            player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)CharacterAudio.CharacterSound.Hit]);
+            // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Hit]);
         }
 
         if (currentHealth <= 0)
@@ -157,7 +158,8 @@ public class PlayerStatus : CharacterStatus
         gameObject.layer = player.invincibleLayer;
         currentHealth = 0;
         player.playerAnimator.PlayTargetAnimation("Dead", true);
-        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Die]);
+        player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)CharacterAudio.CharacterSound.Die]);
+        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Die]);
     }
 
     public void RecoveryHealth()
@@ -167,7 +169,8 @@ public class PlayerStatus : CharacterStatus
 
         GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
         estusEffect.transform.position = effectTransform.position;
-        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Recovery]);
+        player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Recovery]);
+        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Recovery]);
     }
 
     void RecoveryStamina()

@@ -138,14 +138,16 @@ public class PlayerMove : MonoBehaviour
             {
                 player.playerAnimator.PlayTargetAnimation("Backstep", true);
                 player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
-                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
+                player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Backstep]);
+                // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
             }
             else
             {
                 player.transform.LookAt(rigidbody.position + moveDirection);
                 player.playerAnimator.PlayTargetAnimation("Rolling", true);
                 player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
-                AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
+                player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Rolling]);
+                // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
             }
         }
     }

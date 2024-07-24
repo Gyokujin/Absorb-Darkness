@@ -6,7 +6,7 @@ public class EnemyAnimator : AnimatorManager
 {
     private EnemyManager enemyManager;
     private EnemyStatus enemyStatus;
-    private CharacterAudio characterAudio;
+    private EnemyAudio enemyAudio;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class EnemyAnimator : AnimatorManager
         animator = GetComponent<Animator>();
         enemyManager = GetComponentInParent<EnemyManager>();
         enemyStatus = GetComponentInParent<EnemyStatus>();
-        characterAudio = GetComponentInParent<CharacterAudio>();
+        enemyAudio = GetComponentInParent<EnemyAudio>();
     }
 
     void OnAnimatorMove()
@@ -35,7 +35,8 @@ public class EnemyAnimator : AnimatorManager
 
     public void AttackProcess()
     {
-        characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Attack]);
+        enemyAudio.PlaySFX(enemyAudio.enemyClips[(int)EnemyAudio.EnemySound.Attack]);
+        // characterAudio.PlaySFX(characterAudio.audioClips[(int)CharacterSound.Attack]);
     }
 
     public void AttackDelay()

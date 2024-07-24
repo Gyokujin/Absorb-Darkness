@@ -28,12 +28,12 @@ public class GameManager : MonoBehaviour
 
     void GameStart()
     {
-        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)GameBGM.Stage0Field]);
+        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)AudioManager.GameBGM.Stage0Field]);
     }
 
     public void EntranceBossRoom()
     {
-        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)GameBGM.Stage0Boss]);
+        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)AudioManager.GameBGM.Stage0Boss]);
     }
 
     public void LockCamera(bool onLock)

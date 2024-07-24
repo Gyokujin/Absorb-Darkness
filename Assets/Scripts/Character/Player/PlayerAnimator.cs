@@ -101,7 +101,8 @@ public class PlayerAnimator : AnimatorManager
 
     public void PlayAttackSFX()
     {
-        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack1]);
+        player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack1]);
+        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack1]);
     }
 
     public void DodgeEnd()
@@ -132,7 +133,8 @@ public class PlayerAnimator : AnimatorManager
 
     public void Drink()
     {
-        AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Drink]);
+        player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Drink]);
+        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Drink]);
     }
 
     public void Recovery()
