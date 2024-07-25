@@ -60,6 +60,14 @@ namespace PlayerData
         }
 
         [Header("Parameter Name")]
+        // Horizontal Parameter
+        private string _horizontalParameter;
+        public string horizontalParameter
+        {
+            get => _horizontalParameter == null ? "horizontal" : _horizontalParameter;
+            set => _horizontalParameter = value;
+        }
+
         // Vertical Parameter
         private string _verticalParameter;
         public string verticalParameter
@@ -68,12 +76,28 @@ namespace PlayerData
             set => _verticalParameter = value;
         }
 
-        // Horizontal Parameter
-        private string _horizontalParameter;
-        public string horizontalParameter
+        // Interact Parameter
+        private string _interactParameter;
+        public string interactParameter
         {
-            get => _horizontalParameter == null ? "horizontal" : _horizontalParameter;
-            set => _horizontalParameter = value;
+            get => _interactParameter == null ? "isInteracting" : _interactParameter;
+            set => _interactParameter = value;
+        }
+
+        // OnAttack Parameter
+        private string _attackParameter;
+        public string attackParameter
+        {
+            get => _attackParameter == null ? "isAttack" : _attackParameter;
+            set => _attackParameter = value;
+        }
+
+        // ComboAble Parameter
+        private string _comboAbleParameter;
+        public string comboAbleParameter
+        {
+            get => _comboAbleParameter == null ? "isComboAble" : _comboAbleParameter;
+            set => _comboAbleParameter = value;
         }
 
         // OnStance Parameter
@@ -98,22 +122,6 @@ namespace PlayerData
         {
             get => _onUsingRightHand == null ? "usingRightHand" : _onUsingRightHand;
             set => _onUsingRightHand = value;
-        }
-
-        // OnAttack Parameter
-        private string _onAttackParameter;
-        public string onAttackParameter
-        {
-            get => _onAttackParameter == null ? "onAttack" : _onAttackParameter;
-            set => _onAttackParameter = value;
-        }
-
-        // ComboAble Parameter
-        private string _comboAbleParameter;
-        public string comboAbleParameter
-        {
-            get => _comboAbleParameter == null ? "comboAble" : _comboAbleParameter;
-            set => _comboAbleParameter = value;
         }
     }
 }

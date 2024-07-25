@@ -231,7 +231,34 @@ namespace SystemData
 
     public struct InteractData
     {
-        [Header("Interact")]
+        [Header("Interact Check")]
+        // Interact Check Radius
+        private float? _interactCheckRadius;
+        private const float defaultInteractCheckRadius = 0.3f;
+        public float interactCheckRadius
+        {
+            get => _interactCheckRadius ?? defaultInteractCheckRadius;
+            set => _interactCheckRadius = value;
+        }
+
+        // Interact Check Distance
+        private float? _interactCheckDis;
+        private const float defaultInteractCheckDis = 1;
+        public float interactCheckDis
+        {
+            get => _interactCheckDis ?? defaultInteractCheckDis;
+            set => _interactCheckDis = value;
+        }
+
+        // Interact Object Tag
+        private string _interactObjTag;
+        public string interactObjTag
+        {
+            get => _interactObjTag == null ? "Interactable" : _interactObjTag;
+            set => _interactObjTag = value;
+        }
+
+        [Header("Interact Text")]
         // Interact Item Text
         private string _itemInteractText;
         public string itemInteractText
