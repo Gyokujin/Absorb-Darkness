@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SystemDatas;
+using SystemData;
 
 public class Interactable : MonoBehaviour
 {
@@ -10,9 +10,7 @@ public class Interactable : MonoBehaviour
         Item, Message, Gate
     }
 
-    [Header("Interact")]
     public InteractType interactType;
-
     public string interactableText;
 
     void Awake()
@@ -40,8 +38,8 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public virtual void Interact(PlayerManager playerManager, PlayerInteract playerInteract)
+    public virtual void Interact(PlayerManager player, PlayerBehavior playerBehavior)
     {
-        playerManager.playerMove.rigidbody.velocity = Vector3.zero;
+        player.playerMove.rigidbody.velocity = Vector3.zero;
     }
 }

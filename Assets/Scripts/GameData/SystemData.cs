@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SystemDatas
+namespace SystemData
 {
     public struct CameraData
     {
