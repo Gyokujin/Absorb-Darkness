@@ -8,13 +8,13 @@ public class MessageShow : Interactable
     [SerializeField]
     private GameMessage gameMessage;
 
-    public override void Interact(PlayerManager playerManager, PlayerInteract playerInteract)
+    public override void Interact(PlayerManager playerManager, PlayerBehavior playerBehavior)
     {
-        base.Interact(playerManager, playerInteract);
-        ShowMessage(playerManager, playerInteract);
+        base.Interact(playerManager, playerBehavior);
+        ShowMessage(playerManager, playerBehavior);
     }
 
-    void ShowMessage(PlayerManager playerManager, PlayerInteract playerInteract)
+    void ShowMessage(PlayerManager playerManager, PlayerBehavior playerBehavior)
     {
         UIManager.instance.OpenMessagePopUpUI(gameMessage.message);
     }

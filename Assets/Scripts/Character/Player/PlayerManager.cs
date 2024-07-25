@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerData;
 
 public class PlayerManager : CharacterManager
 {
+    private PlayerAnimatorData animatorData;
+
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
     public bool onAttack;
+    public bool comboAble;
     public bool onDodge;
     public bool isInAir;
     public bool isGrounded;
@@ -30,7 +34,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerAttacker playerAttacker;
     [HideInInspector]
-    private PlayerInteract playerInteract;
+    private PlayerBehavior playerBehavior;
     [HideInInspector]
     public PlayerItemUse playerItemUse;
     [HideInInspector]
@@ -47,12 +51,14 @@ public class PlayerManager : CharacterManager
 
     void Init()
     {
+        animatorData = new PlayerAnimatorData();
+
         playerStatus = GetComponent<PlayerStatus>();
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
         playerInventory = GetComponent<PlayerInventory>();
         playerAttacker = GetComponent<PlayerAttacker>();
-        playerInteract = GetComponent<PlayerInteract>();
+        playerBehavior = GetComponent<PlayerBehavior>();
         playerItemUse = GetComponent<PlayerItemUse>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerAudio = GetComponent<PlayerAudio>();
@@ -68,17 +74,19 @@ public class PlayerManager : CharacterManager
     {
         isInteracting = playerAnimator.animator.GetBool("isInteracting");
         onAttack = playerAnimator.animator.GetBool("onAttack");
+        comboAble = playerAnimator.animator.GetBool(animatorData.comboAbleParameter);
         isUsingLeftHand = playerAnimator.animator.GetBool("usingLeftHand");
         isUsingRightHand = playerAnimator.animator.GetBool("usingRightHand");
         playerAnimator.animator.SetBool("isInAir", isInAir);
 
-        playerInput.TickInput(Time.deltaTime);
-        playerInteract.CheckInteractableObject(this);
+        playerInput.TickInput();
+        playerBehavior.CheckInteractableObject(this);
     }
 
     void LateUpdate()
     {
         playerInput.interactInput = false;
+        playerInput.twoHandInput = false;
         playerInput.useItemInpt = false;
         playerInput.lockOnInput = false;
         playerInput.lightAttackInput = false;
