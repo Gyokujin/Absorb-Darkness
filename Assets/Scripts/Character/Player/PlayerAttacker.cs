@@ -6,9 +6,18 @@ public class PlayerAttacker : MonoBehaviour
 {
     private PlayerManager player;
 
+    public enum PlayerAttackType
+    {
+        Sword_OneHand_LightAttack1, Sword_OneHand_LightAttack2, Sword_OneHand_HeavyAttack1, Sword_OneHand_HeavyAttack2,
+        Sword_TwoHand_LightAttack1, Sword_TwoHand_LightAttack2, Sword_TwoHand_HeavyAttack1, Sword_TwoHand_HeavyAttack2
+    }
+
     [Header("Attack")]
     [SerializeField]
     private string lastAttack;
+    private PlayerAttackType curAttack;
+
+    private WeaponItem playerWeapon;
 
     void Awake()
     {
@@ -20,58 +29,69 @@ public class PlayerAttacker : MonoBehaviour
         player = GetComponent<PlayerManager>();
     }
 
-    public void HandleLightAttack(WeaponItem weapon)
+    public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
     {
         player.playerItemSlotManager.attackingWeapon = weapon;
+        playerWeapon = player.playerItemSlotManager.attackingWeapon;
+        bool oneHand = !player.playerInput.twoHandFlag;
 
-        if (player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
+        switch (playerWeapon.weaponType)
         {
-            if (!player.playerInput.twoHandFlag) // 한손
-            {
-                player.playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack1, true);
-                lastAttack = weapon.oneHand_LightAttack1;
-            }
-            else // 두손
-            {
-                player.playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack1, true);
-                lastAttack = weapon.twoHand_LightAttack1;
-            }
+            case WeaponItem.WeaponType.None:
+                break;
+
+            case WeaponItem.WeaponType.Sword:
+
+                if (onLightAttack)
+                {
+                    lastAttack = oneHand ? weapon.oneHand_LightAttack1 : weapon.twoHand_LightAttack1;
+                    player.playerAnimator.animator.SetBool("usingRightHand", true);
+                }
+                else
+                {
+                    lastAttack = oneHand ? weapon.oneHand_HeavyAttack1 : weapon.twoHand_HeavyAttack1;
+                }
+                break;
+
+            case WeaponItem.WeaponType.Axe:
+                break;
+        }
+
+        if (lastAttack != null)
+        {
+            player.playerAnimator.PlayTargetAnimation(lastAttack, true);
+            player.playerAnimator.animator.SetBool("onAttack", true);
         }
     }
 
-    public void HandleHeavyAttack(WeaponItem weapon)
+    public void HandleWeaponCombo(WeaponItem weapon, bool onLightAttack)
     {
-        player.playerItemSlotManager.attackingWeapon = weapon;
+        bool oneHand = !player.playerInput.twoHandFlag;
 
-        if (player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
+        switch (playerWeapon.weaponType)
         {
-            if (!player.playerInput.twoHandFlag)
-            {
-                player.playerAnimator.PlayTargetAnimation(weapon.oneHand_HeavyAttack1, true);
-                lastAttack = weapon.oneHand_HeavyAttack1;
-            }
-            else
-            {
-                player.playerAnimator.PlayTargetAnimation(weapon.twoHand_HeavyAttack1, true);
-                lastAttack = weapon.twoHand_HeavyAttack1;
-            }
+            case WeaponItem.WeaponType.None:
+                break;
+
+            case WeaponItem.WeaponType.Sword:
+                if (onLightAttack)
+                {
+                    lastAttack = oneHand ? weapon.oneHand_LightAttack2 : weapon.twoHand_LightAttack2;
+                }
+                else
+                {
+                    lastAttack = oneHand ? weapon.oneHand_HeavyAttack2 : weapon.twoHand_HeavyAttack2;
+                }
+                break;
+
+            case WeaponItem.WeaponType.Axe:
+
+                break;
         }
-    }
 
-    public void HandleWeaponCombo(WeaponItem weapon)
-    {
-        if (player.playerInput.comboFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
+        if (lastAttack != null)
         {
-            player.playerAnimator.animator.SetBool("canDoCombo", false);
-
-            if (lastAttack == weapon.oneHand_LightAttack1)
-            {
-                player.playerAnimator.PlayTargetAnimation(weapon.oneHand_LightAttack2, true);
-            }
-            else if (lastAttack == weapon.twoHand_LightAttack1)
-            {
-                player.playerAnimator.PlayTargetAnimation(weapon.twoHand_LightAttack2, true);
-            }
+            player.playerAnimator.PlayTargetAnimation(lastAttack, true);
         }
     }
 }

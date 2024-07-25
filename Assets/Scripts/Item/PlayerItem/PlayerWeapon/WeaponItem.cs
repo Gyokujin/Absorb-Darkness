@@ -5,6 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon Item")]
 public class WeaponItem : Item
 {
+    public enum WeaponType
+    {
+        None, Sword, Axe
+    }
+
+    public WeaponType weaponType;
+
     [Header("Weapon Info")]
     [SerializeField]
     private bool isUnarmed;
@@ -18,9 +25,12 @@ public class WeaponItem : Item
     public string oneHand_LightAttack1;
     public string oneHand_LightAttack2;
     public string oneHand_HeavyAttack1;
+    public string oneHand_HeavyAttack2;
+
     public string twoHand_LightAttack1;
     public string twoHand_LightAttack2;
     public string twoHand_HeavyAttack1;
+    public string twoHand_HeavyAttack2;
 
     [Header("Stamina Costs")]
     public int baseStamina;

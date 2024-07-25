@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
     public bool rollFlag;
     public bool sprintFlag;
     public bool twoHandFlag;
-    public bool comboFlag;
+    // public bool comboFlag;
     public bool gameSystemFlag;
 
     void Awake()
@@ -167,25 +167,32 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput(float delta)
     {
-        if (lightAttackInput && !gameSystemFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
+        if (gameSystemFlag || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina)
+            return;
+
+        // player.onAttack = true;
+
+        if (lightAttackInput)
         {
-            if (player.canDoCombo)
+            if (!player.playerAnimator.comboAble)
             {
-                comboFlag = true;
-                player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon);
-                comboFlag = false;
+                player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, true);
             }
-            else if (!player.isInteracting && !player.canDoCombo)
+            else // ÄÞº¸ °ø°Ý
             {
-                player.playerAnimator.animator.SetBool("usingRightHand", true);
-                player.playerAttacker.HandleLightAttack(player.playerInventory.rightWeapon);
+                player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, true);
             }
         }
-
-        if (heavyAttackInput && !player.isInteracting)
+        else if (heavyAttackInput)
         {
-            player.playerAnimator.animator.SetBool("usingRightHand", true);
-            player.playerAttacker.HandleHeavyAttack(player.playerInventory.rightWeapon);
+            if (!player.playerAnimator.comboAble)
+            {
+                player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, false);
+            }
+            else // ÄÞº¸ °ø°Ý
+            {
+                player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, false);
+            }
         }
     }
 
