@@ -9,19 +9,11 @@ public class PlayerAnimator : AnimatorManager
     private PlayerManager player;
 
     [Header("Animator Parameters")]
+    public bool comboAble;
     [HideInInspector]
     public bool canRotate = true;
-    private float parameterHor, parameterVer;
-
-    [Header("Parameter Name")]
-    [SerializeField]
-    private string verticalParameter = "vertical";
-    [SerializeField]
-    private string horizontalParameter = "horizontal";
-    [SerializeField]
-    private string stanceParameter = "onStance";
-    [SerializeField]
-    private string comboParameter = "canDoCombo";
+    private float parameterHor;
+    private float parameterVer;
 
     [Header("Component")]
     private PlayerAnimatorData animatorData;
@@ -31,6 +23,11 @@ public class PlayerAnimator : AnimatorManager
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
         animatorData = new PlayerAnimatorData(); // PlayerData 구조체 생성
+    }
+
+    void Update()
+    {
+        comboAble = animator.GetBool(animatorData.comboAbleParameter);
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
@@ -90,8 +87,8 @@ public class PlayerAnimator : AnimatorManager
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat(verticalParameter, parameterVer, animatorData.animationDampTime, Time.deltaTime);
-        animator.SetFloat(horizontalParameter, parameterHor, animatorData.animationDampTime, Time.deltaTime);
+        animator.SetFloat(animatorData.verticalParameter, parameterVer, animatorData.animationDampTime, Time.deltaTime);
+        animator.SetFloat(animatorData.horizontalParameter, parameterHor, animatorData.animationDampTime, Time.deltaTime);
     }
 
     void OnAnimatorMove()
@@ -126,17 +123,17 @@ public class PlayerAnimator : AnimatorManager
 
     public void EnableCombo()
     {
-        animator.SetBool(comboParameter, true);
+        player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, true);
     }
 
     public void DisableCombo()
     {
-        animator.SetBool(comboParameter, false);
+        player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, false);
     }
 
     public void SwitchStance(bool onStance)
     {
-        animator.SetBool(stanceParameter, onStance);
+        animator.SetBool(animatorData.onStanceParameter, onStance);
     }
 
     public void Drink()

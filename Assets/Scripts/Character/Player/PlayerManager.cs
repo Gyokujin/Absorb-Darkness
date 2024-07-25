@@ -7,10 +7,10 @@ public class PlayerManager : CharacterManager
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
+    public bool onAttack;
     public bool onDodge;
     public bool isInAir;
     public bool isGrounded;
-    public bool canDoCombo;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
 
@@ -66,8 +66,8 @@ public class PlayerManager : CharacterManager
 
     void Update()
     {
+        onAttack = playerAnimator.animator.GetBool("onAttack");
         isInteracting = playerAnimator.animator.GetBool("isInteracting");
-        canDoCombo = playerAnimator.animator.GetBool("canDoCombo");
         isUsingLeftHand = playerAnimator.animator.GetBool("usingLeftHand");
         isUsingRightHand = playerAnimator.animator.GetBool("usingRightHand");
         playerAnimator.animator.SetBool("isInAir", isInAir);
