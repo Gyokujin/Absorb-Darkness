@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerManager player;
     private PlayerControls inputActions;
-    PlayerAnimatorData animatorData;
+    private PlayerAnimatorData animatorData;
 
     [Header("Move & Action")]
     public float horizontal;
@@ -69,6 +69,7 @@ public class PlayerInput : MonoBehaviour
         if (inputActions == null)
         {
             inputActions = new PlayerControls();
+
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerActions.Interact.performed += i => interactInput = true;
             inputActions.PlayerActions.UseItem.performed += i => useItemInpt = true;
@@ -129,7 +130,7 @@ public class PlayerInput : MonoBehaviour
         }
         else
         {
-            if (rollInputTimer > 0 && rollInputTimer < animatorData.runAnimationCondition) // playerStatus.CurrentStamina >= playerStatus.actionLimitStamina
+            if (rollInputTimer > 0 && rollInputTimer < animatorData.runAnimationCondition)
             {
                 rollFlag = true;
                 player.playerMove.HandleRolling(Time.deltaTime);
@@ -137,14 +138,6 @@ public class PlayerInput : MonoBehaviour
 
             sprintFlag = false;
             rollInputTimer = 0;
-        }
-    }
-
-    void HandleUseItemInput()
-    {
-        if (useItemInpt)
-        {
-            player.playerItemUse.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
         }
     }
 
@@ -168,12 +161,12 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput() // float delta
     {
-        if (gameSystemFlag || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || (player.onAttack && !player.comboAble))
+        if (gameSystemFlag || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || player.isItemUse)
             return;
 
         if (lightAttackInput) // 약공격
         {
-            if (!player.comboAble)
+            if (!player.isComboAble)
             {
                 player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, true);
             }
@@ -184,7 +177,7 @@ public class PlayerInput : MonoBehaviour
         }
         else if (heavyAttackInput) // 강공격
         {
-            if (!player.comboAble)
+            if (!player.isComboAble)
             {
                 player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, false);
             }
@@ -232,6 +225,14 @@ public class PlayerInput : MonoBehaviour
         if (lockOnInput && !gameSystemFlag)
         {
             PlayerCamera.instance.SwitchLockOn();
+        }
+    }
+
+    void HandleUseItemInput()
+    {
+        if (useItemInpt && !player.isInteracting)
+        {
+            player.playerBehavior.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
         }
     }
 }

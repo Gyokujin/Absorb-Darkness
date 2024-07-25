@@ -135,7 +135,7 @@ public class PlayerItemSlotManager : MonoBehaviour
 
     public void OpenDamageCollider()
     {
-        if (player.onAttack)
+        if (player.isAttack)
         {
             if (player.isUsingLeftHand)
             {
