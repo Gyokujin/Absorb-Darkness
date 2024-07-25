@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SystemDatas;
+using SystemData;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 회전이 가능한 경우에는 이동 방향으로 캐릭터를 회전한다.
-        if (player.playerAnimator.canRotate && !PlayerCamera.instance.isLockOn)
+        if (!PlayerCamera.instance.isLockOn)
         {
             HandleRotation(delta);
         }

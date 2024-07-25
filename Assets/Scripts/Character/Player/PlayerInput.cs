@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PlayerData;
 
 public class PlayerInput : MonoBehaviour
 {
     private PlayerManager player;
     private PlayerControls inputActions;
+    PlayerAnimatorData animatorData;
 
     [Header("Move & Action")]
     public float horizontal;
@@ -24,9 +26,11 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector]
     public bool interactInput;
     private bool rollingInput;
-    private bool twoHandInput;
+    [HideInInspector]
+    public bool twoHandInput;
     [HideInInspector]
     public bool lockOnInput;
+    [HideInInspector]
     public bool useItemInpt;
     [HideInInspector]
     public bool lightAttackInput;
@@ -47,7 +51,6 @@ public class PlayerInput : MonoBehaviour
     public bool rollFlag;
     public bool sprintFlag;
     public bool twoHandFlag;
-    // public bool comboFlag;
     public bool gameSystemFlag;
 
     void Awake()
@@ -58,6 +61,7 @@ public class PlayerInput : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
+        animatorData = new PlayerAnimatorData();
     }
 
     void OnEnable()
@@ -86,19 +90,19 @@ public class PlayerInput : MonoBehaviour
         inputActions.Disable();
     }
 
-    public void TickInput(float delta)
+    public void TickInput()
     {
-        HandleMoveInput(delta);
-        HandleRollInput(delta);
+        HandleMoveInput();
+        HandleRollInput();
         HandleUseItemInput();
         HandleLockOnInput();
         HandleTwoHandInput();
-        HandleAttackInput(delta);
+        HandleAttackInput();
         HandleQuickSlotsInput();
         HandleGameSystemInput();
     }
 
-    void HandleMoveInput(float delta)
+    void HandleMoveInput()
     {
         horizontal = movementInput.x;
         vertical = movementInput.y;
@@ -107,27 +111,25 @@ public class PlayerInput : MonoBehaviour
         mouseY = cameraInput.y;
     }
 
-    void HandleRollInput(float delta)
+    void HandleRollInput()
     {
-        if (player.isInteracting) // 현재 플레이어가 행동 중이지 않을 때만 실행
-        {
+        if (player.isInteracting)
             return;
-        }
 
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
 
         if (rollingInput)
         {
-            rollInputTimer += delta;
+            rollInputTimer += Time.deltaTime;
 
-            if (rollInputTimer > 0.5f)
+            if (rollInputTimer > animatorData.runAnimationCondition)
             {
                 sprintFlag = true;
             }
         }
         else
         {
-            if (rollInputTimer > 0 && rollInputTimer < 0.5f) // playerStatus.CurrentStamina >= playerStatus.actionLimitStamina
+            if (rollInputTimer > 0 && rollInputTimer < animatorData.runAnimationCondition) // playerStatus.CurrentStamina >= playerStatus.actionLimitStamina
             {
                 rollFlag = true;
                 player.playerMove.HandleRolling(Time.deltaTime);
@@ -140,7 +142,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleUseItemInput()
     {
-        if (useItemInpt && !player.isInteracting && moveAmount == 0)
+        if (useItemInpt)
         {
             player.playerItemUse.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
         }
@@ -150,7 +152,6 @@ public class PlayerInput : MonoBehaviour
     {
         if (twoHandInput)
         {
-            twoHandInput = false;
             twoHandFlag = !twoHandFlag;
 
             if (twoHandFlag)
@@ -165,14 +166,14 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void HandleAttackInput(float delta)
+    void HandleAttackInput() // float delta
     {
-        if (gameSystemFlag || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina)
+        if (gameSystemFlag || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || (player.onAttack && !player.comboAble))
             return;
 
         if (lightAttackInput) // 약공격
         {
-            if (!player.playerAnimator.comboAble)
+            if (!player.comboAble)
             {
                 player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, true);
             }
@@ -183,7 +184,7 @@ public class PlayerInput : MonoBehaviour
         }
         else if (heavyAttackInput) // 강공격
         {
-            if (!player.playerAnimator.comboAble)
+            if (!player.comboAble)
             {
                 player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, false);
             }
