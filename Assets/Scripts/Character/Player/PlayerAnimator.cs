@@ -97,7 +97,7 @@ public class PlayerAnimator : AnimatorManager
 
     public void DodgeEnd()
     {
-        player.onDodge = false;
+        player.isDodge = false;
         player.playerInput.rollFlag = false;
     }
 
@@ -133,6 +133,6 @@ public class PlayerAnimator : AnimatorManager
 
     public void ItemUseEnd()
     {
-        player.playerItemUse.EndItemUse();
+        player.playerBehavior.EndItemUse();
     }
 }

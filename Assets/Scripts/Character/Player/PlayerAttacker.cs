@@ -20,7 +20,7 @@ public class PlayerAttacker : MonoBehaviour
     [SerializeField]
     private string lastAttack;
 
-    [Header("Component")]
+    [Header("Weapon")]
     private WeaponItem playerWeapon;
 
     void Awake()
@@ -30,14 +30,14 @@ public class PlayerAttacker : MonoBehaviour
 
     void Init()
     {
-        animatorData = new PlayerAnimatorData();
         player = GetComponent<PlayerManager>();
+        animatorData = new PlayerAnimatorData();
     }
 
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
     {
         player.playerItemSlotManager.attackingWeapon = weapon;
-        player.playerAnimator.animator.SetBool(animatorData.onAttackParameter, true);
+        player.playerAnimator.animator.SetBool(animatorData.attackParameter, true);
         player.playerAnimator.animator.SetBool(animatorData.onUsingRightHand, true);
         playerWeapon = player.playerItemSlotManager.attackingWeapon;
         bool oneHand = !player.playerInput.twoHandFlag;
@@ -66,7 +66,7 @@ public class PlayerAttacker : MonoBehaviour
         if (lastAttack != null)
         {
             player.playerAnimator.PlayTargetAnimation(lastAttack, true);
-            player.playerAnimator.animator.SetBool(animatorData.onAttackParameter, true);
+            player.playerAnimator.animator.SetBool(animatorData.attackParameter, true);
         }
     }
 
