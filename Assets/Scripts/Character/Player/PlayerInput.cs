@@ -170,9 +170,7 @@ public class PlayerInput : MonoBehaviour
         if (gameSystemFlag || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina)
             return;
 
-        // player.onAttack = true;
-
-        if (lightAttackInput)
+        if (lightAttackInput) // 약공격
         {
             if (!player.playerAnimator.comboAble)
             {
@@ -183,7 +181,7 @@ public class PlayerInput : MonoBehaviour
                 player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, true);
             }
         }
-        else if (heavyAttackInput)
+        else if (heavyAttackInput) // 강공격
         {
             if (!player.playerAnimator.comboAble)
             {

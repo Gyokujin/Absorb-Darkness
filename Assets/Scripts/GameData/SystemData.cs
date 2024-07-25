@@ -228,4 +228,32 @@ namespace SystemDatas
             set => _fallingDownForce = value;
         }
     }
+
+    public struct InteractData
+    {
+        [Header("Interact")]
+        // Interact Item Text
+        private string _itemInteractText;
+        public string itemInteractText
+        {
+            get => _itemInteractText == null ? "아이템을 획득한다 E" : itemInteractText;
+            set => itemInteractText = value;
+        }
+
+        // Interact Message Text
+        private string _messageInteractText;
+        public string messageInteractText
+        {
+            get => _messageInteractText == null ? "메시지를 확인한다 E" : messageInteractText;
+            set => messageInteractText = value;
+        }
+
+        // Interact Gate Text
+        private string _gateInteractText;
+        public string gateInteractText
+        {
+            get => _gateInteractText == null ? "안개 속으로 들어간다 E" : gateInteractText;
+            set => gateInteractText = value;
+        }
+    }
 }

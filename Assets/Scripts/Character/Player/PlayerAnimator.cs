@@ -124,6 +124,7 @@ public class PlayerAnimator : AnimatorManager
     public void EnableCombo()
     {
         player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, true);
+        player.playerAnimator.animator.SetBool(animatorData.onAttackParameter, true);
     }
 
     public void DisableCombo()

@@ -84,6 +84,14 @@ namespace PlayerDatas
             set => _onStanceParameter = value;
         }
 
+        // OnAttack Parameter
+        private string _onAttackParameter;
+        public string onAttackParameter
+        {
+            get => _onAttackParameter == null ? "onAttack" : _onAttackParameter;
+            set => _onAttackParameter = value;
+        }
+
         // ComboAble Parameter
         private string _comboAbleParameter;
         public string comboAbleParameter

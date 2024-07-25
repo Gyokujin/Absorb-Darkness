@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemDatas;
 
 public class Interactable : MonoBehaviour
 {
@@ -21,18 +22,20 @@ public class Interactable : MonoBehaviour
 
     void Init()
     {
+        InteractData interactData = new InteractData();
+        
         switch (interactType)
         {
             case InteractType.Item:
-                interactableText = "아이템을 획득한다 E";
+                interactableText = interactData.itemInteractText;
                 break;
 
             case InteractType.Message:
-                interactableText = "메시지를 확인한다 E";
+                interactableText = interactData.messageInteractText;
                 break;
 
             case InteractType.Gate:
-                interactableText = "안개 속으로 들어간다 E";
+                interactableText = interactData.gateInteractText;
                 break;
         }
     }

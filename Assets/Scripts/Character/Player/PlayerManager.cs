@@ -66,8 +66,8 @@ public class PlayerManager : CharacterManager
 
     void Update()
     {
-        onAttack = playerAnimator.animator.GetBool("onAttack");
         isInteracting = playerAnimator.animator.GetBool("isInteracting");
+        onAttack = playerAnimator.animator.GetBool("onAttack");
         isUsingLeftHand = playerAnimator.animator.GetBool("usingLeftHand");
         isUsingRightHand = playerAnimator.animator.GetBool("usingRightHand");
         playerAnimator.animator.SetBool("isInAir", isInAir);

@@ -32,6 +32,8 @@ public class PlayerAttacker : MonoBehaviour
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
     {
         player.playerItemSlotManager.attackingWeapon = weapon;
+        player.playerAnimator.animator.SetBool("onAttack", true);
+        player.playerAnimator.animator.SetBool("usingRightHand", true);
         playerWeapon = player.playerItemSlotManager.attackingWeapon;
         bool oneHand = !player.playerInput.twoHandFlag;
 
@@ -45,7 +47,7 @@ public class PlayerAttacker : MonoBehaviour
                 if (onLightAttack)
                 {
                     lastAttack = oneHand ? weapon.oneHand_LightAttack1 : weapon.twoHand_LightAttack1;
-                    player.playerAnimator.animator.SetBool("usingRightHand", true);
+                    
                 }
                 else
                 {

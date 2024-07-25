@@ -23,11 +23,11 @@ public class PlayerItemSlotManager : MonoBehaviour
 
     [Header("Component")]
     private Animator animator;
-    private PlayerManager playerManager;
+    private PlayerManager player;
     private QuickSlotsUI quickSlotsUI;
-    private PlayerInput playerInput;
-    private PlayerInventory playerInventory;
-    private PlayerStatus playerStatus;
+    // private PlayerInput playerInput;
+    // private PlayerInventory playerInventory;
+    // private PlayerStatus playerStatus;
 
     void Awake()
     {
@@ -36,12 +36,12 @@ public class PlayerItemSlotManager : MonoBehaviour
 
     void Init()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
+        player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
-        playerInput = GetComponentInParent<PlayerInput>();
-        playerInventory = GetComponentInParent<PlayerInventory>();
-        playerStatus = GetComponentInParent<PlayerStatus>();
+        // playerInput = GetComponentInParent<PlayerInput>();
+        // playerInventory = GetComponentInParent<PlayerInventory>();
+        // playerStatus = GetComponentInParent<PlayerStatus>();
 
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         
@@ -82,7 +82,7 @@ public class PlayerItemSlotManager : MonoBehaviour
         }
         else
         {
-            if (playerInput.twoHandFlag)
+            if (player.playerInput.twoHandFlag)
             {
                 backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
                 leftHandSlot.UnloadWeaponAndDestroy();
@@ -117,7 +117,7 @@ public class PlayerItemSlotManager : MonoBehaviour
         switch (usingItem.itemType)
         {
             case UsingItem.UsingItemType.EstusFlask:
-                itemCount = playerInventory.estusCount;
+                itemCount = player.playerInventory.estusCount;
                 break;
         }
         quickSlotsUI.UpdateUsingItemUI(usingItem, itemCount);
@@ -135,14 +135,16 @@ public class PlayerItemSlotManager : MonoBehaviour
 
     public void OpenDamageCollider()
     {
-        if (playerManager.isUsingLeftHand)
+        if (player.onAttack)
         {
-            leftHandDamageCollider.OpenDamageCollider();
-        }
-
-        if (playerManager.isUsingRightHand)
-        {
-            rightHandDamageCollider.OpenDamageCollider();
+            if (player.isUsingLeftHand)
+            {
+                leftHandDamageCollider.OpenDamageCollider();
+            }
+            else if (player.isUsingRightHand)
+            {
+                rightHandDamageCollider.OpenDamageCollider();
+            }
         }
     }
 
@@ -157,11 +159,11 @@ public class PlayerItemSlotManager : MonoBehaviour
 
     public void DrainStaminaLightAttack() 
     {
-        playerStatus.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
+        player.playerStatus.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
     }
 
     public void DrainStaminaHeavyAttack()
     {
-        playerStatus.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
+        player.playerStatus.TakeStamina(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
     }
 }
