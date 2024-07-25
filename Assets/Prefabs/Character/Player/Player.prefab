@@ -1502,8 +1502,9 @@ GameObject:
   - component: {fileID: 1912785350997228117}
   - component: {fileID: 8704254429465697172}
   - component: {fileID: 5664519629810846392}
-  - component: {fileID: 6987269647642140855}
+  - component: {fileID: 934179952207965645}
   - component: {fileID: 4508310102902069053}
+  - component: {fileID: 8282673179921421587}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1789,19 +1790,24 @@ MonoBehaviour:
   lockOnTransform: {fileID: 2037056813837801136}
   isInteracting: 0
   isSprinting: 0
+  onAttack: 0
+  comboAble: 0
   onDodge: 0
   isInAir: 0
   isGrounded: 0
-  canDoCombo: 0
   isUsingLeftHand: 0
   isUsingRightHand: 0
   defaultLayer: 3
   invincibleLayer: 13
-  currentLockEnemy: {fileID: 0}
+  playerStatus: {fileID: 0}
+  playerInput: {fileID: 0}
   playerMove: {fileID: 0}
-  playerAnimator: {fileID: 0}
   playerInventory: {fileID: 0}
+  playerAttacker: {fileID: 0}
   playerItemUse: {fileID: 0}
+  playerAnimator: {fileID: 0}
+  playerAudio: {fileID: 0}
+  playerItemSlotManager: {fileID: 0}
 --- !u!114 &6446244042411737521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,6 +1859,7 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   interactInput: 0
+  twoHandInput: 0
   lockOnInput: 0
   useItemInpt: 0
   lightAttackInput: 0
@@ -1865,7 +1872,6 @@ MonoBehaviour:
   rollFlag: 0
   sprintFlag: 0
   twoHandFlag: 0
-  comboFlag: 0
   gameSystemFlag: 0
 --- !u!114 &1912785350997228117
 MonoBehaviour:
@@ -1879,20 +1885,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bab677bd3f4be4b91a0626519fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckDis: 0.4
-  groundDetectionRayStart: 0.5
-  distanceBeginFallMin: 1
-  groundDirRayDistance: 0.2
-  ignoreGroundCheck:
-    serializedVersion: 2
-    m_Bits: 64
   inAirTimer: 0
   rigidbody: {fileID: 8617979884866548014}
   moveDirection: {x: 0, y: 0, z: 0}
-  fallingFactor: 0.1
-  fallingSpeedRatio: 2
-  fallingDownForce: 750
-  fallingFrontForce: 5
   playerCollider: {fileID: 8488239234627549522}
   playerBlockerCollider: {fileID: 1408009259693044163}
   moveAudio: {fileID: 7689447264548055921}
@@ -1938,7 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttack: 
---- !u!114 &6987269647642140855
+--- !u!114 &934179952207965645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1947,7 +1942,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6995717877939349760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf88cd773a1fbe4a8183aa37046ebde, type: 3}
+  m_Script: {fileID: 11500000, guid: bd45cde56bfea94468a3577c24a19533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   checkRadius: 0.3
@@ -1966,6 +1961,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curUsingItem: {fileID: 0}
+--- !u!114 &8282673179921421587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f727c602f34b20342b8df4e970d1f14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioVolume: 0.7
+  characterCh: 5
+  characterClips:
+  - {fileID: 8300000, guid: 887807fe06dbe854ea5afcd62bde87d0, type: 3}
+  - {fileID: 8300000, guid: ddcfc0fb780b3454ebdfdc5da2b3df6c, type: 3}
+  playerClips:
+  - {fileID: 8300000, guid: 8239af5825a8d7a4fabf1fe12a902ac6, type: 3}
+  - {fileID: 8300000, guid: 2ccc90293367fed429a0275ac265e26c, type: 3}
+  - {fileID: 8300000, guid: 3805fa6e2644a25488f7dd1e9f2c8dc9, type: 3}
+  - {fileID: 8300000, guid: 6283f62da4ae5ed4c9d121fc05464c4d, type: 3}
+  - {fileID: 8300000, guid: 57f2209bfdddc9c44878ae441cbeebff, type: 3}
+  - {fileID: 8300000, guid: ccbfd76efcbdbd24ea491315391dd216, type: 3}
+  - {fileID: 8300000, guid: 5ca907e6365b28d46985705cdd9353ee, type: 3}
 --- !u!1 &7091192128901220387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,12 +2331,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animacionFadeAmount: 0.2
   animator: {fileID: 0}
-  canRotate: 1
-  idleParameterValue: 0
-  walkParameterValue: 0.5
-  runParameterValue: 1
-  sprintParameterValue: 2
-  animationDampTime: 0.1
 --- !u!114 &4481719368190627780
 MonoBehaviour:
   m_ObjectHideFlags: 0
