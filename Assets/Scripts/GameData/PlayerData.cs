@@ -58,5 +58,38 @@ namespace PlayerDatas
             get => _runAnimationCondition ?? defaultRunAnimationCondition;
             set => _runAnimationCondition = value;
         }
+
+        [Header("Parameter Name")]
+        // Vertical Parameter
+        private string _verticalParameter;
+        public string verticalParameter
+        {
+            get => _verticalParameter == null ? "vertical" : _verticalParameter;
+            set => _verticalParameter = value;
+        }
+
+        // Horizontal Parameter
+        private string _horizontalParameter;
+        public string horizontalParameter
+        {
+            get => _horizontalParameter == null ? "horizontal" : _horizontalParameter;
+            set => _horizontalParameter = value;
+        }
+
+        // OnStance Parameter
+        private string _onStanceParameter;
+        public string onStanceParameter
+        {
+            get => _onStanceParameter == null ? "onStance" : _onStanceParameter;
+            set => _onStanceParameter = value;
+        }
+
+        // ComboAble Parameter
+        private string _comboAbleParameter;
+        public string comboAbleParameter
+        {
+            get => _comboAbleParameter == null ? "comboAble" : _comboAbleParameter;
+            set => _comboAbleParameter = value;
+        }
     }
 }
