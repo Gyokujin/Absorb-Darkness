@@ -1,30 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemData;
 
 public class PlayerBehavior : MonoBehaviour
 {
     private PlayerManager player;
+    private InteractData interactData;
 
     [Header("Interact")]
-    [SerializeField]
-    private float checkRadius = 0.3f;
-    [SerializeField]
-    private float checkMaxDis = 1f;
-    public Interactable itemInteractableObj;
+    private Interactable itemInteractableObj;
+
+    [Header("ItemUse")]
+    [HideInInspector]
+    public GameObject curUsingItem;
+    private GameObject leftHandWeapon;
 
     void Awake()
     {
+        Init();
+    }
+
+    void Init()
+    {
         player = GetComponent<PlayerManager>();
+        interactData = new InteractData();
     }
 
     public void CheckInteractableObject(PlayerManager playerManager)
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(transform.position, checkRadius, transform.forward, out hit, checkMaxDis, PlayerCamera.instance.targetLayer))
+        if (Physics.SphereCast(transform.position, interactData.interactCheckRadius, transform.forward, out hit, interactData.interactCheckDis, PlayerCamera.instance.targetLayer))
         {
-            if (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Interactable>() != null)
+            if (hit.collider.tag == interactData.interactObjTag && hit.collider.GetComponent<Interactable>() != null)
             {
                 itemInteractableObj = hit.collider.GetComponent<Interactable>();
                 UIManager.instance.OpenInteractUI(itemInteractableObj.interactableText);
@@ -65,5 +74,46 @@ public class PlayerBehavior : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void UseItem(PlayerAnimator playerAnimator, UsingItem item)
+    {
+        if (player.playerItemSlotManager.leftHandSlot.currentWeaponModel != null)
+        {
+            leftHandWeapon = player.playerItemSlotManager.leftHandSlot.currentWeaponModel.gameObject;
+            leftHandWeapon.SetActive(false);
+        }
+
+        switch (item.itemType)
+        {
+            case UsingItem.UsingItemType.EstusFlask:
+                if (player.playerInventory.estusCount <= 0)
+                    return;
+
+                curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
+                player.playerInventory.estusCount--;
+                UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.estusCount);
+                break;
+        }
+
+        curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
+        curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
+        curUsingItem.transform.localRotation = Quaternion.identity;
+        player.playerAnimator.animator.SetBool("isItemUse", true);
+        playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
+    }
+
+    public void EndItemUse()
+    {
+        PoolManager.instance.Return(curUsingItem);
+        curUsingItem = null;
+
+        if (leftHandWeapon != null)
+        {
+            leftHandWeapon.SetActive(true);
+            leftHandWeapon = null;
+        }
+
+        player.playerAnimator.animator.SetBool("isItemUse", false);
     }
 }
