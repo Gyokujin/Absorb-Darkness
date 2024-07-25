@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Axe01_Lv1
   m_EditorClassIdentifier: 
+  modelPrefab: {fileID: 456606574791117825, guid: 3cfce2acc8b30e3478fad94986fc8d0a, type: 3}
   itemIcon: {fileID: 21300000, guid: ebd0229c0d6e56f48b6f861b2da59544, type: 3}
   itemName: Axe01_Lv1
-  modelPrefab: {fileID: 456606574791117825, guid: 3cfce2acc8b30e3478fad94986fc8d0a, type: 3}
+  weaponType: 2
   isUnarmed: 0
   right_Hand_Idle: RightArm Idle
   left_Hand_Idle: LeftArm Idle

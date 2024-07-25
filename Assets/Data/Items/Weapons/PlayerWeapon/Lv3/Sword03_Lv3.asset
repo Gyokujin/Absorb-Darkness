@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Sword03_Lv3
   m_EditorClassIdentifier: 
+  modelPrefab: {fileID: 137890860968226665, guid: 5c7dfeea750b0b945893c4fa240ac70f, type: 3}
   itemIcon: {fileID: 21300000, guid: 6df946b10237319428934dc6bcadc9e8, type: 3}
   itemName: Sword03_Lv3
-  modelPrefab: {fileID: 137890860968226665, guid: 5c7dfeea750b0b945893c4fa240ac70f, type: 3}
+  weaponType: 1
   isUnarmed: 0
   right_Hand_Idle: RightArm_Idle
   left_Hand_Idle: LeftArm_Idle
-  OneHand_LightAttack1: LightAttack01
-  OneHand_LightAttack2: LightAttack02
-  OneHand_HeavyAttack1: HeavyAttack01
+  th_idle: 
+  oneHand_LightAttack1: 
+  oneHand_LightAttack2: 
+  oneHand_HeavyAttack1: 
+  twoHand_LightAttack1: 
+  twoHand_LightAttack2: 
+  twoHand_HeavyAttack1: 
+  baseStamina: 0
+  lightAttackMultiplier: 0
+  heavyAttackMultiplier: 0
