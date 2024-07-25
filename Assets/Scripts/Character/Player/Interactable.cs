@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractType
-{
-    Item, Message, Gate
-}
-
 public class Interactable : MonoBehaviour
 {
+    public enum InteractType
+    {
+        Item, Message, Gate
+    }
+
     [Header("Interact")]
     public InteractType interactType;
+
     public string interactableText;
 
     void Awake()

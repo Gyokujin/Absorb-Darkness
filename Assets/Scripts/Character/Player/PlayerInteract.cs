@@ -33,7 +33,7 @@ public class PlayerInteract : MonoBehaviour
                 {
                     itemInteractableObj.Interact(playerManager, this);
 
-                    if (itemInteractableObj.interactType == InteractType.Item)
+                    if (itemInteractableObj.interactType == Interactable.InteractType.Item)
                     {
                         UIManager.instance.InventoryUIUpdate();
                     }
@@ -53,10 +53,10 @@ public class PlayerInteract : MonoBehaviour
 
                     switch (itemInteractableObj.interactType)
                     {
-                        case InteractType.Item:
+                        case Interactable.InteractType.Item:
                             break;
 
-                        case InteractType.Message:
+                        case Interactable.InteractType.Message:
                             break;
                     }
 
