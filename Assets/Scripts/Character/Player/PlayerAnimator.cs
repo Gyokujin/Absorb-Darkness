@@ -1,33 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerDatas;
+using PlayerData;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : AnimatorManager
 {
     private PlayerManager player;
+    private PlayerAnimatorData animatorData;
 
     [Header("Animator Parameters")]
-    public bool comboAble;
-    [HideInInspector]
-    public bool canRotate = true;
     private float parameterHor;
     private float parameterVer;
-
-    [Header("Component")]
-    private PlayerAnimatorData animatorData;
 
     public void Init()
     {
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
         animatorData = new PlayerAnimatorData(); // PlayerData 구조체 생성
-    }
-
-    void Update()
-    {
-        comboAble = animator.GetBool(animatorData.comboAbleParameter);
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
@@ -100,11 +90,6 @@ public class PlayerAnimator : AnimatorManager
         player.playerMove.rigidbody.velocity = velocity;
     }
 
-    public void CanRotate(bool isCan)
-    {
-        canRotate = isCan;
-    }
-
     public void PlayAttackSFX()
     {
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack1]);
@@ -124,7 +109,6 @@ public class PlayerAnimator : AnimatorManager
     public void EnableCombo()
     {
         player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, true);
-        player.playerAnimator.animator.SetBool(animatorData.onAttackParameter, true);
     }
 
     public void DisableCombo()

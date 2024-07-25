@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlayerDatas
+namespace PlayerData
 {
     public struct PlayerAnimatorData
     {
@@ -52,7 +52,7 @@ namespace PlayerDatas
 
         // RunAnimationCondition
         private float? _runAnimationCondition;
-        private const float defaultRunAnimationCondition = 0.55f;
+        private const float defaultRunAnimationCondition = 0.25f;
         public float runAnimationCondition
         {
             get => _runAnimationCondition ?? defaultRunAnimationCondition;
@@ -82,6 +82,22 @@ namespace PlayerDatas
         {
             get => _onStanceParameter == null ? "onStance" : _onStanceParameter;
             set => _onStanceParameter = value;
+        }
+
+        // OnUsingLeftHand Parameter
+        private string _onUsingLeftHand;
+        public string onUsingLeftHand
+        {
+            get => _onUsingLeftHand == null ? "usingLeftHand" : _onUsingLeftHand;
+            set => _onUsingLeftHand = value;
+        }
+
+        // OnUsingRightHand Parameter
+        private string _onUsingRightHand;
+        public string onUsingRightHand
+        {
+            get => _onUsingRightHand == null ? "usingRightHand" : _onUsingRightHand;
+            set => _onUsingRightHand = value;
         }
 
         // OnAttack Parameter
