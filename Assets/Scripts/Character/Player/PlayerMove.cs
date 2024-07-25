@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
 
     public void HandleMovement(float delta)
     {
-        if (player.playerInput.rollFlag || player.isInteracting)
+        if (player.isInteracting || player.playerInput.rollFlag)
             return;
 
         Movement();
@@ -130,7 +130,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
         {
-            player.onDodge = true;
+            player.isDodge = true;
             player.playerInput.rollFlag = true;
             moveDirection.y = 0;
 

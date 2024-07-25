@@ -10,19 +10,22 @@ public class PlayerManager : CharacterManager
     [Header("Player Action")]
     public bool isInteracting;
     public bool isSprinting;
-    public bool onAttack;
-    public bool comboAble;
-    public bool onDodge;
+    public bool isAttack;
+    public bool isComboAble;
+    public bool isDodge;
     public bool isInAir;
     public bool isGrounded;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
+    public bool isItemUse;
 
     [Header("Combat")]
     public int defaultLayer;
     public int invincibleLayer;
 
     [Header("Component")]
+    [HideInInspector]
+    public PlayerBehavior playerBehavior;
     [HideInInspector]
     public PlayerStatus playerStatus;
     [HideInInspector]
@@ -33,8 +36,6 @@ public class PlayerManager : CharacterManager
     public PlayerInventory playerInventory;
     [HideInInspector]
     public PlayerAttacker playerAttacker;
-    [HideInInspector]
-    private PlayerBehavior playerBehavior;
     [HideInInspector]
     public PlayerItemUse playerItemUse;
     [HideInInspector]
@@ -73,10 +74,12 @@ public class PlayerManager : CharacterManager
     void Update()
     {
         isInteracting = playerAnimator.animator.GetBool("isInteracting");
-        onAttack = playerAnimator.animator.GetBool("onAttack");
-        comboAble = playerAnimator.animator.GetBool(animatorData.comboAbleParameter);
+        isAttack = playerAnimator.animator.GetBool("isAttack");
+        isComboAble = playerAnimator.animator.GetBool(animatorData.comboAbleParameter);
         isUsingLeftHand = playerAnimator.animator.GetBool("usingLeftHand");
         isUsingRightHand = playerAnimator.animator.GetBool("usingRightHand");
+        isItemUse = playerAnimator.animator.GetBool("isItemUse");
+
         playerAnimator.animator.SetBool("isInAir", isInAir);
 
         playerInput.TickInput();
