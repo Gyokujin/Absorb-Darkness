@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SystemDatas;
+using SystemData;
 
 public class PlayerCamera : MonoBehaviour
 {
