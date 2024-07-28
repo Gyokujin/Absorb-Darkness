@@ -1497,13 +1497,12 @@ GameObject:
   - component: {fileID: 7689447264548055921}
   - component: {fileID: 3916069865354885900}
   - component: {fileID: 8842164406526633919}
-  - component: {fileID: 934179952207965645}
   - component: {fileID: 6446244042411737521}
   - component: {fileID: 3350726264196729079}
   - component: {fileID: 1912785350997228117}
+  - component: {fileID: 934179952207965645}
   - component: {fileID: 8704254429465697172}
   - component: {fileID: 5664519629810846392}
-  - component: {fileID: 4508310102902069053}
   - component: {fileID: 8282673179921421587}
   m_Layer: 3
   m_Name: Player
@@ -1790,36 +1789,25 @@ MonoBehaviour:
   lockOnTransform: {fileID: 2037056813837801136}
   isInteracting: 0
   isSprinting: 0
-  onAttack: 0
-  comboAble: 0
-  onDodge: 0
+  isAttack: 0
+  isComboAble: 0
+  isDodge: 0
   isInAir: 0
   isGrounded: 0
   isUsingLeftHand: 0
   isUsingRightHand: 0
+  isItemUse: 0
   defaultLayer: 3
   invincibleLayer: 13
   playerStatus: {fileID: 0}
   playerInput: {fileID: 0}
   playerMove: {fileID: 0}
+  playerBehavior: {fileID: 0}
   playerInventory: {fileID: 0}
   playerAttacker: {fileID: 0}
-  playerItemUse: {fileID: 0}
   playerAnimator: {fileID: 0}
   playerAudio: {fileID: 0}
   playerItemSlotManager: {fileID: 0}
---- !u!114 &934179952207965645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6995717877939349760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd45cde56bfea94468a3577c24a19533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6446244042411737521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,6 +1892,19 @@ MonoBehaviour:
   playerBlockerCollider: {fileID: 1408009259693044163}
   moveAudio: {fileID: 7689447264548055921}
   splintAudio: {fileID: 3916069865354885900}
+--- !u!114 &934179952207965645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd45cde56bfea94468a3577c24a19533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curUsingItem: {fileID: 0}
 --- !u!114 &8704254429465697172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,19 +1946,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttack: 
---- !u!114 &4508310102902069053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6995717877939349760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ddb6d5fc7620e40b6699f9fcaeed98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curUsingItem: {fileID: 0}
 --- !u!114 &8282673179921421587
 MonoBehaviour:
   m_ObjectHideFlags: 0

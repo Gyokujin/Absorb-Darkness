@@ -2,10 +2,40 @@ using UnityEngine;
 
 namespace PlayerData
 {
+    public struct PlayerPhysicsData
+    {
+        [Header("Move Physics")]
+        // Sprint Condition
+        private float? _runCondition;
+        private const float defaultRunCondition = 0.5f;
+        public float runCondition
+        {
+            get => _runCondition ?? defaultRunCondition;
+            set => _runCondition = value;
+        }
+
+        [Header("State Layer")]
+        // Player DefaultLayer
+        private string _playerLayer;
+        public string playerLayer
+        {
+            get => _playerLayer == null ? "Player" : _playerLayer;
+            set => _playerLayer = value;
+        }
+
+        // Player DefaultLayer
+        private string _invincibleLayer;
+        public string invincibleLayer
+        {
+            get => _invincibleLayer == null ? "Invincible" : _invincibleLayer;
+            set => _invincibleLayer = value;
+        }
+    }
+
     public struct PlayerAnimatorData
     {
         [Header("Paramater")]
-        // IdleParameterValue
+        // Idle ParameterValue
         private float? _idleParameterValue;
         private const float defaultIdleParameterValue = 0;
         public float idleParameterValue
@@ -14,7 +44,7 @@ namespace PlayerData
             set => _idleParameterValue = value;
         }
 
-        // WalkParameterValue
+        // Walk ParameterValue
         private float? _walkParameterValue;
         private const float defaultWalkParameterValue = 0.5f;
         public float walkParameterValue
@@ -23,7 +53,7 @@ namespace PlayerData
             set => _walkParameterValue = value;
         }
 
-        // RunParameterValue
+        // Run ParameterValue
         private float? _runParameterValue;
         private const float defaultRunParameterValue = 1;
         public float runParameterValue
@@ -32,7 +62,7 @@ namespace PlayerData
             set => _runParameterValue = value;
         }
 
-        // SprintParameterValue
+        // Sprint ParameterValue
         private float? _sprintParameterValue;
         private const float defaultSprintParameterValue = 2;
         public float sprintParameterValue
@@ -41,7 +71,7 @@ namespace PlayerData
             set => _sprintParameterValue = value;
         }
 
-        // AnimationDampTime
+        // Animation DampTime
         private float? _animationDampTime;
         private const float defaultAnimationDampTime = 0.1f;
         public float animationDampTime
@@ -50,7 +80,7 @@ namespace PlayerData
             set => _animationDampTime = value;
         }
 
-        // RunAnimationCondition
+        // RunAnimation Condition
         private float? _runAnimationCondition;
         private const float defaultRunAnimationCondition = 0.25f;
         public float runAnimationCondition
@@ -76,6 +106,14 @@ namespace PlayerData
             set => _verticalParameter = value;
         }
 
+        // InAir Parameter
+        private string _inAirParameter;
+        public string inAirParameter
+        {
+            get => _inAirParameter == null ? "isInAir" : _inAirParameter;
+            set => _inAirParameter = value;
+        }
+
         // Interact Parameter
         private string _interactParameter;
         public string interactParameter
@@ -98,6 +136,14 @@ namespace PlayerData
         {
             get => _comboAbleParameter == null ? "isComboAble" : _comboAbleParameter;
             set => _comboAbleParameter = value;
+        }
+
+        // IsItemUse Parameter
+        private string _isItemUseParameter;
+        public string isItemUseParameter
+        {
+            get => _isItemUseParameter == null ? "isItemUse" : _isItemUseParameter;
+            set => _isItemUseParameter = value;
         }
 
         // OnStance Parameter

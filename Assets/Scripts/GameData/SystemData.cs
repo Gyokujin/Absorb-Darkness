@@ -60,7 +60,7 @@ namespace SystemData
             set => _playerFollowRate = value;
         }
 
-        // CameraCollisionOffset
+        // Camera CollisionOffset
         private float? _cameraCollisionOffset;
         private const float defaultCameraCollisionOffset = 0.2f;
         public float cameraCollisionOffset
@@ -69,7 +69,7 @@ namespace SystemData
             set => _cameraCollisionOffset = value;
         }
 
-        // MinCollisionOffset
+        // Min CollisionOffset
         private float? _minCollisionOffset;
         private const float defaultMinCollisionOffset = 0.2f;
         public float minCollisionOffset
@@ -124,7 +124,7 @@ namespace SystemData
             set => _lockOnAngleLimit = value;
         }
 
-        // LockOnRotateMax
+        // LockOn RotateMax
         private float? _lockOnRotateMax;
         private const float defaultLockOnRotateMax = 30;
         public float lockOnRotateMax
@@ -226,6 +226,15 @@ namespace SystemData
         {
             get => _fallingDownForce ?? defaultFallingDownForce;
             set => _fallingDownForce = value;
+        }
+
+        [Header("Physics Layer")]
+        // Ground Layer
+        private string _groundLayer;
+        public string groundLayer
+        {
+            get => _groundLayer == null ? "Ground" : _groundLayer;
+            set => _groundLayer = value;
         }
     }
 

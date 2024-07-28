@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerData;
 using SystemData;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
     private PlayerManager player;
+    private PlayerPhysicsData playerData;
+    private PhysicsData physicsData;
 
     [Header("Ground & Air Detection States")]
     private LayerMask ignoreGroundCheck;
     public float inAirTimer;
 
     [Header("Physics")]
+    [HideInInspector]
     public new Rigidbody rigidbody;
     public Vector3 moveDirection;
     private Vector3 normalVec;
@@ -27,7 +31,6 @@ public class PlayerMove : MonoBehaviour
     private AudioSource moveAudio;
     [SerializeField]
     private AudioSource splintAudio;
-    PhysicsData physicsData;
 
     void Start()
     {
@@ -38,7 +41,7 @@ public class PlayerMove : MonoBehaviour
     {
         player = GetComponent<PlayerManager>();
         physicsData = new PhysicsData();
-        ignoreGroundCheck = LayerMask.GetMask("Ground");
+        ignoreGroundCheck = LayerMask.GetMask(physicsData.groundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
@@ -77,13 +80,13 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
 
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > 0.5f && player.playerStatus.CurrentStamina > 0) // sprint
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerData.runCondition && player.playerStatus.CurrentStamina > 0) // sprint
         {
             moveDirection *= player.playerStatus.sprintSpeed;
             player.isSprinting = true;
             PlaySplintSFX();
         }
-        else if (player.playerInput.moveAmount < 0.5f) // walk
+        else if (player.playerInput.moveAmount < playerData.runCondition) // walk
         {
             moveDirection *= player.playerStatus.walkSpeed;
             player.isSprinting = false;
@@ -139,7 +142,6 @@ public class PlayerMove : MonoBehaviour
                 player.playerAnimator.PlayTargetAnimation("Backstep", true);
                 player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Backstep]);
-                // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Backstep]);
             }
             else
             {
@@ -147,7 +149,6 @@ public class PlayerMove : MonoBehaviour
                 player.playerAnimator.PlayTargetAnimation("Rolling", true);
                 player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Rolling]);
-                // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Rolling]);
             }
         }
     }

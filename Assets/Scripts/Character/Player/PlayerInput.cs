@@ -159,7 +159,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void HandleAttackInput() // float delta
+    void HandleAttackInput()
     {
         if (gameSystemFlag || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || player.isItemUse)
             return;

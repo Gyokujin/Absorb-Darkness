@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerData;
 using SystemData;
 
 public class PlayerBehavior : MonoBehaviour
 {
     private PlayerManager player;
+    private PlayerAnimatorData animatorData;
     private InteractData interactData;
 
     [Header("Interact")]
     private Interactable itemInteractableObj;
 
-    [Header("ItemUse")]
-    [HideInInspector]
+    [Header("Item Use")]
     public GameObject curUsingItem;
     private GameObject leftHandWeapon;
 
@@ -24,6 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
+        animatorData = new PlayerAnimatorData();
         interactData = new InteractData();
     }
 
@@ -99,7 +101,7 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
         curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
-        player.playerAnimator.animator.SetBool("isItemUse", true);
+        player.playerAnimator.animator.SetBool(animatorData.isItemUseParameter, true);
         playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
     }
 
@@ -114,6 +116,6 @@ public class PlayerBehavior : MonoBehaviour
             leftHandWeapon = null;
         }
 
-        player.playerAnimator.animator.SetBool("isItemUse", false);
+        player.playerAnimator.animator.SetBool(animatorData.isItemUseParameter, false);
     }
 }

@@ -13,7 +13,7 @@ public class PlayerAnimator : AnimatorManager
     private float parameterHor;
     private float parameterVer;
 
-    public void Init()
+    void Awake()
     {
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();

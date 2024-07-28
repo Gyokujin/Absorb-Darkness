@@ -5,6 +5,7 @@ using PlayerData;
 
 public class PlayerManager : CharacterManager
 {
+    private PlayerPhysicsData layerData;
     private PlayerAnimatorData animatorData;
 
     [Header("Player Action")]
@@ -14,18 +15,18 @@ public class PlayerManager : CharacterManager
     public bool isComboAble;
     public bool isDodge;
     public bool isInAir;
-    public bool isGrounded;
+    public bool isGrounded = true;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
     public bool isItemUse;
 
     [Header("Combat")]
+    [HideInInspector]
     public int defaultLayer;
+    [HideInInspector]
     public int invincibleLayer;
 
     [Header("Component")]
-    [HideInInspector]
-    public PlayerBehavior playerBehavior;
     [HideInInspector]
     public PlayerStatus playerStatus;
     [HideInInspector]
@@ -33,15 +34,15 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerMove playerMove;
     [HideInInspector]
+    public PlayerBehavior playerBehavior;
+    [HideInInspector]
     public PlayerInventory playerInventory;
     [HideInInspector]
     public PlayerAttacker playerAttacker;
     [HideInInspector]
-    public PlayerItemUse playerItemUse;
+    public PlayerAudio playerAudio;
     [HideInInspector]
     public PlayerAnimator playerAnimator;
-    [HideInInspector]
-    public PlayerAudio playerAudio;
     [HideInInspector]
     public PlayerItemSlotManager playerItemSlotManager;
 
@@ -52,35 +53,31 @@ public class PlayerManager : CharacterManager
 
     void Init()
     {
-        animatorData = new PlayerAnimatorData();
-
         playerStatus = GetComponent<PlayerStatus>();
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
+        playerBehavior = GetComponent<PlayerBehavior>();
         playerInventory = GetComponent<PlayerInventory>();
         playerAttacker = GetComponent<PlayerAttacker>();
-        playerBehavior = GetComponent<PlayerBehavior>();
-        playerItemUse = GetComponent<PlayerItemUse>();
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerAudio = GetComponent<PlayerAudio>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerItemSlotManager = GetComponentInChildren<PlayerItemSlotManager>();
 
-        isGrounded = true;
-        playerAnimator.Init();
-        defaultLayer = LayerMask.NameToLayer("Player");
-        invincibleLayer = LayerMask.NameToLayer("Invincible");
+        layerData = new PlayerPhysicsData();
+        animatorData = new PlayerAnimatorData();
+        defaultLayer = LayerMask.NameToLayer(layerData.playerLayer);
+        invincibleLayer = LayerMask.NameToLayer(layerData.invincibleLayer);
     }
 
     void Update()
     {
-        isInteracting = playerAnimator.animator.GetBool("isInteracting");
-        isAttack = playerAnimator.animator.GetBool("isAttack");
+        isInteracting = playerAnimator.animator.GetBool(animatorData.interactParameter);
+        isAttack = playerAnimator.animator.GetBool(animatorData.attackParameter);
         isComboAble = playerAnimator.animator.GetBool(animatorData.comboAbleParameter);
-        isUsingLeftHand = playerAnimator.animator.GetBool("usingLeftHand");
-        isUsingRightHand = playerAnimator.animator.GetBool("usingRightHand");
-        isItemUse = playerAnimator.animator.GetBool("isItemUse");
-
-        playerAnimator.animator.SetBool("isInAir", isInAir);
+        isUsingLeftHand = playerAnimator.animator.GetBool(animatorData.onUsingLeftHand);
+        isUsingRightHand = playerAnimator.animator.GetBool(animatorData.onUsingRightHand);
+        isItemUse = playerAnimator.animator.GetBool(animatorData.isItemUseParameter);
+        playerAnimator.animator.SetBool(animatorData.inAirParameter, isInAir);
 
         playerInput.TickInput();
         playerBehavior.CheckInteractableObject(this);
