@@ -2,6 +2,19 @@ using UnityEngine;
 
 namespace PlayerData
 {
+    public struct PlayerStatusData
+    {
+        [Header("Stamina")]
+        // Stamina Level
+        private float? _staminaLevel;
+        private const float defaultStaminaLevel = 10;
+        public float staminaLevel
+        {
+            get => _staminaLevel ?? defaultStaminaLevel;
+            set => _staminaLevel = value;
+        }
+    }
+
     public struct PlayerPhysicsData
     {
         [Header("Move Physics")]
@@ -34,6 +47,47 @@ namespace PlayerData
 
     public struct PlayerAnimatorData
     {
+        [Header("Animation")]
+        // Empty Animation
+        private string _emptyAnimation;
+        public string emptyAnimation
+        {
+            get => _emptyAnimation == null ? "Empty" : _emptyAnimation;
+            set => _emptyAnimation = value;
+        }
+
+        // Land Animation
+        private string _landAnimation;
+        public string landAnimation
+        {
+            get => _landAnimation == null ? "Land" : _landAnimation;
+            set => _landAnimation = value;
+        }
+
+        // Falling Animation
+        private string _fallingAnimation;
+        public string fallingAnimation
+        {
+            get => _fallingAnimation == null ? "Falling" : _fallingAnimation;
+            set => _fallingAnimation = value;
+        }
+
+        // Damage Animation
+        private string _damageAnimation;
+        public string damageAnimation
+        {
+            get => _damageAnimation == null ? "Damage" : _damageAnimation;
+            set => _damageAnimation = value;
+        }
+
+        // Dead Animation
+        private string _deadAnimation;
+        public string deadAnimation
+        {
+            get => _deadAnimation == null ? "Dead" : _deadAnimation;
+            set => _deadAnimation = value;
+        }
+
         [Header("Paramater")]
         // Idle ParameterValue
         private float? _idleParameterValue;
@@ -152,6 +206,14 @@ namespace PlayerData
         {
             get => _onStanceParameter == null ? "onStance" : _onStanceParameter;
             set => _onStanceParameter = value;
+        }
+
+        // OnDamage Parameter
+        private string _onDamageParameter;
+        public string onDamageParameter
+        {
+            get => _onDamageParameter == null ? "onDamage" : _onDamageParameter;
+            set => _onDamageParameter = value;
         }
 
         // OnUsingLeftHand Parameter

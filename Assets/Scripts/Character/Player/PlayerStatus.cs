@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerData;
 
 public class PlayerStatus : CharacterStatus
 {
     private PlayerManager player;
+    private PlayerStatusData playerStatusData;
+    private PlayerAnimatorData playerAnimatorData;
 
     [Header("Stamina")]
     public int staminaLevel = 10;
+    [HideInInspector]
     public int staminaLevelAmount = 10;
     public float maxStamina;
     private float currentStamina;
@@ -57,11 +61,15 @@ public class PlayerStatus : CharacterStatus
 
     void Awake()
     {
-        player = GetComponent<PlayerManager>();
+        Init();
     }
 
-    void Start()
+    void Init()
     {
+        player = GetComponent<PlayerManager>();
+        playerStatusData = new PlayerStatusData();
+        playerAnimatorData = new PlayerAnimatorData();
+
         InitHealth();
         InitStamina();
     }
@@ -72,7 +80,6 @@ public class PlayerStatus : CharacterStatus
             return;
 
         gameObject.layer = Invincible();
-        
     }
 
     void FixedUpdate()
@@ -92,7 +99,7 @@ public class PlayerStatus : CharacterStatus
 
     int Invincible() 
     {
-        player.onDamage = player.playerAnimator.animator.GetBool("onDamage");
+        player.onDamage = player.playerAnimator.animator.GetBool(playerAnimatorData.onDamageParameter);
         int curLayer = player.defaultLayer;
 
         if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
@@ -134,8 +141,9 @@ public class PlayerStatus : CharacterStatus
         {
             player.onDamage = true;
             gameObject.layer = player.invincibleLayer;
-            player.playerAnimator.animator.SetBool("onDamage", true);
-            player.playerAnimator.PlayTargetAnimation("Damage", true);
+            player.playerAnimator.animator.SetBool(playerAnimatorData.onDamageParameter, true);
+            player.playerAnimator.PlayTargetAnimation(playerAnimatorData.damageAnimation, true);
+
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
             player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
@@ -155,10 +163,8 @@ public class PlayerStatus : CharacterStatus
     {
         player.onDie = true;
         gameObject.layer = player.invincibleLayer;
-        currentHealth = 0;
-        player.playerAnimator.PlayTargetAnimation("Dead", true);
+        player.playerAnimator.PlayTargetAnimation(playerAnimatorData.deadAnimation, true);
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)CharacterAudio.CharacterSound.Die]);
-        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Die]);
     }
 
     public void RecoveryHealth()

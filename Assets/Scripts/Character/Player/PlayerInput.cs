@@ -161,7 +161,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput()
     {
-        if (gameSystemFlag || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || player.isItemUse)
+        if (gameSystemFlag || player.onDamage || player.onDie || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || player.isItemUse)
             return;
 
         if (lightAttackInput) // ¾à°ø°Ý

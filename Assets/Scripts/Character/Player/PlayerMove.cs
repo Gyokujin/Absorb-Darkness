@@ -8,7 +8,8 @@ using SystemData;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerManager player;
-    private PlayerPhysicsData playerData;
+    private PlayerPhysicsData playerPhysicsData;
+    private PlayerAnimatorData playerAnimatorData;
     private PhysicsData physicsData;
 
     [Header("Ground & Air Detection States")]
@@ -80,13 +81,13 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
 
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerData.runCondition && player.playerStatus.CurrentStamina > 0) // sprint
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerPhysicsData.runCondition && player.playerStatus.CurrentStamina > 0) // sprint
         {
             moveDirection *= player.playerStatus.sprintSpeed;
             player.isSprinting = true;
             PlaySplintSFX();
         }
-        else if (player.playerInput.moveAmount < playerData.runCondition) // walk
+        else if (player.playerInput.moveAmount < playerPhysicsData.runCondition) // walk
         {
             moveDirection *= player.playerStatus.walkSpeed;
             player.isSprinting = false;
@@ -187,12 +188,12 @@ public class PlayerMove : MonoBehaviour
             {
                 if (inAirTimer > 0.5f) // 낙하 시간이 0.5초 이상일때만 Land 애니메이션을 실행한다.
                 {
-                    player.playerAnimator.PlayTargetAnimation("Land", true);
+                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.landAnimation, true);
                     inAirTimer = 0;
                 }
                 else
                 {
-                    player.playerAnimator.PlayTargetAnimation("Empty", false);
+                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.emptyAnimation, false);
                     inAirTimer = 0;
                 }
 
@@ -210,7 +211,7 @@ public class PlayerMove : MonoBehaviour
             {
                 if (player.isInteracting)
                 {
-                    player.playerAnimator.PlayTargetAnimation("Falling", true);
+                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.fallingAnimation, true);
                 }
 
                 Vector3 velocity = rigidbody.velocity;
