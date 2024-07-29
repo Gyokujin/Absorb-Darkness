@@ -23,25 +23,16 @@ public class PlayerStatus : CharacterStatus
         set
         {
             if (value > 0)
-            {
                 currentStamina = value;
-            }
             else
-            {
                 currentStamina = 0;
-            }
         }
     }
 
     [Header("Battle")]
     private float curInvincibleTime;
-
-    [Header("Recovery")]
     [SerializeField]
-    private int recoveryAmount = 50;
-
-    [Header("Move")]
-    public float sprintSpeed = 7;
+    private int recoveryAmount = 50; // 이후에 스크립터블 오브젝트(에스트)에 이관하자
 
     [Header("UI")]
     [SerializeField]
@@ -65,42 +56,6 @@ public class PlayerStatus : CharacterStatus
         InitStamina();
     }
 
-    void Update() 
-    {
-        if (player.onDie)
-            return;
-
-        gameObject.layer = Invincible();
-    }
-
-    void FixedUpdate()
-    {
-        if (curInvincibleTime > 0)
-        {
-            curInvincibleTime -= Time.deltaTime;
-        }
-
-        if (player.isSprinting)
-        {
-            TakeStamina(playerStatusData.SprintStaminaAmount);
-        }
-
-        RecoveryStamina();
-    }
-
-    int Invincible() 
-    {
-        player.onDamage = player.playerAnimator.animator.GetBool(playerAnimatorData.OnDamageParameter);
-        int curLayer = player.defaultLayer;
-
-        if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
-        {
-            curLayer = player.invincibleLayer;
-        }
-
-        return curLayer;
-    }
-
     void InitHealth()
     {
         maxHealth = healthLevel * healthLevelAmount;
@@ -115,15 +70,49 @@ public class PlayerStatus : CharacterStatus
         staminaBar.SetMaxStamina(maxStamina);
     }
 
+    void Update() 
+    {
+        InvincibleCheck();
+        StaminaCheck();
+    }
+
+    void InvincibleCheck()
+    {
+        if (player.onDie)
+            return;
+
+        if (curInvincibleTime > 0)
+            curInvincibleTime -= Time.deltaTime;
+        
+        gameObject.layer = Invincible();
+    }
+
+    void StaminaCheck()
+    {
+        if (player.isSprinting)
+            TakeStamina(playerStatusData.SprintStaminaAmount);
+
+        RecoveryStamina();
+    }
+
+    int Invincible() 
+    {
+        player.onDamage = player.playerAnimator.animator.GetBool(playerAnimatorData.OnDamageParameter);
+        int curLayer = player.defaultLayer;
+
+        if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
+            curLayer = player.invincibleLayer;
+
+        return curLayer;
+    }
+
     public void TakeDamage(int damage, bool hitStun)
     {
         if (player.onDie)
             return;
 
         if (player.playerBehavior.curUsingItem != null)
-        {
             player.playerBehavior.EndItemUse();
-        }
 
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
@@ -141,13 +130,9 @@ public class PlayerStatus : CharacterStatus
         }
 
         if (currentHealth <= 0)
-        {
             DieProcess();
-        }
         else
-        {
             curInvincibleTime += playerPhysicsData.InvincibleTime;
-        }
     }
 
     void DieProcess()

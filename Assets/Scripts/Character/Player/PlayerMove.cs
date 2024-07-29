@@ -82,7 +82,7 @@ public class PlayerMove : MonoBehaviour
 
         if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerPhysicsData.RunCondition && player.playerStatus.CurrentStamina > 0) // sprint
         {
-            moveDirection *= player.playerStatus.sprintSpeed;
+            moveDirection *= playerPhysicsData.SprintSpeed;
             player.isSprinting = true;
             player.playerAudio.PlaySprintSFX();
         }
@@ -157,11 +157,10 @@ public class PlayerMove : MonoBehaviour
     public void HandleFalling(Vector3 moveDirection)
     {
         player.isGrounded = false;
-        RaycastHit hit;
         Vector3 origin = player.transform.position;
         origin.y += physicsData.GroundDetectionRayStart;
 
-        if (Physics.Raycast(origin, player.transform.forward, out hit, physicsData.GroundCheckDis))
+        if (Physics.Raycast(origin, player.transform.forward, out RaycastHit hit, physicsData.GroundCheckDis))
             moveDirection = Vector3.zero;
 
         if (player.isInAir)
