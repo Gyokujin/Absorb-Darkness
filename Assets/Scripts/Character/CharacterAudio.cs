@@ -19,7 +19,7 @@ public class CharacterAudio : MonoBehaviour
 
     [Header("Sound Clip")]
     public AudioClip[] characterClips;
-    private AudioSource[] characterAudios;
+    protected AudioSource[] characterAudios;
 
     void Awake()
     {
@@ -43,6 +43,14 @@ public class CharacterAudio : MonoBehaviour
 
     public void PlaySFX(AudioClip audioClip)
     {
+        int loopIndex = AudioAllocation();
+        characterAudios[loopIndex].clip = audioClip;
+        characterAudios[loopIndex].loop = false;
+        characterAudios[loopIndex].Play();
+    }
+
+    protected int AudioAllocation()
+    {
         for (int i = 0; i < characterAudios.Length; i++)
         {
             int loopIndex = (i + characterIndex) % characterAudios.Length;
@@ -51,9 +59,9 @@ public class CharacterAudio : MonoBehaviour
                 continue;
 
             characterIndex = loopIndex;
-            characterAudios[loopIndex].clip = audioClip;
-            characterAudios[loopIndex].Play();
             break;
         }
+
+        return characterIndex;
     }
 }
