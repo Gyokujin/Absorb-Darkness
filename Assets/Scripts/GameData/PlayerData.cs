@@ -65,7 +65,7 @@ namespace PlayerData
 
     public struct PlayerPhysicsData
     {
-        [Header("Move Physics")]
+        [Header("Move")]
         // Sprint Condition
         private float? runCondition;
         public float RunCondition
@@ -80,6 +80,23 @@ namespace PlayerData
         {
             readonly get => landRequirement ?? 0.5f;
             set => landRequirement = value;
+        }
+
+        // Sprint Speed
+        private float? sprintSpeed;
+        public float SprintSpeed
+        {
+            readonly get => sprintSpeed ?? 9;
+            set => sprintSpeed = value;
+        }
+
+        [Header("Battle")]
+        // InvincibleTime
+        private float? invincibleTime;
+        public float InvincibleTime
+        {
+            readonly get => invincibleTime ?? 0.3f;
+            set => invincibleTime = value;
         }
 
         [Header("State Layer")]
@@ -97,15 +114,6 @@ namespace PlayerData
         {
             readonly get => invincibleLayer ?? "Invincible";
             set => invincibleLayer = value;
-        }
-
-        [Header("Battle")]
-        // InvincibleTime
-        private float? invincibleTime;
-        public float InvincibleTime
-        {
-            readonly get => invincibleTime ?? 0.3f;
-            set => invincibleTime = value;
         }
     }
 
