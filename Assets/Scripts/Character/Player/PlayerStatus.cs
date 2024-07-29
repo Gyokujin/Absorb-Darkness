@@ -7,6 +7,7 @@ public class PlayerStatus : CharacterStatus
 {
     private PlayerManager player;
     private PlayerStatusData playerStatusData;
+    private PlayerPhysicsData playerPhysicsData;
     private PlayerAnimatorData playerAnimatorData;
 
     [Header("Stamina")]
@@ -32,16 +33,7 @@ public class PlayerStatus : CharacterStatus
         }
     }
 
-    // public int actionLimitStamina = 5; // 구르기, 백스텝, 공격 액션을 위해 필요한 최소한의 스테미나. 해당값 이상이면 액션 사용이 가능하다.
-    [SerializeField]
-    private float staminaRecoveryAmount = 0.1f;
-    public float rollingStaminaAmount = 15;
-    public float backStapStaminaAmount = 8;
-    [SerializeField]
-    private float sprintStaminaAmount = 0.1f;
-
-    [Header("Hit")]
-    public float invincibleTime;
+    [Header("Battle")]
     private float curInvincibleTime;
 
     [Header("Recovery")]
@@ -66,6 +58,7 @@ public class PlayerStatus : CharacterStatus
     {
         player = GetComponent<PlayerManager>();
         playerStatusData = new PlayerStatusData();
+        playerPhysicsData = new PlayerPhysicsData();
         playerAnimatorData = new PlayerAnimatorData();
 
         InitHealth();
@@ -89,7 +82,7 @@ public class PlayerStatus : CharacterStatus
 
         if (player.isSprinting)
         {
-            TakeStamina(sprintStaminaAmount);
+            TakeStamina(playerStatusData.SprintStaminaAmount);
         }
 
         RecoveryStamina();
@@ -153,7 +146,7 @@ public class PlayerStatus : CharacterStatus
         }
         else
         {
-            curInvincibleTime += invincibleTime;
+            curInvincibleTime += playerPhysicsData.InvincibleTime;
         }
     }
 
@@ -179,7 +172,7 @@ public class PlayerStatus : CharacterStatus
     {
         if (CurrentStamina < maxStamina && !player.isInteracting && !player.onDamage && !player.isDodge && !player.isSprinting)
         {
-            CurrentStamina += staminaRecoveryAmount;
+            CurrentStamina += playerStatusData.StaminaRecoveryAmount;
             staminaBar.SetCurrentStamina(CurrentStamina);
         }
     }

@@ -7,29 +7,59 @@ namespace PlayerData
         [Header("Stamina")]
         // StaminaLevel
         private int? staminaLevel;
-        private const int defaultStaminaLevel = 10;
         public int StaminaLevel
         {
-            readonly get => staminaLevel ?? defaultStaminaLevel;
+            readonly get => staminaLevel ?? 10;
             set => staminaLevel = value;
         }
 
         // StaminaLevel Amount
         private int? staminaLevelAmount;
-        private const int defaultStaminaLevelAmount = 10;
         public int StaminaLevelAmount
         {
-            readonly get => staminaLevelAmount ?? defaultStaminaLevelAmount;
+            readonly get => staminaLevelAmount ?? 10;
             set => staminaLevelAmount = value;
         }
 
-        // Action LimitStamina
-        private int? actionLimitStamina;
-        private const int defaultActionLimitStamina = 5;
-        public int ActionLimitStamina
+        // Stamina RecoveryAmount
+        private float? staminaRecoveryAmount;
+        public float StaminaRecoveryAmount
         {
-            readonly get => actionLimitStamina ?? defaultActionLimitStamina;
+            readonly get => staminaRecoveryAmount ?? 0.55f;
+            set => staminaRecoveryAmount = value;
+        }
+
+        [Header("Action Condition")]
+        // Action LimitStamina
+        private float? actionLimitStamina;
+        public float ActionLimitStamina
+        {
+            readonly get => actionLimitStamina ?? 5;
             set => actionLimitStamina = value;
+        }
+
+        // RollingStaminaAmount
+        private float? rollingStaminaAmount;
+        public float RollingStaminaAmount
+        {
+            readonly get => rollingStaminaAmount ?? 20;
+            set => rollingStaminaAmount = value;
+        }
+
+        // BackstapStaminaAmount
+        private float? backstapStaminaAmount;
+        public float BackstapStaminaAmount
+        {
+            readonly get => backstapStaminaAmount ?? 12.5f;
+            set => backstapStaminaAmount = value;
+        }
+
+        // SprintStaminaAmount
+        private float? sprintStaminaAmount;
+        public float SprintStaminaAmount
+        {
+            readonly get => sprintStaminaAmount ?? 0.5f;
+            set => sprintStaminaAmount = value;
         }
     }
 
@@ -38,19 +68,17 @@ namespace PlayerData
         [Header("Move Physics")]
         // Sprint Condition
         private float? runCondition;
-        private const float defaultRunCondition = 0.5f;
         public float RunCondition
         {
-            readonly get => runCondition ?? defaultRunCondition;
+            readonly get => runCondition ?? 0.5f;
             set => runCondition = value;
         }
 
         // Land Requirement
         private float? landRequirement;
-        private const float defaultLandRequirement = 0.5f;
         public float LandRequirement
         {
-            readonly get => landRequirement ?? defaultLandRequirement;
+            readonly get => landRequirement ?? 0.5f;
             set => landRequirement = value;
         }
 
@@ -69,6 +97,15 @@ namespace PlayerData
         {
             readonly get => invincibleLayer ?? "Invincible";
             set => invincibleLayer = value;
+        }
+
+        [Header("Battle")]
+        // InvincibleTime
+        private float? invincibleTime;
+        public float InvincibleTime
+        {
+            readonly get => invincibleTime ?? 0.3f;
+            set => invincibleTime = value;
         }
     }
 
@@ -134,55 +171,49 @@ namespace PlayerData
         [Header("Paramater")]
         // Idle ParameterValue
         private float? idleParameterValue;
-        private const float defaultIdleParameterValue = 0;
         public float IdleParameterValue
         {
-            readonly get => idleParameterValue ?? defaultIdleParameterValue;
+            readonly get => idleParameterValue ?? 0;
             set => idleParameterValue = value;
         }
 
         // Walk ParameterValue
         private float? walkParameterValue;
-        private const float defaultWalkParameterValue = 0.5f;
         public float WalkParameterValue
         {
-            readonly get => walkParameterValue ?? defaultWalkParameterValue;
+            readonly get => walkParameterValue ?? 0.5f;
             set => walkParameterValue = value;
         }
 
         // Run ParameterValue
         private float? runParameterValue;
-        private const float defaultRunParameterValue = 1;
         public float RunParameterValue
         {
-            readonly get => runParameterValue ?? defaultRunParameterValue;
+            readonly get => runParameterValue ?? 1;
             set => runParameterValue = value;
         }
 
         // Sprint ParameterValue
         private float? sprintParameterValue;
-        private const float defaultSprintParameterValue = 2;
         public float SprintParameterValue
         {
-            readonly get => sprintParameterValue ?? defaultSprintParameterValue;
+            readonly get => sprintParameterValue ?? 2;
             set => sprintParameterValue = value;
         }
 
         // Animation DampTime
         private float? animationDampTime;
-        private const float defaultAnimationDampTime = 0.1f;
         public float AnimationDampTime
         {
-            readonly get => animationDampTime ?? defaultAnimationDampTime;
+            readonly get => animationDampTime ?? 0.1f;
             set => animationDampTime = value;
         }
 
         // RunAnimation Condition
         private float? runAnimationCondition;
-        private const float defaultRunAnimationCondition = 0.25f;
         public float RunAnimationCondition
         {
-            readonly get => runAnimationCondition ?? defaultRunAnimationCondition;
+            readonly get => runAnimationCondition ?? 0.25f;
             set => runAnimationCondition = value;
         }
 

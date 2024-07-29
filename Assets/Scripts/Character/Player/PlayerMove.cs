@@ -141,14 +141,14 @@ public class PlayerMove : MonoBehaviour
             if (player.playerInput.moveAmount <= 0) // 이동키를 누르지 않으면 백스텝
             {
                 player.playerAnimator.PlayTargetAnimation(playerAnimatorData.BackstepAnimation, true);
-                player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
+                player.playerStatus.TakeStamina(playerStatusData.BackstapStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Backstep]);
             }
             else
             {
                 player.transform.LookAt(rigidbody.position + moveDirection);
                 player.playerAnimator.PlayTargetAnimation(playerAnimatorData.RollingAnimation, true);
-                player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
+                player.playerStatus.TakeStamina(playerStatusData.RollingStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Rolling]);
             }
         }
@@ -162,9 +162,7 @@ public class PlayerMove : MonoBehaviour
         origin.y += physicsData.GroundDetectionRayStart;
 
         if (Physics.Raycast(origin, player.transform.forward, out hit, physicsData.GroundCheckDis))
-        {
             moveDirection = Vector3.zero;
-        }
 
         if (player.isInAir)
         {
@@ -203,16 +201,12 @@ public class PlayerMove : MonoBehaviour
         else
         {
             if (player.isGrounded)
-            {
                 player.isGrounded = false;
-            }
 
             if (!player.isInAir)
             {
                 if (player.isInteracting)
-                {
                     player.playerAnimator.PlayTargetAnimation(playerAnimatorData.FallingAnimation, true);
-                }
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
@@ -222,24 +216,16 @@ public class PlayerMove : MonoBehaviour
         }
 
         if (player.isInteracting || player.playerInput.moveAmount > 0)
-        {
             player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / physicsData.FallingFactor);
-        }
         else
-        {
             player.transform.position = targetPosition;
-        }
 
         if (player.isGrounded)
         {
             if (player.isInteracting || player.playerInput.moveAmount > 0)
-            {
                 player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime);
-            }
             else
-            {
                 player.transform.position = targetPosition;
-            }
         }
     }
 }
