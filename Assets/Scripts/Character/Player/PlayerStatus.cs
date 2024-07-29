@@ -10,10 +10,7 @@ public class PlayerStatus : CharacterStatus
     private PlayerAnimatorData playerAnimatorData;
 
     [Header("Stamina")]
-    public int staminaLevel = 10;
-    [HideInInspector]
-    public int staminaLevelAmount = 10;
-    public float maxStamina;
+    private float maxStamina;
     private float currentStamina;
     [HideInInspector]
     public float CurrentStamina
@@ -34,7 +31,8 @@ public class PlayerStatus : CharacterStatus
             }
         }
     }
-    public int actionLimitStamina = 5; // 구르기, 백스텝, 공격 액션을 위해 필요한 최소한의 스테미나. 해당값 이상이면 액션 사용이 가능하다.
+
+    // public int actionLimitStamina = 5; // 구르기, 백스텝, 공격 액션을 위해 필요한 최소한의 스테미나. 해당값 이상이면 액션 사용이 가능하다.
     [SerializeField]
     private float staminaRecoveryAmount = 0.1f;
     public float rollingStaminaAmount = 15;
@@ -99,7 +97,7 @@ public class PlayerStatus : CharacterStatus
 
     int Invincible() 
     {
-        player.onDamage = player.playerAnimator.animator.GetBool(playerAnimatorData.onDamageParameter);
+        player.onDamage = player.playerAnimator.animator.GetBool(playerAnimatorData.OnDamageParameter);
         int curLayer = player.defaultLayer;
 
         if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
@@ -119,7 +117,7 @@ public class PlayerStatus : CharacterStatus
 
     void InitStamina()
     {
-        maxStamina = staminaLevel * staminaLevelAmount;
+        maxStamina = playerStatusData.StaminaLevel * playerStatusData.StaminaLevelAmount;
         CurrentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
     }
@@ -141,8 +139,8 @@ public class PlayerStatus : CharacterStatus
         {
             player.onDamage = true;
             gameObject.layer = player.invincibleLayer;
-            player.playerAnimator.animator.SetBool(playerAnimatorData.onDamageParameter, true);
-            player.playerAnimator.PlayTargetAnimation(playerAnimatorData.damageAnimation, true);
+            player.playerAnimator.animator.SetBool(playerAnimatorData.OnDamageParameter, true);
+            player.playerAnimator.PlayTargetAnimation(playerAnimatorData.DamageAnimation, true);
 
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
@@ -163,7 +161,7 @@ public class PlayerStatus : CharacterStatus
     {
         player.onDie = true;
         gameObject.layer = player.invincibleLayer;
-        player.playerAnimator.PlayTargetAnimation(playerAnimatorData.deadAnimation, true);
+        player.playerAnimator.PlayTargetAnimation(playerAnimatorData.DeadAnimation, true);
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)CharacterAudio.CharacterSound.Die]);
     }
 
@@ -175,7 +173,6 @@ public class PlayerStatus : CharacterStatus
         GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
         estusEffect.transform.position = effectTransform.position;
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Recovery]);
-        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Recovery]);
     }
 
     void RecoveryStamina()

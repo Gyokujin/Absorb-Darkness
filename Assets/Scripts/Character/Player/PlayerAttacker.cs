@@ -37,8 +37,8 @@ public class PlayerAttacker : MonoBehaviour
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
     {
         player.playerItemSlotManager.attackingWeapon = weapon;
-        player.playerAnimator.animator.SetBool(animatorData.attackParameter, true);
-        player.playerAnimator.animator.SetBool(animatorData.onUsingRightHand, true);
+        player.playerAnimator.animator.SetBool(animatorData.AttackParameter, true);
+        player.playerAnimator.animator.SetBool(animatorData.OnUsingRightHand, true);
         playerWeapon = player.playerItemSlotManager.attackingWeapon;
         bool oneHand = !player.playerInput.twoHandFlag;
 
@@ -66,13 +66,13 @@ public class PlayerAttacker : MonoBehaviour
         if (lastAttack != null)
         {
             player.playerAnimator.PlayTargetAnimation(lastAttack, true);
-            player.playerAnimator.animator.SetBool(animatorData.attackParameter, true);
+            player.playerAnimator.animator.SetBool(animatorData.AttackParameter, true);
         }
     }
 
     public void HandleWeaponCombo(WeaponItem weapon, bool onLightAttack)
     {
-        player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, false);
+        player.playerAnimator.animator.SetBool(animatorData.ComboAbleParameter, false);
         bool oneHand = !player.playerInput.twoHandFlag;
 
         switch (playerWeapon.weaponType)

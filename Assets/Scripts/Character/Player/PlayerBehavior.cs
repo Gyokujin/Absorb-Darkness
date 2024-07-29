@@ -33,9 +33,9 @@ public class PlayerBehavior : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(transform.position, interactData.interactCheckRadius, transform.forward, out hit, interactData.interactCheckDis, PlayerCamera.instance.targetLayer))
+        if (Physics.SphereCast(transform.position, interactData.InteractCheckRadius, transform.forward, out hit, interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
         {
-            if (hit.collider.tag == interactData.interactObjTag && hit.collider.GetComponent<Interactable>() != null)
+            if (hit.collider.tag == interactData.InteractObjTag && hit.collider.GetComponent<Interactable>() != null)
             {
                 itemInteractableObj = hit.collider.GetComponent<Interactable>();
                 UIManager.instance.OpenInteractUI(itemInteractableObj.interactableText);
@@ -101,7 +101,7 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
         curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
-        player.playerAnimator.animator.SetBool(animatorData.isItemUseParameter, true);
+        player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, true);
         playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
     }
 
@@ -116,6 +116,6 @@ public class PlayerBehavior : MonoBehaviour
             leftHandWeapon = null;
         }
 
-        player.playerAnimator.animator.SetBool(animatorData.isItemUseParameter, false);
+        player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, false);
     }
 }

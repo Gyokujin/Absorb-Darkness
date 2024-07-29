@@ -5,13 +5,31 @@ namespace PlayerData
     public struct PlayerStatusData
     {
         [Header("Stamina")]
-        // Stamina Level
-        private float? _staminaLevel;
-        private const float defaultStaminaLevel = 10;
-        public float staminaLevel
+        // StaminaLevel
+        private int? staminaLevel;
+        private const int defaultStaminaLevel = 10;
+        public int StaminaLevel
         {
-            get => _staminaLevel ?? defaultStaminaLevel;
-            set => _staminaLevel = value;
+            readonly get => staminaLevel ?? defaultStaminaLevel;
+            set => staminaLevel = value;
+        }
+
+        // StaminaLevel Amount
+        private int? staminaLevelAmount;
+        private const int defaultStaminaLevelAmount = 10;
+        public int StaminaLevelAmount
+        {
+            readonly get => staminaLevelAmount ?? defaultStaminaLevelAmount;
+            set => staminaLevelAmount = value;
+        }
+
+        // Action LimitStamina
+        private int? actionLimitStamina;
+        private const int defaultActionLimitStamina = 5;
+        public int ActionLimitStamina
+        {
+            readonly get => actionLimitStamina ?? defaultActionLimitStamina;
+            set => actionLimitStamina = value;
         }
     }
 
@@ -19,29 +37,38 @@ namespace PlayerData
     {
         [Header("Move Physics")]
         // Sprint Condition
-        private float? _runCondition;
+        private float? runCondition;
         private const float defaultRunCondition = 0.5f;
-        public float runCondition
+        public float RunCondition
         {
-            get => _runCondition ?? defaultRunCondition;
-            set => _runCondition = value;
+            readonly get => runCondition ?? defaultRunCondition;
+            set => runCondition = value;
+        }
+
+        // Land Requirement
+        private float? landRequirement;
+        private const float defaultLandRequirement = 0.5f;
+        public float LandRequirement
+        {
+            readonly get => landRequirement ?? defaultLandRequirement;
+            set => landRequirement = value;
         }
 
         [Header("State Layer")]
         // Player DefaultLayer
-        private string _playerLayer;
-        public string playerLayer
+        private string playerLayer;
+        public string PlayerLayer
         {
-            get => _playerLayer == null ? "Player" : _playerLayer;
-            set => _playerLayer = value;
+            readonly get => playerLayer ?? "Player";
+            set => playerLayer = value;
         }
 
         // Player DefaultLayer
-        private string _invincibleLayer;
-        public string invincibleLayer
+        private string invincibleLayer;
+        public string InvincibleLayer
         {
-            get => _invincibleLayer == null ? "Invincible" : _invincibleLayer;
-            set => _invincibleLayer = value;
+            readonly get => invincibleLayer ?? "Invincible";
+            set => invincibleLayer = value;
         }
     }
 
@@ -49,187 +76,203 @@ namespace PlayerData
     {
         [Header("Animation")]
         // Empty Animation
-        private string _emptyAnimation;
-        public string emptyAnimation
+        private string emptyAnimation;
+        public string EmptyAnimation
         {
-            get => _emptyAnimation == null ? "Empty" : _emptyAnimation;
-            set => _emptyAnimation = value;
+            readonly get => emptyAnimation ?? "Empty";
+            set => emptyAnimation = value;
         }
 
         // Land Animation
-        private string _landAnimation;
-        public string landAnimation
+        private string landAnimation;
+        public string LandAnimation
         {
-            get => _landAnimation == null ? "Land" : _landAnimation;
-            set => _landAnimation = value;
+            readonly get => landAnimation ?? "Land";
+            set => landAnimation = value;
         }
 
         // Falling Animation
-        private string _fallingAnimation;
-        public string fallingAnimation
+        private string fallingAnimation;
+        public string FallingAnimation
         {
-            get => _fallingAnimation == null ? "Falling" : _fallingAnimation;
-            set => _fallingAnimation = value;
+            readonly get => fallingAnimation ?? "Falling";
+            set => fallingAnimation = value;
+        }
+
+        // Rolling Animation
+        private string rollingAnimation;
+        public string RollingAnimation
+        {
+            readonly get => rollingAnimation ?? "Rolling";
+            set => rollingAnimation = value;
+        }
+
+        // Backstep Animation
+        private string backstepAnimation;
+        public string BackstepAnimation
+        {
+            readonly get => backstepAnimation ?? "Backstep";
+            set => backstepAnimation = value;
         }
 
         // Damage Animation
-        private string _damageAnimation;
-        public string damageAnimation
+        private string damageAnimation;
+        public string DamageAnimation
         {
-            get => _damageAnimation == null ? "Damage" : _damageAnimation;
-            set => _damageAnimation = value;
+            readonly get => damageAnimation ?? "Damage";
+            set => damageAnimation = value;
         }
 
         // Dead Animation
-        private string _deadAnimation;
-        public string deadAnimation
+        private string deadAnimation;
+        public string DeadAnimation
         {
-            get => _deadAnimation == null ? "Dead" : _deadAnimation;
-            set => _deadAnimation = value;
+            readonly get => deadAnimation ?? "Dead";
+            set => deadAnimation = value;
         }
 
         [Header("Paramater")]
         // Idle ParameterValue
-        private float? _idleParameterValue;
+        private float? idleParameterValue;
         private const float defaultIdleParameterValue = 0;
-        public float idleParameterValue
+        public float IdleParameterValue
         {
-            get => _idleParameterValue ?? defaultIdleParameterValue;
-            set => _idleParameterValue = value;
+            readonly get => idleParameterValue ?? defaultIdleParameterValue;
+            set => idleParameterValue = value;
         }
 
         // Walk ParameterValue
-        private float? _walkParameterValue;
+        private float? walkParameterValue;
         private const float defaultWalkParameterValue = 0.5f;
-        public float walkParameterValue
+        public float WalkParameterValue
         {
-            get => _walkParameterValue ?? defaultWalkParameterValue;
-            set => _walkParameterValue = value;
+            readonly get => walkParameterValue ?? defaultWalkParameterValue;
+            set => walkParameterValue = value;
         }
 
         // Run ParameterValue
-        private float? _runParameterValue;
+        private float? runParameterValue;
         private const float defaultRunParameterValue = 1;
-        public float runParameterValue
+        public float RunParameterValue
         {
-            get => _runParameterValue ?? defaultRunParameterValue;
-            set => _runParameterValue = value;
+            readonly get => runParameterValue ?? defaultRunParameterValue;
+            set => runParameterValue = value;
         }
 
         // Sprint ParameterValue
-        private float? _sprintParameterValue;
+        private float? sprintParameterValue;
         private const float defaultSprintParameterValue = 2;
-        public float sprintParameterValue
+        public float SprintParameterValue
         {
-            get => _sprintParameterValue ?? defaultSprintParameterValue;
-            set => _sprintParameterValue = value;
+            readonly get => sprintParameterValue ?? defaultSprintParameterValue;
+            set => sprintParameterValue = value;
         }
 
         // Animation DampTime
-        private float? _animationDampTime;
+        private float? animationDampTime;
         private const float defaultAnimationDampTime = 0.1f;
-        public float animationDampTime
+        public float AnimationDampTime
         {
-            get => _animationDampTime ?? defaultAnimationDampTime;
-            set => _animationDampTime = value;
+            readonly get => animationDampTime ?? defaultAnimationDampTime;
+            set => animationDampTime = value;
         }
 
         // RunAnimation Condition
-        private float? _runAnimationCondition;
+        private float? runAnimationCondition;
         private const float defaultRunAnimationCondition = 0.25f;
-        public float runAnimationCondition
+        public float RunAnimationCondition
         {
-            get => _runAnimationCondition ?? defaultRunAnimationCondition;
-            set => _runAnimationCondition = value;
+            readonly get => runAnimationCondition ?? defaultRunAnimationCondition;
+            set => runAnimationCondition = value;
         }
 
         [Header("Parameter Name")]
         // Horizontal Parameter
-        private string _horizontalParameter;
-        public string horizontalParameter
+        private string horizontalParameter;
+        public string HorizontalParameter
         {
-            get => _horizontalParameter == null ? "horizontal" : _horizontalParameter;
-            set => _horizontalParameter = value;
+            readonly get => horizontalParameter ?? "horizontal";
+            set => horizontalParameter = value;
         }
 
         // Vertical Parameter
-        private string _verticalParameter;
-        public string verticalParameter
+        private string verticalParameter;
+        public string VerticalParameter
         {
-            get => _verticalParameter == null ? "vertical" : _verticalParameter;
-            set => _verticalParameter = value;
+            readonly get => verticalParameter ?? "vertical";
+            set => verticalParameter = value;
         }
 
         // InAir Parameter
-        private string _inAirParameter;
-        public string inAirParameter
+        private string inAirParameter;
+        public string InAirParameter
         {
-            get => _inAirParameter == null ? "isInAir" : _inAirParameter;
-            set => _inAirParameter = value;
+            readonly get => inAirParameter ?? "isInAir";
+            set => inAirParameter = value;
         }
 
         // Interact Parameter
-        private string _interactParameter;
-        public string interactParameter
+        private string interactParameter;
+        public string InteractParameter
         {
-            get => _interactParameter == null ? "isInteracting" : _interactParameter;
-            set => _interactParameter = value;
+            readonly get => interactParameter ?? "isInteracting";
+            set => interactParameter = value;
         }
 
         // OnAttack Parameter
-        private string _attackParameter;
-        public string attackParameter
+        private string attackParameter;
+        public string AttackParameter
         {
-            get => _attackParameter == null ? "isAttack" : _attackParameter;
-            set => _attackParameter = value;
+            readonly get => attackParameter ?? "isAttack";
+            set => attackParameter = value;
         }
 
         // ComboAble Parameter
-        private string _comboAbleParameter;
-        public string comboAbleParameter
+        private string comboAbleParameter;
+        public string ComboAbleParameter
         {
-            get => _comboAbleParameter == null ? "isComboAble" : _comboAbleParameter;
-            set => _comboAbleParameter = value;
+            readonly get => comboAbleParameter ?? "isComboAble";
+            set => comboAbleParameter = value;
         }
 
         // IsItemUse Parameter
-        private string _isItemUseParameter;
-        public string isItemUseParameter
+        private string isItemUseParameter;
+        public string IsItemUseParameter
         {
-            get => _isItemUseParameter == null ? "isItemUse" : _isItemUseParameter;
-            set => _isItemUseParameter = value;
+            readonly get => isItemUseParameter ?? "isItemUse";
+            set => isItemUseParameter = value;
         }
 
         // OnStance Parameter
-        private string _onStanceParameter;
-        public string onStanceParameter
+        private string onStanceParameter;
+        public string OnStanceParameter
         {
-            get => _onStanceParameter == null ? "onStance" : _onStanceParameter;
-            set => _onStanceParameter = value;
+            readonly get => onStanceParameter ?? "onStance";
+            set => onStanceParameter = value;
         }
 
         // OnDamage Parameter
-        private string _onDamageParameter;
-        public string onDamageParameter
+        private string onDamageParameter;
+        public string OnDamageParameter
         {
-            get => _onDamageParameter == null ? "onDamage" : _onDamageParameter;
-            set => _onDamageParameter = value;
+            readonly get => onDamageParameter ?? "onDamage";
+            set => onDamageParameter = value;
         }
 
         // OnUsingLeftHand Parameter
-        private string _onUsingLeftHand;
-        public string onUsingLeftHand
+        private string onUsingLeftHand;
+        public string OnUsingLeftHand
         {
-            get => _onUsingLeftHand == null ? "usingLeftHand" : _onUsingLeftHand;
-            set => _onUsingLeftHand = value;
+            readonly get => onUsingLeftHand ?? "usingLeftHand";
+            set => onUsingLeftHand = value;
         }
 
         // OnUsingRightHand Parameter
-        private string _onUsingRightHand;
-        public string onUsingRightHand
+        private string onUsingRightHand;
+        public string OnUsingRightHand
         {
-            get => _onUsingRightHand == null ? "usingRightHand" : _onUsingRightHand;
-            set => _onUsingRightHand = value;
+            readonly get => onUsingRightHand ?? "usingRightHand";
+            set => onUsingRightHand = value;
         }
     }
 }

@@ -23,62 +23,62 @@ public class PlayerAnimator : AnimatorManager
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
     {
         // Vertical 파라미터
-        parameterVer = animatorData.idleParameterValue;
+        parameterVer = animatorData.IdleParameterValue;
 
-        if (moveVer > 0 && moveVer < animatorData.runAnimationCondition)
+        if (moveVer > 0 && moveVer < animatorData.RunAnimationCondition)
         {
-            parameterVer = animatorData.walkParameterValue;
+            parameterVer = animatorData.WalkParameterValue;
         }
-        else if (moveVer > animatorData.runAnimationCondition)
+        else if (moveVer > animatorData.RunAnimationCondition)
         {
-            parameterVer = animatorData.runParameterValue;
+            parameterVer = animatorData.RunParameterValue;
         }
-        else if (moveVer < 0 && moveVer > -animatorData.runAnimationCondition)
+        else if (moveVer < 0 && moveVer > -animatorData.RunAnimationCondition)
         {
-            parameterVer = animatorData.walkParameterValue ;
+            parameterVer = animatorData.WalkParameterValue ;
         }
-        else if (moveVer < -animatorData.runAnimationCondition)
+        else if (moveVer < -animatorData.RunAnimationCondition)
         {
-            parameterVer = -animatorData.runParameterValue;
+            parameterVer = -animatorData.RunParameterValue;
         }
         else
         {
-            parameterVer = animatorData.idleParameterValue;
+            parameterVer = animatorData.IdleParameterValue;
         }
 
         // Horizontal 파라미터
-        parameterHor = animatorData.idleParameterValue;
+        parameterHor = animatorData.IdleParameterValue;
 
-        if (moveHor > 0 && moveHor < animatorData.runAnimationCondition)
+        if (moveHor > 0 && moveHor < animatorData.RunAnimationCondition)
         {
-            parameterHor = animatorData.walkParameterValue;
+            parameterHor = animatorData.WalkParameterValue;
         }
-        else if (moveHor > animatorData.runAnimationCondition)
+        else if (moveHor > animatorData.RunAnimationCondition)
         {
-            parameterHor = animatorData.runParameterValue;
+            parameterHor = animatorData.RunParameterValue;
         }
-        else if (moveHor < 0 && moveHor > -animatorData.runAnimationCondition)
+        else if (moveHor < 0 && moveHor > -animatorData.RunAnimationCondition)
         {
-            parameterHor = -animatorData.walkParameterValue;
+            parameterHor = -animatorData.WalkParameterValue;
         }
-        else if (moveHor < -animatorData.runAnimationCondition)
+        else if (moveHor < -animatorData.RunAnimationCondition)
         {
-            parameterHor = -animatorData.runParameterValue;
+            parameterHor = -animatorData.RunParameterValue;
         }
         else
         {
-            parameterHor = animatorData.idleParameterValue;
+            parameterHor = animatorData.IdleParameterValue;
         }
 
         if (isSprinting)
         {
-            parameterVer = animatorData.sprintParameterValue;
-            parameterHor = animatorData.sprintParameterValue;
+            parameterVer = animatorData.SprintParameterValue;
+            parameterHor = animatorData.SprintParameterValue;
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat(animatorData.verticalParameter, parameterVer, animatorData.animationDampTime, Time.deltaTime);
-        animator.SetFloat(animatorData.horizontalParameter, parameterHor, animatorData.animationDampTime, Time.deltaTime);
+        animator.SetFloat(animatorData.VerticalParameter, parameterVer, animatorData.AnimationDampTime, Time.deltaTime);
+        animator.SetFloat(animatorData.HorizontalParameter, parameterHor, animatorData.AnimationDampTime, Time.deltaTime);
     }
 
     void OnAnimatorMove()
@@ -108,17 +108,17 @@ public class PlayerAnimator : AnimatorManager
 
     public void EnableCombo()
     {
-        player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, true);
+        player.playerAnimator.animator.SetBool(animatorData.ComboAbleParameter, true);
     }
 
     public void DisableCombo()
     {
-        player.playerAnimator.animator.SetBool(animatorData.comboAbleParameter, false);
+        player.playerAnimator.animator.SetBool(animatorData.ComboAbleParameter, false);
     }
 
     public void SwitchStance(bool onStance)
     {
-        animator.SetBool(animatorData.onStanceParameter, onStance);
+        animator.SetBool(animatorData.OnStanceParameter, onStance);
     }
 
     public void Drink()

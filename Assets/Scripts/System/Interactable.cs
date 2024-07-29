@@ -25,15 +25,15 @@ public class Interactable : MonoBehaviour
         switch (interactType)
         {
             case InteractType.Item:
-                interactableText = interactData.itemInteractText;
+                interactableText = interactData.ItemInteractText;
                 break;
 
             case InteractType.Message:
-                interactableText = interactData.messageInteractText;
+                interactableText = interactData.MessageInteractText;
                 break;
 
             case InteractType.Gate:
-                interactableText = interactData.gateInteractText;
+                interactableText = interactData.GateInteractText;
                 break;
         }
     }

@@ -8,6 +8,7 @@ using SystemData;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerManager player;
+    private PlayerStatusData playerStatusData;
     private PlayerPhysicsData playerPhysicsData;
     private PlayerAnimatorData playerAnimatorData;
     private PhysicsData physicsData;
@@ -28,10 +29,6 @@ public class PlayerMove : MonoBehaviour
     private Collider playerCollider;
     [SerializeField]
     private Collider playerBlockerCollider;
-    [SerializeField]
-    private AudioSource moveAudio;
-    [SerializeField]
-    private AudioSource splintAudio;
 
     void Start()
     {
@@ -41,8 +38,10 @@ public class PlayerMove : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
+        playerStatusData = new PlayerStatusData();
+        playerPhysicsData = new PlayerPhysicsData();
         physicsData = new PhysicsData();
-        ignoreGroundCheck = LayerMask.GetMask(physicsData.groundLayer);
+        ignoreGroundCheck = LayerMask.GetMask(physicsData.GroundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
@@ -81,22 +80,24 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
 
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerPhysicsData.runCondition && player.playerStatus.CurrentStamina > 0) // sprint
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerPhysicsData.RunCondition && player.playerStatus.CurrentStamina > 0) // sprint
         {
             moveDirection *= player.playerStatus.sprintSpeed;
             player.isSprinting = true;
-            PlaySplintSFX();
+            player.playerAudio.PlaySprintSFX();
         }
-        else if (player.playerInput.moveAmount < playerPhysicsData.runCondition) // walk
+        else if (player.playerInput.moveAmount < playerPhysicsData.RunCondition) // Idle, walk
         {
             moveDirection *= player.playerStatus.walkSpeed;
             player.isSprinting = false;
+            player.playerAudio.StopFootstepSFX();
+            player.playerAudio.StopSprintSFX();
         }
-        else // run
+        else if (player.playerInput.moveAmount > 0) // run
         {
             moveDirection *= speed;
             player.isSprinting = false;
-            PlayMoveSFX();
+            player.playerAudio.PlayFootstepSFX();
         }
 
         rigidbody.velocity = Vector3.ProjectOnPlane(moveDirection, normalVec);
@@ -104,8 +105,7 @@ public class PlayerMove : MonoBehaviour
 
     void HandleRotation(float delta)
     {
-        Vector3 targetdir = Vector3.zero;
-        float moveoverride = player.playerInput.moveAmount;
+        Vector3 targetdir;
         targetdir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
         targetdir += PlayerCamera.instance.cameraTransform.right * player.playerInput.horizontal;
         targetdir.Normalize();
@@ -127,12 +127,12 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 lookDir = (targetPos - player.lockOnTransform.position).normalized;
         lookDir.y = transform.position.y;
-        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * physicsData.lookAtSmoothing);
+        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * physicsData.LookAtSmoothing);
     }
 
-    public void HandleRolling(float delta)
+    public void HandleRolling()
     {
-        if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatus.actionLimitStamina)
+        if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= playerStatusData.ActionLimitStamina)
         {
             player.isDodge = true;
             player.playerInput.rollFlag = true;
@@ -140,44 +140,44 @@ public class PlayerMove : MonoBehaviour
 
             if (player.playerInput.moveAmount <= 0) // 이동키를 누르지 않으면 백스텝
             {
-                player.playerAnimator.PlayTargetAnimation("Backstep", true);
+                player.playerAnimator.PlayTargetAnimation(playerAnimatorData.BackstepAnimation, true);
                 player.playerStatus.TakeStamina(player.playerStatus.backStapStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Backstep]);
             }
             else
             {
                 player.transform.LookAt(rigidbody.position + moveDirection);
-                player.playerAnimator.PlayTargetAnimation("Rolling", true);
+                player.playerAnimator.PlayTargetAnimation(playerAnimatorData.RollingAnimation, true);
                 player.playerStatus.TakeStamina(player.playerStatus.rollingStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Rolling]);
             }
         }
     }
 
-    public void HandleFalling(float delta, Vector3 moveDirection)
+    public void HandleFalling(Vector3 moveDirection)
     {
         player.isGrounded = false;
         RaycastHit hit;
         Vector3 origin = player.transform.position;
-        origin.y += physicsData.groundDetectionRayStart;
+        origin.y += physicsData.GroundDetectionRayStart;
 
-        if (Physics.Raycast(origin, player.transform.forward, out hit, physicsData.groundCheckDis))
+        if (Physics.Raycast(origin, player.transform.forward, out hit, physicsData.GroundCheckDis))
         {
             moveDirection = Vector3.zero;
         }
 
         if (player.isInAir)
         {
-            rigidbody.AddForce(Vector3.down * physicsData.fallingDownForce); // 아래 낙하
-            rigidbody.AddForce(moveDirection * physicsData.fallingDownForce / physicsData.fallingFrontForce); // 끼임 방지를 위해 앞으로 이동
+            rigidbody.AddForce(Vector3.down * physicsData.FallingDownForce); // 아래 낙하
+            rigidbody.AddForce(moveDirection * physicsData.FallingDownForce / physicsData.FallingFrontForce); // 끼임 방지를 위해 앞으로 이동
         }
 
         Vector3 dir = moveDirection;
         dir.Normalize();
-        origin = origin + dir * physicsData.groundDirRayDistance;
+        origin = origin + dir * physicsData.GroundDirRayDistance;
         targetPosition = player.transform.position;
 
-        if (Physics.Raycast(origin, Vector3.down, out hit, physicsData.distanceBeginFallMin, ignoreGroundCheck))
+        if (Physics.Raycast(origin, Vector3.down, out hit, physicsData.DistanceBeginFallMin, ignoreGroundCheck))
         {
             normalVec = hit.normal;
             Vector3 transform = hit.point;
@@ -186,14 +186,14 @@ public class PlayerMove : MonoBehaviour
 
             if (player.isInAir)
             {
-                if (inAirTimer > 0.5f) // 낙하 시간이 0.5초 이상일때만 Land 애니메이션을 실행한다.
+                if (inAirTimer > playerPhysicsData.LandRequirement) // 낙하 시간이 요구치 이상일때만 Land 애니메이션을 실행한다.
                 {
-                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.landAnimation, true);
+                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.LandAnimation, true);
                     inAirTimer = 0;
                 }
                 else
                 {
-                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.emptyAnimation, false);
+                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.EmptyAnimation, false);
                     inAirTimer = 0;
                 }
 
@@ -211,19 +211,19 @@ public class PlayerMove : MonoBehaviour
             {
                 if (player.isInteracting)
                 {
-                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.fallingAnimation, true);
+                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.FallingAnimation, true);
                 }
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
-                rigidbody.velocity = velocity * (player.playerStatus.runSpeed / physicsData.fallingSpeedRatio);
+                rigidbody.velocity = velocity * (player.playerStatus.runSpeed / physicsData.FallingSpeedRatio);
                 player.isInAir = true;
             }
         }
 
         if (player.isInteracting || player.playerInput.moveAmount > 0)
         {
-            player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / physicsData.fallingFactor);
+            player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / physicsData.FallingFactor);
         }
         else
         {
@@ -240,22 +240,6 @@ public class PlayerMove : MonoBehaviour
             {
                 player.transform.position = targetPosition;
             }
-        }
-    }
-
-    void PlayMoveSFX()
-    {
-        if (!moveAudio.isPlaying)
-        {
-            moveAudio.Play();
-        }
-    }
-
-    void PlaySplintSFX()
-    {
-        if (!splintAudio.isPlaying)
-        {
-            splintAudio.Play();
         }
     }
 }

@@ -8,7 +8,8 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerManager player;
     private PlayerControls inputActions;
-    private PlayerAnimatorData animatorData;
+    private PlayerStatusData playerStatusData;
+    private PlayerAnimatorData playerAnimatorData;
 
     [Header("Move & Action")]
     public float horizontal;
@@ -61,7 +62,8 @@ public class PlayerInput : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        animatorData = new PlayerAnimatorData();
+        playerStatusData = new PlayerStatusData();
+        playerAnimatorData = new PlayerAnimatorData();
     }
 
     void OnEnable()
@@ -123,17 +125,17 @@ public class PlayerInput : MonoBehaviour
         {
             rollInputTimer += Time.deltaTime;
 
-            if (rollInputTimer > animatorData.runAnimationCondition)
+            if (rollInputTimer > playerAnimatorData.RunAnimationCondition)
             {
                 sprintFlag = true;
             }
         }
         else
         {
-            if (rollInputTimer > 0 && rollInputTimer < animatorData.runAnimationCondition)
+            if (rollInputTimer > 0 && rollInputTimer < playerAnimatorData.RunAnimationCondition)
             {
                 rollFlag = true;
-                player.playerMove.HandleRolling(Time.deltaTime);
+                player.playerMove.HandleRolling();
             }
 
             sprintFlag = false;
@@ -161,7 +163,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput()
     {
-        if (gameSystemFlag || player.onDamage || player.onDie || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatus.actionLimitStamina || player.isItemUse)
+        if (gameSystemFlag || player.onDamage || player.onDie || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < playerStatusData.ActionLimitStamina || player.isItemUse)
             return;
 
         if (lightAttackInput) // ¾à°ø°Ý

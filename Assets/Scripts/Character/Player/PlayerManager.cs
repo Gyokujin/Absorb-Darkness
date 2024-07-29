@@ -65,19 +65,19 @@ public class PlayerManager : CharacterManager
 
         layerData = new PlayerPhysicsData();
         animatorData = new PlayerAnimatorData();
-        defaultLayer = LayerMask.NameToLayer(layerData.playerLayer);
-        invincibleLayer = LayerMask.NameToLayer(layerData.invincibleLayer);
+        defaultLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
+        invincibleLayer = LayerMask.NameToLayer(layerData.InvincibleLayer);
     }
 
     void Update()
     {
-        isInteracting = playerAnimator.animator.GetBool(animatorData.interactParameter);
-        isAttack = playerAnimator.animator.GetBool(animatorData.attackParameter);
-        isComboAble = playerAnimator.animator.GetBool(animatorData.comboAbleParameter);
-        isUsingLeftHand = playerAnimator.animator.GetBool(animatorData.onUsingLeftHand);
-        isUsingRightHand = playerAnimator.animator.GetBool(animatorData.onUsingRightHand);
-        isItemUse = playerAnimator.animator.GetBool(animatorData.isItemUseParameter);
-        playerAnimator.animator.SetBool(animatorData.inAirParameter, isInAir);
+        isInteracting = playerAnimator.animator.GetBool(animatorData.InteractParameter);
+        isAttack = playerAnimator.animator.GetBool(animatorData.AttackParameter);
+        isComboAble = playerAnimator.animator.GetBool(animatorData.ComboAbleParameter);
+        isUsingLeftHand = playerAnimator.animator.GetBool(animatorData.OnUsingLeftHand);
+        isUsingRightHand = playerAnimator.animator.GetBool(animatorData.OnUsingRightHand);
+        isItemUse = playerAnimator.animator.GetBool(animatorData.IsItemUseParameter);
+        playerAnimator.animator.SetBool(animatorData.InAirParameter, isInAir);
 
         playerInput.TickInput();
         playerBehavior.CheckInteractableObject(this);
@@ -108,7 +108,7 @@ public class PlayerManager : CharacterManager
 
     void FixedUpdate()
     {
-        playerMove.HandleFalling(Time.fixedDeltaTime, playerMove.moveDirection);
+        playerMove.HandleFalling(playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
     }
 }

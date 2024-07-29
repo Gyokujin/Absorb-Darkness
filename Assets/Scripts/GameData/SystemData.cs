@@ -6,140 +6,140 @@ namespace SystemData
     {
         [Header("Angle")]
         // MinPivot
-        private float? _minPivot;
+        private float? minPivot;
         private const float defaultMinPivot = -35;
-        public float minPivot
+        public float MinPivot
         {
-            get => _minPivot ?? defaultMinPivot;
-            set => _minPivot = value;
+            readonly get => minPivot ?? defaultMinPivot;
+            set => minPivot = value;
         }
 
         // MaxPivot
-        private float? _maxPivot;
+        private float? maxPivot;
         private const float defaultMaxPivot = 35;
-        public float maxPivot
+        public float MaxPivot
         {
-            get => _maxPivot ?? defaultMaxPivot;
-            set => _maxPivot = value;
+            readonly get => maxPivot ?? defaultMaxPivot;
+            set => maxPivot = value;
         }
 
         [Header("Camera")]
         // LookSpeed
-        private float? _lookSpeed;
+        private float? lookSpeed;
         private const float defaultLookSpeed = 0.025f;
-        public float lookSpeed
+        public float LookSpeed
         {
-            get => _lookSpeed ?? defaultLookSpeed;
-            set => _lookSpeed = value;
+            readonly get => lookSpeed ?? defaultLookSpeed;
+            set => lookSpeed = value;
         }
 
         // FollowSpeed
-        private float? _followSpeed;
+        private float? followSpeed;
         private const float defaultFollowSpeed = 0.5f;
-        public float followSpeed
+        public float FollowSpeed
         {
-            get => _followSpeed ?? defaultFollowSpeed;
-            set => _followSpeed = value;
+            readonly get => followSpeed ?? defaultFollowSpeed;
+            set => followSpeed = value;
         }
 
         // PivotSpeed
-        private float? _pivotSpeed;
+        private float? pivotSpeed;
         private const float defaultPivotSpeed = 0.01f;
-        public float pivotSpeed
+        public float PivotSpeed
         {
-            get => _pivotSpeed ?? defaultPivotSpeed;
-            set => _pivotSpeed = value;
+            readonly get => pivotSpeed ?? defaultPivotSpeed;
+            set => pivotSpeed = value;
         }
 
         // PlayerFollowRate
-        private float? _playerFollowRate;
+        private float? playerFollowRate;
         private const float defaultPlayerFollowRate = 0.2f;
-        public float playerFollowRate
+        public float PlayerFollowRate
         {
-            get => _playerFollowRate ?? defaultPlayerFollowRate;
-            set => _playerFollowRate = value;
+            readonly get => playerFollowRate ?? defaultPlayerFollowRate;
+            set => playerFollowRate = value;
         }
 
         // Camera CollisionOffset
-        private float? _cameraCollisionOffset;
+        private float? cameraCollisionOffset;
         private const float defaultCameraCollisionOffset = 0.2f;
-        public float cameraCollisionOffset
+        public float CameraCollisionOffset
         {
-            get => _cameraCollisionOffset ?? defaultCameraCollisionOffset;
-            set => _cameraCollisionOffset = value;
+            readonly get => cameraCollisionOffset ?? defaultCameraCollisionOffset;
+            set => cameraCollisionOffset = value;
         }
 
         // Min CollisionOffset
-        private float? _minCollisionOffset;
+        private float? minCollisionOffset;
         private const float defaultMinCollisionOffset = 0.2f;
-        public float minCollisionOffset
+        public float MinCollisionOffset
         {
-            get => _minCollisionOffset ?? defaultMinCollisionOffset;
-            set => _minCollisionOffset = value;
+            readonly get => minCollisionOffset ?? defaultMinCollisionOffset;
+            set => minCollisionOffset = value;
         }
 
         // UnlockedPivotPosition
-        private float? _unlockedPivotPositionY;
+        private float? unlockedPivotPositionY;
         private const float defaultUnlockedPivotPositionY = 0.575f;
-        public float unlockedPivotPositionY
+        public float UnlockedPivotPositionY
         {
-            get => _unlockedPivotPositionY ?? defaultUnlockedPivotPositionY;
-            set => _unlockedPivotPositionY = value;
+            readonly get => unlockedPivotPositionY ?? defaultUnlockedPivotPositionY;
+            set => unlockedPivotPositionY = value;
         }
 
         // LockedPivotPosition
-        private float? _lockedPivotPositionY;
+        private readonly float? lockedPivotPositionY;
         private const float defaultLockedPivotPositionY = 1.2f;
-        public float lockedPivotPositionY
+        public float LockedPivotPositionY
         {
-            get => _lockedPivotPositionY ?? defaultLockedPivotPositionY;
-            set => _lockOnRotateMax = value;
+            readonly get => lockedPivotPositionY ?? defaultLockedPivotPositionY;
+            set => lockOnRotateMax = value;
         }
 
         [Header("LockOn")]
         // LockOnRadius
-        private float? _lockOnRadius;
+        private float? lockOnRadius;
         private const float defaultLockOnRadius = 26;
-        public float lockOnRadius
+        public float LockOnRadius
         {
-            get => _lockOnRadius ?? defaultLockOnRadius;
-            set => _lockOnRadius = value;
+            readonly get => lockOnRadius ?? defaultLockOnRadius;
+            set => lockOnRadius = value;
         }
 
         // MaxLockOnDistance
-        private float? _maxLockOnDistance;
+        private float? maxLockOnDistance;
         private const float defaultMaxLockOnDistance = 36;
-        public float maxLockOnDistance
+        public float MaxLockOnDistance
         {
-            get => _maxLockOnDistance ?? defaultMaxLockOnDistance;
-            set => _maxLockOnDistance = value;
+            readonly get => maxLockOnDistance ?? defaultMaxLockOnDistance;
+            set => maxLockOnDistance = value;
         }
 
         // LockOnAngleLimit
-        private float? _lockOnAngleLimit;
+        private float? lockOnAngleLimit;
         private const float defaultLockOnAngleLimit = 50;
-        public float lockOnAngleLimit
+        public float LockOnAngleLimit
         {
-            get => _lockOnAngleLimit ?? defaultLockOnAngleLimit;
-            set => _lockOnAngleLimit = value;
+            readonly get => lockOnAngleLimit ?? defaultLockOnAngleLimit;
+            set => lockOnAngleLimit = value;
         }
 
         // LockOn RotateMax
-        private float? _lockOnRotateMax;
+        private float? lockOnRotateMax;
         private const float defaultLockOnRotateMax = 30;
-        public float lockOnRotateMax
+        public float LockOnRotateMax
         {
-            get => _lockOnRotateMax ?? defaultLockOnRotateMax;
-            set => _lockOnRotateMax = value;
+            readonly get => lockOnRotateMax ?? defaultLockOnRotateMax;
+            set => lockOnRotateMax = value;
         }
 
         // CameraSphereRadius
-        private float? _cameraSphereRadius;
+        private float? cameraSphereRadius;
         private const float defaultCameraSphereRadius = 0.2f;
-        public float cameraSphereRadius
+        public float CameraSphereRadius
         {
-            get => _cameraSphereRadius ?? defaultCameraSphereRadius;
-            set => _cameraSphereRadius = value;
+            readonly get => cameraSphereRadius ?? defaultCameraSphereRadius;
+            set => cameraSphereRadius = value;
         }
     }
 
@@ -147,94 +147,94 @@ namespace SystemData
     {
         [Header("Ground & Air Detection States")]
         // GroundCheckDistance
-        private float? _groundCheckDis;
+        private float? groundCheckDis;
         private const float defaultGroundCheckDis = 0.4f;
-        public float groundCheckDis
+        public float GroundCheckDis
         {
-            get => _groundCheckDis ?? defaultGroundCheckDis;
-            set => _groundCheckDis = value;
+            readonly get => groundCheckDis ?? defaultGroundCheckDis;
+            set => groundCheckDis = value;
         }
 
         // GroundDetectionRayStart
-        private float? _groundDetectionRayStart;
+        private float? groundDetectionRayStart;
         private const float defaultGroundDetectionRayStart = 0.5f;
-        public float groundDetectionRayStart
+        public float GroundDetectionRayStart
         {
-            get => _groundDetectionRayStart ?? defaultGroundDetectionRayStart;
-            set => _groundDetectionRayStart = value;
+            readonly get => groundDetectionRayStart ?? defaultGroundDetectionRayStart;
+            set => groundDetectionRayStart = value;
         }
 
         // DistanceBeginFallMin
-        private float? _distanceBeginFallMin;
+        private float? distanceBeginFallMin;
         private const float defaultDistanceBeginFallMin = 1;
-        public float distanceBeginFallMin
+        public float DistanceBeginFallMin
         {
-            get => _distanceBeginFallMin ?? defaultDistanceBeginFallMin;
-            set => _distanceBeginFallMin = value;
+            readonly get => distanceBeginFallMin ?? defaultDistanceBeginFallMin;
+            set => distanceBeginFallMin = value;
         }
 
         // GroundDirRayDistance
-        private float? _groundDirRayDistance;
+        private float? groundDirRayDistance;
         private const float defaultGroundDirRayDistance = 0.2f;
-        public float groundDirRayDistance
+        public float GroundDirRayDistance
         {
-            get => _groundDirRayDistance ?? defaultGroundDirRayDistance;
-            set => _groundDirRayDistance = value;
+            readonly get => groundDirRayDistance ?? defaultGroundDirRayDistance;
+            set => groundDirRayDistance = value;
         }
 
         [Header("Character Physics")]
         // LookAtSmoothing
-        private float? _lookAtSmoothing;
+        private float? lookAtSmoothing;
         private const float defaultLookAtSmoothing = 25;
-        public float lookAtSmoothing 
+        public float LookAtSmoothing 
         {
-            get => _lookAtSmoothing ?? defaultLookAtSmoothing;
-            set => _lookAtSmoothing = value;
+            readonly get => lookAtSmoothing ?? defaultLookAtSmoothing;
+            set => lookAtSmoothing = value;
         }
 
         // FallingFactor
-        private float? _fallingFactor;
+        private float? fallingFactor;
         private const float defaultFallingFactor = 0.1f;
-        public float fallingFactor 
+        public float FallingFactor 
         {
-            get => _fallingFactor ?? defaultFallingFactor;
-            set => _fallingFactor = value;
+            readonly get => fallingFactor ?? defaultFallingFactor;
+            set => fallingFactor = value;
         }
 
         // FallingSpeedRatio
-        private float? _fallingSpeedRatio;
+        private float? fallingSpeedRatio;
         private const float defaultFallingSpeedRatio = 2;
-        public float fallingSpeedRatio 
+        public float FallingSpeedRatio 
         {
-            get => _fallingSpeedRatio ?? defaultFallingSpeedRatio;
-            set => _fallingSpeedRatio = value;
+            readonly get => fallingSpeedRatio ?? defaultFallingSpeedRatio;
+            set => fallingSpeedRatio = value;
         }
 
         // FallingFrontForce
-        private float? _fallingFrontForce;
+        private float? fallingFrontForce;
         private const float defaultFallingFrontForce = 5;
-        public float fallingFrontForce 
+        public float FallingFrontForce 
         {
-            get => _fallingFrontForce ?? defaultFallingFrontForce;
-            set => _fallingFrontForce = value;
+            readonly get => fallingFrontForce ?? defaultFallingFrontForce;
+            set => fallingFrontForce = value;
         }
 
         // FallingDownForce
-        private float? _fallingDownForce;
+        private float? fallingDownForce;
         private const float defaultFallingDownForce = 750;
-        public float fallingDownForce
+        public float FallingDownForce
         {
-            get => _fallingDownForce ?? defaultFallingDownForce;
-            set => _fallingDownForce = value;
+            readonly get => fallingDownForce ?? defaultFallingDownForce;
+            set => fallingDownForce = value;
         }
 
         [Header("Physics Layer")]
         // Ground Layer
-        private string _groundLayer;
-        public string groundLayer
+        private string groundLayer;
+        public string GroundLayer
         {
-            get => _groundLayer == null ? "Ground" : _groundLayer;
-            set => _groundLayer = value;
+            readonly get => groundLayer ?? "Ground";
+            set => groundLayer = value;
         }
     }
 
@@ -242,54 +242,54 @@ namespace SystemData
     {
         [Header("Interact Check")]
         // Interact Check Radius
-        private float? _interactCheckRadius;
+        private float? interactCheckRadius;
         private const float defaultInteractCheckRadius = 0.3f;
-        public float interactCheckRadius
+        public float InteractCheckRadius
         {
-            get => _interactCheckRadius ?? defaultInteractCheckRadius;
-            set => _interactCheckRadius = value;
+            readonly get => interactCheckRadius ?? defaultInteractCheckRadius;
+            set => interactCheckRadius = value;
         }
 
         // Interact Check Distance
-        private float? _interactCheckDis;
+        private float? interactCheckDis;
         private const float defaultInteractCheckDis = 1;
-        public float interactCheckDis
+        public float InteractCheckDis
         {
-            get => _interactCheckDis ?? defaultInteractCheckDis;
-            set => _interactCheckDis = value;
+            readonly get => interactCheckDis ?? defaultInteractCheckDis;
+            set => interactCheckDis = value;
         }
 
         // Interact Object Tag
-        private string _interactObjTag;
-        public string interactObjTag
+        private string interactObjTag;
+        public string InteractObjTag
         {
-            get => _interactObjTag == null ? "Interactable" : _interactObjTag;
-            set => _interactObjTag = value;
+            readonly get => interactObjTag ?? "Interactable";
+            set => interactObjTag = value;
         }
 
         [Header("Interact Text")]
         // Interact Item Text
-        private string _itemInteractText;
-        public string itemInteractText
+        private readonly string itemInteractText;
+        public string ItemInteractText
         {
-            get => _itemInteractText == null ? "아이템을 획득한다 E" : itemInteractText;
-            set => itemInteractText = value;
+            get => itemInteractText == null ? "아이템을 획득한다 E" : ItemInteractText;
+            set => ItemInteractText = value;
         }
 
         // Interact Message Text
-        private string _messageInteractText;
-        public string messageInteractText
+        private readonly string messageInteractText;
+        public string MessageInteractText
         {
-            get => _messageInteractText == null ? "메시지를 확인한다 E" : messageInteractText;
-            set => messageInteractText = value;
+            get => messageInteractText == null ? "메시지를 확인한다 E" : MessageInteractText;
+            set => MessageInteractText = value;
         }
 
         // Interact Gate Text
-        private string _gateInteractText;
-        public string gateInteractText
+        private readonly string gateInteractText;
+        public string GateInteractText
         {
-            get => _gateInteractText == null ? "안개 속으로 들어간다 E" : gateInteractText;
-            set => gateInteractText = value;
+            get => gateInteractText == null ? "안개 속으로 들어간다 E" : GateInteractText;
+            set => GateInteractText = value;
         }
     }
 }

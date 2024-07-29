@@ -30,8 +30,8 @@ public class PlayerCamera : MonoBehaviour
     private EnemyManager currentLockOnTarget;
     [SerializeField]
     private Vector3 currentTargetPos;
-    [SerializeField]
-    private float lockOnUIScaleMin = 0.3f;
+    // [SerializeField]
+    // private float lockOnUIScaleMin = 0.3f;
     [SerializeField]
     private Transform lockOnUI;
     private LayerMask lockOnLayer;
@@ -88,7 +88,7 @@ public class PlayerCamera : MonoBehaviour
     public void FollowTarget(float delta)
     {
         Vector3 followPos = player.transform.position;
-        followPos.y += isLockOn ? cameraData.lockedPivotPositionY : cameraData.unlockedPivotPositionY;
+        followPos.y += isLockOn ? cameraData.LockedPivotPositionY : cameraData.UnlockedPivotPositionY;
         camTransform.position = followPos;
         HandleCameraCollision(delta);
     }
@@ -97,9 +97,9 @@ public class PlayerCamera : MonoBehaviour
     {
         if (!isLockOn && currentLockOnTarget == null && !player.playerInput.gameSystemFlag)
         {
-            lookAngle += mouseX * cameraData.lookSpeed / delta;
-            pivotAngle -= mouseY * cameraData.pivotSpeed / delta;
-            pivotAngle = Mathf.Clamp(pivotAngle, cameraData.minPivot, cameraData.maxPivot);
+            lookAngle += mouseX * cameraData.LookSpeed / delta;
+            pivotAngle -= mouseY * cameraData.PivotSpeed / delta;
+            pivotAngle = Mathf.Clamp(pivotAngle, cameraData.MinPivot, cameraData.MaxPivot);
 
             Vector3 rotation = Vector3.zero;
             rotation.y = lookAngle;
@@ -125,7 +125,7 @@ public class PlayerCamera : MonoBehaviour
 
             targetRotation = Quaternion.LookRotation(dir);
             Vector3 eulerAngle = targetRotation.eulerAngles;
-            eulerAngle.x = Mathf.Min(eulerAngle.x, cameraData.lockOnRotateMax);
+            eulerAngle.x = Mathf.Min(eulerAngle.x, cameraData.LockOnRotateMax);
             eulerAngle.y = 0;
             cameraPivotTransform.localEulerAngles = eulerAngle;
         }
@@ -152,7 +152,7 @@ public class PlayerCamera : MonoBehaviour
 
     bool FindLockOnTarget()
     {
-        Collider[] findTarget = Physics.OverlapSphere(player.transform.position, cameraData.lockOnRadius, lockOnLayer);
+        Collider[] findTarget = Physics.OverlapSphere(player.transform.position, cameraData.LockOnRadius, lockOnLayer);
 
         for (int i = 0; i < findTarget.Length; i++)
         {
@@ -163,7 +163,7 @@ public class PlayerCamera : MonoBehaviour
                 Vector3 targetDirection = target.transform.position - player.transform.position;
                 float viewAngle = Vector3.Angle(targetDirection, cameraTransform.forward);
 
-                if (viewAngle < cameraData.maxLockOnDistance) // viewAngle > cameraData.minLockOnDistance
+                if (viewAngle < cameraData.MaxLockOnDistance) // viewAngle > cameraData.minLockOnDistance
                 {
                     RaycastHit hit;
 
@@ -214,7 +214,7 @@ public class PlayerCamera : MonoBehaviour
     bool IsTargetRange()
     {
         float targetDistance = (player.lockOnTransform.position - currentLockOnTarget.transform.position).magnitude;
-        return targetDistance <= cameraData.maxLockOnDistance;
+        return targetDistance <= cameraData.MaxLockOnDistance;
     }
 
     void ResetTarget()
@@ -231,17 +231,17 @@ public class PlayerCamera : MonoBehaviour
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.cameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
-            playerPosition = -(distance - cameraData.cameraCollisionOffset);
+            playerPosition = -(distance - cameraData.CameraCollisionOffset);
         }
 
-        if (Mathf.Abs(playerPosition) < cameraData.minCollisionOffset)
+        if (Mathf.Abs(playerPosition) < cameraData.MinCollisionOffset)
         {
-            playerPosition = -cameraData.minCollisionOffset;
+            playerPosition = -cameraData.MinCollisionOffset;
         }
 
-        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / cameraData.playerFollowRate);
+        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / cameraData.PlayerFollowRate);
     }
 }
