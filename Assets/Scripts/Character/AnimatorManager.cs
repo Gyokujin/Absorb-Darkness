@@ -5,8 +5,7 @@ using UnityEngine;
 public class AnimatorManager : MonoBehaviour
 {
     [Header("Animator")]
-    [SerializeField]
-    private float animacionFadeAmount = 0.2f;
+    private const float animationFadeAmount = 0.2f;
     [HideInInspector]
     public Animator animator;
 
@@ -14,6 +13,6 @@ public class AnimatorManager : MonoBehaviour
     {
         animator.applyRootMotion = isInteracting;
         animator.SetBool("isInteracting", isInteracting);
-        animator.CrossFade(targetAnim, animacionFadeAmount);
+        animator.CrossFade(targetAnim, animationFadeAmount);
     }
 }

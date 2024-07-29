@@ -8,13 +8,13 @@ public class PlayerAttacker : MonoBehaviour
     private PlayerManager player;
     private PlayerAnimatorData animatorData;
 
-    public enum PlayerAttackType
-    {
-        Sword_OneHand_LightAttack1, Sword_OneHand_LightAttack2, Sword_OneHand_HeavyAttack1, Sword_OneHand_HeavyAttack2,
-        Sword_TwoHand_LightAttack1, Sword_TwoHand_LightAttack2, Sword_TwoHand_HeavyAttack1, Sword_TwoHand_HeavyAttack2
-    }
+    //public enum PlayerAttackType
+    //{
+    //    Sword_OneHand_LightAttack1, Sword_OneHand_LightAttack2, Sword_OneHand_HeavyAttack1, Sword_OneHand_HeavyAttack2,
+    //    Sword_TwoHand_LightAttack1, Sword_TwoHand_LightAttack2, Sword_TwoHand_HeavyAttack1, Sword_TwoHand_HeavyAttack2
+    //}
 
-    private PlayerAttackType curAttack;
+    //private PlayerAttackType curAttack;
 
     [Header("Attack")]
     [SerializeField]
@@ -36,6 +36,9 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
     {
+        player.playerInput.sprintFlag = false;
+        player.isSprinting = false;
+
         player.playerItemSlotManager.attackingWeapon = weapon;
         player.playerAnimator.animator.SetBool(animatorData.AttackParameter, true);
         player.playerAnimator.animator.SetBool(animatorData.OnUsingRightHand, true);

@@ -19,15 +19,12 @@ public class PlayerItemSlotManager : MonoBehaviour
     [SerializeField]
     private string[] weaponArmIdleAnimations = { "LeftArm Empty", "RightArm Empty", "BothArms Empty" };
     [SerializeField]
-    private float animacionFadeAmount = 0.2f;
+    private float animationFadeAmount = 0.2f;
 
     [Header("Component")]
     private Animator animator;
     private PlayerManager player;
     private QuickSlotsUI quickSlotsUI;
-    // private PlayerInput playerInput;
-    // private PlayerInventory playerInventory;
-    // private PlayerStatus playerStatus;
 
     void Awake()
     {
@@ -39,10 +36,6 @@ public class PlayerItemSlotManager : MonoBehaviour
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
-        // playerInput = GetComponentInParent<PlayerInput>();
-        // playerInventory = GetComponentInParent<PlayerInventory>();
-        // playerStatus = GetComponentInParent<PlayerStatus>();
-
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
@@ -73,11 +66,11 @@ public class PlayerItemSlotManager : MonoBehaviour
 
             if (weaponItem != null)
             {
-                animator.CrossFade(weaponItem.left_Hand_Idle, animacionFadeAmount);
+                animator.CrossFade(weaponItem.left_Hand_Idle, animationFadeAmount);
             }
             else
             {
-                animator.CrossFade(weaponArmIdleAnimations[0], animacionFadeAmount);
+                animator.CrossFade(weaponArmIdleAnimations[0], animationFadeAmount);
             }
         }
         else
@@ -86,20 +79,20 @@ public class PlayerItemSlotManager : MonoBehaviour
             {
                 backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
                 leftHandSlot.UnloadWeaponAndDestroy();
-                animator.CrossFade(weaponItem.th_idle, animacionFadeAmount);
+                animator.CrossFade(weaponItem.th_idle, animationFadeAmount);
             }
             else
             {
-                animator.CrossFade(weaponArmIdleAnimations[2], animacionFadeAmount);
+                animator.CrossFade(weaponArmIdleAnimations[2], animationFadeAmount);
                 backSlot.UnloadWeaponAndDestroy();
 
                 if (weaponItem != null)
                 {
-                    animator.CrossFade(weaponItem.right_Hand_Idle, animacionFadeAmount);
+                    animator.CrossFade(weaponItem.right_Hand_Idle, animationFadeAmount);
                 }
                 else
                 {
-                    animator.CrossFade(weaponArmIdleAnimations[1], animacionFadeAmount);
+                    animator.CrossFade(weaponArmIdleAnimations[1], animationFadeAmount);
                 }
             }
 
