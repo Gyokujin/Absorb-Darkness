@@ -12,7 +12,7 @@ public class Entrance : MonoBehaviour
     [SerializeField]
     private EntranceType entranceType;
     [SerializeField]
-    private GateEntrance targetGate;
+    private FogWallEntrance targetGate;
     private int playerLayer;
     [SerializeField]
     private BossInfo bossInfo;

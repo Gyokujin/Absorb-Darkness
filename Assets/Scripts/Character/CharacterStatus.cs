@@ -13,7 +13,23 @@ public class CharacterStatus : MonoBehaviour
     public int healthLevel = 10;
     public int healthLevelAmount = 10;
     public int maxHealth;
-    public int currentHealth;
+
+    private int currentHealth;
+    [HideInInspector]
+    public int CurrentHealth
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            if (value > 0)
+                currentHealth = value;
+            else
+                currentHealth = 0;
+        }
+    }
 
     [Header("Effect")]
     [SerializeField]

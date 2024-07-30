@@ -7,10 +7,11 @@ public class Interactable : MonoBehaviour
 {
     public enum InteractType
     {
-        Item, Message, Gate
+        Item, Message, LockDoor, FogWall
     }
 
     public InteractType interactType;
+    [HideInInspector]
     public string interactableText;
 
     void Awake()
@@ -20,7 +21,7 @@ public class Interactable : MonoBehaviour
 
     void Init()
     {
-        InteractData interactData = new InteractData();
+        InteractData interactData = new();
         
         switch (interactType)
         {
@@ -32,8 +33,12 @@ public class Interactable : MonoBehaviour
                 interactableText = interactData.MessageInteractText;
                 break;
 
-            case InteractType.Gate:
-                interactableText = interactData.GateInteractText;
+            case InteractType.LockDoor:
+                interactableText = interactData.LockDoorInteractText;
+                break;
+
+            case InteractType.FogWall:
+                interactableText = interactData.FogWallInteractText;
                 break;
         }
     }

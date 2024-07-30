@@ -58,8 +58,8 @@ public class PlayerStatus : CharacterStatus
 
     void InitHealth()
     {
-        maxHealth = healthLevel * healthLevelAmount;
-        currentHealth = maxHealth;
+        maxHealth = playerStatusData.HealthLevel * playerStatusData.HealthLevelAmount;
+        CurrentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -114,8 +114,8 @@ public class PlayerStatus : CharacterStatus
         if (player.playerBehavior.curUsingItem != null)
             player.playerBehavior.EndItemUse();
 
-        currentHealth -= damage;
-        healthBar.SetCurrentHealth(currentHealth);
+        CurrentHealth -= damage;
+        healthBar.SetCurrentHealth(CurrentHealth);
 
         if (hitStun)
         {
@@ -129,7 +129,7 @@ public class PlayerStatus : CharacterStatus
             player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
         }
 
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
             DieProcess();
         else
             curInvincibleTime += playerPhysicsData.InvincibleTime;
@@ -145,8 +145,8 @@ public class PlayerStatus : CharacterStatus
 
     public void RecoveryHealth()
     {
-        currentHealth = Mathf.Min(currentHealth + recoveryAmount, maxHealth);
-        healthBar.SetCurrentHealth(currentHealth);
+        CurrentHealth = Mathf.Min(CurrentHealth + recoveryAmount, maxHealth);
+        healthBar.SetCurrentHealth(CurrentHealth);
 
         GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
         estusEffect.transform.position = effectTransform.position;

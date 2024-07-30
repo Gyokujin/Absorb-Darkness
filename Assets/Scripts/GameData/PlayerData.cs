@@ -4,6 +4,23 @@ namespace PlayerData
 {
     public struct PlayerStatusData
     {
+        [Header("Health")]
+        // HealthLevel
+        private int? healthLevel;
+        public int HealthLevel
+        {
+            readonly get => healthLevel ?? 10;
+            set => healthLevel = value;
+        }
+
+        // HealthLevel Amount
+        private int? healthLevelAmount;
+        public int HealthLevelAmount
+        {
+            readonly get => healthLevelAmount ?? 10;
+            set => healthLevelAmount = value;
+        }
+
         [Header("Stamina")]
         // StaminaLevel
         private int? staminaLevel;

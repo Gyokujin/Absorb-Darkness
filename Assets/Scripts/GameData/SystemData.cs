@@ -243,27 +243,35 @@ namespace SystemData
 
         [Header("Interact Text")]
         // Interact Item Text
-        private readonly string itemInteractText;
+        private string itemInteractText;
         public string ItemInteractText
         {
-            get => itemInteractText == null ? "아이템을 획득한다 E" : ItemInteractText;
+            readonly get => itemInteractText ?? "아이템을 획득한다 E";
             set => ItemInteractText = value;
         }
 
         // Interact Message Text
-        private readonly string messageInteractText;
+        private string messageInteractText;
         public string MessageInteractText
         {
-            get => messageInteractText == null ? "메시지를 확인한다 E" : MessageInteractText;
-            set => MessageInteractText = value;
+            readonly get => messageInteractText ?? "메시지를 확인한다 E";
+            set => messageInteractText = value;
         }
 
-        // Interact Gate Text
-        private readonly string gateInteractText;
-        public string GateInteractText
+        // Interact LockDoor Text
+        private string lockDoorInteractText;
+        public string LockDoorInteractText
         {
-            get => gateInteractText == null ? "안개 속으로 들어간다 E" : GateInteractText;
-            set => GateInteractText = value;
+            readonly get => lockDoorInteractText ?? "문을 연다 E";
+            set => lockDoorInteractText = value;
+        }
+
+        // Interact FogWall Text
+        private string fogWallInteractText;
+        public string FogWallInteractText
+        {
+            readonly get => fogWallInteractText ?? "안개 속으로 들어간다 E";
+            set => fogWallInteractText = value;
         }
     }
 }

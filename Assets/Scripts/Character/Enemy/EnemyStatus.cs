@@ -49,7 +49,7 @@ public class EnemyStatus : CharacterStatus
     void Start()
     {
         maxHealth = SetMaxHealthLevel();
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
     }
 
     int SetMaxHealthLevel()
@@ -63,18 +63,18 @@ public class EnemyStatus : CharacterStatus
         if (enemyManager.onDie)
             return;
 
-        currentHealth -= damage;
+        CurrentHealth -= damage;
 
         if (onStageBoss)
         {
-            UIManager.instance.BossHPUIModify(currentHealth, maxHealth);
+            UIManager.instance.BossHPUIModify(CurrentHealth, maxHealth);
         }
 
         GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
         hitEffect.transform.position = effectTransform.position;
         // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
 
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             DieProcess();
         }
@@ -130,7 +130,7 @@ public class EnemyStatus : CharacterStatus
         enemyManager.onDie = true;
         enemyManager.collider.enabled = false;
         enemyManager.blockerCollider.enabled = false;
-        currentHealth = 0;
+        CurrentHealth = 0;
         rigidbody.isKinematic = true;
 
         enemyAnimator.PlayTargetAnimation("Die", true);
