@@ -10,8 +10,7 @@ public class CharacterAudio : MonoBehaviour
     }
 
     [Header("Audio")]
-    [SerializeField]
-    [Range(0, 1)]
+    [SerializeField][Range(0, 1)]
     private float audioVolume;
     [SerializeField]
     private int characterCh;

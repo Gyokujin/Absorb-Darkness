@@ -140,7 +140,7 @@ public class PlayerStatus : CharacterStatus
         player.onDie = true;
         gameObject.layer = player.invincibleLayer;
         player.playerAnimator.PlayTargetAnimation(playerAnimatorData.DeadAnimation, true);
-        player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)CharacterAudio.CharacterSound.Die]);
+        player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Die]);
     }
 
     public void RecoveryHealth()

@@ -16,11 +16,6 @@ public class AudioManager : MonoBehaviour
         GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance
     }
 
-    //public enum PlayerActionSound
-    //{
-    //    Attack1, Attack2, Rolling, Backstep, Hit, Die, Drink, Recovery
-    //}
-
     [Header("BGM")]
     public AudioClip[] bgmClips;
     [SerializeField]
