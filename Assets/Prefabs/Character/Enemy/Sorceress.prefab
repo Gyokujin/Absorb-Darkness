@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 6095023924948939310}
   - component: {fileID: 7280089006342407748}
   - component: {fileID: 7421784553130219315}
-  - component: {fileID: 7969736347837725267}
+  - component: {fileID: 7586811435734901536}
   m_Layer: 7
   m_Name: Sorceress
   m_TagString: Enemy
@@ -377,7 +377,7 @@ MonoBehaviour:
   blockerCollider: {fileID: 5758493670866006236}
   navMeshAgent: {fileID: 0}
   currentTarget: {fileID: 0}
-  characterAudio: {fileID: 0}
+  enemyAudio: {fileID: 0}
 --- !u!114 &6095023924948939310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   knockbackTime: 2.5
   knockbackPower: 50
   damageAmount: 0
---- !u!114 &7969736347837725267
+--- !u!114 &7586811435734901536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,16 +458,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 957284572224849543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153d34a2546f77f44aaf2c6dfe9c627d, type: 3}
+  m_Script: {fileID: 11500000, guid: a642ad0c238818b4e834ad623058c92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioVolume: 0.6
-  characterCh: 2
-  audioClips:
-  - {fileID: 8300000, guid: d703680eb83155d4e9cd081f6c7ecf8c, type: 3}
-  - {fileID: 0}
+  characterCh: 3
+  characterClips:
   - {fileID: 0}
   - {fileID: 8300000, guid: 0d99ae3cc23d9a44e9ae488df426a4e5, type: 3}
+  enemyClips:
+  - {fileID: 8300000, guid: d703680eb83155d4e9cd081f6c7ecf8c, type: 3}
+  - {fileID: 0}
 --- !u!1 &960180742257226813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50be02fcf3e5b424b81f10f8bca72926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionFadeAmount: 0.2
   animator: {fileID: 0}
 --- !u!114 &7785974057656025707
 MonoBehaviour:
