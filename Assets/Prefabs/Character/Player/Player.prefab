@@ -1632,15 +1632,8 @@ MonoBehaviour:
   healthLevel: 10
   healthLevelAmount: 10
   maxHealth: 100
-  currentHealth: 0
   effectTransform: {fileID: 7554135495376589493}
-  staminaRecoveryAmount: 0.43
-  rollingStaminaAmount: 25
-  backStapStaminaAmount: 15
-  sprintStaminaAmount: 0.75
-  invincibleTime: 0.3
   recoveryAmount: 50
-  sprintSpeed: 9
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
 --- !u!114 &3350726264196729079
@@ -1728,11 +1721,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   currentLeftWeaponIndex: 0
   currentRightWeaponIndex: 0
-  curUsingItem: {fileID: 0}
-  usingItemSlots:
-  - {fileID: 11400000, guid: f0d4b617cc6429f49b6d991ac10ec0ab, type: 2}
-  estusCount: 3
   weaponsInventory: []
+  curUsingItem: {fileID: 0}
+  usingItemInventory:
+  - {fileID: 11400000, guid: f0d4b617cc6429f49b6d991ac10ec0ab, type: 2}
+  interactItemInventory: []
 --- !u!114 &5664519629810846392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2115,7 +2108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e670ccfa653c74da71765a408b735e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionFadeAmount: 0.2
   animator: {fileID: 0}
 --- !u!114 &4481719368190627780
 MonoBehaviour:
@@ -2137,7 +2129,7 @@ MonoBehaviour:
   - LeftArm Empty
   - RightArm Empty
   - BothArms Empty
-  animacionFadeAmount: 0.2
+  animationFadeAmount: 0.2
 --- !u!1 &9009939651239509240
 GameObject:
   m_ObjectHideFlags: 0
