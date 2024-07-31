@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerItemSlotManager : MonoBehaviour
+public class PlayerWeaponSlotManager : MonoBehaviour
 {
     [Header("Weapon Slot")]
     public WeaponHolderSlot leftHandSlot;
@@ -105,15 +105,15 @@ public class PlayerItemSlotManager : MonoBehaviour
 
     public void LoadUsingItemSlot(UsingItem usingItem)
     {
-        int itemCount = 0;
+        //switch (usingItem.usingItemType)
+        //{
+        //    case UsingItem.UsingItemType.EstusFlask:
+        //        itemCount = usingItem.itemCount;
+        //        break;
+        //}
 
-        switch (usingItem.itemType)
-        {
-            case UsingItem.UsingItemType.EstusFlask:
-                itemCount = player.playerInventory.estusCount;
-                break;
-        }
-        quickSlotsUI.UpdateUsingItemUI(usingItem, itemCount);
+        Debug.Log(quickSlotsUI);
+        quickSlotsUI.UpdateUsingItemUI(usingItem, usingItem.itemCount);
     }
 
     void LoadLeftWeaponDamageCollider()

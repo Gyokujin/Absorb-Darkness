@@ -1,27 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemData;
 
 public class PlayerInventory : MonoBehaviour
 {
+    // private InitItemData initItemData; // 이후에 데이터 관리가 필요하면 쓰자
+
+    [Header("Using Inventory")]
+    public UsingItem curUsingItem;
+
     [Header("Weapon")]
     public WeaponItem leftWeapon;
     public WeaponItem rightWeapon;
     public WeaponItem unarmedWeapon;
 
-    [Header("Weapon Slot")]
+    [Header("Weapon Inventory")]
     public WeaponItem[] weaponInLeftSlots = new WeaponItem[1];
     public WeaponItem[] weaponInRightSlots = new WeaponItem[1];
     public int currentLeftWeaponIndex = 0;
     public int currentRightWeaponIndex = 0;
-    private PlayerItemSlotManager itemSlotManager;
-
-    [Header("Using Item")]
-    public UsingItem curUsingItem;
-    public UsingItem[] usingItemSlots = new UsingItem[1];
-    public int estusCount = 3;
-
-    [Header("Inventory")]
+    private PlayerWeaponSlotManager playerWeaponSlotManager;
     public List<WeaponItem> weaponsInventory;
 
     void Awake()
@@ -31,18 +30,21 @@ public class PlayerInventory : MonoBehaviour
 
     void Init()
     {
-        itemSlotManager = GetComponentInChildren<PlayerItemSlotManager>();
+        // initItemData = new InitItemData();
+        playerWeaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
     }
 
     void Start()
     {
+        InitWeaponInventory();
+    }
+
+    void InitWeaponInventory()
+    {
         leftWeapon = weaponInLeftSlots[0];
         rightWeapon = weaponInRightSlots[0];
-        itemSlotManager.LoadWeaponSlot(leftWeapon, true);
-        itemSlotManager.LoadWeaponSlot(rightWeapon, false);
-
-        curUsingItem = usingItemSlots[0];
-        itemSlotManager.LoadUsingItemSlot(curUsingItem);
+        playerWeaponSlotManager.LoadWeaponSlot(leftWeapon, true);
+        playerWeaponSlotManager.LoadWeaponSlot(rightWeapon, false);
     }
 
     public void ChangeLeftWeapon()
@@ -53,12 +55,12 @@ public class PlayerInventory : MonoBehaviour
         {
             currentLeftWeaponIndex = -1;
             leftWeapon = unarmedWeapon;
-            itemSlotManager.LoadWeaponSlot(unarmedWeapon, true);
+            playerWeaponSlotManager.LoadWeaponSlot(unarmedWeapon, true);
         }
         else if (weaponInLeftSlots[currentLeftWeaponIndex] != null) // 장착할 무기가 있는 경우
         {
             leftWeapon = weaponInLeftSlots[currentLeftWeaponIndex];
-            itemSlotManager.LoadWeaponSlot(weaponInLeftSlots[currentLeftWeaponIndex], true);
+            playerWeaponSlotManager.LoadWeaponSlot(weaponInLeftSlots[currentLeftWeaponIndex], true);
         }
         else
         {
@@ -74,12 +76,12 @@ public class PlayerInventory : MonoBehaviour
         {
             currentRightWeaponIndex = -1;
             rightWeapon = unarmedWeapon;
-            itemSlotManager.LoadWeaponSlot(unarmedWeapon, false);
+            playerWeaponSlotManager.LoadWeaponSlot(unarmedWeapon, false);
         }
         else if (weaponInRightSlots[currentRightWeaponIndex] != null) // 장착할 무기가 있는 경우
         {
             rightWeapon = weaponInRightSlots[currentRightWeaponIndex];
-            itemSlotManager.LoadWeaponSlot(weaponInRightSlots[currentRightWeaponIndex], false);
+            playerWeaponSlotManager.LoadWeaponSlot(weaponInRightSlots[currentRightWeaponIndex], false);
         }
         else
         {

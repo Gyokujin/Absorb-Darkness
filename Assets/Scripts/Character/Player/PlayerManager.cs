@@ -44,7 +44,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerAnimator playerAnimator;
     [HideInInspector]
-    public PlayerItemSlotManager playerItemSlotManager;
+    public PlayerWeaponSlotManager playerItemSlotManager;
 
     void Awake()
     {
@@ -61,7 +61,7 @@ public class PlayerManager : CharacterManager
         playerAttacker = GetComponent<PlayerAttacker>();
         playerAudio = GetComponent<PlayerAudio>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
-        playerItemSlotManager = GetComponentInChildren<PlayerItemSlotManager>();
+        playerItemSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
 
         layerData = new PlayerPhysicsData();
         animatorData = new PlayerAnimatorData();

@@ -10,7 +10,7 @@ public class UsingItem : Item
         EstusFlask
     }
 
-    public UsingItemType itemType;
+    public UsingItemType usingItemType;
     public int itemCount;
     public string usingAnimation;
 }

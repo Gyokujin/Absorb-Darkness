@@ -25,8 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject equipmentWindow;
     [SerializeField]
     private EquipmentWindowUI equipmentWindowUI;
-
-    private WeaponInventorySlot[] equipmentSlots;
+    private InventorySlot[] equipmentSlots;
 
     [Header("Equipment Window Slot Selected")]
     public bool leftHandSlot01Selected;
@@ -78,7 +77,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        equipmentSlots = inventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+        equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
         InventoryUIUpdate();
     }
 
@@ -116,7 +115,7 @@ public class UIManager : MonoBehaviour
                 if (equipmentSlots.Length < playerInventory.weaponsInventory.Count)
                 {
                     Instantiate(inventorySlotPrefab, inventorySlotsParent);
-                    equipmentSlots = inventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+                    equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
                 }
 
                 equipmentSlots[i].AddItem(playerInventory.weaponsInventory[i]);

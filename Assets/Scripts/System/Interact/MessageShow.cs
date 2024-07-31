@@ -11,10 +11,10 @@ public class MessageShow : Interactable
     public override void Interact(PlayerManager playerManager, PlayerBehavior playerBehavior)
     {
         base.Interact(playerManager, playerBehavior);
-        ShowMessage(playerManager, playerBehavior);
+        ShowMessage();
     }
 
-    void ShowMessage(PlayerManager playerManager, PlayerBehavior playerBehavior)
+    void ShowMessage()
     {
         UIManager.instance.OpenMessagePopUpUI(gameMessage.message);
     }

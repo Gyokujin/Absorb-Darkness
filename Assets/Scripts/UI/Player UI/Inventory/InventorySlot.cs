@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponInventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField]
@@ -14,12 +14,12 @@ public class WeaponInventorySlot : MonoBehaviour
     private EquipmentWindowUI equipmentWindow;
     private WeaponItem item;
     private PlayerInventory playerInventory;
-    private PlayerItemSlotManager weaponSlotManager;
+    private PlayerWeaponSlotManager weaponSlotManager;
     
     void Awake()
     {
         playerInventory = FindObjectOfType<PlayerInventory>();
-        weaponSlotManager = FindObjectOfType<PlayerItemSlotManager>();
+        weaponSlotManager = FindObjectOfType<PlayerWeaponSlotManager>();
     }
 
     public void AddItem(WeaponItem newItem)

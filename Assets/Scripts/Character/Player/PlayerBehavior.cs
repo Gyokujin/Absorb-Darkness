@@ -11,7 +11,7 @@ public class PlayerBehavior : MonoBehaviour
     private InteractData interactData;
 
     [Header("Interact")]
-    private Interactable itemInteractableObj;
+    private Interactable interactableObj;
 
     [Header("Item Use")]
     public GameObject curUsingItem;
@@ -37,14 +37,14 @@ public class PlayerBehavior : MonoBehaviour
         {
             if (hit.collider.tag == interactData.InteractObjTag && hit.collider.GetComponent<Interactable>() != null)
             {
-                itemInteractableObj = hit.collider.GetComponent<Interactable>();
-                UIManager.instance.OpenInteractUI(itemInteractableObj.interactableText);
+                interactableObj = hit.collider.GetComponent<Interactable>();
+                UIManager.instance.OpenInteractUI(interactableObj.interactableText);
 
                 if (player.playerInput.interactInput)
                 {
-                    itemInteractableObj.Interact(playerManager, this);
+                    interactableObj.Interact(playerManager, this);
 
-                    if (itemInteractableObj.interactType == Interactable.InteractType.Item)
+                    if (interactableObj.interactType == Interactable.InteractType.Item)
                     {
                         UIManager.instance.InventoryUIUpdate();
                     }
@@ -57,12 +57,12 @@ public class PlayerBehavior : MonoBehaviour
             {
                 UIManager.instance.CloseInteractUI();
 
-                if (itemInteractableObj != null && player.playerInput.interactInput)
+                if (interactableObj != null && player.playerInput.interactInput)
                 {
                     UIManager.instance.CloseItemPopUpUI();
                     UIManager.instance.CloseMessagePopUpUI();
 
-                    switch (itemInteractableObj.interactType)
+                    switch (interactableObj.interactType)
                     {
                         case Interactable.InteractType.Item:
                             break;
@@ -72,7 +72,7 @@ public class PlayerBehavior : MonoBehaviour
                     }
 
                     AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
-                    itemInteractableObj = null;
+                    interactableObj = null;
                 }
             }
         }
@@ -86,15 +86,15 @@ public class PlayerBehavior : MonoBehaviour
             leftHandWeapon.SetActive(false);
         }
 
-        switch (item.itemType)
+        switch (item.usingItemType)
         {
             case UsingItem.UsingItemType.EstusFlask:
-                if (player.playerInventory.estusCount <= 0)
+                if (InventoryManager.instance.usingItemInventory.usingItems[0].itemCount <= 0)
                     return;
 
                 curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
-                player.playerInventory.estusCount--;
-                UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.estusCount);
+                InventoryManager.instance.usingItemInventory.usingItems[0].itemCount--;
+                UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, InventoryManager.instance.usingItemInventory.usingItems[0].itemCount);
                 break;
         }
 

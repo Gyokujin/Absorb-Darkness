@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
     }
 
     public InteractType interactType;
-    [HideInInspector]
+    // [HideInInspector]
     public string interactableText;
 
     void Awake()
