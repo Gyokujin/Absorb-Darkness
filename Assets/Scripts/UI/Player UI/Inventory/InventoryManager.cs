@@ -51,11 +51,6 @@ public class InventoryManager : MonoBehaviour
         ShowButtonControl(false);
     }
 
-    //void OnEnable()
-    //{
-    //    OpenWeaponInventory();
-    //}
-
     public void OpenWeaponInventory()
     {
         CloseInventory();

@@ -85,7 +85,7 @@ public class InventorySlot : MonoBehaviour
 
         UIManager.instance.ResetAllSelectedSlots();
         UIManager.instance.InventoryUIUpdate();
-        UIManager.instance.inventoryWindow.SetActive(false);
+        UIManager.instance.inventoryManager.gameObject.SetActive(false);
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
 }
