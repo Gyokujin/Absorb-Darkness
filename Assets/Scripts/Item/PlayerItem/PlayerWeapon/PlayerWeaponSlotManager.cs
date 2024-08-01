@@ -112,7 +112,6 @@ public class PlayerWeaponSlotManager : MonoBehaviour
         //        break;
         //}
 
-        Debug.Log(quickSlotsUI);
         quickSlotsUI.UpdateUsingItemUI(usingItem, usingItem.itemCount);
     }
 

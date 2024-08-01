@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelPrefab: {fileID: 5981137663058868691, guid: b507c2a25721fca4ca380a7b008d17c6, type: 3}
   itemIcon: {fileID: 21300000, guid: daeda8093c61297499db396638767869, type: 3}
-  itemName: "\uC5D0\uC2A4\uD2B8 \uBCD1"
-  itemType: 0
   itemCount: 3
+  itemName: "\uC5D0\uD14C\uB974 \uD50C\uB77C\uC2A4\uD06C"
+  itemInfo: "\uBCF4\uB77C\uC0C9 \uC720\uB9AC\uBCD1. \uBAA8\uB2E5\uBD88\uC5D0\uC11C
+    \uC0DD\uBA85\uC758 \uAE30\uC6B4\uC744 \uB2F4\uACE0, \uB9C8\uC154\uC11C HP\uB97C
+    \uD68C\uBCF5\uD55C\uB2E4."
+  usingItemType: 0
   usingAnimation: Drink
