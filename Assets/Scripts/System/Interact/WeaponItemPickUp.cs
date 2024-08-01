@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickUp : Interactable
+public class WeaponItemPickUp : Interactable
 {
-    [Header("Weapon")]
     [SerializeField]
-    private WeaponItem weapon;
+    private WeaponItem dropWeaponItem;
 
     public override void Interact(PlayerManager player, PlayerBehavior playerBehavior)
     {
         base.Interact(player, playerBehavior);
-        PickUpItem(player, playerBehavior);
+        PickUpWeaponItem(player, playerBehavior);
     }
 
-    void PickUpItem(PlayerManager player, PlayerBehavior playerBehavior)
+    void PickUpWeaponItem(PlayerManager player, PlayerBehavior playerBehavior)
     {
         player.playerAnimator.PlayTargetAnimation("PickUp", true);
-        player.playerInventory.weaponsInventory.Add(weapon);
+        InventoryManager.instance.GetWeaponItem(dropWeaponItem);
+        UIManager.instance.OpenItemPopUpUI(dropWeaponItem.itemName, dropWeaponItem.itemIcon.texture);
 
-        UIManager.instance.OpenItemPopUpUI(weapon.itemName, weapon.itemIcon.texture);
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.PickUp]);
         gameObject.SetActive(false);
     }

@@ -89,12 +89,15 @@ public class PlayerBehavior : MonoBehaviour
         switch (item.usingItemType)
         {
             case UsingItem.UsingItemType.EstusFlask:
-                if (InventoryManager.instance.usingItemInventory.usingItems[0].itemCount <= 0)
+                if (player.playerInventory.curUsingItem.itemCount <= 0)
                     return;
 
+                //if (InventoryManager.instance.usingItemInventory.usingItems[0].itemCount <= 0)
+                //    return;
+
                 curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
-                InventoryManager.instance.usingItemInventory.usingItems[0].itemCount--;
-                UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, InventoryManager.instance.usingItemInventory.usingItems[0].itemCount);
+                player.playerInventory.curUsingItem.itemCount--;
+                UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
                 break;
         }
 
