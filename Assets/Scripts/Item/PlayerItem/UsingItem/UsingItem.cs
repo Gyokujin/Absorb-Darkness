@@ -11,6 +11,5 @@ public class UsingItem : Item
     }
 
     public UsingItemType usingItemType;
-    public int itemCount;
     public string usingAnimation;
 }

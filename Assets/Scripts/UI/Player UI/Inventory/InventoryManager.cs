@@ -12,8 +12,11 @@ public class InventoryManager : MonoBehaviour
     public WeaponInventory weaponInventory;
     public UsingItemInventory usingItemInventory;
     public InteractItemInventory interactItemInventory;
+
+    [Header("UI")]
     [SerializeField]
     private GameObject[] inventoryButtons;
+    public GameObject slotObject;
 
     [Header("Component")]
     private PlayerInventory playerInventory;
@@ -56,6 +59,7 @@ public class InventoryManager : MonoBehaviour
         CloseInventory();
         ShowButtonControl(true);
         weaponInventory.gameObject.SetActive(true);
+        weaponInventory.WeaponItemUpdate();
     }
 
     public void OpenUsingItemInventory()
@@ -63,6 +67,7 @@ public class InventoryManager : MonoBehaviour
         CloseInventory();
         ShowButtonControl(true);
         usingItemInventory.gameObject.SetActive(true);
+        usingItemInventory.UsingItemUpdate();
     }
 
     public void OpenInteractItemInventory()

@@ -15,6 +15,7 @@ MonoBehaviour:
   modelPrefab: {fileID: 456606574791117825, guid: 3cfce2acc8b30e3478fad94986fc8d0a, type: 3}
   itemIcon: {fileID: 21300000, guid: ebd0229c0d6e56f48b6f861b2da59544, type: 3}
   itemName: Axe01_Lv1
+  itemInfo: "\uAC15\uB825\uD55C \uB3C4\uB07C\uC774\uB2E4"
   weaponType: 2
   isUnarmed: 0
   right_Hand_Idle: RightArm Idle
@@ -23,9 +24,11 @@ MonoBehaviour:
   oneHand_LightAttack1: OHLightAttack01
   oneHand_LightAttack2: OHLightAttack02
   oneHand_HeavyAttack1: OHHeavyAttack01
+  oneHand_HeavyAttack2: 
   twoHand_LightAttack1: THLightAttack01
   twoHand_LightAttack2: THLightAttack02
   twoHand_HeavyAttack1: THHeavyAttack01
+  twoHand_HeavyAttack2: 
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
