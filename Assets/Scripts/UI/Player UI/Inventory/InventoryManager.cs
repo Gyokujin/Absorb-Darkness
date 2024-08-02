@@ -56,7 +56,6 @@ public class InventoryManager : MonoBehaviour
 
         CloseInventory();
         inventoryButtons.SetActive(false);
-        // ShowButtonControl(false);
     }
 
     public void GetWeaponItem(WeaponItem weaponItem)
@@ -103,12 +102,4 @@ public class InventoryManager : MonoBehaviour
         usingItemInventory.gameObject.SetActive(false);
         interactItemInventory.gameObject.SetActive(false);
     }
-
-    //void ShowButtonControl(bool onShow)
-    //{
-    //    foreach (GameObject button in inventoryButtons)
-    //    {
-    //        button.SetActive(onShow);
-    //    }
-    //}
 }

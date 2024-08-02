@@ -26,7 +26,7 @@ public class UsingItemInventory : MonoBehaviour
             }
 
             Item item = usingItems[i];
-            usingItemSlots[i].ItemSlotUpdate(item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
+            usingItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
         }
     }
 }

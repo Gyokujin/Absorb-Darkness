@@ -26,7 +26,7 @@ public class InteractItemInventory : MonoBehaviour
             }
 
             Item item = interactItems[i];
-            interactItemSlots[i].ItemSlotUpdate(item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
+            interactItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
         }
     }
 }

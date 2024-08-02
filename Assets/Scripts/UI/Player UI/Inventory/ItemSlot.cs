@@ -14,10 +14,10 @@ public class ItemSlot : MonoBehaviour
     [SerializeField]
     private Text slotInfo;
 
-    public void ItemSlotUpdate(Sprite icon, int count, string name, string info)
+    public void ItemSlotUpdate(bool isWeapon, Sprite icon, int count, string name, string info)
     {
         slotIcon.sprite = icon;
-        slotCount.text = count.ToString();
+        slotCount.text = isWeapon ? null : count.ToString();
         slotName.text = name;
         slotInfo.text = info;
     }

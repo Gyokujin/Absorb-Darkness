@@ -26,7 +26,7 @@ public class WeaponInventory : MonoBehaviour
             }
 
             Item item = weaponItems[i];
-            weaponSlots[i].ItemSlotUpdate(item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
+            weaponSlots[i].ItemSlotUpdate(true, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
         }
     }
 }
