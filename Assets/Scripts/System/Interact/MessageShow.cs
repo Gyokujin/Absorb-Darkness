@@ -16,6 +16,6 @@ public class MessageShow : Interactable
 
     void ShowMessage()
     {
-        UIManager.instance.OpenMessagePopUpUI(gameMessage.message);
+        UIManager.instance.OpenMessagePopUpUI(true, gameMessage.message);
     }
 }

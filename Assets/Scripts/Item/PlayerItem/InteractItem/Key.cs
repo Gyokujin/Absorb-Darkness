@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Key", menuName = "Items/Interact Item/Key")]
 public class Key : InteractItem
 {
-    public int keyIndex;
+    public int keyNumber;
 }

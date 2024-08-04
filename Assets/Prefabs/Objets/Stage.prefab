@@ -23832,7 +23832,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   interactableText: 
+  lockNum: 0
   interactTrasnform: {fileID: 2604730444567551496}
+  successMessage: "\uC5F4\uC1E0\uB97C \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4."
+  failMessage: "\uD544\uC694\uD55C \uC5F4\uC1E0\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."
 --- !u!4 &5004076043477136265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4587180499039842106, guid: 21b4300ee5592234e9dbad2a978f3793, type: 3}
