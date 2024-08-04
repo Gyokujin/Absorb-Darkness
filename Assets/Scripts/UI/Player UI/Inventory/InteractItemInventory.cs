@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class InteractItemInventory : MonoBehaviour
 {
-    public List<InteractItem> interactItems;
     public List<ItemSlot> interactItemSlots = new List<ItemSlot>();
-
     [SerializeField]
     private Transform slotTransform;
 
@@ -17,7 +15,7 @@ public class InteractItemInventory : MonoBehaviour
 
     public void InteractItemUpdate()
     {
-        for (int i = 0; i < interactItems.Count; i++)
+        for (int i = 0; i < InventoryManager.instance.interactItems.Count; i++)
         {
             if (i >= interactItemSlots.Count)
             {
@@ -25,7 +23,7 @@ public class InteractItemInventory : MonoBehaviour
                 interactItemSlots.Add(createSlot);
             }
 
-            Item item = interactItems[i];
+            Item item = InventoryManager.instance.interactItems[i];
             interactItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
         }
     }

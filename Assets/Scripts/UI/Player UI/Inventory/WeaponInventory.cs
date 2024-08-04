@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
 {
-    public List<WeaponItem> weaponItems;
     public List<ItemSlot> weaponSlots = new List<ItemSlot>();
-
     [SerializeField]
     private Transform slotTransform;
 
@@ -17,7 +15,7 @@ public class WeaponInventory : MonoBehaviour
 
     public void WeaponItemUpdate()
     {
-        for (int i = 0; i < weaponItems.Count; i++)
+        for (int i = 0; i < InventoryManager.instance.weaponItems.Count; i++)
         {
             if (i >= weaponSlots.Count)
             {
@@ -25,7 +23,7 @@ public class WeaponInventory : MonoBehaviour
                 weaponSlots.Add(createSlot);
             }
 
-            Item item = weaponItems[i];
+            Item item = InventoryManager.instance.weaponItems[i];
             weaponSlots[i].ItemSlotUpdate(true, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
         }
     }

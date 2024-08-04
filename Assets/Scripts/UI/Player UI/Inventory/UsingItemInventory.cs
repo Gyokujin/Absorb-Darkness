@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class UsingItemInventory : MonoBehaviour
 {
-    public List<UsingItem> usingItems;
     public List<ItemSlot> usingItemSlots = new List<ItemSlot>();
-
     [SerializeField]
     private Transform slotTransform;
 
@@ -17,7 +15,7 @@ public class UsingItemInventory : MonoBehaviour
 
     public void UsingItemUpdate()
     {
-        for (int i = 0; i < usingItems.Count; i++)
+        for (int i = 0; i < InventoryManager.instance.usingItems.Count; i++)
         {
             if (i >= usingItemSlots.Count)
             {
@@ -25,7 +23,7 @@ public class UsingItemInventory : MonoBehaviour
                 usingItemSlots.Add(createSlot);
             }
 
-            Item item = usingItems[i];
+            Item item = InventoryManager.instance.usingItems[i];
             usingItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
         }
     }

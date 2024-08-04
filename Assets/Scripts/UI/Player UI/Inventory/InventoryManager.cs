@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SystemData;
-using Unity.VisualScripting;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -10,9 +9,9 @@ public class InventoryManager : MonoBehaviour
     private InitItemData initItemData;
 
     [Header("Inventory")]
-    private WeaponInventory weaponInventory;
-    private UsingItemInventory usingItemInventory;
-    private InteractItemInventory interactItemInventory;
+    public List<WeaponItem> weaponItems;
+    public List<UsingItem> usingItems;
+    public List<InteractItem> interactItems;
 
     [Header("UI")]
     [SerializeField]
@@ -20,6 +19,13 @@ public class InventoryManager : MonoBehaviour
     public GameObject slotObject;
 
     [Header("Component")]
+    [SerializeField]
+    private WeaponInventory weaponInventory;
+    [SerializeField]
+    private UsingItemInventory usingItemInventory;
+    [SerializeField]
+    private InteractItemInventory interactItemInventory;
+
     private PlayerInventory playerInventory;
     private PlayerWeaponSlotManager playerWeaponSlotManager;
     [SerializeField]
@@ -42,35 +48,28 @@ public class InventoryManager : MonoBehaviour
     void Init()
     {
         initItemData = new InitItemData();
-        weaponInventory = GetComponentInChildren<WeaponInventory>();
-        usingItemInventory = GetComponentInChildren<UsingItemInventory>();
-        interactItemInventory = GetComponentInChildren<InteractItemInventory>();
-
         playerInventory = FindObjectOfType<PlayerInventory>();
         playerWeaponSlotManager = FindObjectOfType<PlayerWeaponSlotManager>();
 
         // 최초 아이템 초기화
-        playerInventory.curUsingItem = usingItemInventory.usingItems[0];
+        playerInventory.curUsingItem = usingItems[0];
         playerInventory.curUsingItem.itemCount = initItemData.InitEstusCount;
         quickSlotsUI.UpdateUsingItemUI(playerInventory.curUsingItem, playerInventory.curUsingItem.itemCount);
-
-        CloseInventory();
-        inventoryButtons.SetActive(false);
     }
 
     public void GetWeaponItem(WeaponItem weaponItem)
     {
-        weaponInventory.weaponItems.Add(weaponItem);
+        weaponItems.Add(weaponItem);
     }
 
     public void GetUsingItem(UsingItem usingItem)
     {
-        usingItemInventory.usingItems.Add(usingItem);
+        usingItems.Add(usingItem);
     }
 
     public void GetInteractItem(InteractItem interactItem)
     {
-        interactItemInventory.interactItems.Add(interactItem);
+        interactItems.Add(interactItem);
     }
 
     public void OpenWeaponInventory()
@@ -79,6 +78,7 @@ public class InventoryManager : MonoBehaviour
         inventoryButtons.SetActive(true);
         weaponInventory.gameObject.SetActive(true);
         weaponInventory.WeaponItemUpdate();
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
 
     public void OpenUsingItemInventory()
@@ -94,6 +94,7 @@ public class InventoryManager : MonoBehaviour
         CloseInventory();
         inventoryButtons.SetActive(true);
         interactItemInventory.gameObject.SetActive(true);
+        interactItemInventory.InteractItemUpdate();
     }
 
     void CloseInventory()

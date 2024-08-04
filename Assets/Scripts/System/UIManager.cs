@@ -48,9 +48,14 @@ public class UIManager : MonoBehaviour
     private RawImage itemPopUpIcon;
 
     [Header("Game Message")]
-    public GameObject messagePopUp;
     [SerializeField]
-    private Text messageText;
+    private GameObject messageTopUI;
+    [SerializeField]
+    private Text messageTopText;
+    [SerializeField]
+    private GameObject messageBottomUI;
+    [SerializeField]
+    private Text messageBottomText;
 
     [Header("Boss Info")]
     [SerializeField]
@@ -101,8 +106,6 @@ public class UIManager : MonoBehaviour
 
     public void OpenInventoryUI()
     {
-        CloseAllInventoryUI();
-        inventoryManager.gameObject.SetActive(true);
         inventoryManager.OpenWeaponInventory();
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
@@ -174,16 +177,26 @@ public class UIManager : MonoBehaviour
         itemPopUpUI.SetActive(false);
     }
 
-    public void OpenMessagePopUpUI(string message)
+    public void OpenMessagePopUpUI(bool onTop, string message)
     {
-        messagePopUp.SetActive(true);
-        messageText.text = message;
+        if (onTop)
+        {
+            messageTopUI.SetActive(true);
+            messageTopText.text = message;
+        }
+        else
+        {
+            messageBottomUI.SetActive(true);
+            messageBottomText.text = message;
+        }
+
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact1]);
     }
 
     public void CloseMessagePopUpUI()
     {
-        messagePopUp.SetActive(false);
+        messageTopUI.SetActive(false);
+        messageBottomUI.SetActive(false);
     }
 
     public void OpenBossInfo(string name)
