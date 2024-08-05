@@ -43,6 +43,7 @@ public class UnlockDoor : Interactable
         {
             unlock = true;
             animator.SetTrigger("doUnlock");
+            gameObject.tag = "Untagged";
 
             player.transform.position = interactTrasnform.position;
             player.transform.rotation = interactTrasnform.rotation;

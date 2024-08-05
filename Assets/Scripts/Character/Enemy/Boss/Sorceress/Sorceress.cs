@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sorceress : MonoBehaviour
+public class Sorceress : MonoBehaviour, IBossItemDrop
 {
     [Header("Spell")]
     private LightningImpact lightningImpact;
@@ -43,6 +43,11 @@ public class Sorceress : MonoBehaviour
 
     [Header("Compnent")]
     private EnemyManager enemyManager;
+
+    public void ItemDrop()
+    {
+
+    }
 
     void Awake()
     {
