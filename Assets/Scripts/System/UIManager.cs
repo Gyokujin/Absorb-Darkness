@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     private GameObject selectWindow;
 
     [Header("Inventory")]
-    public InventoryManager inventoryManager;
     [SerializeField]
     private GameObject inventorySlotPrefab;
     [SerializeField]
@@ -106,7 +105,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenInventoryUI()
     {
-        inventoryManager.OpenWeaponInventory();
+        InventoryManager.instance.OpenWeaponInventory();
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }
 
@@ -142,7 +141,7 @@ public class UIManager : MonoBehaviour
     public void CloseAllInventoryUI()
     {
         ResetAllSelectedSlots();
-        inventoryManager.gameObject.SetActive(false);
+        InventoryManager.instance.CloseInventory();
         equipmentWindow.SetActive(false);
     }
 

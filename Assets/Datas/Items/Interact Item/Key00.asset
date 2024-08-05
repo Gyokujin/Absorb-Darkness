@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c33191a7c590274e82ea0c286d719cb, type: 3}
   m_Name: Key00
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 2
   modelPrefab: {fileID: 670230188750971792, guid: c4bed05eadab0ab4ebf3b07fca5ac772, type: 3}
   itemIcon: {fileID: 21300000, guid: d1998a33e9ee0bf48b2913f30e8b82b0, type: 3}
   itemCount: 1
@@ -20,4 +20,4 @@ MonoBehaviour:
   itemInfo: "\uC880 \uB354 \uAE4A\uC740 \uACF3\uC73C\uB85C \uC774\uC5B4\uC9C0\uB294
     \uC5F4\uC1E0"
   interactItemType: 0
-  keyIndex: 0
+  keyNumber: 0

@@ -101,7 +101,6 @@ public class EnemyStatus : CharacterStatus
     IEnumerator DamageProcess(CharacterStatus player)
     {
         enemyAnimator.PlayTargetAnimation("Hit", true);
-        // enemyAnimator.animator.SetTrigger("doHit");
         characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
 
         yield return hitWait;
@@ -139,6 +138,11 @@ public class EnemyStatus : CharacterStatus
         foreach (DamageCollider attackCollider in enemyManager.attackColliders)
         {
             attackCollider.CloseDamageCollider();
+        }
+
+        if (gameObject.GetComponent<BossItemDrop>() != null)
+        {
+            gameObject.GetComponent<BossItemDrop>().ItemLoot();
         }
 
         if (onStageBoss)

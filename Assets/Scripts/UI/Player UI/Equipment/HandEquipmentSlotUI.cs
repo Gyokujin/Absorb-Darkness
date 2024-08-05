@@ -51,7 +51,7 @@ public class HandEquipmentSlotUI : MonoBehaviour
             UIManager.instance.rightHandSlot02Selected = true;
         }
 
-        UIManager.instance.inventoryManager.gameObject.SetActive(true);
+        // UIManager.instance.inventoryManager.gameObject.SetActive(true);
         UIManager.instance.equipmentWindow.SetActive(false);
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
     }

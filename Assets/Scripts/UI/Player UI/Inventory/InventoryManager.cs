@@ -97,8 +97,9 @@ public class InventoryManager : MonoBehaviour
         interactItemInventory.InteractItemUpdate();
     }
 
-    void CloseInventory()
+    public void CloseInventory()
     {
+        inventoryButtons.SetActive(false);
         weaponInventory.gameObject.SetActive(false);
         usingItemInventory.gameObject.SetActive(false);
         interactItemInventory.gameObject.SetActive(false);
