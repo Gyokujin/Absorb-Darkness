@@ -140,14 +140,10 @@ public class EnemyStatus : CharacterStatus
             attackCollider.CloseDamageCollider();
         }
 
-        if (gameObject.GetComponent<BossItemDrop>() != null)
-        {
-            gameObject.GetComponent<BossItemDrop>().ItemLoot();
-        }
-
         if (onStageBoss)
         {
             UIManager.instance.CloseBossInfo();
+            gameObject.GetComponent<BossItemDrop>().ItemLoot();
         }
     }
 }
