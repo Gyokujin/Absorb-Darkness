@@ -56,16 +56,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text messageBottomText;
 
-    [Header("Boss Info")]
-    [SerializeField]
-    private GameObject bossInfoUI;
-    [SerializeField]
-    private Text bossNameText;
-    [SerializeField]
-    private Slider bossHPSlider;
-
     [Header("Component")]
     public QuickSlotsUI quickSlotsUI;
+    public BossStageUI bossStageUI;
 
     void Awake()
     {
@@ -169,6 +162,7 @@ public class UIManager : MonoBehaviour
         itemPopUpName.text = itemName;
         itemPopUpIcon.texture = itemIcon;
         itemPopUpUI.SetActive(true);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.PickUp]);
     }
 
     public void CloseItemPopUpUI()
@@ -196,22 +190,5 @@ public class UIManager : MonoBehaviour
     {
         messageTopUI.SetActive(false);
         messageBottomUI.SetActive(false);
-    }
-
-    public void OpenBossInfo(string name)
-    {
-        bossNameText.text = name;
-        bossHPSlider.value = 1;
-        bossInfoUI.SetActive(true);
-    }
-
-    public void BossHPUIModify(float curHP, float maxHP)
-    {
-        bossHPSlider.value = curHP / maxHP;
-    }
-
-    public void CloseBossInfo()
-    {
-        bossInfoUI.SetActive(false);
     }
 }

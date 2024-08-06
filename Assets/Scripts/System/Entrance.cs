@@ -28,7 +28,7 @@ public class Entrance : MonoBehaviour
 
         if (bossInfo != null)
         {
-            UIManager.instance.OpenBossInfo(bossInfo.bossName);
+            UIManager.instance.bossStageUI.OpenBossStageUI(bossInfo.bossName);
         }
 
         targetGate.Close();

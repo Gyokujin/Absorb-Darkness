@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public enum SystemSound
     {
-        GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance
+        GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance, DoorOpen, Victory
     }
 
     [Header("BGM")]
@@ -96,6 +96,12 @@ public class AudioManager : MonoBehaviour
         bgmAudio.Stop();
         bgmAudio.clip = audioClip;
         bgmAudio.Play();
+    }
+
+    public void MuteBGM()
+    {
+        bgmAudio.Stop();
+        bgmAudio.clip = null;
     }
 
     public void PlaySystemSFX(AudioClip audioClip)
