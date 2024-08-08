@@ -145,7 +145,9 @@ public class EnemyStatus : CharacterStatus
             BossItemDrop bossItemDrop = GetComponent<BossItemDrop>();
             StartCoroutine(UIManager.instance.bossStageUI.EndBossStageUI(bossItemDrop));
             AudioManager.instance.MuteBGM();
-            // gameObject.GetComponent<BossItemDrop>().ItemLoot();
+
+            CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
+            characterDissolve.enabled = true;
         }
     }
 }
