@@ -30,8 +30,6 @@ public class PlayerCamera : MonoBehaviour
     private EnemyManager currentLockOnTarget;
     [SerializeField]
     private Vector3 currentTargetPos;
-    // [SerializeField]
-    // private float lockOnUIScaleMin = 0.3f;
     [SerializeField]
     private Transform lockOnUI;
     private LayerMask lockOnLayer;
@@ -60,7 +58,7 @@ public class PlayerCamera : MonoBehaviour
     {
         camTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
-        cameraData = new CameraData(); // SystemData 구조체 생성
+        cameraData = new CameraData();
         lockOnLayer = LayerMask.GetMask("Enemy");
         environmentLayer = LayerMask.GetMask("Environment");
     }

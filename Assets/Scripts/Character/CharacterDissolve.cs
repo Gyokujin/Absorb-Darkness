@@ -25,6 +25,7 @@ public class CharacterDissolve : MonoBehaviour
         material.shader = Shader.Find("Custom/Dissolve");
         material.SetTexture("_DissolveTex", dissolveTexture);
         material.SetColor("_DissolveColor", dissolveColor);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Dissolve]);
 
         while (dissolveProgress < 1f)
         {
