@@ -28,6 +28,7 @@ public class Entrance : MonoBehaviour
 
         if (bossInfo != null)
         {
+            UIManager.instance.bossStageUI.gameObject.SetActive(true);
             UIManager.instance.bossStageUI.OpenBossStageUI(bossInfo.bossName);
         }
 

@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public enum SystemSound
     {
-        GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance, DoorOpen, Victory
+        GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance, DoorOpen
     }
 
     [Header("BGM")]
