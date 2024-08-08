@@ -9,15 +9,28 @@ public class BossStageUI : MonoBehaviour
     [SerializeField]
     private GameObject bossInfoUI;
     [SerializeField]
-    private Animator bossClearUI;
-    [SerializeField]
     private Text bossNameText;
     [SerializeField]
     private Slider bossHPSlider;
 
+    [Header("UI Delay")]
+    [SerializeField]
+    private float defeatDelay = 3f;
+    [SerializeField]
+    private float victoryDelay = 2.5f;
+
+    [Header("Component")]
+    private BossClearUI bossClearUI;
+
+    void Awake()
+    {
+        bossClearUI = GetComponentInChildren<BossClearUI>();
+    }
+
     public void OpenBossStageUI(string name)
     {
         bossInfoUI.SetActive(true);
+        bossClearUI.gameObject.SetActive(true);
         bossNameText.text = name;
         bossHPSlider.value = 1;
     }
@@ -27,15 +40,14 @@ public class BossStageUI : MonoBehaviour
         bossHPSlider.value = curHP / maxHP;
     }
 
-    public IEnumerator EndBossStageUI(BossItemDrop bossItemDrop)
+    public IEnumerator EndBossStageUI(BossItemDrop boss)
     {
+        yield return new WaitForSeconds(defeatDelay);
         bossInfoUI.SetActive(false);
+        bossClearUI.bossItemDrop = boss;
+        bossClearUI.PlayBossClear();
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(victoryDelay);
         bossClearUI.gameObject.SetActive(true);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Victory]);
-
-        yield return new WaitForSeconds(5.5f);
-        bossItemDrop.ItemLoot();
     }
 }
