@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: Sorceress_sorceress_color1
   m_Shader: {fileID: 4800000, guid: 6dbfbaa53659a0f4e8aaf36bc3d50cc4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
