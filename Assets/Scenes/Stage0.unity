@@ -3593,7 +3593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponItems: []
   usingItems:
-  - {fileID: 11400000, guid: f0d4b617cc6429f49b6d991ac10ec0ab, type: 2}
+  - {fileID: 11400000, guid: 839e23cd00f2aa04ea860a7a1d1361f1, type: 2}
   interactItems: []
   inventoryButtons: {fileID: 1353200684}
   slotObject: {fileID: 5204401567664892740, guid: 6fe0ac932d4e4a549a43100758f06bc8, type: 3}

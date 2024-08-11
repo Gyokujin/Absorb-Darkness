@@ -42,7 +42,7 @@ namespace PlayerData
         private float? staminaRecoveryAmount;
         public float StaminaRecoveryAmount
         {
-            readonly get => staminaRecoveryAmount ?? 0.55f;
+            readonly get => staminaRecoveryAmount ?? 0.4f;
             set => staminaRecoveryAmount = value;
         }
 
