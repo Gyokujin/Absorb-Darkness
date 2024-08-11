@@ -5,20 +5,21 @@ using PlayerData;
 
 public class PlayerManager : CharacterManager
 {
+    [Header("Data")]
     private PlayerPhysicsData layerData;
     private PlayerAnimatorData animatorData;
 
     [Header("Player Action")]
     public bool isInteracting;
+    public bool isGrounded = true;
+    public bool isDodge;
     public bool isSprinting;
     public bool isAttack;
     public bool isComboAble;
-    public bool isDodge;
     public bool isInAir;
-    public bool isGrounded = true;
+    public bool isItemUse;
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
-    public bool isItemUse;
 
     [Header("Combat")]
     [HideInInspector]
@@ -65,6 +66,7 @@ public class PlayerManager : CharacterManager
 
         layerData = new PlayerPhysicsData();
         animatorData = new PlayerAnimatorData();
+
         defaultLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
         invincibleLayer = LayerMask.NameToLayer(layerData.InvincibleLayer);
     }

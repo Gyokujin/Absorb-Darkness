@@ -35,8 +35,8 @@ public class PlayerInput : MonoBehaviour
     private bool useItemInpt;
 
     [Header("Input System")]
-    private bool quickSlotUpInput;
-    private bool quickSlotDownInput;
+    // private bool quickSlotUpInput;
+    // private bool quickSlotDownInput;
     private bool quickSlotLeftInput;
     private bool quickSlotRightInput;
     private bool gameSystemInput;
@@ -96,8 +96,8 @@ public class PlayerInput : MonoBehaviour
         lockOnInput = false;
         useItemInpt = false;
 
-        quickSlotUpInput = false;
-        quickSlotDownInput = false;
+        // quickSlotUpInput = false;
+        // quickSlotDownInput = false;
         quickSlotLeftInput = false;
         quickSlotRightInput = false;
         gameSystemInput = false;
@@ -122,6 +122,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleMoveInput()
     {
+        if (gameSystemFlag)
+            return;
+
         horizontal = movementInput.x;
         vertical = movementInput.y;
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
@@ -131,6 +134,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput()
     {
+        if (gameSystemFlag)
+            return;
+
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
 
         if (rollingInput)
@@ -157,6 +163,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleInteractInput()
     {
+        if (gameSystemFlag)
+            return;
+
         if (interactInput)
         {
             player.playerBehavior.BehaviourAction();
@@ -165,7 +174,8 @@ public class PlayerInput : MonoBehaviour
 
     void HandleAttackInput()
     {
-        if (gameSystemFlag || player.onDamage || player.onDie || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < playerStatusData.ActionLimitStamina || player.isDodge || player.isItemUse)
+        if (gameSystemFlag || player.onDamage || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < playerStatusData.ActionLimitStamina || 
+            player.isDodge || player.isItemUse)
             return;
 
         if (lightAttackInput) // ¾à°ø°Ý
@@ -194,6 +204,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleTwoHandInput()
     {
+        if (gameSystemFlag)
+            return;
+
         if (twoHandInput)
         {
             twoHandFlag = !twoHandFlag;
@@ -212,6 +225,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleLockOnInput()
     {
+        if (gameSystemFlag)
+            return;
+
         if (lockOnInput && !gameSystemFlag)
         {
             PlayerCamera.instance.SwitchLockOn();
@@ -220,6 +236,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleUseItemInput()
     {
+        if (gameSystemFlag)
+            return;
+
         if (useItemInpt)
         {
             player.playerBehavior.UseItem(player.playerInventory.curUsingItem);
@@ -228,6 +247,9 @@ public class PlayerInput : MonoBehaviour
 
     void HandleQuickSlotsInput()
     {
+        if (gameSystemFlag)
+            return;
+
         if (quickSlotLeftInput)
         {
             player.playerInventory.ChangeLeftWeapon();
