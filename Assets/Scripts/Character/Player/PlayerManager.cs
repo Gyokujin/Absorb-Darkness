@@ -83,23 +83,11 @@ public class PlayerManager : CharacterManager
         playerAnimator.animator.SetBool(animatorData.InAirParameter, isInAir);
 
         playerInput.TickInput();
-        playerBehavior.CheckInteractableObject(this);
+        playerBehavior.CheckInteractableObject();
     }
 
     void LateUpdate()
     {
-        playerInput.interactInput = false;
-        playerInput.twoHandInput = false;
-        playerInput.useItemInpt = false;
-        playerInput.lockOnInput = false;
-        playerInput.lightAttackInput = false;
-        playerInput.heavyAttackInput = false;
-        playerInput.gameSystemInput = false;
-        playerInput.quickSlotUpInput = false;
-        playerInput.quickSlotDownInput = false;
-        playerInput.quickSlotLeftInput = false;
-        playerInput.quickSlotRightInput = false;
-
         PlayerCamera.instance.FollowTarget(Time.fixedDeltaTime);
         PlayerCamera.instance.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
 

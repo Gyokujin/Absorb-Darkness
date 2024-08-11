@@ -31,13 +31,11 @@ public class PlayerBehavior : MonoBehaviour
         interactData = new InteractData();
     }
 
-    public void CheckInteractableObject(PlayerManager player)
+    public void CheckInteractableObject()
     {
-        RaycastHit hit;
-
-        if (Physics.SphereCast(transform.position, interactData.InteractCheckRadius, transform.forward, out hit, interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
+        if (Physics.SphereCast(transform.position, interactData.InteractCheckRadius, transform.forward, out RaycastHit hit, interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
         {
-            if (hit.collider.tag == interactData.InteractObjTag)
+            if (hit.collider.CompareTag(interactData.InteractObjTag))
             {
                 interactableObj = hit.collider.GetComponent<Interactable>();
             }
@@ -80,7 +78,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    public void UseItem(PlayerAnimator playerAnimator, UsingItem item)
+    public void UseItem(UsingItem item)
     {
         if (player.playerItemSlotManager.leftHandSlot.currentWeaponModel != null)
         {
@@ -103,7 +101,7 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
         player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, true);
-        playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
+        player.playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
         UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
     }
 

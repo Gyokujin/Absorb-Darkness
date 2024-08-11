@@ -25,30 +25,21 @@ public class PlayerInput : MonoBehaviour
     private Vector2 movementInput;
     private Vector2 cameraInput;
 
-    [Header("Input System")]
-    [HideInInspector]
-    public bool interactInput;
+    [Header("Input Action")]
     private bool rollingInput;
-    [HideInInspector]
-    public bool twoHandInput;
-    [HideInInspector]
-    public bool lockOnInput;
-    [HideInInspector]
-    public bool useItemInpt;
-    [HideInInspector]
-    public bool lightAttackInput;
-    [HideInInspector]
-    public bool heavyAttackInput;
-    [HideInInspector]
-    public bool gameSystemInput;
-    [HideInInspector]
-    public bool quickSlotUpInput;
-    [HideInInspector]
-    public bool quickSlotDownInput;
-    [HideInInspector]
-    public bool quickSlotLeftInput;
-    [HideInInspector]
-    public bool quickSlotRightInput;
+    private bool lightAttackInput;
+    private bool heavyAttackInput;
+    private bool interactInput;
+    private bool twoHandInput;
+    private bool lockOnInput;
+    private bool useItemInpt;
+
+    [Header("Input System")]
+    private bool quickSlotUpInput;
+    private bool quickSlotDownInput;
+    private bool quickSlotLeftInput;
+    private bool quickSlotRightInput;
+    private bool gameSystemInput;
 
     [Header("Action Flag")]
     public bool rollFlag;
@@ -75,16 +66,17 @@ public class PlayerInput : MonoBehaviour
             inputActions = new PlayerControls();
 
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-            inputActions.PlayerActions.Interact.performed += i => interactInput = true;
-            inputActions.PlayerActions.UseItem.performed += i => useItemInpt = true;
-            inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
-            inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
             inputActions.PlayerActions.LightAttack.performed += i => lightAttackInput = true;
             inputActions.PlayerActions.HeavyAttack.performed += i => heavyAttackInput = true;
-            inputActions.PlayerActions.GameSystem.performed += i => gameSystemInput = true;
+            inputActions.PlayerActions.Interact.performed += i => interactInput = true;
+            inputActions.PlayerActions.TwoHand.performed += i => twoHandInput = true;
+            inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            inputActions.PlayerActions.UseItem.performed += i => useItemInpt = true;
+            inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+
             inputActions.PlayerQuickSlots.QuickSlotLeft.performed += i => quickSlotLeftInput = true;
             inputActions.PlayerQuickSlots.QuickSlotRight.performed += i => quickSlotRightInput = true;
-            inputActions.PlayerActions.TwoHand.performed += i => twoHandInput = true;
+            inputActions.PlayerActions.GameSystem.performed += i => gameSystemInput = true;
         }
 
         inputActions.Enable();
@@ -93,6 +85,22 @@ public class PlayerInput : MonoBehaviour
     void OnDisable()
     {
         inputActions.Disable();
+    }
+
+    void LateUpdate()
+    {
+        lightAttackInput = false;
+        heavyAttackInput = false;
+        interactInput = false;
+        twoHandInput = false;
+        lockOnInput = false;
+        useItemInpt = false;
+
+        quickSlotUpInput = false;
+        quickSlotDownInput = false;
+        quickSlotLeftInput = false;
+        quickSlotRightInput = false;
+        gameSystemInput = false;
     }
 
     public void TickInput()
@@ -214,7 +222,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (useItemInpt)
         {
-            player.playerBehavior.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
+            player.playerBehavior.UseItem(player.playerInventory.curUsingItem);
         }
     }
 

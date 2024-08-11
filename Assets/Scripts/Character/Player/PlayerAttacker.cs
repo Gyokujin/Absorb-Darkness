@@ -11,7 +11,6 @@ public class PlayerAttacker : MonoBehaviour
     private PlayerAnimatorData animatorData;
 
     [Header("Attack")]
-    [SerializeField]
     private string lastAttack;
 
     [Header("Weapon")]
@@ -75,6 +74,7 @@ public class PlayerAttacker : MonoBehaviour
         switch (playerWeapon.weaponType)
         {
             case WeaponItem.WeaponType.None:
+            case WeaponItem.WeaponType.Axe:
                 break;
 
             case WeaponItem.WeaponType.Sword:
@@ -86,10 +86,6 @@ public class PlayerAttacker : MonoBehaviour
                 {
                     lastAttack = oneHand ? weapon.oneHand_HeavyAttack2 : weapon.twoHand_HeavyAttack2;
                 }
-
-                break;
-
-            case WeaponItem.WeaponType.Axe:
 
                 break;
         }
