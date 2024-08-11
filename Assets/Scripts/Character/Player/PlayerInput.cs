@@ -98,14 +98,18 @@ public class PlayerInput : MonoBehaviour
     public void TickInput()
     {
         HandleMoveInput();
-        HandleRollInput();
-        HandleInteractInput();
         HandleAttackInput();
-        HandleTwoHandInput();
-        HandleLockOnInput();
-        HandleUseItemInput();
-        HandleQuickSlotsInput();
         HandleGameSystemInput();
+
+        if (!player.isInteracting)
+        {
+            HandleRollInput();
+            HandleInteractInput();
+            HandleTwoHandInput();
+            HandleLockOnInput();
+            HandleUseItemInput();
+            HandleQuickSlotsInput();
+        }
     }
 
     void HandleMoveInput()
@@ -119,9 +123,6 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput()
     {
-        if (player.isInteracting)
-            return;
-
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
 
         if (rollingInput)
@@ -148,9 +149,6 @@ public class PlayerInput : MonoBehaviour
 
     void HandleInteractInput()
     {
-        if (player.isInteracting)
-            return;
-
         if (interactInput)
         {
             player.playerBehavior.BehaviourAction();
@@ -214,7 +212,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleUseItemInput()
     {
-        if (useItemInpt && !player.isInteracting)
+        if (useItemInpt)
         {
             player.playerBehavior.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
         }

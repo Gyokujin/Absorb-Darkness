@@ -71,6 +71,9 @@ public class PlayerManager : CharacterManager
 
     void Update()
     {
+        if (onDie)
+            return;
+
         isInteracting = playerAnimator.animator.GetBool(animatorData.InteractParameter);
         isAttack = playerAnimator.animator.GetBool(animatorData.AttackParameter);
         isComboAble = playerAnimator.animator.GetBool(animatorData.ComboAbleParameter);

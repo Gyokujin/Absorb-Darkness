@@ -13,7 +13,6 @@ public class PlayerBehavior : MonoBehaviour
     private InteractData interactData;
 
     [Header("Interact")]
-    [SerializeField]
     private Interactable interactableObj;
 
     [Header("Item Use")]
@@ -97,7 +96,6 @@ public class PlayerBehavior : MonoBehaviour
 
                 curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
                 player.playerInventory.curUsingItem.itemCount--;
-                UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
                 break;
         }
 
@@ -106,10 +104,12 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.localRotation = Quaternion.identity;
         player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, true);
         playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
+        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
     }
 
     public void EndItemUse()
     {
+        player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, false);
         PoolManager.instance.Return(curUsingItem);
         curUsingItem = null;
 
@@ -118,7 +118,5 @@ public class PlayerBehavior : MonoBehaviour
             leftHandWeapon.SetActive(true);
             leftHandWeapon = null;
         }
-
-        player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, false);
     }
 }
