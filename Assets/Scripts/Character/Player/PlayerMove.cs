@@ -8,21 +8,22 @@ using SystemData;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerManager player;
+
+    [Header("Data")]
     private PlayerStatusData playerStatusData;
     private PlayerPhysicsData playerPhysicsData;
     private PlayerAnimatorData playerAnimatorData;
     private PhysicsData physicsData;
 
-    [Header("Ground & Air Detection States")]
-    private LayerMask ignoreGroundCheck;
-    public float inAirTimer;
-
     [Header("Physics")]
-    [HideInInspector]
     public new Rigidbody rigidbody;
     public Vector3 moveDirection;
     private Vector3 normalVec;
     private Vector3 targetPosition;
+
+    [Header("Ground Landed")]
+    public float inAirTimer;
+    private LayerMask ignoreGroundCheck;
 
     [Header("Component")]
     [SerializeField]
@@ -41,6 +42,7 @@ public class PlayerMove : MonoBehaviour
         playerStatusData = new PlayerStatusData();
         playerPhysicsData = new PlayerPhysicsData();
         physicsData = new PhysicsData();
+
         ignoreGroundCheck = LayerMask.GetMask(physicsData.GroundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
@@ -171,7 +173,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 dir = moveDirection;
         dir.Normalize();
-        origin = origin + dir * physicsData.GroundDirRayDistance;
+        origin += dir * physicsData.GroundDirRayDistance;
         targetPosition = player.transform.position;
 
         if (Physics.Raycast(origin, Vector3.down, out hit, physicsData.DistanceBeginFallMin, ignoreGroundCheck))

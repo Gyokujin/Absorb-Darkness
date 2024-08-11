@@ -6,6 +6,8 @@ using PlayerData;
 public class PlayerStatus : CharacterStatus
 {
     private PlayerManager player;
+
+    [Header("Data")]
     private PlayerStatusData playerStatusData;
     private PlayerPhysicsData playerPhysicsData;
     private PlayerAnimatorData playerAnimatorData;
@@ -13,7 +15,6 @@ public class PlayerStatus : CharacterStatus
     [Header("Stamina")]
     private float maxStamina;
     private float currentStamina;
-    [HideInInspector]
     public float CurrentStamina
     {
         get
@@ -31,8 +32,6 @@ public class PlayerStatus : CharacterStatus
 
     [Header("Battle")]
     private float curInvincibleTime;
-    [SerializeField]
-    private int recoveryAmount = 50; // 이후에 스크립터블 오브젝트(에스트)에 이관하자
 
     [Header("UI")]
     [SerializeField]
@@ -143,9 +142,9 @@ public class PlayerStatus : CharacterStatus
         player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Die]);
     }
 
-    public void RecoveryHealth()
+    public void RecoveryHP(int amount)
     {
-        CurrentHealth = Mathf.Min(CurrentHealth + recoveryAmount, maxHealth);
+        CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
         healthBar.SetCurrentHealth(CurrentHealth);
 
         GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
@@ -155,7 +154,10 @@ public class PlayerStatus : CharacterStatus
 
     void RecoveryStamina()
     {
-        if (CurrentStamina < maxStamina && !player.isInteracting && !player.onDamage && !player.isDodge && !player.isSprinting)
+        if (player.isInteracting || player.onDamage || player.isDodge || player.isSprinting)
+            return;
+
+        if (CurrentStamina < maxStamina)
         {
             CurrentStamina += playerStatusData.StaminaRecoveryAmount;
             staminaBar.SetCurrentStamina(CurrentStamina);

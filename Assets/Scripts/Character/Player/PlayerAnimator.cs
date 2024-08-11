@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerData;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : AnimatorManager
@@ -16,6 +17,11 @@ public class PlayerAnimator : AnimatorManager
     private float parameterVer;
 
     void Awake()
+    {
+        Init();
+    }
+
+    void Init()
     {
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
@@ -130,7 +136,20 @@ public class PlayerAnimator : AnimatorManager
 
     public void Recovery()
     {
-        player.playerStatus.RecoveryHealth();
+        UsingItem item = player.playerInventory.curUsingItem;
+
+        if (item is RecoveryItem recoveryItem)
+        {
+            if (recoveryItem.hpRecoveryAmount > 0)
+            {
+                player.playerStatus.RecoveryHP(recoveryItem.hpRecoveryAmount);
+            }
+
+            //if (recoveryItem.mpRecoveryAmount > 0) // 아직 미정
+            //{
+            //    player.playerStatus.RecoveryMP(recoveryItem.mpRecoveryAmount);
+            //}
+        }
     }
 
     public void ItemUseEnd()

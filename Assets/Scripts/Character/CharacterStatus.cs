@@ -15,7 +15,6 @@ public class CharacterStatus : MonoBehaviour
     public int maxHealth;
 
     private int currentHealth;
-    [HideInInspector]
     public int CurrentHealth
     {
         get
