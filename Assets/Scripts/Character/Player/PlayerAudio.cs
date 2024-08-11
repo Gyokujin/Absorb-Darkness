@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class PlayerAudio : CharacterAudio
 {
-    private bool onFootstepPlaying;
-    private bool onSprintPlaying;
-
-    private AudioSource footstepAudio;
-    private AudioSource sprintAudio;
-
     public enum PlayerSound
     {
         Footstep, Sprint, Rolling, Backstep, Attack1, Attack2, Drink, Recovery
     }
 
+    [Header("Parameter")]
+    private bool onFootstepPlaying;
+    private bool onSprintPlaying;
+
+    [Header("Audio")]
     public AudioClip[] playerClips;
+    private AudioSource footstepAudio;
+    private AudioSource sprintAudio;
 
     public void PlayFootstepSFX()
     {
@@ -49,7 +50,6 @@ public class PlayerAudio : CharacterAudio
 
             sprintAudio = characterAudios[loofIndex];
             sprintAudio.clip = playerClips[(int)PlayerSound.Sprint];
-            // sprintAudio.loop = true;
             sprintAudio.Play();
         }
     }

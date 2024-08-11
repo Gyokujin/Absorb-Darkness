@@ -7,6 +7,8 @@ using PlayerData;
 public class PlayerAnimator : AnimatorManager
 {
     private PlayerManager player;
+
+    [Header("Data")]
     private PlayerAnimatorData playerAnimatorData;
 
     [Header("Animator Parameters")]

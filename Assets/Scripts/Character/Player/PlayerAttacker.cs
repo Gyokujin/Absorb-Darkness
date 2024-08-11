@@ -6,15 +6,9 @@ using PlayerData;
 public class PlayerAttacker : MonoBehaviour
 {
     private PlayerManager player;
+
+    [Header("Data")]
     private PlayerAnimatorData animatorData;
-
-    //public enum PlayerAttackType
-    //{
-    //    Sword_OneHand_LightAttack1, Sword_OneHand_LightAttack2, Sword_OneHand_HeavyAttack1, Sword_OneHand_HeavyAttack2,
-    //    Sword_TwoHand_LightAttack1, Sword_TwoHand_LightAttack2, Sword_TwoHand_HeavyAttack1, Sword_TwoHand_HeavyAttack2
-    //}
-
-    //private PlayerAttackType curAttack;
 
     [Header("Attack")]
     [SerializeField]

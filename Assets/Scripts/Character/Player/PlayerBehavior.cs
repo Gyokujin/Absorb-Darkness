@@ -7,6 +7,8 @@ using SystemData;
 public class PlayerBehavior : MonoBehaviour
 {
     private PlayerManager player;
+
+    [Header("Data")]
     private PlayerAnimatorData animatorData;
     private InteractData interactData;
 
@@ -91,9 +93,6 @@ public class PlayerBehavior : MonoBehaviour
             case UsingItem.UsingItemType.EstusFlask:
                 if (player.playerInventory.curUsingItem.itemCount <= 0)
                     return;
-
-                //if (InventoryManager.instance.usingItemInventory.usingItems[0].itemCount <= 0)
-                //    return;
 
                 curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
                 player.playerInventory.curUsingItem.itemCount--;
