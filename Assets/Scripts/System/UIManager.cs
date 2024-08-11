@@ -168,6 +168,7 @@ public class UIManager : MonoBehaviour
     public void CloseItemPopUpUI()
     {
         itemPopUpUI.SetActive(false);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
     }
 
     public void OpenMessagePopUpUI(bool onTop, string message)

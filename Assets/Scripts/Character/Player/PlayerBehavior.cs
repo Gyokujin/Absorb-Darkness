@@ -13,6 +13,7 @@ public class PlayerBehavior : MonoBehaviour
     private InteractData interactData;
 
     [Header("Interact")]
+    [SerializeField]
     private Interactable interactableObj;
 
     [Header("Item Use")]
@@ -31,52 +32,52 @@ public class PlayerBehavior : MonoBehaviour
         interactData = new InteractData();
     }
 
-    public void CheckInteractableObject(PlayerManager playerManager)
+    public void CheckInteractableObject(PlayerManager player)
     {
         RaycastHit hit;
 
         if (Physics.SphereCast(transform.position, interactData.InteractCheckRadius, transform.forward, out hit, interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
         {
-            if (hit.collider.tag == interactData.InteractObjTag && hit.collider.GetComponent<Interactable>() != null)
+            if (hit.collider.tag == interactData.InteractObjTag)
             {
                 interactableObj = hit.collider.GetComponent<Interactable>();
-                UIManager.instance.OpenInteractUI(interactableObj.interactableText);
-
-                if (player.playerInput.interactInput)
-                {
-                    interactableObj.Interact(playerManager, this);
-
-                    if (interactableObj.interactType == Interactable.InteractType.Item)
-                    {
-                        UIManager.instance.InventoryUIUpdate();
-                    }
-                }
             }
         }
         else
         {
-            if (UIManager.instance.itemPopUpUI != null)
+            interactableObj = null;
+        }
+
+
+        if (interactableObj != null)
+        {
+            UIManager.instance.OpenInteractUI(interactableObj.interactableText);
+        }
+        else
+        {
+            UIManager.instance.CloseInteractUI();
+        }
+    }
+
+    public void BehaviourAction()
+    {
+        if (player.playerBehavior.interactableObj != null)
+        {
+            interactableObj.Interact(player, this);
+
+            switch (interactableObj.interactType)
             {
-                UIManager.instance.CloseInteractUI();
-
-                if (interactableObj != null && player.playerInput.interactInput)
-                {
-                    UIManager.instance.CloseItemPopUpUI();
-                    UIManager.instance.CloseMessagePopUpUI();
-
-                    switch (interactableObj.interactType)
-                    {
-                        case Interactable.InteractType.Item:
-                            break;
-
-                        case Interactable.InteractType.Message:
-                            break;
-                    }
-
-                    AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
-                    interactableObj = null;
-                }
+                case Interactable.InteractType.Item:
+                case Interactable.InteractType.Message:
+                case Interactable.InteractType.FogWall:
+                case Interactable.InteractType.LockDoor:
+                    break;
             }
+        }
+        else
+        {
+            UIManager.instance.CloseItemPopUpUI();
+            UIManager.instance.CloseMessagePopUpUI();
         }
     }
 

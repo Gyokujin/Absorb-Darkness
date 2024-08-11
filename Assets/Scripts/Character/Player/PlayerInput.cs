@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerManager player;
     private PlayerControls inputActions;
+
+    [Header("Data")]
     private PlayerStatusData playerStatusData;
     private PlayerAnimatorData playerAnimatorData;
 
@@ -97,10 +99,11 @@ public class PlayerInput : MonoBehaviour
     {
         HandleMoveInput();
         HandleRollInput();
-        HandleUseItemInput();
-        HandleLockOnInput();
-        HandleTwoHandInput();
+        HandleInteractInput();
         HandleAttackInput();
+        HandleTwoHandInput();
+        HandleLockOnInput();
+        HandleUseItemInput();
         HandleQuickSlotsInput();
         HandleGameSystemInput();
     }
@@ -143,21 +146,14 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void HandleTwoHandInput()
+    void HandleInteractInput()
     {
-        if (twoHandInput)
-        {
-            twoHandFlag = !twoHandFlag;
+        if (player.isInteracting)
+            return;
 
-            if (twoHandFlag)
-            {
-                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
-            }
-            else
-            {
-                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
-                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.leftWeapon, true);
-            }
+        if (interactInput)
+        {
+            player.playerBehavior.BehaviourAction();
         }
     }
 
@@ -190,6 +186,40 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    void HandleTwoHandInput()
+    {
+        if (twoHandInput)
+        {
+            twoHandFlag = !twoHandFlag;
+
+            if (twoHandFlag)
+            {
+                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
+            }
+            else
+            {
+                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
+                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.leftWeapon, true);
+            }
+        }
+    }
+
+    void HandleLockOnInput()
+    {
+        if (lockOnInput && !gameSystemFlag)
+        {
+            PlayerCamera.instance.SwitchLockOn();
+        }
+    }
+
+    void HandleUseItemInput()
+    {
+        if (useItemInpt && !player.isInteracting)
+        {
+            player.playerBehavior.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
+        }
+    }
+
     void HandleQuickSlotsInput()
     {
         if (quickSlotLeftInput)
@@ -219,22 +249,6 @@ public class PlayerInput : MonoBehaviour
                 gameSystemFlag = false;
                 UIManager.instance.CloseGameSystemUI();
             }
-        }
-    }
-
-    void HandleLockOnInput()
-    {
-        if (lockOnInput && !gameSystemFlag)
-        {
-            PlayerCamera.instance.SwitchLockOn();
-        }
-    }
-
-    void HandleUseItemInput()
-    {
-        if (useItemInpt && !player.isInteracting)
-        {
-            player.playerBehavior.UseItem(player.playerAnimator, player.playerInventory.curUsingItem);
         }
     }
 }
