@@ -1,5 +1,41 @@
 using UnityEngine;
 
+namespace CharacterData
+{
+    public struct CharacterAnimatorData
+    {
+        [Header("Parameter")]
+        // Animation FadeAmount
+        private float? animationFadeAmount;
+        public float AnimationFadeAmount
+        {
+            readonly get => animationFadeAmount ?? 0.2f;
+            set => animationFadeAmount = value;
+        }
+
+        [Header("Parameter Name")]
+        // Interact Parameter
+        private string interactParameter;
+        public string InteractParameter
+        {
+            readonly get => interactParameter ?? "isInteracting";
+            set => interactParameter = value;
+        }
+    }
+
+    public struct CharacterAudioData
+    {
+        [Header("Audio Parameter")]
+        // PlayerVolume
+        private float? characterVolume;
+        public float CharacterVolume
+        {
+            readonly get => characterVolume ?? 0.7f;
+            set => characterVolume = value;
+        }
+    }
+}
+
 namespace PlayerData
 {
     public struct PlayerStatusData
@@ -265,14 +301,6 @@ namespace PlayerData
         {
             readonly get => inAirParameter ?? "isInAir";
             set => inAirParameter = value;
-        }
-
-        // Interact Parameter
-        private string interactParameter;
-        public string InteractParameter
-        {
-            readonly get => interactParameter ?? "isInteracting";
-            set => interactParameter = value;
         }
 
         // OnAttack Parameter

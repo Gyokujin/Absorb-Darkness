@@ -278,6 +278,7 @@ namespace SystemData
     public struct InitItemData
     {
         [Header("Init Estus")]
+        // Init EstusCount
         private int? initEstusCount;
         public int InitEstusCount
         {
