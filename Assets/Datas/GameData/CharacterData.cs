@@ -25,8 +25,16 @@ namespace CharacterData
 
     public struct CharacterAudioData
     {
-        [Header("Audio Parameter")]
-        // PlayerVolume
+        [Header("CharacterAudio Data")]
+        // Audio Name
+        private string characterAudioName;
+        public string CharacterAudioName
+        {
+            readonly get => characterAudioName ?? "Character Audio";
+            set => characterAudioName = value;
+        }
+
+        // Player Volume
         private float? characterVolume;
         public float CharacterVolume
         {

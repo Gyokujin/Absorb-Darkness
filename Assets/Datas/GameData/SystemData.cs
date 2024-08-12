@@ -243,7 +243,7 @@ namespace SystemData
 
         [Header("Interact Text")]
         // Interact Item Text
-        private string itemInteractText;
+        private readonly string itemInteractText;
         public string ItemInteractText
         {
             readonly get => itemInteractText ?? "æ∆¿Ã≈€¿ª »πµÊ«—¥Ÿ E";
