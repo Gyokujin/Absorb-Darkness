@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterData;
 
 public class CharacterAudio : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class CharacterAudio : MonoBehaviour
         Hit, Die
     }
 
+    [Header("Data")]
+    private CharacterAudioData audioData;
+
     [Header("Audio")]
-    [SerializeField][Range(0, 1)]
-    private float audioVolume;
     [SerializeField]
     private int characterCh;
     private int characterIndex;
@@ -27,6 +29,8 @@ public class CharacterAudio : MonoBehaviour
 
     void Init()
     {
+        audioData = new CharacterAudioData();
+
         GameObject characterAudio = new ("Character Audio");
         characterAudio.transform.parent = transform;
         characterAudio.transform.localPosition = Vector3.zero;
@@ -36,7 +40,7 @@ public class CharacterAudio : MonoBehaviour
         {
             characterAudios[i] = characterAudio.AddComponent<AudioSource>();
             characterAudios[i].playOnAwake = false;
-            characterAudios[i].volume = audioVolume;
+            characterAudios[i].volume = audioData.CharacterVolume;
         }
     }
 

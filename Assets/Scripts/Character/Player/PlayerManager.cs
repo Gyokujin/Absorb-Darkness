@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterData;
 using PlayerData;
 
 public class PlayerManager : CharacterManager
 {
     [Header("Data")]
+    private CharacterAnimatorData characterAnimatorData;
     private PlayerPhysicsData layerData;
     private PlayerAnimatorData animatorData;
 
@@ -64,6 +66,7 @@ public class PlayerManager : CharacterManager
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerItemSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
 
+        characterAnimatorData = new CharacterAnimatorData();
         layerData = new PlayerPhysicsData();
         animatorData = new PlayerAnimatorData();
 
@@ -76,7 +79,7 @@ public class PlayerManager : CharacterManager
         if (onDie)
             return;
 
-        isInteracting = playerAnimator.animator.GetBool(animatorData.InteractParameter);
+        isInteracting = playerAnimator.animator.GetBool(characterAnimatorData.InteractParameter);
         isAttack = playerAnimator.animator.GetBool(animatorData.AttackParameter);
         isComboAble = playerAnimator.animator.GetBool(animatorData.ComboAbleParameter);
         isUsingLeftHand = playerAnimator.animator.GetBool(animatorData.OnUsingLeftHand);

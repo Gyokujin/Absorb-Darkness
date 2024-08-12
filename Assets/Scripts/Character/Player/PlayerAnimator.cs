@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterData;
 using PlayerData;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : AnimatorManager
@@ -10,6 +10,7 @@ public class PlayerAnimator : AnimatorManager
     private PlayerManager player;
 
     [Header("Data")]
+    private CharacterAnimatorData characterAnimatorData;
     private PlayerAnimatorData playerAnimatorData;
 
     [Header("Animator Parameters")]
@@ -25,6 +26,8 @@ public class PlayerAnimator : AnimatorManager
     {
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
+
+        characterAnimatorData = new CharacterAnimatorData();
         playerAnimatorData = new PlayerAnimatorData(); // PlayerData 구조체 생성
     }
 
@@ -160,7 +163,7 @@ public class PlayerAnimator : AnimatorManager
     public override void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {
         animator.applyRootMotion = isInteracting;
-        animator.SetBool(playerAnimatorData.InteractParameter, isInteracting);
-        animator.CrossFade(targetAnim, animationFadeAmount);
+        animator.SetBool(characterAnimatorData.InteractParameter, isInteracting);
+        animator.CrossFade(targetAnim, animatorData.AnimationFadeAmount);
     }
 }
