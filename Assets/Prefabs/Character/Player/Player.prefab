@@ -227,7 +227,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.5
+  m_Intensity: 2
   m_Range: 20
   m_SpotAngle: 69
   m_InnerSpotAngle: 21.80208
@@ -1689,15 +1689,15 @@ MonoBehaviour:
   onDie: 0
   lockOnTransform: {fileID: 2037056813837801136}
   isInteracting: 0
+  isGrounded: 0
+  isDodge: 0
   isSprinting: 0
   isAttack: 0
   isComboAble: 0
-  isDodge: 0
   isInAir: 0
-  isGrounded: 0
+  isItemUse: 0
   isUsingLeftHand: 0
   isUsingRightHand: 0
-  isItemUse: 0
   defaultLayer: 3
   invincibleLayer: 13
   playerStatus: {fileID: 0}
@@ -1728,7 +1728,6 @@ MonoBehaviour:
   healthLevelAmount: 10
   maxHealth: 100
   effectTransform: {fileID: 7554135495376589493}
-  recoveryAmount: 50
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
 --- !u!114 &3350726264196729079
@@ -1748,17 +1747,6 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
-  interactInput: 0
-  twoHandInput: 0
-  lockOnInput: 0
-  useItemInpt: 0
-  lightAttackInput: 0
-  heavyAttackInput: 0
-  gameSystemInput: 0
-  quickSlotUpInput: 0
-  quickSlotDownInput: 0
-  quickSlotLeftInput: 0
-  quickSlotRightInput: 0
   rollFlag: 0
   sprintFlag: 0
   twoHandFlag: 0
@@ -1775,9 +1763,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bab677bd3f4be4b91a0626519fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inAirTimer: 0
   rigidbody: {fileID: 8617979884866548014}
   moveDirection: {x: 0, y: 0, z: 0}
+  inAirTimer: 0
   playerCollider: {fileID: 8488239234627549522}
   playerBlockerCollider: {fileID: 1408009259693044163}
 --- !u!114 &934179952207965645
@@ -1830,7 +1818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b657433619f3149b9129f22661ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastAttack: 
 --- !u!114 &8282673179921421587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,7 +1830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f727c602f34b20342b8df4e970d1f14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVolume: 0.7
   characterCh: 5
   characterClips:
   - {fileID: 8300000, guid: 887807fe06dbe854ea5afcd62bde87d0, type: 3}
