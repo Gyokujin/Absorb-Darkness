@@ -147,7 +147,7 @@ public class EnemyStatus : CharacterStatus
             AudioManager.instance.MuteBGM();
 
             CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
-            characterDissolve.enabled = true;
+            StartCoroutine(characterDissolve.DissolveFade());
         }
     }
 }

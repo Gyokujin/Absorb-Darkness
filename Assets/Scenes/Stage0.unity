@@ -1146,8 +1146,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_Name
-      value: Sorceress (1)
+      value: TestSorceress (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 6dbfbaa53659a0f4e8aaf36bc3d50cc4, type: 3}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 8e7bd81de5c20a440a35d591184b4139, type: 3}
+    - target: {fileID: 2739808889296030774, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39a70a9f84898314f8a05a946ed3e627, type: 2}
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.06
@@ -1187,6 +1203,10 @@ PrefabInstance:
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421784553130219315, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: healthLevelAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2977,6 +2997,7 @@ Transform:
   - {fileID: 1174264165}
   - {fileID: 3430741}
   - {fileID: 361214749}
+  - {fileID: 1966885657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1600130250
@@ -3771,6 +3792,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13499cf91a9afd24e81195b97a073104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1966885656
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1586074302}
+    m_Modifications:
+    - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_Name
+      value: TestSorceress (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336108779692489642, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: dissolveTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 8e7bd81de5c20a440a35d591184b4139, type: 3}
+    - target: {fileID: 2739808889296030774, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9d871ef167c2ef40af5814e3fb8e9b5, type: 2}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9713767
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23754437
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 387.483
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421784553130219315, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: healthLevelAmount
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+--- !u!4 &1966885657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+  m_PrefabInstance: {fileID: 1966885656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1971893345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25546,6 +25665,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sorceress
       objectReference: {fileID: 0}
+    - target: {fileID: 2739808889296030774, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39a70a9f84898314f8a05a946ed3e627, type: 2}
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60.5

@@ -7,13 +7,21 @@ using ShaderData;
 public class CharacterDissolve : MonoBehaviour
 {
     [Header("Data")]
-    private CharacterShaderData characterShaderData;
+    private CharacterShaderData shaderData;
 
-    public Texture2D dissolveTexture;
-    public Color dissolveColor = Color.red;
+    [Header("Shader Property")]
+    [SerializeField]
+    private Shader dissolveShader;
+    [SerializeField]
+    private Texture2D dissolveTexture;
+    [SerializeField]
+    private float dissolveTime = 1;
 
+    [Header("Coroutine")]
+    private WaitForSeconds dissolveWait;
+
+    [Header("Component")]
     private Material material;
-    private float dissolveProgress = 0.3f;
 
     void Awake()
     {
@@ -22,31 +30,23 @@ public class CharacterDissolve : MonoBehaviour
 
     void Init()
     {
-        characterShaderData = new CharacterShaderData();
-    }
-
-    private void Start()
-    {
-        StartCoroutine(DissolveAfterDelay());
-    }
-
-    private IEnumerator DissolveAfterDelay()
-    {
-        yield return new WaitForSeconds(characterShaderData.DissolveBeforeDelay);
-
+        shaderData = new CharacterShaderData();
         material = GetComponent<Renderer>().material;
-        material.shader = Shader.Find("Custom/Dissolve");
-        material.SetTexture("_DissolveTex", dissolveTexture);
-        material.SetColor("_DissolveColor", dissolveColor);
+        dissolveWait = new WaitForSeconds(shaderData.DissolveDelay);
+    }
+
+    public IEnumerator DissolveFade()
+    {
+        yield return dissolveWait;
+        material.shader = dissolveShader;
+        material.mainTexture = dissolveTexture;
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Dissolve]);
 
-        while (dissolveProgress < 1f)
+        while (shaderData.DissolveProgress < dissolveTime)
         {
-            dissolveProgress += Time.deltaTime / characterShaderData.DissolveTime;
-            material.SetFloat("_DissolveThreshold", dissolveProgress);
+            shaderData.DissolveProgress += Time.deltaTime / shaderData.DissolveTime;
+            material.SetFloat(shaderData.DissolveThresholdParameter, shaderData.DissolveProgress);
             yield return null;
         }
-
-        Destroy(gameObject);
     }
 }
