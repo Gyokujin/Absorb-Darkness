@@ -1,11 +1,11 @@
-Shader "Custom/Dissolve"
+Shader "Custom/CharacterDissolve"
 {
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
         _DissolveThreshold("Dissolve Threshold", Range(0, 1)) = 0
         _EdgeColor("Edge Color", Color) = (0, 0, 0, 0)
-        _Brightness("Brightness", Range(0, 2)) = 1.0
+        _Brightness("Brightness", Range(0, 2)) = 0.0
 
     }
 

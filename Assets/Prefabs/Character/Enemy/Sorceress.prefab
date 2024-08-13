@@ -437,7 +437,7 @@ MonoBehaviour:
   runSpeed: 5
   rotationSpeed: 10
   healthLevel: 3
-  healthLevelAmount: 1
+  healthLevelAmount: 50
   maxHealth: 0
   effectTransform: {fileID: 1299152529260380030}
   detectionRadius: 25
@@ -2316,8 +2316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissolveTexture: {fileID: 0}
   dissolveColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  delayBeforeStart: 3
-  dissolveTime: 2
 --- !u!1 &6788208298091235483
 GameObject:
   m_ObjectHideFlags: 0
