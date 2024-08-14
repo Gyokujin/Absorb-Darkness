@@ -10,9 +10,9 @@ public class CharacterStatus : MonoBehaviour
     public float rotationSpeed = 10;
 
     [Header("Health")]
-    public int healthLevel = 10;
-    public int healthLevelAmount = 10;
-    public int maxHealth;
+    protected int healthLevel = 10;
+    protected int healthLevelAmount = 10;
+    protected int maxHealth;
 
     private int currentHealth;
     public int CurrentHealth
