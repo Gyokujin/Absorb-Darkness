@@ -286,4 +286,40 @@ namespace SystemData
             set => initEstusCount = value;
         }
     }
+
+    public struct LayerData
+    {
+        [Header("Character Layer")]
+        // Player Layer
+        private string playerLayer;
+        public string PlayerLayer
+        {
+            readonly get => playerLayer ?? "Player";
+            set => playerLayer = value;
+        }
+
+        // Enemy Layer
+        private string enemyLayer;
+        public string EnemyLayer
+        {
+            readonly get => enemyLayer ?? "Enemy";
+            set => enemyLayer = value;
+        }
+
+        // Invincible Layer
+        private string invincibleLayer;
+        public string InvincibleLayer
+        {
+            readonly get => invincibleLayer ?? "Invincible";
+            set => invincibleLayer = value;
+        }
+
+        // Environment Layer
+        private string environmentLayer;
+        public string EnvironmentLayer
+        {
+            readonly get => environmentLayer ?? "Environment";
+            set => environmentLayer = value;
+        }
+    }
 }

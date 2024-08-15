@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterData;
 using PlayerData;
+using SystemData;
 
 public class PlayerManager : CharacterManager
 {
     [Header("Data")]
     private CharacterAnimatorData characterAnimatorData;
-    private PlayerPhysicsData layerData;
-    private PlayerAnimatorData animatorData;
+    private PlayerAnimatorData playerAnimatorData;
+    private LayerData layerData;
 
     [Header("Player Action")]
     public bool isInteracting;
@@ -67,8 +68,8 @@ public class PlayerManager : CharacterManager
         playerItemSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
 
         characterAnimatorData = new CharacterAnimatorData();
-        layerData = new PlayerPhysicsData();
-        animatorData = new PlayerAnimatorData();
+        playerAnimatorData = new PlayerAnimatorData();
+        layerData = new LayerData();
 
         defaultLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
         invincibleLayer = LayerMask.NameToLayer(layerData.InvincibleLayer);
@@ -80,12 +81,12 @@ public class PlayerManager : CharacterManager
             return;
 
         isInteracting = playerAnimator.animator.GetBool(characterAnimatorData.InteractParameter);
-        isAttack = playerAnimator.animator.GetBool(animatorData.AttackParameter);
-        isComboAble = playerAnimator.animator.GetBool(animatorData.ComboAbleParameter);
-        isUsingLeftHand = playerAnimator.animator.GetBool(animatorData.OnUsingLeftHand);
-        isUsingRightHand = playerAnimator.animator.GetBool(animatorData.OnUsingRightHand);
-        isItemUse = playerAnimator.animator.GetBool(animatorData.IsItemUseParameter);
-        playerAnimator.animator.SetBool(animatorData.InAirParameter, isInAir);
+        isAttack = playerAnimator.animator.GetBool(playerAnimatorData.AttackParameter);
+        isComboAble = playerAnimator.animator.GetBool(playerAnimatorData.ComboAbleParameter);
+        isUsingLeftHand = playerAnimator.animator.GetBool(playerAnimatorData.OnUsingLeftHand);
+        isUsingRightHand = playerAnimator.animator.GetBool(playerAnimatorData.OnUsingRightHand);
+        isItemUse = playerAnimator.animator.GetBool(playerAnimatorData.IsItemUseParameter);
+        playerAnimator.animator.SetBool(playerAnimatorData.InAirParameter, isInAir);
 
         playerInput.TickInput();
         playerBehavior.CheckInteractableObject();

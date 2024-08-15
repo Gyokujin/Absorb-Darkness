@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
         bgmAudio.volume = bgmVolume;
 
         // System
-        GameObject systemAudio = new GameObject("System Audio");
+        GameObject systemAudio = new("System Audio");
         systemAudio.transform.parent = transform;
         systemAudios = new AudioSource[systemCh];
 
@@ -79,7 +79,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // Action
-        GameObject actionAudio = new GameObject("Action Audio");
+        GameObject actionAudio = new("Action Audio");
         actionAudio.transform.parent = transform;
         playerActionAudios = new AudioSource[playerActionCh];
 

@@ -159,23 +159,6 @@ namespace PlayerData
             readonly get => invincibleTime ?? 0.3f;
             set => invincibleTime = value;
         }
-
-        [Header("State Layer")]
-        // Player DefaultLayer
-        private string playerLayer;
-        public string PlayerLayer
-        {
-            readonly get => playerLayer ?? "Player";
-            set => playerLayer = value;
-        }
-
-        // Player DefaultLayer
-        private string invincibleLayer;
-        public string InvincibleLayer
-        {
-            readonly get => invincibleLayer ?? "Invincible";
-            set => invincibleLayer = value;
-        }
     }
 
     public struct PlayerAnimatorData

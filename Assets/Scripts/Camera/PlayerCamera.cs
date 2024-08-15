@@ -7,7 +7,13 @@ public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera instance;
 
+    [Header("Data")]
+    private CameraData cameraData;
+    private LayerData layerData;
+
     [Header("Player")]
+    [SerializeField]
+    private PlayerManager player;
     private float playerPosition;
 
     [Header("Camera")]
@@ -26,19 +32,13 @@ public class PlayerCamera : MonoBehaviour
     [Header("LockOn")]
     [HideInInspector]
     public bool isLockOn;
-    private List<EnemyManager> availableTargets = new List<EnemyManager>();
+    private readonly List<EnemyManager> availableTargets = new();
     private EnemyManager currentLockOnTarget;
-    [SerializeField]
     private Vector3 currentTargetPos;
     [SerializeField]
     private Transform lockOnUI;
     private LayerMask lockOnLayer;
     private LayerMask environmentLayer;
-
-    [Header("Component")]
-    [SerializeField]
-    private PlayerManager player;
-    private CameraData cameraData;
 
     void Awake()
     {
@@ -56,11 +56,13 @@ public class PlayerCamera : MonoBehaviour
 
     void Init()
     {
+        cameraData = new CameraData();
+        
+        lockOnLayer = LayerMask.GetMask(layerData.EnemyLayer);
+        environmentLayer = LayerMask.GetMask(layerData.EnvironmentLayer);
+
         camTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
-        cameraData = new CameraData();
-        lockOnLayer = LayerMask.GetMask("Enemy");
-        environmentLayer = LayerMask.GetMask("Environment");
     }
 
     void Update()
@@ -163,9 +165,7 @@ public class PlayerCamera : MonoBehaviour
 
                 if (viewAngle < cameraData.MaxLockOnDistance) // viewAngle > cameraData.minLockOnDistance
                 {
-                    RaycastHit hit;
-
-                    if (Physics.Linecast(player.lockOnTransform.position, target.lockOnTransform.position, out hit))
+                    if (Physics.Linecast(player.lockOnTransform.position, target.lockOnTransform.position, out RaycastHit hit))
                     {
                         if ((environmentLayer.value & (1 << hit.collider.gameObject.layer)) != 0) // 레이를 쏘았을때 벽을 먼저 감지한 경우
                             continue;
@@ -225,11 +225,10 @@ public class PlayerCamera : MonoBehaviour
     void HandleCameraCollision(float delta)
     {
         playerPosition = defaultPosition;
-        RaycastHit hit;
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out hit, Mathf.Abs(playerPosition), targetLayer))
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(playerPosition), targetLayer))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
             playerPosition = -(distance - cameraData.CameraCollisionOffset);
