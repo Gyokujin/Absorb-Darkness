@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public enum GameBGM
     {
-        Stage0Field, Stage0Boss
+        Stage0Boss
     }
 
     public enum SystemSound

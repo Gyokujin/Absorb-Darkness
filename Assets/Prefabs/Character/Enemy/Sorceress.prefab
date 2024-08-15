@@ -392,23 +392,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightningImpactTransform: {fileID: 5282769393375881160}
-  lightningImpactOffsetY: 1.75
-  lightningImpactSpeed: 36
-  lightningImpactRotateLimit: 50
   poisonMistTransform: {fileID: 8967081879668770238}
   summonTransforms:
   - {fileID: 2611485775698470171}
   - {fileID: 2903739390681913720}
-  summonOffsetY: -2
-  summonDelay: 1
   meteorTransform:
   - {fileID: 2152312393805079624}
   - {fileID: 6962966294297418728}
   - {fileID: 261833712856375576}
   - {fileID: 4333471157798698483}
   - {fileID: 5814877241757488315}
-  meteorFallSpeed: 22
-  meteorFallDelay: 0.5
 --- !u!114 &7280089006342407748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2313,8 +2306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b345acebc0632ea4daa06c811c91f090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveShader: {fileID: 0}
-  dissolveTexture: {fileID: 0}
+  dissolveShader: {fileID: 4800000, guid: 6dbfbaa53659a0f4e8aaf36bc3d50cc4, type: 3}
+  dissolveTexture: {fileID: 2800000, guid: 8e7bd81de5c20a440a35d591184b4139, type: 3}
   dissolveTime: 1
 --- !u!1 &6788208298091235483
 GameObject:
@@ -2700,10 +2693,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9222011791597783658}
   - {fileID: 5282769393375881160}
   - {fileID: 8967081879668770238}
   - {fileID: 407117041024176818}
+  - {fileID: 9222011791597783658}
   m_Father: {fileID: 7323164783708159819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9221714165062483434

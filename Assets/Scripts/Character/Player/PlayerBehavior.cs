@@ -82,7 +82,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (player.playerItemSlotManager.leftHandSlot.currentWeaponModel != null)
         {
-            leftHandWeapon = player.playerItemSlotManager.leftHandSlot.currentWeaponModel.gameObject;
+            leftHandWeapon = player.playerItemSlotManager.leftHandSlot.currentWeaponModel;
             leftHandWeapon.SetActive(false);
         }
 

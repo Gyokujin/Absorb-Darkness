@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossStageUI : MonoBehaviour
+public class StageUI : MonoBehaviour
 {
+    [Header("Stage Info")]
+    [SerializeField]
+    private GameObject stageUI;
+    [SerializeField]
+    private Text stageName;
+
     [Header("Boss Info")]
     [SerializeField]
-    private GameObject bossInfoUI;
+    private GameObject bossStageUI;
     [SerializeField]
     private Text bossNameText;
     [SerializeField]
@@ -27,9 +33,32 @@ public class BossStageUI : MonoBehaviour
         bossClearUI = GetComponentInChildren<BossClearUI>();
     }
 
+    public void OpenStageInfo(FieldInfo fieldInfo)
+    {
+        switch (fieldInfo.fieldType)
+        {
+            case FieldInfo.FieldType.Town:
+                break;
+
+            case FieldInfo.FieldType.Field:
+                Field field = fieldInfo as Field;
+                OpenStageUI(field);
+                break;
+
+            case FieldInfo.FieldType.BossField:
+                break;
+        }
+    }
+
+    public void OpenStageUI(Field field)
+    {
+        stageUI.SetActive(true);
+        stageName.text = field.stageName;
+    }
+
     public void OpenBossStageUI(string name)
     {
-        bossInfoUI.SetActive(true);
+        bossStageUI.SetActive(true);
         bossClearUI.gameObject.SetActive(true);
         bossNameText.text = name;
         bossHPSlider.value = 1;
@@ -43,7 +72,7 @@ public class BossStageUI : MonoBehaviour
     public IEnumerator EndBossStageUI(BossItemDrop boss)
     {
         yield return new WaitForSeconds(defeatDelay);
-        bossInfoUI.SetActive(false);
+        bossStageUI.SetActive(false);
         bossClearUI.bossItemDrop = boss;
         bossClearUI.PlayBossClear();
 

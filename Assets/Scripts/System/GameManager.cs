@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    public FieldInfo curField;
 
     void Awake()
     {
@@ -23,12 +24,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameStart();
+        ReadFieldInfo(curField);
     }
 
-    void GameStart()
+    public void ReadFieldInfo(FieldInfo fieldInfo)
     {
-        // AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)AudioManager.GameBGM.Stage0Field]);
+        curField = fieldInfo;
+        UIManager.instance.OpenStageUI(curField);
     }
 
     public void EntranceBossRoom()

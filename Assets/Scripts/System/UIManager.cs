@@ -58,7 +58,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Component")]
     public QuickSlotsUI quickSlotsUI;
-    public BossStageUI bossStageUI;
+    [SerializeField]
+    private StageUI stageUI;
 
     void Awake()
     {
@@ -76,6 +77,12 @@ public class UIManager : MonoBehaviour
     {
         equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
         InventoryUIUpdate();
+    }
+
+    public void OpenStageUI(FieldInfo fieldInfo)
+    {
+        Debug.Log(fieldInfo.fieldType);
+        stageUI.OpenStageInfo(fieldInfo);
     }
 
     public void OpenGameSystemUI()
