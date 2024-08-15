@@ -1588,6 +1588,7 @@ GameObject:
   - component: {fileID: 6557882189825199704}
   - component: {fileID: 8617979884866548014}
   - component: {fileID: 8488239234627549522}
+  - component: {fileID: 5802094766080545042}
   - component: {fileID: 8842164406526633919}
   - component: {fileID: 6446244042411737521}
   - component: {fileID: 3350726264196729079}
@@ -1673,6 +1674,14 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 1.35, z: 0.05}
+--- !u!81 &5802094766080545042
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995717877939349760}
+  m_Enabled: 1
 --- !u!114 &8842164406526633919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,7 +1735,6 @@ MonoBehaviour:
   rotationSpeed: 10
   healthLevel: 10
   healthLevelAmount: 10
-  maxHealth: 100
   effectTransform: {fileID: 7554135495376589493}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}

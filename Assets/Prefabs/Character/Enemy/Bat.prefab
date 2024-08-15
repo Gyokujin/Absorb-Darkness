@@ -1463,10 +1463,8 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 6
   rotationSpeed: 180
-  healthLevel: 8
-  healthLevelAmount: 1
-  maxHealth: 0
-  currentHealth: 0
+  healthLevel: 1
+  healthLevelAmount: 3
   effectTransform: {fileID: 4713489725580802980}
   detectionRadius: 13
   detectionAngleMax: 180
@@ -1489,7 +1487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642ad0c238818b4e834ad623058c92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVolume: 0.7
   characterCh: 3
   characterClips:
   - {fileID: 8300000, guid: d1b733a0379e1454a8c15f14bd5c4595, type: 3}

@@ -317,10 +317,8 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 6
   rotationSpeed: 135
-  healthLevel: 18
-  healthLevelAmount: 1
-  maxHealth: 0
-  currentHealth: 0
+  healthLevel: 3
+  healthLevelAmount: 5
   effectTransform: {fileID: 5857352363635155302}
   detectionRadius: 15
   detectionAngleMax: 105
@@ -343,7 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642ad0c238818b4e834ad623058c92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVolume: 0.7
   characterCh: 3
   characterClips:
   - {fileID: 8300000, guid: a9b58be744936c94298dba2580eb3779, type: 3}
@@ -1371,7 +1368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50be02fcf3e5b424b81f10f8bca72926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionFadeAmount: 0.2
   animator: {fileID: 0}
 --- !u!114 &2833036374546907243
 MonoBehaviour:

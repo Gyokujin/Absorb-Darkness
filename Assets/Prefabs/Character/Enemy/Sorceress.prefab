@@ -436,9 +436,8 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   rotationSpeed: 10
-  healthLevel: 3
-  healthLevelAmount: 50
-  maxHealth: 0
+  healthLevel: 15
+  healthLevelAmount: 7
   effectTransform: {fileID: 1299152529260380030}
   detectionRadius: 25
   detectionAngleMax: 90
@@ -2230,7 +2229,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9d871ef167c2ef40af5814e3fb8e9b5, type: 2}
+  - {fileID: 2100000, guid: 39a70a9f84898314f8a05a946ed3e627, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2314,8 +2313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b345acebc0632ea4daa06c811c91f090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dissolveShader: {fileID: 0}
   dissolveTexture: {fileID: 0}
-  dissolveColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  dissolveTime: 1
 --- !u!1 &6788208298091235483
 GameObject:
   m_ObjectHideFlags: 0
