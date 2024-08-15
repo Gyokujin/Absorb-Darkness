@@ -6,7 +6,7 @@ public class Sorceress : MonoBehaviour
 {
     [Header("Spell")]
     private LightningImpact lightningImpact;
-    private Meteor[] meteors;
+    private Meteor[] spawnMeteors;
 
     [Header("LightningImpact")]
     [SerializeField]
@@ -56,7 +56,7 @@ public class Sorceress : MonoBehaviour
 
     void Start()
     {
-        meteors = new Meteor[meteorTransform.Length];
+        spawnMeteors = new Meteor[meteorTransform.Length];
         meteorFallWait = new WaitForSeconds(meteorFallDelay);
         summonWait = new WaitForSeconds(summonDelay);
     }
@@ -104,18 +104,18 @@ public class Sorceress : MonoBehaviour
 
     public void SpawnMeteors()
     {
-        for (int i = 0; i < meteors.Length; i++)
+        for (int i = 0; i < spawnMeteors.Length; i++)
         {
-            meteors[i] = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
-            meteors[i].transform.position = meteorTransform[i].position;
+            spawnMeteors[i] = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
+            spawnMeteors[i].transform.position = meteorTransform[i].position;
             Quaternion rotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position);
-            meteors[i].gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+            spawnMeteors[i].gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
         }
     }
 
     public IEnumerator FallMeteors()
     {
-        foreach (Meteor meteor in meteors)
+        foreach (Meteor meteor in spawnMeteors)
         {
             Vector3 fallDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
             meteor.Falling(fallDir, meteorFallSpeed);

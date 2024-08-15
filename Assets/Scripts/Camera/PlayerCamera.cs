@@ -57,7 +57,6 @@ public class PlayerCamera : MonoBehaviour
     void Init()
     {
         cameraData = new CameraData();
-        
         lockOnLayer = LayerMask.GetMask(layerData.EnemyLayer);
         environmentLayer = LayerMask.GetMask(layerData.EnvironmentLayer);
 
@@ -156,14 +155,13 @@ public class PlayerCamera : MonoBehaviour
 
         for (int i = 0; i < findTarget.Length; i++)
         {
-            EnemyManager target = findTarget[i].gameObject.GetComponent<EnemyManager>();
-
-            if (target != null)
+            if (findTarget[i].GetComponent<EnemyManager>() != null)
             {
+                EnemyManager target = findTarget[i].gameObject.GetComponent<EnemyManager>();
                 Vector3 targetDirection = target.transform.position - player.transform.position;
                 float viewAngle = Vector3.Angle(targetDirection, cameraTransform.forward);
 
-                if (viewAngle < cameraData.MaxLockOnDistance) // viewAngle > cameraData.minLockOnDistance
+                if (viewAngle < cameraData.MaxLockOnDistance)
                 {
                     if (Physics.Linecast(player.lockOnTransform.position, target.lockOnTransform.position, out RaycastHit hit))
                     {
