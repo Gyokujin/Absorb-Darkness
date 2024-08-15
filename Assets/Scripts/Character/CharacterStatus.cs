@@ -10,8 +10,10 @@ public class CharacterStatus : MonoBehaviour
     public float rotationSpeed = 10;
 
     [Header("Health")]
-    protected int healthLevel = 10;
-    protected int healthLevelAmount = 10;
+    [SerializeField]
+    protected int healthLevel = 1;
+    [SerializeField]
+    protected int healthLevelAmount = 5;
     protected int maxHealth;
 
     private int currentHealth;

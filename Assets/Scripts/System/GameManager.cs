@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     void GameStart()
     {
-        AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)AudioManager.GameBGM.Stage0Field]);
+        // AudioManager.instance.PlayBGM(AudioManager.instance.bgmClips[(int)AudioManager.GameBGM.Stage0Field]);
     }
 
     public void EntranceBossRoom()
