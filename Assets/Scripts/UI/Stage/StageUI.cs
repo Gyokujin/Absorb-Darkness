@@ -17,13 +17,13 @@ public class StageUI : MonoBehaviour
 
     [Header("BossStage Info")]
     [SerializeField]
-    private GameObject bossStageUI;
-    private BossClearUI bossClearUI;
-
+    private GameObject bossInfoUI;
     [SerializeField]
     private Text bossName;
     [SerializeField]
     private Slider bossHPSlider;
+    [SerializeField]
+    private Animator bossClearAnimator;
 
     [Header("Coroutine")]
     private WaitForSeconds stageInfoWait;
@@ -38,7 +38,6 @@ public class StageUI : MonoBehaviour
     void Init()
     {
         stageUIData = new StageUIData();
-        bossClearUI = GetComponentInChildren<BossClearUI>();
 
         stageInfoWait = new WaitForSeconds(stageUIData.StageInfoDelay);
         defeatWait = new WaitForSeconds(stageUIData.DefeatDelay);
@@ -58,6 +57,10 @@ public class StageUI : MonoBehaviour
                 break;
 
             case FieldInfo.FieldType.BossField:
+                BossField bossField = fieldInfo as BossField;
+                bossInfoUI.SetActive(true);
+                bossName.text = bossField.bossName;
+                bossHPSlider.value = 1;
                 break;
         }
     }
@@ -74,27 +77,21 @@ public class StageUI : MonoBehaviour
         stageInfoAnimator.gameObject.SetActive(false);
     }
 
-    public void OpenBossStageUI(string name)
-    {
-        bossStageUI.SetActive(true);
-        bossClearUI.gameObject.SetActive(true);
-        bossName.text = name;
-        bossHPSlider.value = 1;
-    }
-
     public void BossHPUIModify(float curHP, float maxHP)
     {
         bossHPSlider.value = curHP / maxHP;
     }
 
-    public IEnumerator EndBossStageUI(BossItemDrop boss)
+    public IEnumerator EndBossStageUI()
     {
         yield return defeatWait;
-        bossStageUI.SetActive(false);
-        bossClearUI.bossItemDrop = boss;
-        bossClearUI.PlayBossClear();
+        bossInfoUI.SetActive(false);
+        bossClearAnimator.gameObject.SetActive(true);
+        bossClearAnimator.enabled = true;
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Victory]);
 
         yield return victoryWait;
-        bossClearUI.gameObject.SetActive(true);
+        bossClearAnimator.enabled = false;
+        bossClearAnimator.gameObject.SetActive(false);
     }
 }
