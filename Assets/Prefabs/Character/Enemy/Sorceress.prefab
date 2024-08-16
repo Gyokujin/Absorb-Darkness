@@ -269,7 +269,6 @@ GameObject:
   - component: {fileID: 7280089006342407748}
   - component: {fileID: 7421784553130219315}
   - component: {fileID: 7586811435734901536}
-  - component: {fileID: 1438831733668238705}
   m_Layer: 7
   m_Name: Sorceress
   m_TagString: Enemy
@@ -460,20 +459,6 @@ MonoBehaviour:
   enemyClips:
   - {fileID: 8300000, guid: d703680eb83155d4e9cd081f6c7ecf8c, type: 3}
   - {fileID: 0}
---- !u!114 &1438831733668238705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957284572224849543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb7160b5aeb269458ad987f27846f26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropItems:
-  - {fileID: 11400000, guid: 64238a123b048cd49adf90b50ee7f392, type: 2}
 --- !u!1 &960180742257226813
 GameObject:
   m_ObjectHideFlags: 0
