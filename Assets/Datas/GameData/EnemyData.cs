@@ -2,6 +2,26 @@
 
 namespace EnemyData
 {
+    public struct EnemyAnimationData
+    {
+        [Header("Animation Name")]
+        // Sleep Animation
+        private string sleepAnimation;
+        public string SleepAnimation
+        {
+            readonly get => sleepAnimation ?? "Sleep";
+            set => sleepAnimation = value;
+        }
+
+        // Wake Animation
+        private string wakeAnimation;
+        public string WakeAnimation
+        {
+            readonly get => wakeAnimation ?? "Wake";
+            set => wakeAnimation = value;
+        }
+    }
+
     public struct SorceressData
     {
         [Header("LightningImpact")]
