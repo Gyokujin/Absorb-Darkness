@@ -13,7 +13,12 @@ public class AudioManager : MonoBehaviour
 
     public enum SystemSound
     {
-        GameSystem, Click, Interact1, Interact2, PickUp, FogEntrance, DoorOpen, Dissolve
+        FogEntrance, BossDissolve
+    }
+
+    public enum UISound
+    {
+        GameSystem, Click, Interact1, Interact2, PickUp, Victory, FieldUI
     }
 
     [Header("BGM")]
@@ -33,15 +38,15 @@ public class AudioManager : MonoBehaviour
     private int systemIndex;
     private AudioSource[] systemAudios;
 
-    [Header("Player Action")]
-    public AudioClip[] playerActionClips;
+    [Header("UI")]
+    public AudioClip[] uiClips;
     [SerializeField]
     [Range(0, 1)]
-    private float playerActionVolume;
+    private float uiVolume;
     [SerializeField]
-    private int playerActionCh;
-    private int playerActionIndex;
-    private AudioSource[] playerActionAudios;
+    private int uiCh;
+    private int uiIndex;
+    private AudioSource[] uiAudios;
 
     void Awake()
     {
@@ -78,16 +83,16 @@ public class AudioManager : MonoBehaviour
             systemAudios[i].volume = systemVolume;
         }
 
-        // Action
-        GameObject actionAudio = new("Action Audio");
-        actionAudio.transform.parent = transform;
-        playerActionAudios = new AudioSource[playerActionCh];
+        // UI
+        GameObject uiAudio = new("UI Audio");
+        uiAudio.transform.parent = transform;
+        uiAudios = new AudioSource[uiCh];
 
-        for (int i = 0; i < playerActionCh; i++)
+        for (int i = 0; i < uiCh; i++)
         {
-            playerActionAudios[i] = actionAudio.AddComponent<AudioSource>();
-            playerActionAudios[i].playOnAwake = false;
-            playerActionAudios[i].volume = playerActionVolume;
+            uiAudios[i] = uiAudio.AddComponent<AudioSource>();
+            uiAudios[i].playOnAwake = false;
+            uiAudios[i].volume = uiVolume;
         }
     }
 
@@ -120,18 +125,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayPlayerActionSFX(AudioClip audioClip)
+    public void PlayUISFX(AudioClip audioClip)
     {
-        for (int i = 0; i < playerActionAudios.Length; i++)
+        for (int i = 0; i < uiAudios.Length; i++)
         {
-            int loopIndex = (i + playerActionIndex) % playerActionAudios.Length;
+            int loopIndex = (i + uiIndex) % uiAudios.Length;
 
-            if (playerActionAudios[loopIndex].isPlaying)
+            if (uiAudios[loopIndex].isPlaying)
                 continue;
 
-            playerActionIndex = loopIndex;
-            playerActionAudios[loopIndex].clip = audioClip;
-            playerActionAudios[loopIndex].Play();
+            uiIndex = loopIndex;
+            uiAudios[loopIndex].clip = audioClip;
+            uiAudios[loopIndex].Play();
             break;
         }
     }

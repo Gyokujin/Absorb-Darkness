@@ -19,7 +19,7 @@ public class UsingItemPickUp : Interactable
         InventoryManager.instance.GetUsingItem(dropUsingItem);
         UIManager.instance.OpenItemPopUpUI(dropUsingItem.itemName, dropUsingItem.itemIcon.texture);
 
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.PickUp]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.PickUp]);
         gameObject.SetActive(false);
     }
 }

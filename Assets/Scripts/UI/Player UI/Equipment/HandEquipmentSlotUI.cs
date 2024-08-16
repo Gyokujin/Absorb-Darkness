@@ -53,6 +53,6 @@ public class HandEquipmentSlotUI : MonoBehaviour
 
         // UIManager.instance.inventoryManager.gameObject.SetActive(true);
         UIManager.instance.equipmentWindow.SetActive(false);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 }

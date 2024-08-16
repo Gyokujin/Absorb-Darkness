@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
         selectWindow.SetActive(true);
         hudWindow.SetActive(false);
         GameManager.instance.LockCamera(false);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.GameSystem]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.GameSystem]);
     }
 
     public void CloseGameSystemUI()
@@ -99,13 +99,13 @@ public class UIManager : MonoBehaviour
         CloseAllInventoryUI();
         ResetAllSelectedSlots();
         GameManager.instance.LockCamera(true);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact2]);
     }
 
     public void OpenInventoryUI()
     {
         InventoryManager.instance.OpenWeaponInventory();
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void InventoryUIUpdate()
@@ -134,7 +134,7 @@ public class UIManager : MonoBehaviour
         CloseAllInventoryUI();
         equipmentWindow.SetActive(true);
         equipmentWindowUI.OpenEquipmentsUI();
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void CloseAllInventoryUI()
@@ -168,13 +168,13 @@ public class UIManager : MonoBehaviour
         itemPopUpName.text = itemName;
         itemPopUpIcon.texture = itemIcon;
         itemPopUpUI.SetActive(true);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.PickUp]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.PickUp]);
     }
 
     public void CloseItemPopUpUI()
     {
         itemPopUpUI.SetActive(false);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact2]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact2]);
     }
 
     public void OpenMessagePopUpUI(bool onTop, string message)
@@ -190,7 +190,7 @@ public class UIManager : MonoBehaviour
             messageBottomText.text = message;
         }
 
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Interact1]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact1]);
     }
 
     public void CloseMessagePopUpUI()

@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
         inventoryButtons.SetActive(true);
         weaponInventory.gameObject.SetActive(true);
         weaponInventory.WeaponItemUpdate();
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Click]);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void OpenUsingItemInventory()

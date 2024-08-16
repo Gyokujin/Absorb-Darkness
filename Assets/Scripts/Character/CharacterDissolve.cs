@@ -40,7 +40,7 @@ public class CharacterDissolve : MonoBehaviour
         yield return dissolveWait;
         material.shader = dissolveShader;
         material.mainTexture = dissolveTexture;
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.Dissolve]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.BossDissolve]);
 
         while (shaderData.DissolveProgress < dissolveTime)
         {

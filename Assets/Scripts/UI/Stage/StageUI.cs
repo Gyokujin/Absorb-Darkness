@@ -67,6 +67,7 @@ public class StageUI : MonoBehaviour
         stageInfoAnimator.gameObject.SetActive(true);
         stageInfoAnimator.enabled = true;
         stageName.text = field.stageName;
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.FieldUI]);
 
         yield return stageInfoWait;
         stageInfoAnimator.enabled = false;
