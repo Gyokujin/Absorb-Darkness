@@ -29,8 +29,6 @@ public class CharacterAudio : MonoBehaviour
 
     void Init()
     {
-        audioData = new CharacterAudioData();
-
         GameObject characterAudio = new(audioData.CharacterAudioName);
         characterAudio.transform.parent = transform;
         characterAudio.transform.localPosition = Vector3.zero;

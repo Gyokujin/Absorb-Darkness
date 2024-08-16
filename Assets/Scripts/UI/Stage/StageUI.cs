@@ -37,8 +37,6 @@ public class StageUI : MonoBehaviour
 
     void Init()
     {
-        stageUIData = new StageUIData();
-
         stageInfoWait = new WaitForSeconds(stageUIData.StageInfoDelay);
         defeatWait = new WaitForSeconds(stageUIData.DefeatDelay);
         victoryWait = new WaitForSeconds(stageUIData.VictoryDelay);

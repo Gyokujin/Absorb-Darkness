@@ -30,7 +30,6 @@ public class CharacterDissolve : MonoBehaviour
 
     void Init()
     {
-        shaderData = new CharacterShaderData();
         material = GetComponent<Renderer>().material;
         dissolveWait = new WaitForSeconds(shaderData.DissolveDelay);
     }
