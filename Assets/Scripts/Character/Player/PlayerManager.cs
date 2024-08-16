@@ -8,9 +8,20 @@ using SystemData;
 public class PlayerManager : CharacterManager
 {
     [Header("Data")]
-    private CharacterAnimatorData characterAnimatorData;
-    private PlayerAnimatorData playerAnimatorData;
-    private LayerData layerData;
+    [HideInInspector]
+    public CharacterAnimatorData characterAnimatorData;
+    [HideInInspector]
+    public PlayerAnimatorData playerAnimatorData;
+    [HideInInspector]
+    public PlayerStatusData playerStatusData;
+    [HideInInspector]
+    public PlayerPhysicsData playerPhysicsData;
+    [HideInInspector]
+    public InteractData interactData;
+    [HideInInspector]
+    public PhysicsData physicsData;
+    [HideInInspector]
+    public LayerData layerData;
 
     [Header("Player Action")]
     public bool isInteracting;
@@ -67,10 +78,6 @@ public class PlayerManager : CharacterManager
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerItemSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
 
-        characterAnimatorData = new CharacterAnimatorData();
-        playerAnimatorData = new PlayerAnimatorData();
-        layerData = new LayerData();
-
         defaultLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
         invincibleLayer = LayerMask.NameToLayer(layerData.InvincibleLayer);
     }
@@ -98,9 +105,7 @@ public class PlayerManager : CharacterManager
         PlayerCamera.instance.HandleCameraRotation(Time.fixedDeltaTime, playerInput.mouseX, playerInput.mouseY);
 
         if (isInAir)
-        {
             playerMove.inAirTimer += Time.deltaTime;
-        }
     }
 
     void FixedUpdate()

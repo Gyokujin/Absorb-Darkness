@@ -1,17 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CharacterData;
-using PlayerData;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : AnimatorManager
 {
     private PlayerManager player;
-
-    [Header("Data")]
-    private CharacterAnimatorData characterAnimatorData;
-    private PlayerAnimatorData playerAnimatorData;
 
     [Header("Animator Parameters")]
     private float parameterHor;
@@ -26,70 +20,67 @@ public class PlayerAnimator : AnimatorManager
     {
         player = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
-
-        characterAnimatorData = new CharacterAnimatorData();
-        playerAnimatorData = new PlayerAnimatorData(); // PlayerData 구조체 생성
     }
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
     {
         // Vertical 파라미터
-        parameterVer = playerAnimatorData.IdleParameterValue;
+        parameterVer = player.playerAnimatorData.IdleParameterValue;
 
-        if (moveVer > 0 && moveVer < playerAnimatorData.RunAnimationCondition)
+        if (moveVer > 0 && moveVer < player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterVer = playerAnimatorData.WalkParameterValue;
+            parameterVer = player.playerAnimatorData.WalkParameterValue;
         }
-        else if (moveVer > playerAnimatorData.RunAnimationCondition)
+        else if (moveVer > player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterVer = playerAnimatorData.RunParameterValue;
+            parameterVer = player.playerAnimatorData.RunParameterValue;
         }
-        else if (moveVer < 0 && moveVer > -playerAnimatorData.RunAnimationCondition)
+        else if (moveVer < 0 && moveVer > -player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterVer = playerAnimatorData.WalkParameterValue ;
+            parameterVer = player.playerAnimatorData.WalkParameterValue ;
         }
-        else if (moveVer < -playerAnimatorData.RunAnimationCondition)
+        else if (moveVer < -player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterVer = -playerAnimatorData.RunParameterValue;
+            parameterVer = -player.playerAnimatorData.RunParameterValue;
         }
         else
         {
-            parameterVer = playerAnimatorData.IdleParameterValue;
+            parameterVer = player.playerAnimatorData.IdleParameterValue;
         }
 
         // Horizontal 파라미터
-        parameterHor = playerAnimatorData.IdleParameterValue;
+        parameterHor = player.playerAnimatorData.IdleParameterValue;
 
-        if (moveHor > 0 && moveHor < playerAnimatorData.RunAnimationCondition)
+        if (moveHor > 0 && moveHor < player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterHor = playerAnimatorData.WalkParameterValue;
+            parameterHor = player.playerAnimatorData.WalkParameterValue;
         }
-        else if (moveHor > playerAnimatorData.RunAnimationCondition)
+        else if (moveHor > player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterHor = playerAnimatorData.RunParameterValue;
+            parameterHor = player.playerAnimatorData.RunParameterValue;
         }
-        else if (moveHor < 0 && moveHor > -playerAnimatorData.RunAnimationCondition)
+        else if (moveHor < 0 && moveHor > -player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterHor = -playerAnimatorData.WalkParameterValue;
+            parameterHor = -player.playerAnimatorData.WalkParameterValue;
         }
-        else if (moveHor < -playerAnimatorData.RunAnimationCondition)
+        else if (moveHor < -player.playerAnimatorData.RunAnimationCondition)
         {
-            parameterHor = -playerAnimatorData.RunParameterValue;
+            parameterHor = -player.playerAnimatorData.RunParameterValue;
         }
         else
         {
-            parameterHor = playerAnimatorData.IdleParameterValue;
+            parameterHor = player.playerAnimatorData.IdleParameterValue;
         }
 
         if (isSprinting)
         {
-            parameterVer = playerAnimatorData.SprintParameterValue;
-            parameterHor = playerAnimatorData.SprintParameterValue;
+            parameterVer = player.playerAnimatorData.SprintParameterValue;
+            parameterHor = player.playerAnimatorData.SprintParameterValue;
         }
 
         // 애니메이터 파라미터 입력
-        animator.SetFloat(playerAnimatorData.VerticalParameter, parameterVer, playerAnimatorData.AnimationDampTime, Time.deltaTime);
-        animator.SetFloat(playerAnimatorData.HorizontalParameter, parameterHor, playerAnimatorData.AnimationDampTime, Time.deltaTime);
+        animator.SetFloat(player.playerAnimatorData.VerticalParameter, parameterVer, player.playerAnimatorData.AnimationDampTime, Time.deltaTime);
+        animator.SetFloat(player.playerAnimatorData.HorizontalParameter, parameterHor, player.playerAnimatorData.AnimationDampTime, Time.deltaTime);
     }
 
     void OnAnimatorMove()
@@ -119,17 +110,17 @@ public class PlayerAnimator : AnimatorManager
 
     public void EnableCombo()
     {
-        player.playerAnimator.animator.SetBool(playerAnimatorData.ComboAbleParameter, true);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.ComboAbleParameter, true);
     }
 
     public void DisableCombo()
     {
-        player.playerAnimator.animator.SetBool(playerAnimatorData.ComboAbleParameter, false);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.ComboAbleParameter, false);
     }
 
     public void SwitchStance(bool onStance)
     {
-        animator.SetBool(playerAnimatorData.OnStanceParameter, onStance);
+        animator.SetBool(player.playerAnimatorData.OnStanceParameter, onStance);
     }
 
     public void Drink()
@@ -163,7 +154,7 @@ public class PlayerAnimator : AnimatorManager
     public override void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {
         animator.applyRootMotion = isInteracting;
-        animator.SetBool(characterAnimatorData.InteractParameter, isInteracting);
+        animator.SetBool(player.characterAnimatorData.InteractParameter, isInteracting);
         animator.CrossFade(targetAnim, animatorData.AnimationFadeAmount);
     }
 }

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3348201857628756120}
   - component: {fileID: 5907477187118863243}
   m_Layer: 3
-  m_Name: Player Light (1)
+  m_Name: Player Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,12 +334,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0ec76935b051840999df4453c1bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   cameraTransform: {fileID: 4138985857852927242}
   cameraPivotTransform: {fileID: 3159409154732173816}
   targetLayer:
     serializedVersion: 2
     m_Bits: 102152
   isLockOn: 0
-  currentTargetPos: {x: 0, y: 0, z: 0}
   lockOnUI: {fileID: 0}
-  player: {fileID: 0}

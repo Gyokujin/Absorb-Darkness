@@ -1,20 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerData;
-using SystemData;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
     private PlayerManager player;
-
-    [Header("Data")]
-    private PlayerStatusData playerStatusData;
-    private PlayerPhysicsData playerPhysicsData;
-    private PlayerAnimatorData playerAnimatorData;
-    private PhysicsData physicsData;
-    private LayerData layerData;
 
     [Header("Physics")]
     public new Rigidbody rigidbody;
@@ -40,12 +31,7 @@ public class PlayerMove : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        playerStatusData = new PlayerStatusData();
-        playerPhysicsData = new PlayerPhysicsData();
-        physicsData = new PhysicsData();
-        layerData = new LayerData();
-
-        ignoreGroundCheck = LayerMask.GetMask(layerData.GroundLayer);
+        ignoreGroundCheck = LayerMask.GetMask(player.layerData.GroundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 
@@ -58,19 +44,13 @@ public class PlayerMove : MonoBehaviour
 
         // 플레이어의 LockOn에 따라 다른 애니메이션을 실행한다.
         if (PlayerCamera.instance.isLockOn && !player.playerInput.sprintFlag)
-        {
             player.playerAnimator.AnimatorValue(player.playerInput.vertical, player.playerInput.horizontal, player.isSprinting);
-        }
         else
-        {
             player.playerAnimator.AnimatorValue(player.playerInput.moveAmount, 0, player.isSprinting);
-        }
 
         // 회전이 가능한 경우에는 이동 방향으로 캐릭터를 회전한다.
         if (!PlayerCamera.instance.isLockOn)
-        {
             HandleRotation(delta);
-        }
     }
 
     void Movement()
@@ -84,13 +64,13 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
 
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > playerPhysicsData.RunCondition && player.playerStatus.CurrentStamina > 0) // sprint
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > player.playerPhysicsData.RunCondition && player.playerStatus.CurrentStamina > 0) // sprint
         {
-            moveDirection *= playerPhysicsData.SprintSpeed;
+            moveDirection *= player.playerPhysicsData.SprintSpeed;
             player.isSprinting = true;
             player.playerAudio.PlaySprintSFX();
         }
-        else if (player.playerInput.moveAmount < playerPhysicsData.RunCondition) // Idle, walk
+        else if (player.playerInput.moveAmount < player.playerPhysicsData.RunCondition) // Idle, walk
         {
             moveDirection *= player.playerStatus.walkSpeed;
             player.isSprinting = false;
@@ -131,12 +111,12 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 lookDir = (targetPos - player.lockOnTransform.position).normalized;
         lookDir.y = transform.position.y;
-        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * physicsData.LookAtSmoothing);
+        transform.forward = Vector3.Lerp(transform.forward, lookDir, Time.deltaTime * player.physicsData.LookAtSmoothing);
     }
 
     public void HandleRolling()
     {
-        if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= playerStatusData.ActionLimitStamina)
+        if (player.playerInput.rollFlag && player.playerStatus.CurrentStamina >= player.playerStatusData.ActionLimitStamina)
         {
             player.isDodge = true;
             player.playerInput.rollFlag = true;
@@ -144,15 +124,15 @@ public class PlayerMove : MonoBehaviour
 
             if (player.playerInput.moveAmount <= 0) // 이동키를 누르지 않으면 백스텝
             {
-                player.playerAnimator.PlayTargetAnimation(playerAnimatorData.BackstepAnimation, true);
-                player.playerStatus.TakeStamina(playerStatusData.BackstapStaminaAmount);
+                player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.BackstepAnimation, true);
+                player.playerStatus.TakeStamina(player.playerStatusData.BackstapStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Backstep]);
             }
             else
             {
                 player.transform.LookAt(rigidbody.position + moveDirection);
-                player.playerAnimator.PlayTargetAnimation(playerAnimatorData.RollingAnimation, true);
-                player.playerStatus.TakeStamina(playerStatusData.RollingStaminaAmount);
+                player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.RollingAnimation, true);
+                player.playerStatus.TakeStamina(player.playerStatusData.RollingStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Rolling]);
             }
         }
@@ -162,23 +142,23 @@ public class PlayerMove : MonoBehaviour
     {
         player.isGrounded = false;
         Vector3 origin = player.transform.position;
-        origin.y += physicsData.GroundDetectionRayStart;
+        origin.y += player.physicsData.GroundDetectionRayStart;
 
-        if (Physics.Raycast(origin, player.transform.forward, out RaycastHit hit, physicsData.GroundCheckDis))
+        if (Physics.Raycast(origin, player.transform.forward, out RaycastHit hit, player.physicsData.GroundCheckDis))
             moveDirection = Vector3.zero;
 
         if (player.isInAir)
         {
-            rigidbody.AddForce(Vector3.down * physicsData.FallingDownForce); // 아래 낙하
-            rigidbody.AddForce(moveDirection * physicsData.FallingDownForce / physicsData.FallingFrontForce); // 끼임 방지를 위해 앞으로 이동
+            rigidbody.AddForce(Vector3.down * player.physicsData.FallingDownForce); // 아래 낙하
+            rigidbody.AddForce(moveDirection * player.physicsData.FallingDownForce / player.physicsData.FallingFrontForce); // 끼임 방지를 위해 앞으로 이동
         }
 
         Vector3 dir = moveDirection;
         dir.Normalize();
-        origin += dir * physicsData.GroundDirRayDistance;
+        origin += dir * player.physicsData.GroundDirRayDistance;
         targetPosition = player.transform.position;
 
-        if (Physics.Raycast(origin, Vector3.down, out hit, physicsData.DistanceBeginFallMin, ignoreGroundCheck))
+        if (Physics.Raycast(origin, Vector3.down, out hit, player.physicsData.DistanceBeginFallMin, ignoreGroundCheck))
         {
             normalVec = hit.normal;
             Vector3 transform = hit.point;
@@ -187,14 +167,14 @@ public class PlayerMove : MonoBehaviour
 
             if (player.isInAir)
             {
-                if (inAirTimer > playerPhysicsData.LandRequirement) // 낙하 시간이 요구치 이상일때만 Land 애니메이션을 실행한다.
+                if (inAirTimer > player.playerPhysicsData.LandRequirement) // 낙하 시간이 요구치 이상일때만 Land 애니메이션을 실행한다.
                 {
-                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.LandAnimation, true);
+                    player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.LandAnimation, true);
                     inAirTimer = 0;
                 }
                 else
                 {
-                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.EmptyAnimation, false);
+                    player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.EmptyAnimation, false);
                     inAirTimer = 0;
                 }
 
@@ -209,17 +189,17 @@ public class PlayerMove : MonoBehaviour
             if (!player.isInAir)
             {
                 if (player.isInteracting)
-                    player.playerAnimator.PlayTargetAnimation(playerAnimatorData.FallingAnimation, true);
+                    player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.FallingAnimation, true);
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();
-                rigidbody.velocity = velocity * (player.playerStatus.runSpeed / physicsData.FallingSpeedRatio);
+                rigidbody.velocity = velocity * (player.playerStatus.runSpeed / player.physicsData.FallingSpeedRatio);
                 player.isInAir = true;
             }
         }
 
         if (player.isInteracting || player.playerInput.moveAmount > 0)
-            player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / physicsData.FallingFactor);
+            player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / player.physicsData.FallingFactor);
         else
             player.transform.position = targetPosition;
 

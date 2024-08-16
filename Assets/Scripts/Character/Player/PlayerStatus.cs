@@ -1,16 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerData;
 
 public class PlayerStatus : CharacterStatus
 {
     private PlayerManager player;
-
-    [Header("Data")]
-    private PlayerStatusData playerStatusData;
-    private PlayerPhysicsData playerPhysicsData;
-    private PlayerAnimatorData playerAnimatorData;
 
     [Header("Stamina")]
     private float maxStamina;
@@ -47,24 +41,20 @@ public class PlayerStatus : CharacterStatus
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        playerStatusData = new PlayerStatusData();
-        playerPhysicsData = new PlayerPhysicsData();
-        playerAnimatorData = new PlayerAnimatorData();
-
         InitHealth();
         InitStamina();
     }
 
     void InitHealth()
     {
-        maxHealth = playerStatusData.HealthLevel * playerStatusData.HealthLevelAmount;
+        maxHealth = player.playerStatusData.HealthLevel * player.playerStatusData.HealthLevelAmount;
         CurrentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
     void InitStamina()
     {
-        maxStamina = playerStatusData.StaminaLevel * playerStatusData.StaminaLevelAmount;
+        maxStamina = player.playerStatusData.StaminaLevel * player.playerStatusData.StaminaLevelAmount;
         CurrentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
     }
@@ -89,14 +79,14 @@ public class PlayerStatus : CharacterStatus
     void StaminaCheck()
     {
         if (player.isSprinting)
-            TakeStamina(playerStatusData.SprintStaminaAmount);
+            TakeStamina(player.playerStatusData.SprintStaminaAmount);
 
         RecoveryStamina();
     }
 
     int Invincible() 
     {
-        player.onDamage = player.playerAnimator.animator.GetBool(playerAnimatorData.OnDamageParameter);
+        player.onDamage = player.playerAnimator.animator.GetBool(player.playerAnimatorData.OnDamageParameter);
         int curLayer = player.defaultLayer;
 
         if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
@@ -120,8 +110,8 @@ public class PlayerStatus : CharacterStatus
         {
             player.onDamage = true;
             gameObject.layer = player.invincibleLayer;
-            player.playerAnimator.animator.SetBool(playerAnimatorData.OnDamageParameter, true);
-            player.playerAnimator.PlayTargetAnimation(playerAnimatorData.DamageAnimation, true);
+            player.playerAnimator.animator.SetBool(player.playerAnimatorData.OnDamageParameter, true);
+            player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.DamageAnimation, true);
 
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
@@ -131,14 +121,14 @@ public class PlayerStatus : CharacterStatus
         if (CurrentHealth <= 0)
             DieProcess();
         else
-            curInvincibleTime += playerPhysicsData.InvincibleTime;
+            curInvincibleTime += player.playerPhysicsData.InvincibleTime;
     }
 
     void DieProcess()
     {
         player.onDie = true;
         gameObject.layer = player.invincibleLayer;
-        player.playerAnimator.PlayTargetAnimation(playerAnimatorData.DeadAnimation, true);
+        player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.DeadAnimation, true);
         player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Die]);
     }
 
@@ -159,7 +149,7 @@ public class PlayerStatus : CharacterStatus
 
         if (CurrentStamina < maxStamina)
         {
-            CurrentStamina += playerStatusData.StaminaRecoveryAmount;
+            CurrentStamina += player.playerStatusData.StaminaRecoveryAmount;
             staminaBar.SetCurrentStamina(CurrentStamina);
         }
     }

@@ -1,16 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerData;
-using SystemData;
 
 public class PlayerBehavior : MonoBehaviour
 {
     private PlayerManager player;
-
-    [Header("Data")]
-    private PlayerAnimatorData animatorData;
-    private InteractData interactData;
 
     [Header("Interact")]
     private Interactable interactableObj;
@@ -27,50 +21,29 @@ public class PlayerBehavior : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        animatorData = new PlayerAnimatorData();
-        interactData = new InteractData();
     }
 
     public void CheckInteractableObject()
     {
-        if (Physics.SphereCast(transform.position, interactData.InteractCheckRadius, transform.forward, out RaycastHit hit, interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
+        if (Physics.SphereCast(transform.position, player.interactData.InteractCheckRadius, transform.forward, out RaycastHit hit, player.interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
         {
-            if (hit.collider.CompareTag(interactData.InteractObjTag))
-            {
+            if (hit.collider.CompareTag(player.interactData.InteractObjTag))
                 interactableObj = hit.collider.GetComponent<Interactable>();
-            }
         }
         else
-        {
             interactableObj = null;
-        }
 
 
         if (interactableObj != null)
-        {
             UIManager.instance.OpenInteractUI(interactableObj.interactableText);
-        }
         else
-        {
             UIManager.instance.CloseInteractUI();
-        }
     }
 
     public void BehaviourAction()
     {
         if (player.playerBehavior.interactableObj != null)
-        {
             interactableObj.Interact(player, this);
-
-            switch (interactableObj.interactType)
-            {
-                case Interactable.InteractType.Item:
-                case Interactable.InteractType.Message:
-                case Interactable.InteractType.FogWall:
-                case Interactable.InteractType.LockDoor:
-                    break;
-            }
-        }
         else
         {
             UIManager.instance.CloseItemPopUpUI();
@@ -100,14 +73,14 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
         curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
-        player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, true);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.IsItemUseParameter, true);
         player.playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
         UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
     }
 
     public void EndItemUse()
     {
-        player.playerAnimator.animator.SetBool(animatorData.IsItemUseParameter, false);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.IsItemUseParameter, false);
         PoolManager.instance.Return(curUsingItem);
         curUsingItem = null;
 

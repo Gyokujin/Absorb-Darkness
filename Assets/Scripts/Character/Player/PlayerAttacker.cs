@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerData;
 
 public class PlayerAttacker : MonoBehaviour
 {
     private PlayerManager player;
-
-    [Header("Data")]
-    private PlayerAnimatorData animatorData;
 
     [Header("Attack")]
     private string lastAttack;
@@ -24,7 +20,6 @@ public class PlayerAttacker : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        animatorData = new PlayerAnimatorData();
     }
 
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
@@ -33,8 +28,8 @@ public class PlayerAttacker : MonoBehaviour
         player.isSprinting = false;
 
         player.playerItemSlotManager.attackingWeapon = weapon;
-        player.playerAnimator.animator.SetBool(animatorData.AttackParameter, true);
-        player.playerAnimator.animator.SetBool(animatorData.OnUsingRightHand, true);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.AttackParameter, true);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.OnUsingRightHand, true);
         playerWeapon = player.playerItemSlotManager.attackingWeapon;
         bool oneHand = !player.playerInput.twoHandFlag;
 
@@ -62,13 +57,13 @@ public class PlayerAttacker : MonoBehaviour
         if (lastAttack != null)
         {
             player.playerAnimator.PlayTargetAnimation(lastAttack, true);
-            player.playerAnimator.animator.SetBool(animatorData.AttackParameter, true);
+            player.playerAnimator.animator.SetBool(player.playerAnimatorData.AttackParameter, true);
         }
     }
 
     public void HandleWeaponCombo(WeaponItem weapon, bool onLightAttack)
     {
-        player.playerAnimator.animator.SetBool(animatorData.ComboAbleParameter, false);
+        player.playerAnimator.animator.SetBool(player.playerAnimatorData.ComboAbleParameter, false);
         bool oneHand = !player.playerInput.twoHandFlag;
 
         switch (playerWeapon.weaponType)

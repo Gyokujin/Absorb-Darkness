@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using PlayerData;
 
 public class PlayerInput : MonoBehaviour
 {
     private PlayerManager player;
     private PlayerControls inputActions;
-
-    [Header("Data")]
-    private PlayerStatusData playerStatusData;
-    private PlayerAnimatorData playerAnimatorData;
 
     [Header("Move & Action")]
     public float horizontal;
@@ -55,8 +50,6 @@ public class PlayerInput : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        playerStatusData = new PlayerStatusData();
-        playerAnimatorData = new PlayerAnimatorData();
     }
 
     void OnEnable()
@@ -143,14 +136,12 @@ public class PlayerInput : MonoBehaviour
         {
             rollInputTimer += Time.deltaTime;
 
-            if (rollInputTimer > playerAnimatorData.RunAnimationCondition)
-            {
+            if (rollInputTimer > player.playerAnimatorData.RunAnimationCondition)
                 sprintFlag = true;
-            }
         }
         else
         {
-            if (rollInputTimer > 0 && rollInputTimer < playerAnimatorData.RunAnimationCondition)
+            if (rollInputTimer > 0 && rollInputTimer < player.playerAnimatorData.RunAnimationCondition)
             {
                 rollFlag = true;
                 player.playerMove.HandleRolling();
@@ -167,38 +158,28 @@ public class PlayerInput : MonoBehaviour
             return;
 
         if (interactInput)
-        {
             player.playerBehavior.BehaviourAction();
-        }
     }
 
     void HandleAttackInput()
     {
-        if (gameSystemFlag || player.onDamage || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < playerStatusData.ActionLimitStamina || 
+        if (gameSystemFlag || player.onDamage || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatusData.ActionLimitStamina || 
             player.isDodge || player.isItemUse)
             return;
 
         if (lightAttackInput) // 약공격
         {
             if (!player.isComboAble)
-            {
                 player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, true);
-            }
             else // 콤보 공격
-            {
                 player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, true);
-            }
         }
         else if (heavyAttackInput) // 강공격
         {
             if (!player.isComboAble)
-            {
                 player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, false);
-            }
             else // 콤보 공격
-            {
                 player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, false);
-            }
         }
     }
 
@@ -212,9 +193,7 @@ public class PlayerInput : MonoBehaviour
             twoHandFlag = !twoHandFlag;
 
             if (twoHandFlag)
-            {
                 player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
-            }
             else
             {
                 player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
@@ -229,9 +208,7 @@ public class PlayerInput : MonoBehaviour
             return;
 
         if (lockOnInput && !gameSystemFlag)
-        {
             PlayerCamera.instance.SwitchLockOn();
-        }
     }
 
     void HandleUseItemInput()
@@ -240,9 +217,7 @@ public class PlayerInput : MonoBehaviour
             return;
 
         if (useItemInpt)
-        {
             player.playerBehavior.UseItem(player.playerInventory.curUsingItem);
-        }
     }
 
     void HandleQuickSlotsInput()
@@ -251,13 +226,9 @@ public class PlayerInput : MonoBehaviour
             return;
 
         if (quickSlotLeftInput)
-        {
             player.playerInventory.ChangeLeftWeapon();
-        }
         else if (quickSlotRightInput)
-        {
             player.playerInventory.ChangeRightWeapon();
-        }
     }
 
     void HandleGameSystemInput()
