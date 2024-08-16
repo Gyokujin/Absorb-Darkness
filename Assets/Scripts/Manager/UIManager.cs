@@ -58,8 +58,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Component")]
     public QuickSlotsUI quickSlotsUI;
-    [SerializeField]
-    private StageUI stageUI;
+    public StageUI stageUI;
 
     void Awake()
     {

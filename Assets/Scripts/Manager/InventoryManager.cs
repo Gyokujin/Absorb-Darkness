@@ -57,17 +57,40 @@ public class InventoryManager : MonoBehaviour
         quickSlotsUI.UpdateUsingItemUI(playerInventory.curUsingItem, playerInventory.curUsingItem.itemCount);
     }
 
-    public void GetWeaponItem(WeaponItem weaponItem)
+    public void ItemLoot(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.WeaponItem:
+                WeaponItem weaponItem = item as WeaponItem;
+                GetWeaponItem(weaponItem);
+                break;
+
+            case Item.ItemType.UsingItem:
+                UsingItem usingItem = item as UsingItem;
+                GetUsingItem(usingItem);
+                break;
+
+            case Item.ItemType.InteractItem:
+                InteractItem interactItem = item as InteractItem;
+                GetInteractItem(interactItem);
+                break;
+        }
+
+        UIManager.instance.OpenItemPopUpUI(item.itemName, item.itemIcon.texture);
+    }
+
+    void GetWeaponItem(WeaponItem weaponItem)
     {
         weaponItems.Add(weaponItem);
     }
 
-    public void GetUsingItem(UsingItem usingItem)
+    void GetUsingItem(UsingItem usingItem)
     {
         usingItems.Add(usingItem);
     }
 
-    public void GetInteractItem(InteractItem interactItem)
+    void GetInteractItem(InteractItem interactItem)
     {
         interactItems.Add(interactItem);
     }

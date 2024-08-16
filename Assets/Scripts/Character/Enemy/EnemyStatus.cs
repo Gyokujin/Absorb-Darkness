@@ -67,12 +67,11 @@ public class EnemyStatus : CharacterStatus
 
         if (onStageBoss)
         {
-            // UIManager.instance.stageUI.BossHPUIModify(CurrentHealth, maxHealth);
+            UIManager.instance.stageUI.BossHPUIModify(CurrentHealth, maxHealth);
         }
 
         GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
         hitEffect.transform.position = effectTransform.position;
-        // AudioManager.instance.PlayPlayerActionSFX(AudioManager.instance.playerActionClips[(int)PlayerActionSound.Attack2]);
 
         if (CurrentHealth <= 0)
         {
@@ -142,10 +141,7 @@ public class EnemyStatus : CharacterStatus
 
         if (onStageBoss)
         {
-            BossItemDrop bossItemDrop = GetComponent<BossItemDrop>();
-            // StartCoroutine(UIManager.instance.stageUI.EndBossStageUI(bossItemDrop));
-            AudioManager.instance.MuteBGM();
-
+            GameManager.instance.EndBossBattle();
             CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
             StartCoroutine(characterDissolve.DissolveFade());
         }

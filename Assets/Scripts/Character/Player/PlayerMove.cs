@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerPhysicsData playerPhysicsData;
     private PlayerAnimatorData playerAnimatorData;
     private PhysicsData physicsData;
+    private LayerData layerData;
 
     [Header("Physics")]
     public new Rigidbody rigidbody;
@@ -42,8 +43,9 @@ public class PlayerMove : MonoBehaviour
         playerStatusData = new PlayerStatusData();
         playerPhysicsData = new PlayerPhysicsData();
         physicsData = new PhysicsData();
+        layerData = new LayerData();
 
-        ignoreGroundCheck = LayerMask.GetMask(physicsData.GroundLayer);
+        ignoreGroundCheck = LayerMask.GetMask(layerData.GroundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 

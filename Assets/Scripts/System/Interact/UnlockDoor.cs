@@ -48,7 +48,7 @@ public class UnlockDoor : Interactable
             player.transform.position = interactTrasnform.position;
             player.transform.rotation = interactTrasnform.rotation;
             player.playerAnimator.PlayTargetAnimation("DoorOpen", true);
-            // AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.DoorOpen]);
+            AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.DoorOpen]);
             UIManager.instance.OpenMessagePopUpUI(false, successMessage);
         }
         else
