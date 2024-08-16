@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f881e4a1a1cfe24680963e12b855bde, type: 3}
-  m_Name: Shaman Mordo
+  m_Script: {fileID: 11500000, guid: c6ddaca3adea6a14ea64d66ca29bc055, type: 3}
+  m_Name: BossField
   m_EditorClassIdentifier: 
+  fieldType: 2
   bossName: "\uC8FC\uC220\uC0AC \uBAA8\uB974\uB3C4"
+  bossBgm: {fileID: 8300000, guid: 74b15811ee71ab042ace98148c0a30f4, type: 3}
+  dropItems:
+  - {fileID: 11400000, guid: 64238a123b048cd49adf90b50ee7f392, type: 2}

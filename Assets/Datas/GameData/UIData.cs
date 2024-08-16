@@ -28,7 +28,7 @@ namespace UIData
         private float? victoryDelay;
         public float VictoryDelay
         {
-            readonly get => victoryDelay ?? 2.5f;
+            readonly get => victoryDelay ?? 6f;
             set => victoryDelay = value;
         }
     }

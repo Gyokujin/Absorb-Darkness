@@ -203,15 +203,6 @@ namespace SystemData
             readonly get => fallingDownForce ?? 750;
             set => fallingDownForce = value;
         }
-
-        [Header("Physics Layer")]
-        // Ground Layer
-        private string groundLayer;
-        public string GroundLayer
-        {
-            readonly get => groundLayer ?? "Ground";
-            set => groundLayer = value;
-        }
     }
 
     public struct InteractData
@@ -312,6 +303,14 @@ namespace SystemData
         {
             readonly get => invincibleLayer ?? "Invincible";
             set => invincibleLayer = value;
+        }
+
+        // Ground Layer
+        private string groundLayer;
+        public string GroundLayer
+        {
+            readonly get => groundLayer ?? "Ground";
+            set => groundLayer = value;
         }
 
         // Environment Layer
