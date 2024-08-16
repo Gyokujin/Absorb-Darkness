@@ -5,7 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+
+    [Header("Field")]
     private FieldInfo curField;
+    private Entrance curEvent;
 
     void Awake()
     {
@@ -22,11 +25,12 @@ public class GameManager : MonoBehaviour
         LockCamera(true);
     }
 
-    public void ReadFieldInfo(FieldInfo fieldInfo)
+    public void ReadFieldInfo(FieldInfo fieldInfo, Entrance entrance)
     {
         if (curField == null || curField != fieldInfo)
         {
             curField = fieldInfo;
+            curEvent = entrance;
             UIManager.instance.OpenStageUI(curField);
 
             switch (curField.fieldType)
@@ -54,6 +58,9 @@ public class GameManager : MonoBehaviour
     IEnumerator EndBossBattleProcess()
     {
         yield return StartCoroutine(UIManager.instance.stageUI.EndBossStageUI());
+        BossFieldEntrance bossEvent = curEvent as BossFieldEntrance;
+        bossEvent.targetGate.DisappearGate();
+
         BossField bossField = curField as BossField;
         Item[] bossDropItem = bossField.dropItems;
 

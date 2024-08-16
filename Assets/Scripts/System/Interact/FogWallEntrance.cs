@@ -24,9 +24,14 @@ public class FogWallEntrance : Interactable
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.FogEntrance]);
     }
 
-    public void Close()
+    public void CloseGate()
     {
         collider.isTrigger = false;
         gameObject.tag = "Untagged";
+    }
+
+    public void DisappearGate()
+    {
+
     }
 }

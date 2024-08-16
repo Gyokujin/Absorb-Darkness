@@ -25,6 +25,6 @@ public class Entrance : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == playerLayer && other.GetComponent<PlayerManager>() != null)
-            GameManager.instance.ReadFieldInfo(fieldInfo);
+            GameManager.instance.ReadFieldInfo(fieldInfo, this);
     }
 }
