@@ -8,12 +8,6 @@ public class AttackState : EnemyState
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
 
-    [Header("States")]
-    [SerializeField]
-    private CombatStanceState combatStanceState;
-    [SerializeField]
-    private PursueTargetState pursueTargetState;
-
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
@@ -22,7 +16,7 @@ public class AttackState : EnemyState
 
         if (enemyManager.isPreformingAction)
         {
-            return combatStanceState;
+            return enemyManager.combatStanceState;
         }
         else if (currentAttack != null && targetDistance > currentAttack.attackDisMin && targetDistance < currentAttack.attackDisMax && 
             viewableAngle <= currentAttack.attackAngleMax && viewableAngle >= currentAttack.attackAngleMin)
@@ -34,7 +28,7 @@ public class AttackState : EnemyState
             currentAttack = enemyAttacks[Random.Range(0, enemyAttacks.Length)];
         }
 
-        return pursueTargetState;
+        return enemyManager.pursueTargetState;
     }
 
     void Attack(EnemyManager enemyManager, EnemyAnimator enemyAnimator)

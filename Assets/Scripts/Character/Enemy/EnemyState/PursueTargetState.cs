@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PursueTargetState : EnemyState
 {
-    [Header("States")]
-    public CombatStanceState combatStanceState;
-
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
@@ -33,7 +30,7 @@ public class PursueTargetState : EnemyState
 
         if (targetDistance <= enemyStatus.attackRangeMax)
         {
-            return combatStanceState;
+            return enemyManager.combatStanceState;
         }
         else
         {

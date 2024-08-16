@@ -4,9 +4,14 @@ using UnityEngine;
 
 public abstract class EnemyState : MonoBehaviour
 {
-    private EnemyManager enemyManager;
+    protected EnemyManager enemyManager;
 
     void Awake()
+    {
+        Init();
+    }
+
+    void Init()
     {
         enemyManager = GetComponentInParent<EnemyManager>();
     }

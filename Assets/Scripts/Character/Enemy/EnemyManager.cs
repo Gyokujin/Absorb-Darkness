@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,14 +9,22 @@ public enum EnemyType
     Normal, Named, Boss
 }
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Collider))]
 public class EnemyManager : CharacterManager
 {
     public EnemyType enemyType;
 
     [Header("State")]
     public EnemyState curState;
+    [HideInInspector]
+    public AmbushState ambushState;
+    [HideInInspector]
+    public IdleState idleState;
+    [HideInInspector]
+    public PursueTargetState pursueTargetState;
+    [HideInInspector]
+    public CombatStanceState combatStanceState;
+    [HideInInspector]
+    public AttackState attackState;
 
     [Header("Action")]
     public bool isInteracting;
@@ -29,15 +38,18 @@ public class EnemyManager : CharacterManager
     public float currentRecoveryTime = 0;
 
     [Header("Component")]
+    [HideInInspector]
+    public EnemyStatus enemyStatus;
+    [HideInInspector]
+    public EnemyAudio enemyAudio;
+    [HideInInspector]
+    public EnemyAnimator enemyAnimator;
+
     public new Rigidbody rigidbody;
     public new Collider collider;
     public Collider blockerCollider;
     public NavMeshAgent navMeshAgent;
     public CharacterStatus currentTarget;
-    private EnemyStatus enemyStatus;
-    private EnemyAnimator enemyAnimator;
-    [HideInInspector]
-    public EnemyAudio enemyAudio;
 
     void Awake()
     {
@@ -52,6 +64,12 @@ public class EnemyManager : CharacterManager
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
         enemyAudio = GetComponent<EnemyAudio>();
+
+        ambushState = GetComponentInChildren<AmbushState>();
+        idleState = GetComponentInChildren<IdleState>();
+        pursueTargetState = GetComponentInChildren<PursueTargetState>();
+        combatStanceState = GetComponentInChildren<CombatStanceState>();
+        attackState = GetComponentInChildren<AttackState>();
     }
 
     void Start()

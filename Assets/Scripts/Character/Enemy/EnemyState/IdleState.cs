@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class IdleState : EnemyState
 {
-    [Header("States")]
-    public PursueTargetState pursueTargetState;
-
     public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
     {
         if (enemyManager.onDamage)
@@ -46,7 +43,7 @@ public class IdleState : EnemyState
         {
             EnemyAudio enemyAudio = enemyManager.enemyAudio;
             enemyAudio.PlaySFX(enemyAudio.enemyClips[(int)EnemyAudio.EnemySound.Detect]);
-            return pursueTargetState;
+            return enemyManager.pursueTargetState;
         }
         else
         {
