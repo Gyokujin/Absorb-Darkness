@@ -2,35 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UIData;
 
 public class StageUI : MonoBehaviour
 {
+    [Header("Data")]
+    private StageUIData stageUIData;
+
     [Header("Stage Info")]
     [SerializeField]
-    private GameObject stageUI;
+    private Animator stageInfoAnimator;
     [SerializeField]
     private Text stageName;
 
-    [Header("Boss Info")]
+    [Header("BossStage Info")]
     [SerializeField]
     private GameObject bossStageUI;
+    private BossClearUI bossClearUI;
+
     [SerializeField]
-    private Text bossNameText;
+    private Text bossName;
     [SerializeField]
     private Slider bossHPSlider;
 
-    [Header("UI Delay")]
-    [SerializeField]
-    private float defeatDelay = 3f;
-    [SerializeField]
-    private float victoryDelay = 2.5f;
-
-    [Header("Component")]
-    private BossClearUI bossClearUI;
+    [Header("Coroutine")]
+    private WaitForSeconds stageInfoWait;
+    private WaitForSeconds defeatWait;
+    private WaitForSeconds victoryWait;
 
     void Awake()
     {
+        Init();
+    }
+
+    void Init()
+    {
+        stageUIData = new StageUIData();
         bossClearUI = GetComponentInChildren<BossClearUI>();
+
+        stageInfoWait = new WaitForSeconds(stageUIData.StageInfoDelay);
+        defeatWait = new WaitForSeconds(stageUIData.DefeatDelay);
+        victoryWait = new WaitForSeconds(stageUIData.VictoryDelay);
     }
 
     public void OpenStageInfo(FieldInfo fieldInfo)
@@ -42,7 +54,7 @@ public class StageUI : MonoBehaviour
 
             case FieldInfo.FieldType.Field:
                 Field field = fieldInfo as Field;
-                OpenStageUI(field);
+                StartCoroutine(OpenStageUI(field));
                 break;
 
             case FieldInfo.FieldType.BossField:
@@ -50,17 +62,22 @@ public class StageUI : MonoBehaviour
         }
     }
 
-    public void OpenStageUI(Field field)
+    IEnumerator OpenStageUI(Field field)
     {
-        stageUI.SetActive(true);
+        stageInfoAnimator.gameObject.SetActive(true);
+        stageInfoAnimator.enabled = true;
         stageName.text = field.stageName;
+
+        yield return stageInfoWait;
+        stageInfoAnimator.enabled = false;
+        stageInfoAnimator.gameObject.SetActive(false);
     }
 
     public void OpenBossStageUI(string name)
     {
         bossStageUI.SetActive(true);
         bossClearUI.gameObject.SetActive(true);
-        bossNameText.text = name;
+        bossName.text = name;
         bossHPSlider.value = 1;
     }
 
@@ -71,12 +88,12 @@ public class StageUI : MonoBehaviour
 
     public IEnumerator EndBossStageUI(BossItemDrop boss)
     {
-        yield return new WaitForSeconds(defeatDelay);
+        yield return defeatWait;
         bossStageUI.SetActive(false);
         bossClearUI.bossItemDrop = boss;
         bossClearUI.PlayBossClear();
 
-        yield return new WaitForSeconds(victoryDelay);
+        yield return victoryWait;
         bossClearUI.gameObject.SetActive(true);
     }
 }

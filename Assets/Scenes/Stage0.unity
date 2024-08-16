@@ -270,7 +270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &65524678
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2206,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1154463832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2476,7 +2476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1187033011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2643,13 +2643,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1305062386}
+  - component: {fileID: 1305062387}
   m_Layer: 5
   m_Name: Stage Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1305062386
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2671,6 +2672,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 1400, y: 158.26}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1305062387
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305062385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c80f3c07c24952f40bb4059636370b5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1342665254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4251,11 +4273,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1386d6f6b48316429daa7ec36d7431f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageUI: {fileID: 1187033010}
+  stageInfoAnimator: {fileID: 1305062387}
   stageName: {fileID: 1178811068}
   bossStageUI: {fileID: 1154463831}
   bossNameText: {fileID: 2398660922399594748}
   bossHPSlider: {fileID: 7374013902560760471}
+  stageInfoDelay: 4
   defeatDelay: 5
   victoryDelay: 2.5
 --- !u!1 &2100817896
@@ -17773,7 +17796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1964604617942755443
 BoxCollider:
   m_ObjectHideFlags: 0

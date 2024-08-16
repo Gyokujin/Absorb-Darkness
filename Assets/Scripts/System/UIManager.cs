@@ -81,7 +81,6 @@ public class UIManager : MonoBehaviour
 
     public void OpenStageUI(FieldInfo fieldInfo)
     {
-        Debug.Log(fieldInfo.fieldType);
         stageUI.OpenStageInfo(fieldInfo);
     }
 
