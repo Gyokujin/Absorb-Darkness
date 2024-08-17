@@ -27,13 +27,9 @@ public class EnemyWeaponSlotManager : MonoBehaviour
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
         {
             if (weaponSlot.isLeftHandSlot)
-            {
                 leftHandSlot = weaponSlot;
-            }
             else if (weaponSlot.isRightHandSlot)
-            {
                 rightHandSlot = weaponSlot;
-            }
         }
     }
 
@@ -61,26 +57,18 @@ public class EnemyWeaponSlotManager : MonoBehaviour
     public void LoadWeaponsHands()
     {
         if (leftHandWeapon != null)
-        {
             LoadWeaponOnSlot(leftHandWeapon, true);
-        }
 
         if (rightHandWeapon != null)
-        {
             LoadWeaponOnSlot(rightHandWeapon, false);
-        }
     }
 
     public void LoadWeaponsDamageCollider(bool isLeft)
     {
         if (isLeft)
-        {
             leftDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        }
         else
-        {
             rightDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        }
     }
 
     public void OpenDamageCollider()

@@ -7,7 +7,7 @@ public class CharacterAudio : MonoBehaviour
 {
     public enum CharacterSound
     {
-        Hit, Die
+        Hit, Dead
     }
 
     [Header("Data")]

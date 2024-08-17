@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyStatus : CharacterStatus
 {
+    private EnemyManager enemy;
+
+    [SerializeField]
+    private bool onStageBoss = false;
+
     [Header("Status")]
     public float detectionRadius = 20;
     public float detectionAngleMax = 50;
     public float detectionAngleMin = -50;
     public float attackRangeMax = 1.5f;
-
-    [Header("Info")]
-    [SerializeField]
-    private bool onStageBoss = false;
 
     [Header("Damage")]
     [SerializeField]
@@ -22,14 +23,10 @@ public class EnemyStatus : CharacterStatus
     [SerializeField]
     private float knockbackPower = 50;
     public int damageAmount; // 누적 데미지. 이 수치가 3/5 이상이 되면 넉백을 한다.
+
+    [Header("Coroutine")]
     private WaitForSeconds hitWait;
     private WaitForSeconds knockbackWait;
-
-    [Header("Component")]
-    private new Rigidbody rigidbody;
-    private EnemyAnimator enemyAnimator;
-    private EnemyManager enemyManager;
-    private CharacterAudio characterAudio;
 
     void Awake()
     {
@@ -38,10 +35,7 @@ public class EnemyStatus : CharacterStatus
 
     void Init()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        enemyAnimator = GetComponentInChildren<EnemyAnimator>();
-        enemyManager = GetComponent<EnemyManager>();
-        characterAudio = GetComponent<CharacterAudio>();
+        enemy = GetComponent<EnemyManager>();
         hitWait = new WaitForSeconds(hitTime);
         knockbackWait = new WaitForSeconds(knockbackTime);
     }
@@ -60,51 +54,43 @@ public class EnemyStatus : CharacterStatus
 
     public virtual void TakeDamage(int damage, CharacterStatus player)
     {
-        if (enemyManager.onDie)
+        if (enemy.onDie)
             return;
 
         CurrentHealth -= damage;
 
         if (onStageBoss)
-        {
             UIManager.instance.stageUI.BossHPUIModify(CurrentHealth, maxHealth);
-        }
 
         GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
         hitEffect.transform.position = effectTransform.position;
 
         if (CurrentHealth <= 0)
-        {
             DieProcess();
-        }
         else
         {
-            if (enemyManager.enemyType != EnemyType.Boss)
+            if (enemy.enemyType != EnemyManager.EnemyType.Boss)
             {
-                StopCoroutine("DamageProcess");
-                enemyManager.onDamage = true;
+                StopCoroutine(nameof(DamageProcess));
+                enemy.onDamage = true;
                 damageAmount += damage;
 
-                if (damageAmount >= (float)maxHealth * 0.6f) // 한번에 최대 체력의 절반 이상의 피해가 들어오면 스매시를 실행
-                {
-                    StartCoroutine("KnockbackProcess", player);
-                }
+                if (damageAmount >= maxHealth * enemy.physicsData.KnockbackLimit) // 한번에 최대 체력의 절반 이상의 피해가 들어오면 스매시를 실행
+                    StartCoroutine(nameof(KnockbackProcess), player);
                 else
-                {
-                    StartCoroutine("DamageProcess", player);
-                }
+                    StartCoroutine(nameof(DamageProcess), player);
             }
         }
     }
 
     IEnumerator DamageProcess(CharacterStatus player)
     {
-        enemyAnimator.PlayTargetAnimation("Hit", true);
-        characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
+        enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.HitAnimation, true);
+        enemy.enemyAudio.PlaySFX(enemy.enemyAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
 
         yield return hitWait;
-        enemyManager.currentTarget = player;
-        enemyManager.isPreformingAction = false;
+        enemy.currentTarget = player;
+        enemy.isPreformingAction = false;
     }
 
     IEnumerator KnockbackProcess(CharacterStatus player)
@@ -112,29 +98,29 @@ public class EnemyStatus : CharacterStatus
         Vector3 attackDir = Vector3.Normalize(transform.position - player.transform.position); // 몬스터 넉백
         attackDir.y = 0;
         transform.rotation = Quaternion.LookRotation(-attackDir);
-        enemyManager.rigidbody.velocity = Vector3.zero;
-        enemyManager.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
+        enemy.rigidbody.velocity = Vector3.zero;
+        enemy.rigidbody.AddForce(attackDir * knockbackPower, ForceMode.Impulse);
 
-        enemyAnimator.animator.SetTrigger("doKnockback");
-        characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
+        enemy.enemyAnimator.animator.SetTrigger(enemy.characterAnimatorData.KnockbackParameter);
+        enemy.enemyAudio.PlaySFX(enemy.enemyAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
 
         yield return knockbackWait; // 플레이어 재추적
-        enemyManager.currentTarget = player;
-        enemyManager.isPreformingAction = false;
+        enemy.currentTarget = player;
+        enemy.isPreformingAction = false;
     }
 
     protected void DieProcess()
     {
-        enemyManager.onDie = true;
-        enemyManager.collider.enabled = false;
-        enemyManager.blockerCollider.enabled = false;
+        enemy.onDie = true;
+        enemy.collider.enabled = false;
+        enemy.blockerCollider.enabled = false;
         CurrentHealth = 0;
-        rigidbody.isKinematic = true;
+        enemy.rigidbody.isKinematic = true;
 
-        enemyAnimator.PlayTargetAnimation("Die", true);
-        characterAudio.PlaySFX(characterAudio.characterClips[(int)CharacterAudio.CharacterSound.Die]);
+        enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
+        enemy.enemyAudio.PlaySFX(enemy.enemyAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
 
-        foreach (DamageCollider attackCollider in enemyManager.attackColliders)
+        foreach (DamageCollider attackCollider in enemy.attackColliders)
         {
             attackCollider.CloseDamageCollider();
         }

@@ -4,55 +4,51 @@ using UnityEngine;
 
 public class EnemyAnimator : AnimatorManager
 {
-    private EnemyManager enemyManager;
-    private EnemyStatus enemyStatus;
-    private EnemyAudio enemyAudio;
+    protected EnemyManager enemy;
 
     void Awake()
     {
         Init();
     }
 
-    void Init()
+    protected override void Init()
     {
-        animator = GetComponent<Animator>();
-        enemyManager = GetComponentInParent<EnemyManager>();
-        enemyStatus = GetComponentInParent<EnemyStatus>();
-        enemyAudio = GetComponentInParent<EnemyAudio>();
+        base.Init();
+        enemy = GetComponentInParent<EnemyManager>();
     }
 
     void OnAnimatorMove()
     {
-        if (enemyManager.onDamage || enemyManager.onDie)
+        if (enemy.onDamage || enemy.onDie)
             return;
 
-        enemyManager.rigidbody.drag = 0;
+        enemy.rigidbody.drag = 0;
         Vector3 deltaPoistion = animator.deltaPosition;
         deltaPoistion.y = 0;
         Vector3 velocity = deltaPoistion / Time.deltaTime;
-        enemyManager.rigidbody.velocity = velocity;
+        enemy.rigidbody.velocity = velocity;
     }
 
     public void AttackProcess()
     {
-        enemyAudio.PlaySFX(enemyAudio.enemyClips[(int)EnemyAudio.EnemySound.Attack]);
+        enemy.enemyAudio.PlaySFX(enemy.enemyAudio.enemyClips[(int)EnemyAudio.EnemySound.Attack]);
     }
 
     public void AttackDelay()
     {
-        animator.SetBool("onAttack", false);
-        animator.SetFloat("vertical", 0, 0.1f, Time.deltaTime);
-        Invoke("AttackEnd", enemyManager.currentRecoveryTime);
+        animator.SetBool(enemy.characterAnimatorData.AttackParameter, false);
+        animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.IdleParameterValue, enemy.characterAnimatorData.AnimationDampTime, Time.deltaTime);
+        Invoke(nameof(AttackDelayProcess), enemy.currentRecoveryTime);
     }
 
-    void AttackEnd()
+    void AttackDelayProcess()
     {
-        enemyManager.isPreformingAction = false;
+        enemy.isPreformingAction = false;
     }
 
     public void HitEnd()
     {
-        enemyManager.onDamage = false;
-        enemyStatus.damageAmount = 0;
+        enemy.onDamage = false;
+        enemy.enemyStatus.damageAmount = 0;
     }
 }
