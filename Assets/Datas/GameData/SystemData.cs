@@ -163,6 +163,14 @@ namespace SystemData
             set => groundDirRayDistance = value;
         }
 
+        // KnockbackLimit
+        private float? knockbackLimit;
+        public float KnockbackLimit
+        {
+            readonly get => knockbackLimit ?? 0.6f;
+            set => knockbackLimit = value;
+        }
+
         [Header("Character Physics")]
         // LookAtSmoothing
         private float? lookAtSmoothing;
