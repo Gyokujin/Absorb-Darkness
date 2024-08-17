@@ -264,9 +264,7 @@ GameObject:
   - component: {fileID: 7323164783708159819}
   - component: {fileID: 7365873495875009557}
   - component: {fileID: 8325125803269740946}
-  - component: {fileID: 878149315805515896}
   - component: {fileID: 6095023924948939310}
-  - component: {fileID: 7280089006342407748}
   - component: {fileID: 7421784553130219315}
   - component: {fileID: 7586811435734901536}
   m_Layer: 7
@@ -347,37 +345,6 @@ CapsuleCollider:
   m_Height: 2.8
   m_Direction: 1
   m_Center: {x: -0.1, y: 1.4, z: 0}
---- !u!114 &878149315805515896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957284572224849543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 687d43efc3a135f4a87dc7048f338fca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamage: 0
-  onDie: 0
-  lockOnTransform: {fileID: 7790592378129280624}
-  enemyType: 2
-  curState: {fileID: 1985222649722456806}
-  isInteracting: 0
-  isPreformingAction: 0
-  detectionLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  attackColliders: []
-  stopDistance: 10
-  currentRecoveryTime: 0
-  rigidbody: {fileID: 0}
-  collider: {fileID: 0}
-  blockerCollider: {fileID: 5758493670866006236}
-  navMeshAgent: {fileID: 0}
-  currentTarget: {fileID: 0}
-  enemyAudio: {fileID: 0}
 --- !u!114 &6095023924948939310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +357,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72dc550ca0653e459092593f35227d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDamage: 0
+  onDie: 0
+  lockOnTransform: {fileID: 7790592378129280624}
+  enemyType: 2
+  curState: {fileID: 1985222649722456806}
+  ambushState: {fileID: 0}
+  idleState: {fileID: 0}
+  pursueTargetState: {fileID: 0}
+  combatStanceState: {fileID: 0}
+  attackState: {fileID: 0}
+  attackColliders: []
+  isInteracting: 0
+  isPreformingAction: 0
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  stopDistance: 2
+  currentRecoveryTime: 0
+  rigidbody: {fileID: 0}
+  collider: {fileID: 0}
+  blockerCollider: {fileID: 5758493670866006236}
+  navMesh: {fileID: 0}
+  currentTarget: {fileID: 0}
+  enemyStatus: {fileID: 0}
+  enemyAudio: {fileID: 0}
+  enemyAnimator: {fileID: 0}
   lightningImpactTransform: {fileID: 5282769393375881160}
   poisonMistTransform: {fileID: 8967081879668770238}
   summonTransforms:
@@ -401,18 +394,6 @@ MonoBehaviour:
   - {fileID: 261833712856375576}
   - {fileID: 4333471157798698483}
   - {fileID: 5814877241757488315}
---- !u!114 &7280089006342407748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957284572224849543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 297b61fba3d5b9040b74d832bf153bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7421784553130219315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,14 +409,14 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   rotationSpeed: 10
-  healthLevel: 15
-  healthLevelAmount: 7
+  healthLevel: 5
+  healthLevelAmount: 17
   effectTransform: {fileID: 1299152529260380030}
+  onStageBoss: 1
   detectionRadius: 25
   detectionAngleMax: 90
   detectionAngleMin: -90
   attackRangeMax: 20
-  onStageBoss: 1
   hitTime: 1
   knockbackTime: 2.5
   knockbackPower: 50
@@ -579,9 +560,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
   - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
   - {fileID: 11400000, guid: 9a4fbd4267bdd8e489663670d964e9bd, type: 2}
-  currentAttack: {fileID: 0}
-  combatStanceState: {fileID: 7819910582564810956}
-  pursueTargetState: {fileID: 4274514487120093332}
 --- !u!1 &1519880395501751745
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,8 +672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08966ea576998148b3424010b617101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackState: {fileID: 627337151530297000}
-  pursueTargetState: {fileID: 4274514487120093332}
 --- !u!1 &1869607217729182166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,7 +1382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b7babd31d3bfe44b5bceabfeb766b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pursueTargetState: {fileID: 4274514487120093332}
 --- !u!1 &4891808002737123190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1424,6 @@ GameObject:
   - component: {fileID: 4485789632038293139}
   - component: {fileID: 6307953466354442254}
   - component: {fileID: 1041519883906043611}
-  - component: {fileID: 8639270362771641405}
   - component: {fileID: 7785974057656025707}
   - component: {fileID: 80953507484469099}
   m_Layer: 0
@@ -1519,19 +1493,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8639270362771641405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4929229781488887910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50be02fcf3e5b424b81f10f8bca72926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!114 &7785974057656025707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1544,6 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e13a7f4fc80b845b26dfd8677a3b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &80953507484469099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,7 +1853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f6462ff55ad4444a571d617acd9f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStanceState: {fileID: 7819910582564810956}
 --- !u!1 &5697317614521103691
 GameObject:
   m_ObjectHideFlags: 0

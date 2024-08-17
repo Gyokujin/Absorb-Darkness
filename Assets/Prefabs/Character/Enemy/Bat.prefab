@@ -851,7 +851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b7babd31d3bfe44b5bceabfeb766b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pursueTargetState: {fileID: 7815481824792367352}
 --- !u!1 &3459868448240885324
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f6462ff55ad4444a571d617acd9f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStanceState: {fileID: 4853583695578390121}
 --- !u!1 &3799185355989430492
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,8 +971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08966ea576998148b3424010b617101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackState: {fileID: 2741726329737633013}
-  pursueTargetState: {fileID: 7815481824792367352}
 --- !u!1 &3892600271049941883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,20 +1430,27 @@ MonoBehaviour:
   lockOnTransform: {fileID: 5428491561185675698}
   enemyType: 0
   curState: {fileID: 6824375812976821898}
+  ambushState: {fileID: 0}
+  idleState: {fileID: 0}
+  pursueTargetState: {fileID: 0}
+  combatStanceState: {fileID: 0}
+  attackState: {fileID: 0}
+  attackColliders: []
   isInteracting: 0
   isPreformingAction: 0
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackColliders: []
   stopDistance: 1.75
   currentRecoveryTime: 3
+  enemyStatus: {fileID: 0}
+  enemyAudio: {fileID: 0}
+  enemyAnimator: {fileID: 0}
   rigidbody: {fileID: 0}
   collider: {fileID: 0}
   blockerCollider: {fileID: 3988145368780504335}
   navMeshAgent: {fileID: 4953912797558887378}
   currentTarget: {fileID: 0}
-  enemyAudio: {fileID: 0}
 --- !u!114 &2042603856108357006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,8 +1610,6 @@ MonoBehaviour:
   enemyAttacks:
   - {fileID: 11400000, guid: 903a2deb7744e6942b7e77c80e73c168, type: 2}
   currentAttack: {fileID: 11400000, guid: 903a2deb7744e6942b7e77c80e73c168, type: 2}
-  combatStanceState: {fileID: 4853583695578390121}
-  pursueTargetState: {fileID: 7815481824792367352}
 --- !u!1 &5671601671262288195
 GameObject:
   m_ObjectHideFlags: 0
