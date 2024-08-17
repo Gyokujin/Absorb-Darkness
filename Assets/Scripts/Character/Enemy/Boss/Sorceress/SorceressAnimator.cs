@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SorceressAnimator : MonoBehaviour
+public class SorceressAnimator : EnemyAnimator
 {
     private Sorceress sorceress;
 
@@ -11,8 +11,9 @@ public class SorceressAnimator : MonoBehaviour
         Init();
     }
 
-    void Init()
+    protected override void Init()
     {
+        base.Init();
         sorceress = GetComponentInParent<Sorceress>();
     }
 

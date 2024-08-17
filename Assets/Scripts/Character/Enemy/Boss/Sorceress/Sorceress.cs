@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyData;
 
-public class Sorceress : MonoBehaviour
+public class Sorceress : EnemyManager
 {
-    private EnemyManager enemyManager;
-
     [Header("Data")]
     private SorceressData sorceressData;
 
@@ -31,14 +29,12 @@ public class Sorceress : MonoBehaviour
 
     void Awake()
     {
+        base.Init();
         Init();
     }
 
-    void Init()
+    protected override void Init()
     {
-        enemyManager = GetComponent<EnemyManager>();
-        sorceressData = new SorceressData();
-
         summonWait = new WaitForSeconds(sorceressData.SummonDelay);
         spawnMeteors = new Meteor[meteorTransform.Length];
         meteorFallWait = new WaitForSeconds(sorceressData.MeteorFallDelay);
@@ -48,13 +44,13 @@ public class Sorceress : MonoBehaviour
     {
         lightningImpact = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.LightningImpact).GetComponent<LightningImpact>();
         lightningImpact.transform.position = lightningImpactTransform.position;
-        Quaternion spellRotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position - transform.position);
+        Quaternion spellRotation = Quaternion.LookRotation(currentTarget.transform.position - transform.position);
         lightningImpact.transform.rotation = spellRotation;
     }
 
     public void ShootLightning()
     {
-        Vector3 shootDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - lightningImpactTransform.position + Vector3.up * sorceressData.LightningImpactOffsetY);
+        Vector3 shootDir = Vector3.Normalize(currentTarget.transform.position - lightningImpactTransform.position + Vector3.up * sorceressData.LightningImpactOffsetY);
         float angle = Vector3.Angle(transform.forward, shootDir);
 
         if (angle > sorceressData.LightningImpactRotateLimit) // 만약 범위 밖으로 벗어난다면 정면으로 쏘게한다.
@@ -88,7 +84,7 @@ public class Sorceress : MonoBehaviour
         {
             spawnMeteors[i] = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
             spawnMeteors[i].transform.position = meteorTransform[i].position;
-            Quaternion rotation = Quaternion.LookRotation(enemyManager.currentTarget.transform.position);
+            Quaternion rotation = Quaternion.LookRotation(currentTarget.transform.position);
             spawnMeteors[i].gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
         }
     }
@@ -97,7 +93,7 @@ public class Sorceress : MonoBehaviour
     {
         foreach (Meteor meteor in spawnMeteors)
         {
-            Vector3 fallDir = Vector3.Normalize(enemyManager.currentTarget.transform.position - meteor.transform.position);
+            Vector3 fallDir = Vector3.Normalize(currentTarget.transform.position - meteor.transform.position);
             meteor.Falling(fallDir, sorceressData.MeteorFallSpeed);
             yield return meteorFallWait;
         }
