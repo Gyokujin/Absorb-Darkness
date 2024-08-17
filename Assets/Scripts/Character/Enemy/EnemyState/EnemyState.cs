@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyState : MonoBehaviour
 {
-    protected EnemyManager enemyManager;
+    protected EnemyManager enemy;
 
     void Awake()
     {
@@ -13,8 +13,8 @@ public abstract class EnemyState : MonoBehaviour
 
     void Init()
     {
-        enemyManager = GetComponentInParent<EnemyManager>();
+        enemy = GetComponentInParent<EnemyManager>();
     }
 
-    public abstract EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator);
+    public abstract EnemyState Tick();
 }

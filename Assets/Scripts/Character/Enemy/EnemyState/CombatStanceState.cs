@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class CombatStanceState : EnemyState
 {
-    public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
+    public override EnemyState Tick()
     {
-        float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        float targetDistance = Vector3.Distance(enemy.currentTarget.transform.position, enemy.transform.position);
 
-        if (targetDistance <= enemyStatus.attackRangeMax)
-        {
-            return enemyManager.attackState;
-        }
-        else if (targetDistance > enemyStatus.attackRangeMax)
-        {
-            return enemyManager.pursueTargetState;
-        }
+        if (targetDistance <= enemy.enemyStatus.attackRangeMax)
+            return enemy.attackState;
+        else if (targetDistance > enemy.enemyStatus.attackRangeMax)
+            return enemy.pursueTargetState;
         else
-        {
             return this;
-        }
     }
 }

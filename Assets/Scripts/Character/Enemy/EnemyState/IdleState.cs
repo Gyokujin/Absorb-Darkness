@@ -4,50 +4,40 @@ using UnityEngine;
 
 public class IdleState : EnemyState
 {
-    public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
+    public override EnemyState Tick()
     {
-        if (enemyManager.onDamage)
+        if (enemy.onDamage)
             return this;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, enemyStatus.detectionRadius, enemyManager.detectionLayer);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, enemy.enemyStatus.detectionRadius, enemy.detectionLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            CharacterStatus characterStatus = colliders[i].transform.GetComponent<CharacterStatus>();
-
-            if (characterStatus != null)
+            if (colliders[i].GetComponent<CharacterStatus>() != null)
             {
+                CharacterStatus characterStatus = colliders[i].transform.GetComponent<CharacterStatus>();
                 Vector3 targetDirection = Vector3.Normalize(characterStatus.transform.position - transform.position);
-                bool angleAble = Vector3.Angle(targetDirection, transform.forward) > enemyStatus.detectionAngleMin && 
-                    Vector3.Angle(targetDirection, transform.forward) < enemyStatus.detectionAngleMax;
-
+                bool angleAble = Vector3.Angle(targetDirection, transform.forward) > enemy.enemyStatus.detectionAngleMin && Vector3.Angle(targetDirection, transform.forward) < enemy.enemyStatus.detectionAngleMax;
                 bool showAble = false;
-                RaycastHit hit;
 
-                if (Physics.Raycast(enemyManager.lockOnTransform.position, targetDirection, out hit, enemyStatus.detectionRadius))
+                if (Physics.Raycast(enemy.lockOnTransform.position, targetDirection, out RaycastHit hit, enemy.enemyStatus.detectionRadius))
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-                    {
                         showAble = true;
-                    }
                 }
 
-                if (angleAble && showAble) // && showAble
-                {
-                    enemyManager.currentTarget = characterStatus;
-                }
+                if (angleAble && showAble)
+                    enemy.currentTarget = characterStatus;
             }
         }
 
-        if (enemyManager.currentTarget != null)
+        if (enemy.currentTarget != null)
         {
-            EnemyAudio enemyAudio = enemyManager.enemyAudio;
+            EnemyAudio enemyAudio = enemy.enemyAudio;
             enemyAudio.PlaySFX(enemyAudio.enemyClips[(int)EnemyAudio.EnemySound.Detect]);
-            return enemyManager.pursueTargetState;
+            return enemy.pursueTargetState;
         }
         else
-        {
             return this;
-        }
     }
 }

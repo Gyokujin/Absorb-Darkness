@@ -4,62 +4,55 @@ using UnityEngine;
 
 public class PursueTargetState : EnemyState
 {
-    public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
+    public override EnemyState Tick()
     {
-        Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
-        float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        Vector3 targetDirection = enemy.currentTarget.transform.position - enemy.transform.position;
+        float targetDistance = Vector3.Distance(enemy.currentTarget.transform.position, enemy.transform.position);
 
-        if (enemyManager.isPreformingAction || enemyManager.onDamage)
+        if (enemy.isPreformingAction || enemy.onDamage)
         {
-            enemyManager.navMeshAgent.enabled = false;
+            enemy.navMesh.enabled = false;
             return this;
         }
-        else if (targetDistance > enemyStatus.attackRangeMax)
+        else if (targetDistance > enemy.enemyStatus.attackRangeMax)
         {
-            enemyAnimator.animator.SetFloat("vertical", 1, 0.1f, Time.deltaTime);
+            enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.RunParameterValue, enemy.characterAnimatorData.AnimationDampTime, Time.deltaTime);
             targetDirection.Normalize();
             targetDirection.y = 0;
-            targetDirection *= enemyStatus.runSpeed;
+            targetDirection *= enemy.enemyStatus.runSpeed;
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
-            enemyManager.rigidbody.velocity = projectedVelocity;
+            enemy.rigidbody.velocity = projectedVelocity;
         }
 
-        HandleRotateTarget(enemyManager, enemyStatus);
-        enemyManager.navMeshAgent.transform.localPosition = Vector3.zero;
-        enemyManager.navMeshAgent.transform.localRotation = Quaternion.identity;
+        HandleRotateTarget();
+        enemy.navMesh.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-        if (targetDistance <= enemyStatus.attackRangeMax)
-        {
-            return enemyManager.combatStanceState;
-        }
+        if (targetDistance <= enemy.enemyStatus.attackRangeMax)
+            return enemy.combatStanceState;
         else
-        {
             return this;
-        }
     }
 
-    void HandleRotateTarget(EnemyManager enemyManager, EnemyStatus enemyStatus)
+    void HandleRotateTarget()
     {
-        Vector3 direction = enemyManager.currentTarget.transform.position - transform.position;
+        Vector3 direction = enemy.currentTarget.transform.position - transform.position;
 
-        if (enemyManager.isPreformingAction)
+        if (enemy.isPreformingAction)
         {
             direction.y = 0;
             direction.Normalize();
 
             if (direction == Vector3.zero)
-            {
                 direction = Vector3.forward;
-            }
         }
         else
         {
-            enemyManager.navMeshAgent.enabled = true;
-            enemyManager.navMeshAgent.velocity = enemyManager.rigidbody.velocity;
-            enemyManager.navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
-            enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navMeshAgent.transform.rotation, enemyStatus.rotationSpeed / Time.deltaTime);
+            enemy.navMesh.enabled = true;
+            enemy.navMesh.velocity = enemy.rigidbody.velocity;
+            enemy.navMesh.SetDestination(enemy.currentTarget.transform.position);
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, enemy.navMesh.transform.rotation, enemy.enemyStatus.rotationSpeed / Time.deltaTime);
         }
 
-        enemyManager.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), enemyStatus.rotationSpeed / Time.deltaTime);
+        enemy.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), enemy.enemyStatus.rotationSpeed / Time.deltaTime);
     }
 }

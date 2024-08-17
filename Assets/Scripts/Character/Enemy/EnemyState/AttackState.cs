@@ -5,43 +5,37 @@ using UnityEngine;
 public class AttackState : EnemyState
 {
     [Header("Attack")]
-    public EnemyAttackAction[] enemyAttacks;
-    public EnemyAttackAction currentAttack;
+    [SerializeField]
+    private EnemyAttackAction[] enemyAttacks;
+    private EnemyAttackAction currentAttack;
 
-    public override EnemyState Tick(EnemyManager enemyManager, EnemyStatus enemyStatus, EnemyAnimator enemyAnimator)
+    public override EnemyState Tick()
     {
-        Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-        float targetDistance = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        Vector3 targetDirection = enemy.currentTarget.transform.position - transform.position;
+        float targetDistance = Vector3.Distance(enemy.currentTarget.transform.position, enemy.transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
-        if (enemyManager.isPreformingAction)
-        {
-            return enemyManager.combatStanceState;
-        }
-        else if (currentAttack != null && targetDistance > currentAttack.attackDisMin && targetDistance < currentAttack.attackDisMax && 
-            viewableAngle <= currentAttack.attackAngleMax && viewableAngle >= currentAttack.attackAngleMin)
-        {
-            Attack(enemyManager, enemyAnimator);
-        }
+        if (enemy.isPreformingAction)
+            return enemy.combatStanceState;
+        else if (currentAttack != null && targetDistance > currentAttack.attackDisMin && targetDistance < currentAttack.attackDisMax && viewableAngle <= currentAttack.attackAngleMax && viewableAngle >= currentAttack.attackAngleMin)
+            Attack();
         else
-        {
             currentAttack = enemyAttacks[Random.Range(0, enemyAttacks.Length)];
-        }
 
-        return enemyManager.pursueTargetState;
+        return enemy.pursueTargetState;
     }
 
-    void Attack(EnemyManager enemyManager, EnemyAnimator enemyAnimator)
+    void Attack()
     {
-        if (enemyManager.onDie)
+        if (enemy.onDie)
             return;
 
-        enemyManager.isPreformingAction = true;
-        enemyManager.navMeshAgent.enabled = false;
-        enemyManager.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
-        enemyAnimator.animator.SetFloat("horizontal", 0); // 공격은 즉시 애니메이션을 정지하게 한다.
-        enemyAnimator.animator.SetFloat("vertical", 0);
-        enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
+        enemy.isPreformingAction = true;
+        enemy.navMesh.enabled = false;
+        enemy.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
+        enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.HorizontalParameter, enemy.characterAnimatorData.IdleParameterValue); // 공격은 즉시 애니메이션을 정지하게 한다.
+        enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.IdleParameterValue);
+        enemy.enemyAnimator.PlayTargetAnimation(currentAttack.actionAnimation, true);
         currentAttack = null;
     }
 }
