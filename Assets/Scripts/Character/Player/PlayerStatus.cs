@@ -86,7 +86,7 @@ public class PlayerStatus : CharacterStatus
 
     int Invincible() 
     {
-        player.onDamage = player.playerAnimator.animator.GetBool(player.playerAnimatorData.OnDamageParameter);
+        player.onDamage = player.playerAnimator.animator.GetBool(player.characterAnimatorData.OnDamageParameter);
         int curLayer = player.defaultLayer;
 
         if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
@@ -110,8 +110,8 @@ public class PlayerStatus : CharacterStatus
         {
             player.onDamage = true;
             gameObject.layer = player.invincibleLayer;
-            player.playerAnimator.animator.SetBool(player.playerAnimatorData.OnDamageParameter, true);
-            player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.DamageAnimation, true);
+            player.playerAnimator.animator.SetBool(player.characterAnimatorData.OnDamageParameter, true);
+            player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.HitAnimation, true);
 
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
@@ -128,8 +128,8 @@ public class PlayerStatus : CharacterStatus
     {
         player.onDie = true;
         gameObject.layer = player.invincibleLayer;
-        player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.DeadAnimation, true);
-        player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Die]);
+        player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.DeadAnimation, true);
+        player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
     }
 
     public void RecoveryHP(int amount)

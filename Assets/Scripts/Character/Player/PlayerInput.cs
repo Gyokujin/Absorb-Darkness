@@ -136,12 +136,12 @@ public class PlayerInput : MonoBehaviour
         {
             rollInputTimer += Time.deltaTime;
 
-            if (rollInputTimer > player.playerAnimatorData.RunAnimationCondition)
+            if (rollInputTimer > player.characterAnimatorData.RunAnimationCondition)
                 sprintFlag = true;
         }
         else
         {
-            if (rollInputTimer > 0 && rollInputTimer < player.playerAnimatorData.RunAnimationCondition)
+            if (rollInputTimer > 0 && rollInputTimer < player.characterAnimatorData.RunAnimationCondition)
             {
                 rollFlag = true;
                 player.playerMove.HandleRolling();

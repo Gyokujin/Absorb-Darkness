@@ -23,7 +23,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private Collider playerBlockerCollider;
 
-    void Start()
+    void Awake()
     {
         Init();
     }
@@ -124,14 +124,14 @@ public class PlayerMove : MonoBehaviour
 
             if (player.playerInput.moveAmount <= 0) // 이동키를 누르지 않으면 백스텝
             {
-                player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.BackstepAnimation, true);
+                player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.BackstepAnimation, true);
                 player.playerStatus.TakeStamina(player.playerStatusData.BackstapStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Backstep]);
             }
             else
             {
                 player.transform.LookAt(rigidbody.position + moveDirection);
-                player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.RollingAnimation, true);
+                player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.RollingAnimation, true);
                 player.playerStatus.TakeStamina(player.playerStatusData.RollingStaminaAmount);
                 player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Rolling]);
             }
@@ -169,12 +169,12 @@ public class PlayerMove : MonoBehaviour
             {
                 if (inAirTimer > player.playerPhysicsData.LandRequirement) // 낙하 시간이 요구치 이상일때만 Land 애니메이션을 실행한다.
                 {
-                    player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.LandAnimation, true);
+                    player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.LandAnimation, true);
                     inAirTimer = 0;
                 }
                 else
                 {
-                    player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.EmptyAnimation, false);
+                    player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.EmptyAnimation, false);
                     inAirTimer = 0;
                 }
 
@@ -189,7 +189,7 @@ public class PlayerMove : MonoBehaviour
             if (!player.isInAir)
             {
                 if (player.isInteracting)
-                    player.playerAnimator.PlayTargetAnimation(player.playerAnimatorData.FallingAnimation, true);
+                    player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.FallingAnimation, true);
 
                 Vector3 velocity = rigidbody.velocity;
                 velocity.Normalize();

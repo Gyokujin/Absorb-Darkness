@@ -9,19 +9,19 @@ public class AnimatorManager : MonoBehaviour
     [Header("Data")]
     protected CharacterAnimatorData animatorData;
 
+    [Header("Animator")]
+    [HideInInspector]
+    public Animator animator;
+
     void Awake()
     {
         Init();
     }
 
-    void Init()
+    protected virtual void Init()
     {
-        animatorData = new CharacterAnimatorData();
+        animator = GetComponent<Animator>();
     }
-
-    [Header("Animator")]
-    [HideInInspector]
-    public Animator animator;
 
     public virtual void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {

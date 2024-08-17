@@ -73,14 +73,14 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
         curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
-        player.playerAnimator.animator.SetBool(player.playerAnimatorData.IsItemUseParameter, true);
+        player.playerAnimator.animator.SetBool(player.characterAnimatorData.IsItemUseParameter, true);
         player.playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
         UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
     }
 
     public void EndItemUse()
     {
-        player.playerAnimator.animator.SetBool(player.playerAnimatorData.IsItemUseParameter, false);
+        player.playerAnimator.animator.SetBool(player.characterAnimatorData.IsItemUseParameter, false);
         PoolManager.instance.Return(curUsingItem);
         curUsingItem = null;
 

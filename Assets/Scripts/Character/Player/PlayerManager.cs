@@ -11,8 +11,6 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public CharacterAnimatorData characterAnimatorData;
     [HideInInspector]
-    public PlayerAnimatorData playerAnimatorData;
-    [HideInInspector]
     public PlayerStatusData playerStatusData;
     [HideInInspector]
     public PlayerPhysicsData playerPhysicsData;
@@ -88,12 +86,12 @@ public class PlayerManager : CharacterManager
             return;
 
         isInteracting = playerAnimator.animator.GetBool(characterAnimatorData.InteractParameter);
-        isAttack = playerAnimator.animator.GetBool(playerAnimatorData.AttackParameter);
-        isComboAble = playerAnimator.animator.GetBool(playerAnimatorData.ComboAbleParameter);
-        isUsingLeftHand = playerAnimator.animator.GetBool(playerAnimatorData.OnUsingLeftHand);
-        isUsingRightHand = playerAnimator.animator.GetBool(playerAnimatorData.OnUsingRightHand);
-        isItemUse = playerAnimator.animator.GetBool(playerAnimatorData.IsItemUseParameter);
-        playerAnimator.animator.SetBool(playerAnimatorData.InAirParameter, isInAir);
+        isAttack = playerAnimator.animator.GetBool(characterAnimatorData.AttackParameter);
+        isComboAble = playerAnimator.animator.GetBool(characterAnimatorData.ComboAbleParameter);
+        isUsingLeftHand = playerAnimator.animator.GetBool(characterAnimatorData.OnUsingLeftHand);
+        isUsingRightHand = playerAnimator.animator.GetBool(characterAnimatorData.OnUsingRightHand);
+        isItemUse = playerAnimator.animator.GetBool(characterAnimatorData.IsItemUseParameter);
+        playerAnimator.animator.SetBool(characterAnimatorData.InAirParameter, isInAir);
 
         playerInput.TickInput();
         playerBehavior.CheckInteractableObject();
