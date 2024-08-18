@@ -215,7 +215,6 @@ namespace CharacterData
             set => deadAnimation = value;
         }
 
-        [Header("Animation Name")]
         // Sleep Animation
         private string sleepAnimation;
         public string SleepAnimation
@@ -230,6 +229,30 @@ namespace CharacterData
         {
             readonly get => wakeAnimation ?? "Wake";
             set => wakeAnimation = value;
+        }
+
+        // LeftArm Empty
+        private string leftArmEmpty;
+        public string LeftArmEmpty
+        {
+            readonly get => leftArmEmpty ?? "LeftArm Empty";
+            set => leftArmEmpty = value;
+        }
+
+        // RightArm Empty
+        private string rightArmEmpty;
+        public string RightArmEmpty
+        {
+            readonly get => rightArmEmpty ?? "RightArm Empty";
+            set => rightArmEmpty = value;
+        }
+
+        // BothArms Empty
+        private string bothArmsEmpty;
+        public string BothArmsEmpty
+        {
+            readonly get => bothArmsEmpty ?? "BothArms Empty";
+            set => bothArmsEmpty = value;
         }
     }
 
