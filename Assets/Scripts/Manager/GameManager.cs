@@ -63,10 +63,11 @@ public class GameManager : MonoBehaviour
 
         BossField bossField = curField as BossField;
         Item[] bossDropItem = bossField.dropItems;
+        PlayerInventory playerInventory = FindObjectOfType<PlayerInventory>();
 
         foreach (Item item in bossDropItem)
         {
-            InventoryManager.instance.ItemLoot(item);
+            playerInventory.AddToInventory(item);
         }
     }
 

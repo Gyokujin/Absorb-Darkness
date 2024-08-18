@@ -7,33 +7,17 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance = null;
 
-    [Header("Game System")]
     [SerializeField]
-    private GameObject hudWindow;
-    [SerializeField]
-    private GameObject selectWindow;
+    private GameObject hudUI;
+    public SelectUI selectUI;
+    public InventoryUI inventoryUI;
+    public EquipmentUI equipmentUI;
+    public GameSystemUI gameSystemUI;
+    public InteractableUI interactableUI;
 
-    [Header("Inventory")]
-    [SerializeField]
-    private GameObject inventorySlotPrefab;
-    [SerializeField]
-    private Transform inventorySlotsParent;
+    [HideInInspector]
     public PlayerInventory playerInventory;
 
-    [Header("Equipment")]
-    public GameObject equipmentWindow;
-    [SerializeField]
-    private EquipmentWindowUI equipmentWindowUI;
-    private InventorySlot[] equipmentSlots;
-
-    [Header("Equipment Window Slot Selected")]
-    public bool leftHandSlot01Selected;
-    public bool leftHandSlot02Selected;
-    public bool rightHandSlot01Selected;
-    public bool rightHandSlot02Selected;
-
-    [Header("Interact")]
-    public InteractableUI interactableUI;
     [SerializeField]
     private GameObject interactPopUpUI;
     [SerializeField]
@@ -57,7 +41,7 @@ public class UIManager : MonoBehaviour
     private Text messageBottomText;
 
     [Header("Component")]
-    public QuickSlotsUI quickSlotsUI;
+    public QuickSlotUI quickSlotUI;
     public StageUI stageUI;
 
     void Awake()
@@ -70,12 +54,36 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Init();
     }
 
-    void Start()
+    void Init()
     {
-        equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
-        InventoryUIUpdate();
+        playerInventory = FindObjectOfType<PlayerInventory>();
+        quickSlotUI.UpdateUsingItemUI(playerInventory.curUsingItem, playerInventory.curUsingItem.itemCount);
+    }
+
+    public void OpenGameUI()
+    {
+        hudUI.SetActive(false);
+        selectUI.gameObject.SetActive(true);
+        selectUI.OpenSelectUI();
+        GameManager.instance.LockCamera(false);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.GameUI]);
+    }
+
+    public void CloseGameUI()
+    {
+        hudUI.SetActive(true);
+        selectUI.CloseSelectUI();
+        selectUI.gameObject.SetActive(false);
+        inventoryUI.gameObject.SetActive(false);
+        equipmentUI.gameObject.SetActive(false);
+        // gameSystemUI.gameObject.SetActive(false);
+
+        GameManager.instance.LockCamera(true);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact2]);
     }
 
     public void OpenStageUI(FieldInfo fieldInfo)
@@ -83,73 +91,49 @@ public class UIManager : MonoBehaviour
         stageUI.OpenStageInfo(fieldInfo);
     }
 
-    public void OpenGameSystemUI()
-    {
-        selectWindow.SetActive(true);
-        hudWindow.SetActive(false);
-        GameManager.instance.LockCamera(false);
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.GameSystem]);
-    }
-
-    public void CloseGameSystemUI()
-    {
-        selectWindow.SetActive(false);
-        hudWindow.SetActive(true);
-        CloseAllInventoryUI();
-        ResetAllSelectedSlots();
-        GameManager.instance.LockCamera(true);
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact2]);
-    }
-
     public void OpenInventoryUI()
     {
-        InventoryManager.instance.OpenWeaponInventory();
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
+        //inventoryui
+        //AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
-    public void InventoryUIUpdate()
-    {
-        for (int i = 0; i < equipmentSlots.Length; i++)
-        {
-            if (i < playerInventory.equipmentWeapons.Count)
-            {
-                if (equipmentSlots.Length < playerInventory.equipmentWeapons.Count)
-                {
-                    Instantiate(inventorySlotPrefab, inventorySlotsParent);
-                    equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
-                }
+    //public void InventoryUIUpdate()
+    //{
+    //    for (int i = 0; i < equipmentSlots.Length; i++)
+    //    {
+    //        if (i < playerInventory.equipmentWeapons.Count)
+    //        {
+    //            if (equipmentSlots.Length < playerInventory.equipmentWeapons.Count)
+    //            {
+    //                Instantiate(inventorySlotPrefab, inventorySlotsParent);
+    //                equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
+    //            }
 
-                equipmentSlots[i].AddItem(playerInventory.equipmentWeapons[i]);
-            }
-            else
-            {
-                equipmentSlots[i].ClearInventorySlot();
-            }
-        }
-    }
+    //            equipmentSlots[i].AddItem(playerInventory.equipmentWeapons[i]);
+    //        }
+    //        else
+    //        {
+    //            equipmentSlots[i].ClearInventorySlot();
+    //        }
+    //    }
+    //}
 
     public void OpenEquipmentUI()
     {
         CloseAllInventoryUI();
-        equipmentWindow.SetActive(true);
-        equipmentWindowUI.OpenEquipmentsUI();
+        // equipmentWindow.SetActive(true);
+        // equipmentWindowUI.OpenEquipmentsUI();
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void CloseAllInventoryUI()
     {
-        ResetAllSelectedSlots();
-        InventoryManager.instance.CloseInventory();
-        equipmentWindow.SetActive(false);
+        //ResetAllSelectedSlots();
+        //InventoryUI.instance.CloseInventory();
+        //equipmentWindow.SetActive(false);
     }
 
-    public void ResetAllSelectedSlots()
-    {
-        leftHandSlot01Selected = false;
-        leftHandSlot02Selected = false;
-        rightHandSlot01Selected = false;
-        rightHandSlot02Selected = false;
-    }
+
 
     public void OpenInteractUI(string message)
     {
