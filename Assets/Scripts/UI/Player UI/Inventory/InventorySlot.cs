@@ -42,27 +42,27 @@ public class InventorySlot : MonoBehaviour
     {
         if (UIManager.instance.leftHandSlot01Selected)
         {
-            playerInventory.weaponsInventory.Add(playerInventory.weaponInLeftSlots[0]);
+            playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[0]);
             playerInventory.weaponInLeftSlots[0] = item;
-            playerInventory.weaponsInventory.Remove(item);
+            playerInventory.equipmentWeapons.Remove(item);
         }
         else if (UIManager.instance.leftHandSlot02Selected)
         {
-            playerInventory.weaponsInventory.Add(playerInventory.weaponInLeftSlots[1]);
+            playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[1]);
             playerInventory.weaponInLeftSlots[1] = item;
-            playerInventory.weaponsInventory.Remove(item);
+            playerInventory.equipmentWeapons.Remove(item);
         }
         else if (UIManager.instance.rightHandSlot01Selected)
         {
-            playerInventory.weaponsInventory.Add(playerInventory.weaponInRightSlots[0]);
+            playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[0]);
             playerInventory.weaponInRightSlots[0] = item;
-            playerInventory.weaponsInventory.Remove(item);
+            playerInventory.equipmentWeapons.Remove(item);
         }
         else if (UIManager.instance.rightHandSlot02Selected)
         {
-            playerInventory.weaponsInventory.Add(playerInventory.weaponInRightSlots[1]);
+            playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[1]);
             playerInventory.weaponInRightSlots[1] = item;
-            playerInventory.weaponsInventory.Remove(item);
+            playerInventory.equipmentWeapons.Remove(item);
         }
         else
         {

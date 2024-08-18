@@ -111,15 +111,15 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
-            if (i < playerInventory.weaponsInventory.Count)
+            if (i < playerInventory.equipmentWeapons.Count)
             {
-                if (equipmentSlots.Length < playerInventory.weaponsInventory.Count)
+                if (equipmentSlots.Length < playerInventory.equipmentWeapons.Count)
                 {
                     Instantiate(inventorySlotPrefab, inventorySlotsParent);
                     equipmentSlots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
                 }
 
-                equipmentSlots[i].AddItem(playerInventory.weaponsInventory[i]);
+                equipmentSlots[i].AddItem(playerInventory.equipmentWeapons[i]);
             }
             else
             {
