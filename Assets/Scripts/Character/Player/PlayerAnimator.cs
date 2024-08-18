@@ -157,4 +157,34 @@ public class PlayerAnimator : AnimatorManager
         animator.SetBool(player.characterAnimatorData.InteractParameter, isInteracting);
         animator.CrossFade(targetAnim, animatorData.AnimationFadeAmount);
     }
+
+    public void OpenDamageCollider()
+    {
+        if (player.isAttack)
+        {
+            if (player.isUsingLeftHand)
+                player.playerCombat.leftHandDamageCollider.OpenDamageCollider();
+            else if (player.isUsingRightHand)
+                player.playerCombat.rightHandDamageCollider.OpenDamageCollider();
+        }
+    }
+
+    public void CloseDamageCollider()
+    {
+        if (player.playerCombat.leftHandDamageCollider != null)
+            player.playerCombat.leftHandDamageCollider.CloseDamageCollider();
+
+        if (player.playerCombat.rightHandDamageCollider != null)
+            player.playerCombat.rightHandDamageCollider.CloseDamageCollider();
+    }
+
+    public void DrainStaminaLightAttack()
+    {
+        player.playerStatus.TakeStamina(Mathf.RoundToInt(player.playerCombat.usingWeapon.baseStamina * player.playerCombat.usingWeapon.lightAttackMultiplier));
+    }
+
+    public void DrainStaminaHeavyAttack()
+    {
+        player.playerStatus.TakeStamina(Mathf.RoundToInt(player.playerCombat.usingWeapon.baseStamina * player.playerCombat.usingWeapon.heavyAttackMultiplier));
+    }
 }
