@@ -2183,11 +2183,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a70dd188623ada4884dba33cd2e5c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentWeapons: []
-  currentLeftWeaponIndex: 0
-  currentRightWeaponIndex: 0
-  leftWeapon: {fileID: 0}
-  rightWeapon: {fileID: 0}
+  weaponItems: []
+  usingItems:
+  - {fileID: 11400000, guid: 839e23cd00f2aa04ea860a7a1d1361f1, type: 2}
+  interactItems: []
+  curLeftWeaponIndex: 0
+  curRightWeaponIndex: 0
+  curLeftWeapon: {fileID: 0}
+  curRightWeapon: {fileID: 0}
   unarmedWeapon: {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
   weaponInLeftSlots:
   - {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
@@ -2195,10 +2198,11 @@ MonoBehaviour:
   weaponInRightSlots:
   - {fileID: 11400000, guid: c1635e04716473a4a9cb02323be29c97, type: 2}
   - {fileID: 11400000, guid: d0cffea53ec437c40ab3877f32d634d8, type: 2}
+  equipmentWeapons: []
+  curUsingItem: {fileID: 11400000, guid: 839e23cd00f2aa04ea860a7a1d1361f1, type: 2}
   leftHandSlot: {fileID: 0}
   rightHandSlot: {fileID: 0}
   backSlot: {fileID: 0}
-  curUsingItem: {fileID: 0}
 --- !u!1 &9009939651239509240
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemData;
 
 public class PlayerInventory : MonoBehaviour
 {
     private PlayerManager player;
 
-    [Header("Weapon")]
+    [Header("Data")]
+    public InitItemData initItemData;
+
+    [Header("Inventory")]
+    public List<WeaponItem> weaponItems;
+    public List<UsingItem> usingItems;
+    public List<InteractItem> interactItems;
+
+    [Header("Weapon Equipment")]
     public int curLeftWeaponIndex = 0;
     public int curRightWeaponIndex = 0;
     public WeaponItem curLeftWeapon;
@@ -17,7 +26,7 @@ public class PlayerInventory : MonoBehaviour
     public WeaponItem[] weaponInRightSlots;
     public List<WeaponItem> equipmentWeapons;
 
-    [Header("Using Item")]
+    [Header("UsingItem Equipment")]
     public UsingItem curUsingItem;
 
     [Header("Weapon Slot")]
@@ -33,7 +42,6 @@ public class PlayerInventory : MonoBehaviour
     void Init()
     {
         player = GetComponentInParent<PlayerManager>();
-
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
@@ -45,6 +53,8 @@ public class PlayerInventory : MonoBehaviour
             else if (weaponSlot.isBackSlot)
                 backSlot = weaponSlot;
         }
+
+        curUsingItem.itemCount = initItemData.InitEstusCount;
     }
 
     void Start()
@@ -61,6 +71,27 @@ public class PlayerInventory : MonoBehaviour
         UpdateEquipmentSlot();
     }
 
+    public void AddToInventory(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.WeaponItem:
+                WeaponItem weaponItem = item as WeaponItem;
+                weaponItems.Add(weaponItem);
+                break;
+
+            case Item.ItemType.UsingItem:
+                UsingItem usingItem = item as UsingItem;
+                usingItems.Add(usingItem);
+                break;
+
+            case Item.ItemType.InteractItem:
+                InteractItem interactItem = item as InteractItem;
+                interactItems.Add(interactItem);
+                break;
+        }
+    }
+
     public void LoadWeaponSlot(WeaponItem weaponItem, bool isLeft)
     {
         if (isLeft)
@@ -68,7 +99,7 @@ public class PlayerInventory : MonoBehaviour
             leftHandSlot.currentWeapon = weaponItem;
             leftHandSlot.LoadWeaponModel(weaponItem);
             player.playerCombat.LoadWeaponDamageCollider(true);
-            UIManager.instance.quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
+            UIManager.instance.quickSlotUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
 
             if (weaponItem != null)
                 player.playerAnimator.animator.CrossFade(weaponItem.left_Hand_Idle, player.characterAnimatorData.AnimationFadeAmount);
@@ -97,7 +128,7 @@ public class PlayerInventory : MonoBehaviour
             rightHandSlot.currentWeapon = weaponItem;
             rightHandSlot.LoadWeaponModel(weaponItem);
             player.playerCombat.LoadWeaponDamageCollider(false);
-            UIManager.instance.quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
+            UIManager.instance.quickSlotUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
         }
     }
 
@@ -120,7 +151,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void LoadUsingItemSlot(UsingItem usingItem)
     {
-        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(usingItem, usingItem.itemCount);
+        UIManager.instance.quickSlotUI.UpdateUsingItemUI(usingItem, usingItem.itemCount);
     }
 
     public void ChangeLeftWeapon()

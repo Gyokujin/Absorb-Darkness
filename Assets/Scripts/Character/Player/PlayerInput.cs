@@ -241,12 +241,12 @@ public class PlayerInput : MonoBehaviour
                     PlayerCamera.instance.SwitchLockOn();
 
                 gameSystemFlag = true;
-                UIManager.instance.OpenGameSystemUI();
+                UIManager.instance.OpenGameUI();
             }
             else
             {
                 gameSystemFlag = false;
-                UIManager.instance.CloseGameSystemUI();
+                UIManager.instance.CloseGameUI();
             }
         }
     }

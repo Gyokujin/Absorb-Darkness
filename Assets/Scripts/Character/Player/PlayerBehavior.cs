@@ -43,12 +43,18 @@ public class PlayerBehavior : MonoBehaviour
     public void BehaviourAction()
     {
         if (player.playerBehavior.interactableObj != null)
-            interactableObj.Interact(player, this);
+            interactableObj.Interact(player);
         else
         {
             UIManager.instance.CloseItemPopUpUI();
             UIManager.instance.CloseMessagePopUpUI();
         }
+    }
+
+    public void ItemLoot(Item item)
+    {
+        player.playerInventory.AddToInventory(item);
+        UIManager.instance.OpenItemPopUpUI(item.itemName, item.itemIcon.texture);
     }
 
     public void UseItem(UsingItem item)
@@ -75,7 +81,7 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.localRotation = Quaternion.identity;
         player.playerAnimator.animator.SetBool(player.characterAnimatorData.IsItemUseParameter, true);
         player.playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
-        UIManager.instance.quickSlotsUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
+        UIManager.instance.quickSlotUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);
     }
 
     public void EndItemUse()
