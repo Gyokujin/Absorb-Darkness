@@ -33,14 +33,6 @@ public class PlayerManager : CharacterManager
     public bool isUsingLeftHand;
     public bool isUsingRightHand;
 
-    [Header("Combat")]
-    private string lastAttack;
-    [HideInInspector]
-    public int defaultLayer;
-    [HideInInspector]
-    public int invincibleLayer;
-    private WeaponItem playerWeapon;
-
     [Header("Component")]
     [HideInInspector]
     public PlayerStatus playerStatus;
@@ -51,13 +43,13 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PlayerBehavior playerBehavior;
     [HideInInspector]
+    public PlayerCombat playerCombat;
+    [HideInInspector]
     public PlayerAudio playerAudio;
     [HideInInspector]
     public PlayerAnimator playerAnimator;
     [HideInInspector]
     public PlayerInventory playerInventory;
-    [HideInInspector]
-    public PlayerWeaponSlotManager playerWeaponSlotManager;
 
     void Awake()
     {
@@ -70,13 +62,10 @@ public class PlayerManager : CharacterManager
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
         playerBehavior = GetComponent<PlayerBehavior>();
+        playerCombat = GetComponent<PlayerCombat>();
         playerAudio = GetComponent<PlayerAudio>();
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         playerInventory = GetComponentInChildren<PlayerInventory>();
-        playerWeaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
-
-        defaultLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
-        invincibleLayer = LayerMask.NameToLayer(layerData.InvincibleLayer);
     }
 
     void Update()
@@ -109,64 +98,5 @@ public class PlayerManager : CharacterManager
     {
         playerMove.HandleFalling(playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
-    }
-
-    public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
-    {
-        playerInput.sprintFlag = false;
-        isSprinting = false;
-
-        playerWeaponSlotManager.attackingWeapon = weapon;
-        playerAnimator.animator.SetBool(characterAnimatorData.AttackParameter, true);
-        playerAnimator.animator.SetBool(characterAnimatorData.OnUsingRightHand, true);
-        playerWeapon = playerWeaponSlotManager.attackingWeapon;
-        bool oneHand = !playerInput.twoHandFlag;
-
-        switch (playerWeapon.weaponType)
-        {
-            case WeaponItem.WeaponType.None:
-                break;
-
-            case WeaponItem.WeaponType.Sword:
-
-                if (onLightAttack)
-                    lastAttack = oneHand ? weapon.oneHand_LightAttack1 : weapon.twoHand_LightAttack1;
-                else
-                    lastAttack = oneHand ? weapon.oneHand_HeavyAttack1 : weapon.twoHand_HeavyAttack1;
-                break;
-
-            case WeaponItem.WeaponType.Axe:
-                break;
-        }
-
-        if (lastAttack != null)
-        {
-            playerAnimator.PlayTargetAnimation(lastAttack, true);
-            playerAnimator.animator.SetBool(characterAnimatorData.AttackParameter, true);
-        }
-    }
-
-    public void HandleWeaponCombo(WeaponItem weapon, bool onLightAttack)
-    {
-        playerAnimator.animator.SetBool(characterAnimatorData.ComboAbleParameter, false);
-        bool oneHand = !playerInput.twoHandFlag;
-
-        switch (playerWeapon.weaponType)
-        {
-            case WeaponItem.WeaponType.None:
-            case WeaponItem.WeaponType.Axe:
-                break;
-
-            case WeaponItem.WeaponType.Sword:
-                if (onLightAttack)
-                    lastAttack = oneHand ? weapon.oneHand_LightAttack2 : weapon.twoHand_LightAttack2;
-                else
-                    lastAttack = oneHand ? weapon.oneHand_HeavyAttack2 : weapon.twoHand_HeavyAttack2;
-
-                break;
-        }
-
-        if (lastAttack != null)
-            playerAnimator.PlayTargetAnimation(lastAttack, true);
     }
 }

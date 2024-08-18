@@ -87,10 +87,10 @@ public class PlayerStatus : CharacterStatus
     int Invincible() 
     {
         player.onDamage = player.playerAnimator.animator.GetBool(player.characterAnimatorData.OnDamageParameter);
-        int curLayer = player.defaultLayer;
+        int curLayer = player.playerCombat.defaultLayer;
 
         if (player.isDodge || player.onDamage || player.onDie || curInvincibleTime > 0)
-            curLayer = player.invincibleLayer;
+            curLayer = player.playerCombat.invincibleLayer;
 
         return curLayer;
     }
@@ -109,7 +109,7 @@ public class PlayerStatus : CharacterStatus
         if (hitStun)
         {
             player.onDamage = true;
-            gameObject.layer = player.invincibleLayer;
+            gameObject.layer = player.playerCombat.invincibleLayer;
             player.playerAnimator.animator.SetBool(player.characterAnimatorData.OnDamageParameter, true);
             player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.HitAnimation, true);
 
@@ -127,7 +127,7 @@ public class PlayerStatus : CharacterStatus
     void DieProcess()
     {
         player.onDie = true;
-        gameObject.layer = player.invincibleLayer;
+        gameObject.layer = player.playerCombat.invincibleLayer;
         player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.DeadAnimation, true);
         player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
     }
