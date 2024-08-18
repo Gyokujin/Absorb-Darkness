@@ -27,7 +27,6 @@ public class InventoryManager : MonoBehaviour
     private InteractItemInventory interactItemInventory;
 
     private PlayerInventory playerInventory;
-    private PlayerWeaponSlotManager playerWeaponSlotManager;
     [SerializeField]
     private QuickSlotsUI quickSlotsUI;
 
@@ -49,7 +48,6 @@ public class InventoryManager : MonoBehaviour
     {
         initItemData = new InitItemData();
         playerInventory = FindObjectOfType<PlayerInventory>();
-        playerWeaponSlotManager = FindObjectOfType<PlayerWeaponSlotManager>();
 
         // 최초 아이템 초기화
         playerInventory.curUsingItem = usingItems[0];
@@ -110,6 +108,7 @@ public class InventoryManager : MonoBehaviour
         inventoryButtons.SetActive(true);
         usingItemInventory.gameObject.SetActive(true);
         usingItemInventory.UsingItemUpdate();
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void OpenInteractItemInventory()
@@ -118,6 +117,7 @@ public class InventoryManager : MonoBehaviour
         inventoryButtons.SetActive(true);
         interactItemInventory.gameObject.SetActive(true);
         interactItemInventory.InteractItemUpdate();
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void CloseInventory()

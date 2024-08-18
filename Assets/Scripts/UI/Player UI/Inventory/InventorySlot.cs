@@ -14,12 +14,10 @@ public class InventorySlot : MonoBehaviour
     private EquipmentWindowUI equipmentWindow;
     private WeaponItem item;
     private PlayerInventory playerInventory;
-    private PlayerWeaponSlotManager weaponSlotManager;
     
     void Awake()
     {
         playerInventory = FindObjectOfType<PlayerInventory>();
-        weaponSlotManager = FindObjectOfType<PlayerWeaponSlotManager>();
     }
 
     public void AddItem(WeaponItem newItem)
@@ -69,18 +67,18 @@ public class InventorySlot : MonoBehaviour
             return;
         }
 
-        if (playerInventory.currentLeftWeaponIndex >= 0)
+        if (playerInventory.curLeftWeaponIndex >= 0)
         {
-            playerInventory.leftWeapon = playerInventory.weaponInLeftSlots[playerInventory.currentLeftWeaponIndex];
+            playerInventory.curLeftWeapon = playerInventory.weaponInLeftSlots[playerInventory.curLeftWeaponIndex];
         }
 
-        if (playerInventory.currentRightWeaponIndex >= 0)
+        if (playerInventory.curRightWeaponIndex >= 0)
         {
-            playerInventory.rightWeapon = playerInventory.weaponInRightSlots[playerInventory.currentRightWeaponIndex];
+            playerInventory.curRightWeapon = playerInventory.weaponInRightSlots[playerInventory.curRightWeaponIndex];
         }
 
-        weaponSlotManager.LoadWeaponSlot(playerInventory.leftWeapon, true);
-        weaponSlotManager.LoadWeaponSlot(playerInventory.rightWeapon, false);
+        playerInventory.LoadWeaponSlot(playerInventory.curLeftWeapon, true);
+        playerInventory.LoadWeaponSlot(playerInventory.curRightWeapon, false);
         equipmentWindow.LoadWeaponsOnEquipmentScreen(playerInventory);
 
         UIManager.instance.ResetAllSelectedSlots();
