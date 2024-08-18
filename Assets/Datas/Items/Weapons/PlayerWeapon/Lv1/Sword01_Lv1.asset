@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028ca917f6c994418f76c7352e3ab0d, type: 3}
   m_Name: Sword01_Lv1
   m_EditorClassIdentifier: 
+  itemType: 0
   modelPrefab: {fileID: 6503920099782284672, guid: aec9600e42e670944bdaade8b1338c4f, type: 3}
   itemIcon: {fileID: 21300000, guid: 67155e7f604fc2844ac1990a0ef88ead, type: 3}
+  itemCount: 0
   itemName: "\uC6B0\uB4DC \uC20F\uC18C\uB4DC"
+  itemInfo: 
   weaponType: 1
   isUnarmed: 0
   right_Hand_Idle: RightArm Idle
@@ -23,9 +26,11 @@ MonoBehaviour:
   oneHand_LightAttack1: OHLightAttack01
   oneHand_LightAttack2: OHLightAttack02
   oneHand_HeavyAttack1: OHHeavyAttack01
+  oneHand_HeavyAttack2: 
   twoHand_LightAttack1: THLightAttack01
   twoHand_LightAttack2: THLightAttack02
   twoHand_HeavyAttack1: THHeavyAttack01
+  twoHand_HeavyAttack2: 
   baseStamina: 20
   lightAttackMultiplier: 1
-  heavyAttackMultiplier: 2
+  heavyAttackMultiplier: 1.5
