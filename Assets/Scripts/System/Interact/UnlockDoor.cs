@@ -27,11 +27,11 @@ public class UnlockDoor : Interactable
         animator = GetComponent<Animator>();
     }
 
-    public override void Interact(PlayerManager player, PlayerBehavior playerBehavior)
+    public override void Interact(PlayerManager player)
     {
         if (!unlock)
         {
-            base.Interact(player, playerBehavior);
+            base.Interact(player);
             Unlock(player);
         }
     }
@@ -39,7 +39,7 @@ public class UnlockDoor : Interactable
     void Unlock(PlayerManager player)
     {
         // 플레이어의 InteractItemInventory에 접근하여 lockNum과 일치하는 열쇠가 있는지 확인한다.
-        if (KeyCheck())
+        if (KeyCheck(player))
         {
             unlock = true;
             animator.SetTrigger("doUnlock");
@@ -57,13 +57,13 @@ public class UnlockDoor : Interactable
         }
     }
 
-    bool KeyCheck()
+    bool KeyCheck(PlayerManager player)
     {
         bool isHaving = false;
 
-        for (int i = 0; i < InventoryManager.instance.interactItems.Count; i++)
+        for (int i = 0; i < player.playerInventory.interactItems.Count; i++)
         {
-            InteractItem item = InventoryManager.instance.interactItems[i];
+            InteractItem item = player.playerInventory.interactItems[i];
 
             if (item.interactItemType == InteractItem.InteractItemType.Key)
             {

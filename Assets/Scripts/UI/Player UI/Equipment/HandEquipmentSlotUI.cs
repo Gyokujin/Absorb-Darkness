@@ -36,23 +36,23 @@ public class HandEquipmentSlotUI : MonoBehaviour
     {
         if (leftHandSlot01)
         {
-            UIManager.instance.leftHandSlot01Selected = true;
+            UIManager.instance.equipmentUI.leftHandSlot01Selected = true;
         }
         else if (leftHandSlot02)
         {
-            UIManager.instance.leftHandSlot02Selected = true;
+            UIManager.instance.equipmentUI.leftHandSlot02Selected = true;
         }
         else if (rightHandSlot01)
         {
-            UIManager.instance.rightHandSlot01Selected = true;
+            UIManager.instance.equipmentUI.rightHandSlot01Selected = true;
         }
         else
         {
-            UIManager.instance.rightHandSlot02Selected = true;
+            UIManager.instance.equipmentUI.rightHandSlot02Selected = true;
         }
 
         // UIManager.instance.inventoryManager.gameObject.SetActive(true);
-        UIManager.instance.equipmentWindow.SetActive(false);
+        UIManager.instance.equipmentUI.gameObject.SetActive(false);
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 }

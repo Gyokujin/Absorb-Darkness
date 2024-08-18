@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
     }
 
     public InteractType interactType;
-    // [HideInInspector]
+    [HideInInspector]
     public string interactableText;
 
     void Awake()
@@ -43,7 +43,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public virtual void Interact(PlayerManager player, PlayerBehavior playerBehavior)
+    public virtual void Interact(PlayerManager player)
     {
         player.playerMove.rigidbody.velocity = Vector3.zero;
     }

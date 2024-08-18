@@ -11,13 +11,13 @@ public class FogWallEntrance : Interactable
         collider = GetComponent<Collider>();
     }
 
-    public override void Interact(PlayerManager player, PlayerBehavior playerBehavior)
+    public override void Interact(PlayerManager player)
     {
-        base.Interact(player, playerBehavior);
-        Entrance(player, playerBehavior);
+        base.Interact(player);
+        Entrance(player);
     }
 
-    void Entrance(PlayerManager player, PlayerBehavior playerBehavior)
+    void Entrance(PlayerManager player)
     {
         collider.isTrigger = true;
         player.playerAnimator.PlayTargetAnimation("Entrance", true);

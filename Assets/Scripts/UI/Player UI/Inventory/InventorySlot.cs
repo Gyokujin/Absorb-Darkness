@@ -11,7 +11,7 @@ public class InventorySlot : MonoBehaviour
 
     [Header("Component")]
     [SerializeField]
-    private EquipmentWindowUI equipmentWindow;
+    private EquipmentUI equipmentWindow;
     private WeaponItem item;
     private PlayerInventory playerInventory;
     
@@ -38,25 +38,25 @@ public class InventorySlot : MonoBehaviour
 
     public void EquipItem()
     {
-        if (UIManager.instance.leftHandSlot01Selected)
+        if (UIManager.instance.equipmentUI.leftHandSlot01Selected)
         {
             playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[0]);
             playerInventory.weaponInLeftSlots[0] = item;
             playerInventory.equipmentWeapons.Remove(item);
         }
-        else if (UIManager.instance.leftHandSlot02Selected)
+        else if (UIManager.instance.equipmentUI.leftHandSlot02Selected)
         {
             playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[1]);
             playerInventory.weaponInLeftSlots[1] = item;
             playerInventory.equipmentWeapons.Remove(item);
         }
-        else if (UIManager.instance.rightHandSlot01Selected)
+        else if (UIManager.instance.equipmentUI.rightHandSlot01Selected)
         {
             playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[0]);
             playerInventory.weaponInRightSlots[0] = item;
             playerInventory.equipmentWeapons.Remove(item);
         }
-        else if (UIManager.instance.rightHandSlot02Selected)
+        else if (UIManager.instance.equipmentUI.rightHandSlot02Selected)
         {
             playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[1]);
             playerInventory.weaponInRightSlots[1] = item;
@@ -81,8 +81,8 @@ public class InventorySlot : MonoBehaviour
         playerInventory.LoadWeaponSlot(playerInventory.curRightWeapon, false);
         equipmentWindow.LoadWeaponsOnEquipmentScreen(playerInventory);
 
-        UIManager.instance.ResetAllSelectedSlots();
-        UIManager.instance.InventoryUIUpdate();
+        UIManager.instance.equipmentUI.ResetAllSelectedSlots();
+        // UIManager.instance.InventoryUIUpdate();
         // UIManager.instance.inventoryManager.gameObject.SetActive(false);
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }

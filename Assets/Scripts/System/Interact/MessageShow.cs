@@ -8,9 +8,9 @@ public class MessageShow : Interactable
     [SerializeField]
     private GameMessage gameMessage;
 
-    public override void Interact(PlayerManager playerManager, PlayerBehavior playerBehavior)
+    public override void Interact(PlayerManager player)
     {
-        base.Interact(playerManager, playerBehavior);
+        base.Interact(player);
         ShowMessage();
     }
 

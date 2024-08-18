@@ -7,16 +7,16 @@ public class ItemPickUp : Interactable
     [SerializeField]
     private Item dropItem;
 
-    public override void Interact(PlayerManager player, PlayerBehavior playerBehavior)
+    public override void Interact(PlayerManager player)
     {
-        base.Interact(player, playerBehavior);
-        PickUpItem(player, playerBehavior);
+        base.Interact(player);
+        PickUpItem(player);
     }
 
-    void PickUpItem(PlayerManager player, PlayerBehavior playerBehavior)
+    void PickUpItem(PlayerManager player)
     {
         player.playerAnimator.PlayTargetAnimation("PickUp", true);
-        InventoryManager.instance.ItemLoot(dropItem);
+        player.playerInventory.AddToInventory(dropItem);
         gameObject.SetActive(false);
     }
 }
