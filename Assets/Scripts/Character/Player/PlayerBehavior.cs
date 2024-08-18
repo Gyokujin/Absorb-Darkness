@@ -53,9 +53,9 @@ public class PlayerBehavior : MonoBehaviour
 
     public void UseItem(UsingItem item)
     {
-        if (player.playerItemSlotManager.leftHandSlot.currentWeaponModel != null)
+        if (player.playerWeaponSlotManager.leftHandSlot.currentWeaponModel != null)
         {
-            leftHandWeapon = player.playerItemSlotManager.leftHandSlot.currentWeaponModel;
+            leftHandWeapon = player.playerWeaponSlotManager.leftHandSlot.currentWeaponModel;
             leftHandWeapon.SetActive(false);
         }
 
@@ -70,8 +70,8 @@ public class PlayerBehavior : MonoBehaviour
                 break;
         }
 
-        curUsingItem.transform.parent = player.playerItemSlotManager.leftHandSlot.parentOverride;
-        curUsingItem.transform.position = player.playerItemSlotManager.leftHandSlot.parentOverride.transform.position;
+        curUsingItem.transform.parent = player.playerWeaponSlotManager.leftHandSlot.parentOverride;
+        curUsingItem.transform.position = player.playerWeaponSlotManager.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
         player.playerAnimator.animator.SetBool(player.characterAnimatorData.IsItemUseParameter, true);
         player.playerAnimator.PlayTargetAnimation(item.usingAnimation, true);

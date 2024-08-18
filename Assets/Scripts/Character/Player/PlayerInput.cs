@@ -170,16 +170,16 @@ public class PlayerInput : MonoBehaviour
         if (lightAttackInput) // 약공격
         {
             if (!player.isComboAble)
-                player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, true);
+                player.HandleWeaponAttack(player.playerInventory.rightWeapon, true);
             else // 콤보 공격
-                player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, true);
+                player.HandleWeaponCombo(player.playerInventory.rightWeapon, true);
         }
         else if (heavyAttackInput) // 강공격
         {
             if (!player.isComboAble)
-                player.playerAttacker.HandleWeaponAttack(player.playerInventory.rightWeapon, false);
+                player.HandleWeaponAttack(player.playerInventory.rightWeapon, false);
             else // 콤보 공격
-                player.playerAttacker.HandleWeaponCombo(player.playerInventory.rightWeapon, false);
+                player.HandleWeaponCombo(player.playerInventory.rightWeapon, false);
         }
     }
 
@@ -193,11 +193,11 @@ public class PlayerInput : MonoBehaviour
             twoHandFlag = !twoHandFlag;
 
             if (twoHandFlag)
-                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
+                player.playerWeaponSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
             else
             {
-                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
-                player.playerItemSlotManager.LoadWeaponSlot(player.playerInventory.leftWeapon, true);
+                player.playerWeaponSlotManager.LoadWeaponSlot(player.playerInventory.rightWeapon, false);
+                player.playerWeaponSlotManager.LoadWeaponSlot(player.playerInventory.leftWeapon, true);
             }
         }
     }

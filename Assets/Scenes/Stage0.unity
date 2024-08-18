@@ -17707,7 +17707,7 @@ MonoBehaviour:
   selectWindow: {fileID: 8022257323885886589}
   inventorySlotPrefab: {fileID: 5204401567664892740, guid: 6fe0ac932d4e4a549a43100758f06bc8, type: 3}
   inventorySlotsParent: {fileID: 3629632310674733934}
-  playerInventory: {fileID: 8331232183609442329}
+  playerInventory: {fileID: 0}
   equipmentWindow: {fileID: 7794613032852846587}
   equipmentWindowUI: {fileID: 8531770773797396372}
   leftHandSlot01Selected: 0
@@ -42678,17 +42678,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b4300ee5592234e9dbad2a978f3793, type: 3}
---- !u!114 &8331232183609442329 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8704254429465697172, guid: b448eb40df46926429e39f76897876cb, type: 3}
-  m_PrefabInstance: {fileID: 498046892461857264}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddd1076f180c3c4cb2e1e9ea9d1c8aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8331232183609442336 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8842164406526633919, guid: b448eb40df46926429e39f76897876cb, type: 3}
