@@ -8,17 +8,7 @@ public class InventorySlot : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private Image icon;
-
-    [Header("Component")]
-    [SerializeField]
-    private EquipmentUI equipmentWindow;
     private WeaponItem item;
-    private PlayerInventory playerInventory;
-    
-    void Awake()
-    {
-        playerInventory = FindObjectOfType<PlayerInventory>();
-    }
 
     public void AddItem(WeaponItem newItem)
     {
@@ -34,56 +24,5 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = null;
         icon.enabled = false;
         gameObject.SetActive(false);
-    }
-
-    public void EquipItem()
-    {
-        if (UIManager.instance.equipmentUI.leftHandSlot01Selected)
-        {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[0]);
-            playerInventory.weaponInLeftSlots[0] = item;
-            playerInventory.equipmentWeapons.Remove(item);
-        }
-        else if (UIManager.instance.equipmentUI.leftHandSlot02Selected)
-        {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[1]);
-            playerInventory.weaponInLeftSlots[1] = item;
-            playerInventory.equipmentWeapons.Remove(item);
-        }
-        else if (UIManager.instance.equipmentUI.rightHandSlot01Selected)
-        {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[0]);
-            playerInventory.weaponInRightSlots[0] = item;
-            playerInventory.equipmentWeapons.Remove(item);
-        }
-        else if (UIManager.instance.equipmentUI.rightHandSlot02Selected)
-        {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[1]);
-            playerInventory.weaponInRightSlots[1] = item;
-            playerInventory.equipmentWeapons.Remove(item);
-        }
-        else
-        {
-            return;
-        }
-
-        if (playerInventory.curLeftWeaponIndex >= 0)
-        {
-            playerInventory.curLeftWeapon = playerInventory.weaponInLeftSlots[playerInventory.curLeftWeaponIndex];
-        }
-
-        if (playerInventory.curRightWeaponIndex >= 0)
-        {
-            playerInventory.curRightWeapon = playerInventory.weaponInRightSlots[playerInventory.curRightWeaponIndex];
-        }
-
-        playerInventory.LoadWeaponSlot(playerInventory.curLeftWeapon, true);
-        playerInventory.LoadWeaponSlot(playerInventory.curRightWeapon, false);
-        equipmentWindow.LoadWeaponsOnEquipmentScreen(playerInventory);
-
-        UIManager.instance.equipmentUI.ResetAllSelectedSlots();
-        // UIManager.instance.InventoryUIUpdate();
-        // UIManager.instance.inventoryManager.gameObject.SetActive(false);
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 }

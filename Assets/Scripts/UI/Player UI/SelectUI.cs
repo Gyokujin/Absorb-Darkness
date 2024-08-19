@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class SelectUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] selectButtons;
-
-    public void OpenSelectUI()
-    {
-        foreach (GameObject button in selectButtons)
-            button.SetActive(true);
-    }
-
-    public void CloseSelectUI()
-    {
-        foreach (GameObject button in selectButtons)
-            button.SetActive(false);
-    }
-
     public void SelectInventory()
     {
+        UIManager.instance.CloseAllUI();
         UIManager.instance.inventoryUI.gameObject.SetActive(true);
         UIManager.instance.inventoryUI.OpenWeaponInventory();
     }
 
     public void SelectEquipment()
     {
-
+        UIManager.instance.CloseAllUI();
+        UIManager.instance.equipmentUI.gameObject.SetActive(true);
+        UIManager.instance.equipmentUI.OpenEquipmentsUI();
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 
     public void SelectGameSystem()

@@ -7,7 +7,7 @@ public class InventoryUI : MonoBehaviour
     [Header("Weapon")]
     [SerializeField]
     private GameObject weaponInventory;
-    public List<ItemSlot> weaponSlots = new();
+    public List<WeaponSlot> weaponSlots = new();
     [SerializeField]
     private Transform weaponSlotTransform;
 
@@ -25,17 +25,23 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     private Transform interactItemSlotTransform;
 
+    [Header("Slot")]
+    [SerializeField]
+    private WeaponSlot weaponSlot;
+    [SerializeField]
+    private UsingItemSlot usingItemSlot;
+    [SerializeField]
+    private ItemSlot interactItemSlot;
+
     [Header("UI")]
     [SerializeField]
     private GameObject inventoryButtons;
-    [SerializeField]
-    private GameObject slotObject;
 
     public void OpenWeaponInventory()
     {
         CloseInventory();
         inventoryButtons.SetActive(true);
-        weaponInventory.gameObject.SetActive(true);
+        weaponInventory.SetActive(true);
         UpdateWeaponInventory();
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
@@ -46,12 +52,12 @@ public class InventoryUI : MonoBehaviour
         {
             if (i >= weaponSlots.Count)
             {
-                ItemSlot createSlot = Instantiate(slotObject, weaponSlotTransform).GetComponent<ItemSlot>();
+                WeaponSlot createSlot = Instantiate(weaponSlot, weaponSlotTransform).GetComponent<WeaponSlot>();
                 weaponSlots.Add(createSlot);
             }
 
-            Item item = UIManager.instance.playerInventory.weaponItems[i];
-            weaponSlots[i].ItemSlotUpdate(true, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
+            WeaponItem item = UIManager.instance.playerInventory.weaponItems[i];
+            weaponSlots[i].ItemSlotUpdate(true, item.itemIcon, item.itemCount, item.itemName, item.itemInfo, i);
         }
     }
 
@@ -59,7 +65,7 @@ public class InventoryUI : MonoBehaviour
     {
         CloseInventory();
         inventoryButtons.SetActive(true);
-        usingItemInventory.gameObject.SetActive(true);
+        usingItemInventory.SetActive(true);
         UpdateUsingItemInventory();
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
@@ -70,12 +76,12 @@ public class InventoryUI : MonoBehaviour
         {
             if (i >= usingItemSlots.Count)
             {
-                ItemSlot createSlot = Instantiate(slotObject, usingItemSlotTransform).GetComponent<ItemSlot>();
+                UsingItemSlot createSlot = Instantiate(usingItemSlot, usingItemSlotTransform).GetComponent<UsingItemSlot>();
                 usingItemSlots.Add(createSlot);
             }
 
-            Item item = UIManager.instance.playerInventory.usingItems[i];
-            usingItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
+            UsingItem item = UIManager.instance.playerInventory.usingItems[i];
+            usingItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo, i);
         }
     }
 
@@ -83,7 +89,7 @@ public class InventoryUI : MonoBehaviour
     {
         CloseInventory();
         inventoryButtons.SetActive(true);
-        interactItemInventory.gameObject.SetActive(true);
+        interactItemInventory.SetActive(true);
         UpdateInteractItemInventory();
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
@@ -94,20 +100,20 @@ public class InventoryUI : MonoBehaviour
         {
             if (i >= interactItemSlots.Count)
             {
-                ItemSlot createSlot = Instantiate(slotObject, interactItemSlotTransform).GetComponent<ItemSlot>();
+                ItemSlot createSlot = Instantiate(interactItemSlot, interactItemSlotTransform).GetComponent<ItemSlot>();
                 interactItemSlots.Add(createSlot);
             }
 
-            Item item = UIManager.instance.playerInventory.interactItems[i];
-            interactItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo);
+            InteractItem item = UIManager.instance.playerInventory.interactItems[i];
+            interactItemSlots[i].ItemSlotUpdate(false, item.itemIcon, item.itemCount, item.itemName, item.itemInfo, i);
         }
     }
 
     public void CloseInventory()
     {
         inventoryButtons.SetActive(false);
-        weaponInventory.gameObject.SetActive(false);
-        usingItemInventory.gameObject.SetActive(false);
-        interactItemInventory.gameObject.SetActive(false);
+        weaponInventory.SetActive(false);
+        usingItemInventory.SetActive(false);
+        interactItemInventory.SetActive(false);
     }
 }

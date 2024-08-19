@@ -16,7 +16,7 @@ public class ItemPickUp : Interactable
     void PickUpItem(PlayerManager player)
     {
         player.playerAnimator.PlayTargetAnimation("PickUp", true);
-        player.playerInventory.AddToInventory(dropItem);
+        player.playerBehavior.ItemLoot(dropItem);
         gameObject.SetActive(false);
     }
 }
