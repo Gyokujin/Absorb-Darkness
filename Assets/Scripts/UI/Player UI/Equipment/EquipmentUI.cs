@@ -60,33 +60,33 @@ public class EquipmentUI : MonoBehaviour
     public void EquipWeapon(WeaponItem weaponItem)
     {
         PlayerInventory playerInventory = UIManager.instance.playerInventory;
+        WeaponItem curWeapon;
 
         if (leftHandSlot01Selected)
         {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[0]);
+            curWeapon = playerInventory.weaponInLeftSlots[0];
             playerInventory.weaponInLeftSlots[0] = weaponItem;
-            playerInventory.equipmentWeapons.Remove(weaponItem);
         }
         else if (UIManager.instance.equipmentUI.leftHandSlot02Selected)
         {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInLeftSlots[1]);
+            curWeapon = playerInventory.weaponInLeftSlots[1];
             playerInventory.weaponInLeftSlots[1] = weaponItem;
-            playerInventory.equipmentWeapons.Remove(weaponItem);
         }
         else if (UIManager.instance.equipmentUI.rightHandSlot01Selected)
         {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[0]);
+            curWeapon = playerInventory.weaponInRightSlots[0];
             playerInventory.weaponInRightSlots[0] = weaponItem;
-            playerInventory.equipmentWeapons.Remove(weaponItem);
         }
         else if (UIManager.instance.equipmentUI.rightHandSlot02Selected)
         {
-            playerInventory.equipmentWeapons.Add(playerInventory.weaponInRightSlots[1]);
+            curWeapon = playerInventory.weaponInRightSlots[1];
             playerInventory.weaponInRightSlots[1] = weaponItem;
-            playerInventory.equipmentWeapons.Remove(weaponItem);
         }
         else
             return;
+
+        playerInventory.weaponItems.Remove(weaponItem);
+        playerInventory.weaponItems.Add(curWeapon);
 
         if (playerInventory.curLeftWeaponIndex >= 0)
             playerInventory.curLeftWeapon = playerInventory.weaponInLeftSlots[playerInventory.curLeftWeaponIndex];
@@ -96,11 +96,9 @@ public class EquipmentUI : MonoBehaviour
 
         playerInventory.LoadWeaponSlot(playerInventory.curLeftWeapon, true);
         playerInventory.LoadWeaponSlot(playerInventory.curRightWeapon, false);
-        UIManager.instance.equipmentUI.OpenEquipmentsUI();
 
-        UIManager.instance.equipmentUI.ResetAllSelectedSlots();
+        OpenEquipmentsUI();
         UIManager.instance.inventoryUI.UpdateWeaponInventory();
-        // UIManager.instance.inventoryManager.gameObject.SetActive(false);
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 }

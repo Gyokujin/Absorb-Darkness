@@ -21,8 +21,8 @@ MonoBehaviour:
     \uC20F\uC18C\uB4DC"
   weaponType: 1
   isUnarmed: 0
-  right_Hand_Idle: RightArm_Idle
-  left_Hand_Idle: LeftArm_Idle
+  right_Hand_Idle: RightArm dle
+  left_Hand_Idle: LeftArm Idle
   th_idle: BothArms Idle01
   oneHand_LightAttack1: OHLightAttack01
   oneHand_LightAttack2: OHLightAttack02

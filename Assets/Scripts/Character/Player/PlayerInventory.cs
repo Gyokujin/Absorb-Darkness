@@ -101,7 +101,7 @@ public class PlayerInventory : MonoBehaviour
             player.playerCombat.LoadWeaponDamageCollider(true);
             UIManager.instance.quickSlotUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
 
-            if (weaponItem != null)
+            if (weaponItem != unarmedWeapon)
                 player.playerAnimator.animator.CrossFade(weaponItem.left_Hand_Idle, player.characterAnimatorData.AnimationFadeAmount);
             else
                 player.playerAnimator.animator.CrossFade(player.characterAnimatorData.LeftArmEmpty, player.characterAnimatorData.AnimationFadeAmount);
@@ -119,7 +119,7 @@ public class PlayerInventory : MonoBehaviour
                 player.playerAnimator.animator.CrossFade(player.characterAnimatorData.BothArmsEmpty, player.characterAnimatorData.AnimationFadeAmount);
                 backSlot.UnloadWeaponAndDestroy();
 
-                if (weaponItem != null)
+                if (weaponItem != unarmedWeapon)
                     player.playerAnimator.animator.CrossFade(weaponItem.right_Hand_Idle, player.characterAnimatorData.AnimationFadeAmount);
                 else
                     player.playerAnimator.animator.CrossFade(player.characterAnimatorData.RightArmEmpty, player.characterAnimatorData.AnimationFadeAmount);

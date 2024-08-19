@@ -64,6 +64,7 @@ public class InventoryUI : MonoBehaviour
     public void OpenUsingItemInventory()
     {
         CloseInventory();
+        UIManager.instance.equipmentUI.gameObject.SetActive(false);
         inventoryButtons.SetActive(true);
         usingItemInventory.SetActive(true);
         UpdateUsingItemInventory();
@@ -88,6 +89,7 @@ public class InventoryUI : MonoBehaviour
     public void OpenInteractItemInventory()
     {
         CloseInventory();
+        UIManager.instance.equipmentUI.gameObject.SetActive(false);
         inventoryButtons.SetActive(true);
         interactItemInventory.SetActive(true);
         UpdateInteractItemInventory();
