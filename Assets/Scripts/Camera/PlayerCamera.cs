@@ -14,7 +14,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("Player")]
     [SerializeField]
     private PlayerManager player;
-    private float playerPosition;
+    private float targetPosition;
 
     [Header("Camera")]
     public Transform cameraTransform;
@@ -22,6 +22,7 @@ public class PlayerCamera : MonoBehaviour
     private Transform cameraPivotTransform;
     private Transform camTransform;
     private Vector3 cameraPos;
+    private Vector3 cameraFollowVelocity = Vector3.zero;
     public LayerMask targetLayer;
 
     [Header("Angle")]
@@ -86,10 +87,11 @@ public class PlayerCamera : MonoBehaviour
 
     public void FollowTarget(float delta)
     {
-        Vector3 followPos = player.transform.position;
-        followPos.y += isLockOn ? cameraData.LockedPivotPositionY : cameraData.UnlockedPivotPositionY;
+        Vector3 targetPos = player.transform.position;
+        targetPos.y += isLockOn ? cameraData.LockedPivotPositionY : cameraData.UnlockedPivotPositionY;
+        Vector3 followPos = Vector3.SmoothDamp(transform.position, targetPos, ref cameraFollowVelocity, delta / cameraData.FollowSpeed);
         camTransform.position = followPos;
-        HandleCameraCollision(delta);
+        // HandleCameraCollision(delta);
     }
 
     public void HandleCameraRotation(float delta, float mouseX, float mouseY)
@@ -222,21 +224,22 @@ public class PlayerCamera : MonoBehaviour
 
     void HandleCameraCollision(float delta)
     {
-        playerPosition = defaultPosition;
+        targetPosition = defaultPosition;
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(playerPosition), targetLayer))
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(targetPosition), targetLayer))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
-            playerPosition = -(distance - cameraData.CameraCollisionOffset);
+            targetPosition = -(distance - cameraData.CameraCollisionOffset);
         }
 
-        if (Mathf.Abs(playerPosition) < cameraData.MinCollisionOffset)
+        if (Mathf.Abs(targetPosition) < cameraData.MinCollisionOffset)
         {
-            playerPosition = -cameraData.MinCollisionOffset;
+            targetPosition = -cameraData.MinCollisionOffset;
         }
 
-        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, playerPosition, delta / cameraData.PlayerFollowRate);
+        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / cameraData.PlayerFollowRate);
+        camTransform.localPosition = cameraPos;
     }
 }

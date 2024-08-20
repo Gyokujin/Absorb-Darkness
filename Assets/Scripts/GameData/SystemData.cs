@@ -34,7 +34,7 @@ namespace SystemData
         private float? followSpeed;
         public float FollowSpeed
         {
-            readonly get => followSpeed ?? 0.5f;
+            readonly get => followSpeed ?? 0.135f;
             set => followSpeed = value;
         }
 

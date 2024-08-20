@@ -340,5 +340,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 102152
+  cameraFollowVelocity: {x: 0, y: 0, z: 0}
   isLockOn: 0
   lockOnUI: {fileID: 0}
