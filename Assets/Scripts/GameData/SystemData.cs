@@ -34,7 +34,7 @@ namespace SystemData
         private float? followSpeed;
         public float FollowSpeed
         {
-            readonly get => followSpeed ?? 0.135f;
+            readonly get => followSpeed ?? 0.2f;
             set => followSpeed = value;
         }
 
@@ -74,7 +74,7 @@ namespace SystemData
         private float? unlockedPivotPositionY;
         public float UnlockedPivotPositionY
         {
-            readonly get => unlockedPivotPositionY ?? 0.575f;
+            readonly get => unlockedPivotPositionY ?? 2.45f;
             set => unlockedPivotPositionY = value;
         }
 
@@ -82,7 +82,7 @@ namespace SystemData
         private readonly float? lockedPivotPositionY;
         public float LockedPivotPositionY
         {
-            readonly get => lockedPivotPositionY ?? 1.2f;
+            readonly get => lockedPivotPositionY ?? 2.85f;
             set => lockOnRotateMax = value;
         }
 

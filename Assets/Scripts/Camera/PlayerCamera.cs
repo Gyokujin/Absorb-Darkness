@@ -14,15 +14,17 @@ public class PlayerCamera : MonoBehaviour
     [Header("Player")]
     [SerializeField]
     private PlayerManager player;
+    public Transform targetTransform;
     private float targetPosition;
 
     [Header("Camera")]
-    public Transform cameraTransform;
+    public Transform cameraTransform; // Main Camera
     [SerializeField]
-    private Transform cameraPivotTransform;
-    private Transform camTransform;
-    private Vector3 cameraPos;
+    private Transform cameraPivotTransform; // Pivot
+    private Transform myTransform; // Camera Holder
+    private Vector3 cameraTransformPosition;
     private Vector3 cameraFollowVelocity = Vector3.zero;
+    public LayerMask ignoreLayers;
     public LayerMask targetLayer;
 
     [Header("Angle")]
@@ -61,7 +63,7 @@ public class PlayerCamera : MonoBehaviour
         lockOnLayer = LayerMask.GetMask(layerData.EnemyLayer);
         environmentLayer = LayerMask.GetMask(layerData.EnvironmentLayer);
 
-        camTransform = transform;
+        myTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
     }
 
@@ -90,8 +92,9 @@ public class PlayerCamera : MonoBehaviour
         Vector3 targetPos = player.transform.position;
         targetPos.y += isLockOn ? cameraData.LockedPivotPositionY : cameraData.UnlockedPivotPositionY;
         Vector3 followPos = Vector3.SmoothDamp(transform.position, targetPos, ref cameraFollowVelocity, delta / cameraData.FollowSpeed);
-        camTransform.position = followPos;
-        // HandleCameraCollision(delta);
+        myTransform.position = followPos;
+
+        HandleCameraCollision(delta);
     }
 
     public void HandleCameraRotation(float delta, float mouseX, float mouseY)
@@ -105,7 +108,7 @@ public class PlayerCamera : MonoBehaviour
             Vector3 rotation = Vector3.zero;
             rotation.y = lookAngle;
             Quaternion targetRotation = Quaternion.Euler(rotation);
-            camTransform.rotation = targetRotation;
+            myTransform.rotation = targetRotation;
 
             rotation = Vector3.zero;
             rotation.x = pivotAngle;
@@ -132,7 +135,7 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    public void SwitchLockOn() 
+    public void SwitchLockOn()
     {
         if (!isLockOn) // 록온이 아닌 상태에서 탐색을 한후 적이 포착되면 활성화한다.
         {
@@ -189,7 +192,7 @@ public class PlayerCamera : MonoBehaviour
             if (availableTargets[i] != null)
             {
                 float targetDistance = Vector3.Distance(player.lockOnTransform.position, availableTargets[i].transform.position);
-                
+
                 if (targetDistance < shortDistance) // 가장 가까운 타겟을 찾는다
                 {
                     shortDistance = targetDistance;
@@ -228,18 +231,16 @@ public class PlayerCamera : MonoBehaviour
         Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(targetPosition), targetLayer))
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(targetPosition), ignoreLayers))
         {
             float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
             targetPosition = -(distance - cameraData.CameraCollisionOffset);
         }
 
         if (Mathf.Abs(targetPosition) < cameraData.MinCollisionOffset)
-        {
             targetPosition = -cameraData.MinCollisionOffset;
-        }
 
-        cameraPos.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / cameraData.PlayerFollowRate);
-        camTransform.localPosition = cameraPos;
+        cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / cameraData.PlayerFollowRate);
+        cameraTransform.localPosition = cameraTransformPosition;
     }
 }
