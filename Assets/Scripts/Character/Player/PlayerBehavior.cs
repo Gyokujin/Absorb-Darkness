@@ -33,11 +33,13 @@ public class PlayerBehavior : MonoBehaviour
         else
             interactableObj = null;
 
-
         if (interactableObj != null)
-            UIManager.instance.OpenInteractUI(interactableObj.interactableText);
+        {
+            UIManager.instance.OpenMessageUI(MessageUI.MessageType.InteractMessage);
+            UIManager.instance.messageUI.UpdateInteractMessage(interactableObj.interactMesssage);
+        }
         else
-            UIManager.instance.CloseInteractUI();
+            UIManager.instance.messageUI.CloseInteractMessage();
     }
 
     public void BehaviourAction()
@@ -45,16 +47,14 @@ public class PlayerBehavior : MonoBehaviour
         if (player.playerBehavior.interactableObj != null)
             interactableObj.Interact(player);
         else
-        {
-            UIManager.instance.CloseItemPopUpUI();
-            UIManager.instance.CloseMessagePopUpUI();
-        }
+            UIManager.instance.CloseMessageUI();
     }
 
     public void ItemLoot(Item item)
     {
         player.playerInventory.AddToInventory(item);
-        UIManager.instance.OpenItemPopUpUI(item.itemName, item.itemIcon.texture);
+        UIManager.instance.OpenMessageUI(MessageUI.MessageType.ItemPopup);
+        UIManager.instance.messageUI.UpdateItemPopup(item);
     }
 
     public void UseItem(UsingItem item)

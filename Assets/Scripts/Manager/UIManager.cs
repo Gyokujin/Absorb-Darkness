@@ -1,48 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UIData;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance = null;
 
+    [Header("Data")]
+    public MessageUIData messageUIData;
+
+    [Header("UI")]
     [SerializeField]
     private GameObject hudUI;
     public SelectUI selectUI;
     public InventoryUI inventoryUI;
     public EquipmentUI equipmentUI;
     public GameSystemUI gameSystemUI;
-    public InteractableUI interactableUI;
+    public MessageUI messageUI;
+    public QuickSlotUI quickSlotUI;
+    public StageUI stageUI;
 
     [HideInInspector]
     public PlayerInventory playerInventory;
-
-    [SerializeField]
-    private GameObject interactPopUpUI;
-    [SerializeField]
-    private Text interactMessage;
-
-    [Header("PopUp Item")]
-    public GameObject itemPopUpUI;
-    [SerializeField]
-    private Text itemPopUpName;
-    [SerializeField]
-    private RawImage itemPopUpIcon;
-
-    [Header("Game Message")]
-    [SerializeField]
-    private GameObject messageTopUI;
-    [SerializeField]
-    private Text messageTopText;
-    [SerializeField]
-    private GameObject messageBottomUI;
-    [SerializeField]
-    private Text messageBottomText;
-
-    [Header("Component")]
-    public QuickSlotUI quickSlotUI;
-    public StageUI stageUI;
 
     void Awake()
     {
@@ -88,55 +68,36 @@ public class UIManager : MonoBehaviour
         // gameSystemUI.gameObject.SetActive(false);
     }
 
-    public void OpenStageUI(FieldInfo fieldInfo)
+    public void OpenMessageUI(MessageUI.MessageType messageType)
     {
-        stageUI.OpenStageInfo(fieldInfo);
+        switch (messageType)
+        {
+            case MessageUI.MessageType.InteractMessage:
+                messageUI.OpenInteractMessage();
+                break;
+
+            case MessageUI.MessageType.GameMessage:
+                messageUI.OpenGameMessage();
+                break;
+
+            case MessageUI.MessageType.ItemPopup:
+                messageUI.OpenItemPopup();
+                break;
+
+            case MessageUI.MessageType.GameSystem:
+                messageUI.OpenGameSystem();
+                break;
+        }
     }
 
-    public void OpenInteractUI(string message)
+    public void CloseMessageUI()
     {
-        interactMessage.text = message;
-        interactPopUpUI.SetActive(true);
-    }
-
-    public void CloseInteractUI()
-    {
-        interactPopUpUI.SetActive(false);
-    }
-
-    public void OpenItemPopUpUI(string itemName, Texture itemIcon)
-    {
-        itemPopUpName.text = itemName;
-        itemPopUpIcon.texture = itemIcon;
-        itemPopUpUI.SetActive(true);
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.PickUp]);
-    }
-
-    public void CloseItemPopUpUI()
-    {
-        itemPopUpUI.SetActive(false);
+        messageUI.CloseAllMessage();
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact2]);
     }
 
-    public void OpenMessagePopUpUI(bool onTop, string message)
+    public void OpenStageUI(FieldInfo fieldInfo)
     {
-        if (onTop)
-        {
-            messageTopUI.SetActive(true);
-            messageTopText.text = message;
-        }
-        else
-        {
-            messageBottomUI.SetActive(true);
-            messageBottomText.text = message;
-        }
-
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact1]);
-    }
-
-    public void CloseMessagePopUpUI()
-    {
-        messageTopUI.SetActive(false);
-        messageBottomUI.SetActive(false);
+        stageUI.OpenStageInfo(fieldInfo);
     }
 }
