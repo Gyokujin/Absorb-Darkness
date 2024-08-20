@@ -11,8 +11,7 @@ public class UIManager : MonoBehaviour
     public MessageUIData messageUIData;
 
     [Header("UI")]
-    [SerializeField]
-    private GameObject hudUI;
+    public HudUI hudUI;
     public SelectUI selectUI;
     public InventoryUI inventoryUI;
     public EquipmentUI equipmentUI;
@@ -46,7 +45,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenGameUI()
     {
-        hudUI.SetActive(false);
+        hudUI.gameObject.SetActive(false);
         selectUI.gameObject.SetActive(true);
         GameManager.instance.LockCamera(false);
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.GameUI]);
@@ -55,7 +54,7 @@ public class UIManager : MonoBehaviour
     public void CloseGameUI()
     {
         CloseAllUI();
-        hudUI.SetActive(true);
+        hudUI.gameObject.SetActive(true);
         selectUI.gameObject.SetActive(false);
         GameManager.instance.LockCamera(true);
         AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact2]);

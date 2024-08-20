@@ -36,11 +36,6 @@ public class MessageUI : MonoBehaviour
     [SerializeField]
     private Text gameSystemText;
 
-    //[SerializeField]
-    //private GameObject messageBottomUI;
-    //[SerializeField]
-    //private Text messageBottomText;
-
     public void OpenInteractMessage()
     {
         interactMessagePopup.SetActive(true);
@@ -95,20 +90,4 @@ public class MessageUI : MonoBehaviour
         itemPopUpUI.SetActive(false);
         gameSystemUI.SetActive(false);
     }
-
-    //public void OpenMessagePopUpUI(bool onTop, string message)
-    //{
-    //    if (onTop)
-    //    {
-    //        messageTopUI.SetActive(true);
-    //        messageTopText.text = message;
-    //    }
-    //    else
-    //    {
-    //        messageBottomUI.SetActive(true);
-    //        messageBottomText.text = message;
-    //    }
-
-    //    AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact1]);
-    //}
 }

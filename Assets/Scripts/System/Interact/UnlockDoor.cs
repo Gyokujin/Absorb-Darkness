@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UIData;
 using UnityEngine;
 
 public class UnlockDoor : Interactable
@@ -12,11 +13,6 @@ public class UnlockDoor : Interactable
     [SerializeField]
     private Transform interactTrasnform;
 
-    [SerializeField]
-    private string successMessage;
-    [SerializeField]
-    private string failMessage;
-
     void Start() // 부모 클래스의 Awake를 위해 분리한다.
     {
         Init();
@@ -25,6 +21,7 @@ public class UnlockDoor : Interactable
     protected override void Init()
     {
         base.Init();
+        interactMesssage = UIManager.instance.messageUIData.LockDoorInteractText;
         animator = GetComponent<Animator>();
     }
 
@@ -50,12 +47,15 @@ public class UnlockDoor : Interactable
             player.transform.rotation = interactTrasnform.rotation;
             player.playerAnimator.PlayTargetAnimation("DoorOpen", true);
             AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.DoorOpen]);
-            // UIManager.instance.OpenMessagePopUpUI(false, successMessage);
+            UIManager.instance.messageUI.UpdateGameSystem(UIManager.instance.messageUIData.UnlockDoorInteractSuccessText);
         }
         else
         {
-            // UIManager.instance.OpenMessagePopUpUI(false, failMessage);
+            UIManager.instance.messageUI.UpdateGameSystem(UIManager.instance.messageUIData.UnlockDoorInteractFailText);
+            AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact1]);
         }
+
+        UIManager.instance.OpenMessageUI(MessageUI.MessageType.GameSystem);
     }
 
     bool KeyCheck(PlayerManager player)
