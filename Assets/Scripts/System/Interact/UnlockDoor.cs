@@ -22,8 +22,9 @@ public class UnlockDoor : Interactable
         Init();
     }
 
-    void Init()
+    protected override void Init()
     {
+        base.Init();
         animator = GetComponent<Animator>();
     }
 
@@ -49,11 +50,11 @@ public class UnlockDoor : Interactable
             player.transform.rotation = interactTrasnform.rotation;
             player.playerAnimator.PlayTargetAnimation("DoorOpen", true);
             AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.DoorOpen]);
-            UIManager.instance.OpenMessagePopUpUI(false, successMessage);
+            // UIManager.instance.OpenMessagePopUpUI(false, successMessage);
         }
         else
         {
-            UIManager.instance.OpenMessagePopUpUI(false, failMessage);
+            // UIManager.instance.OpenMessagePopUpUI(false, failMessage);
         }
     }
 

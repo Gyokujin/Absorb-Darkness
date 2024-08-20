@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SystemData;
 
 public class Interactable : MonoBehaviour
 {
@@ -11,34 +10,32 @@ public class Interactable : MonoBehaviour
     }
 
     public InteractType interactType;
-    [HideInInspector]
-    public string interactableText;
 
-    void Awake()
+    public string interactMesssage;
+
+    void Start()
     {
         Init();
     }
 
-    void Init()
+    protected virtual void Init()
     {
-        InteractData interactData = new();
-        
         switch (interactType)
         {
             case InteractType.Item:
-                interactableText = interactData.ItemInteractText;
+                interactMesssage = UIManager.instance.messageUIData.ItemInteractText;
                 break;
 
             case InteractType.Message:
-                interactableText = interactData.MessageInteractText;
+                interactMesssage = UIManager.instance.messageUIData.MessageInteractText;
                 break;
 
             case InteractType.LockDoor:
-                interactableText = interactData.LockDoorInteractText;
+                interactMesssage = UIManager.instance.messageUIData.LockDoorInteractText;
                 break;
 
             case InteractType.FogWall:
-                interactableText = interactData.FogWallInteractText;
+                interactMesssage = UIManager.instance.messageUIData.FogWallInteractText;
                 break;
         }
     }

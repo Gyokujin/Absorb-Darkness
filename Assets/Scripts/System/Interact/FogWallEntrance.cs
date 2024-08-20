@@ -6,8 +6,9 @@ public class FogWallEntrance : Interactable
 {
     private new Collider collider;
 
-    void Start()
+    protected override void Init()
     {
+        base.Init();
         collider = GetComponent<Collider>();
     }
 

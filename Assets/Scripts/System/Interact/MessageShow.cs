@@ -16,6 +16,8 @@ public class MessageShow : Interactable
 
     void ShowMessage()
     {
-        UIManager.instance.OpenMessagePopUpUI(true, gameMessage.message);
+        UIManager.instance.OpenMessageUI(MessageUI.MessageType.GameMessage);
+        UIManager.instance.messageUI.UpdateGameMessage(gameMessage.message);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Interact1]);
     }
 }

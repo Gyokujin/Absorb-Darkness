@@ -18,5 +18,6 @@ public class ItemPickUp : Interactable
         player.playerAnimator.PlayTargetAnimation("PickUp", true);
         player.playerBehavior.ItemLoot(dropItem);
         gameObject.SetActive(false);
+        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.PickUp]);
     }
 }
