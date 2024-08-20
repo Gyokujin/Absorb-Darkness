@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 1284469556324432205}
   - component: {fileID: 6000013759070660964}
   m_Layer: 15
-  m_Name: WallDoorway
+  m_Name: UnlockDoor
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,8 +493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 2
-  interactableText: 
+  interactMesssage: 
   lockNum: 0
   interactTrasnform: {fileID: 1248694204590195622}
-  successMessage: "\uC5F4\uC1E0\uB97C \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4."
-  failMessage: "\uD544\uC694\uD55C \uC5F4\uC1E0\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."

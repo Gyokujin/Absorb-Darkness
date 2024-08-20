@@ -1732,8 +1732,6 @@ MonoBehaviour:
   healthLevel: 10
   healthLevelAmount: 10
   effectTransform: {fileID: 7554135495376589493}
-  healthBar: {fileID: 0}
-  staminaBar: {fileID: 0}
 --- !u!114 &3350726264196729079
 MonoBehaviour:
   m_ObjectHideFlags: 0
