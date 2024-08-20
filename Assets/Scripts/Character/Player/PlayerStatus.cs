@@ -27,12 +27,6 @@ public class PlayerStatus : CharacterStatus
     [Header("Battle")]
     private float curInvincibleTime;
 
-    [Header("UI")]
-    [SerializeField]
-    private HealthBar healthBar;
-    [SerializeField]
-    private StaminaBar staminaBar;
-
     void Awake()
     {
         Init();
@@ -41,6 +35,10 @@ public class PlayerStatus : CharacterStatus
     void Init()
     {
         player = GetComponent<PlayerManager>();
+    }
+
+    void Start()
+    {
         InitHealth();
         InitStamina();
     }
@@ -49,14 +47,14 @@ public class PlayerStatus : CharacterStatus
     {
         maxHealth = player.playerStatusData.HealthLevel * player.playerStatusData.HealthLevelAmount;
         CurrentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        UIManager.instance.hudUI.SetMaxHealth(maxHealth);
     }
 
     void InitStamina()
     {
         maxStamina = player.playerStatusData.StaminaLevel * player.playerStatusData.StaminaLevelAmount;
         CurrentStamina = maxStamina;
-        staminaBar.SetMaxStamina(maxStamina);
+        UIManager.instance.hudUI.SetMaxStamina(maxStamina);
     }
 
     void Update() 
@@ -104,7 +102,7 @@ public class PlayerStatus : CharacterStatus
             player.playerBehavior.EndItemUse();
 
         CurrentHealth -= damage;
-        healthBar.SetCurrentHealth(CurrentHealth);
+        UIManager.instance.hudUI.SetCurrentHealth(CurrentHealth);
 
         if (hitStun)
         {
@@ -135,7 +133,7 @@ public class PlayerStatus : CharacterStatus
     public void RecoveryHP(int amount)
     {
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
-        healthBar.SetCurrentHealth(CurrentHealth);
+        UIManager.instance.hudUI.SetCurrentHealth(CurrentHealth);
 
         GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
         estusEffect.transform.position = effectTransform.position;
@@ -150,13 +148,13 @@ public class PlayerStatus : CharacterStatus
         if (CurrentStamina < maxStamina)
         {
             CurrentStamina += player.playerStatusData.StaminaRecoveryAmount;
-            staminaBar.SetCurrentStamina(CurrentStamina);
+            UIManager.instance.hudUI.SetCurrentStamina(CurrentStamina);
         }
     }
 
     public void TakeStamina(float amount)
     {
         CurrentStamina -= amount;
-        staminaBar.SetCurrentStamina(CurrentStamina);
+        UIManager.instance.hudUI.SetCurrentStamina(CurrentStamina);
     }
 }

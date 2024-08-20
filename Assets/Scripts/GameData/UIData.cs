@@ -20,7 +20,7 @@ namespace UIData
         private float? defeatDelay;
         public float DefeatDelay
         {
-            readonly get => defeatDelay ?? 5;
+            readonly get => defeatDelay ?? 6;
             set => defeatDelay = value;
         }
 
@@ -28,8 +28,16 @@ namespace UIData
         private float? victoryDelay;
         public float VictoryDelay
         {
-            readonly get => victoryDelay ?? 6f;
+            readonly get => victoryDelay ?? 6.5f;
             set => victoryDelay = value;
+        }
+
+        // BossItem Loot Delay
+        private float? bossItemLootDelay;
+        public float BossItemLootDelay
+        {
+            readonly get => bossItemLootDelay ?? 2;
+            set => bossItemLootDelay = value;
         }
     }
 
@@ -66,6 +74,22 @@ namespace UIData
         {
             readonly get => fogWallInteractText ?? "안개 속으로 들어간다 E";
             set => fogWallInteractText = value;
+        }
+
+        // Interact UnlockDoor Success Text
+        private string unlockDoorInteractSuccessText;
+        public string UnlockDoorInteractSuccessText
+        {
+            readonly get => unlockDoorInteractSuccessText ?? "열쇠를 사용하였습니다.";
+            set => unlockDoorInteractSuccessText = value;
+        }
+
+        // Interact UnlockDoor Fail Text
+        private string unlockDoorInteractFailText;
+        public string UnlockDoorInteractFailText
+        {
+            readonly get => unlockDoorInteractFailText ?? "필요한 열쇠가 없습니다.";
+            set => unlockDoorInteractFailText = value;
         }
     }
 }

@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UIData;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    [Header("Data")]
+    private StageUIData stageUIData;
+
     [Header("Field")]
     private FieldInfo curField;
     private Entrance curEvent;
+
+    [Header("Coroutine")]
+    private WaitForSeconds itemLootWait;
 
     void Awake()
     {
@@ -21,8 +28,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Application.targetFrameRate = 60;
+        Init();
+    }
+
+    void Init()
+    {
         LockCamera(true);
+        Application.targetFrameRate = 60;
+        itemLootWait = new WaitForSeconds(stageUIData.BossItemLootDelay);
     }
 
     public void ReadFieldInfo(FieldInfo fieldInfo, Entrance entrance)
@@ -63,11 +76,13 @@ public class GameManager : MonoBehaviour
 
         BossField bossField = curField as BossField;
         Item[] bossDropItem = bossField.dropItems;
-        PlayerInventory playerInventory = FindObjectOfType<PlayerInventory>();
+        PlayerBehavior playerBehavior = FindObjectOfType<PlayerBehavior>();
 
         foreach (Item item in bossDropItem)
         {
-            playerInventory.AddToInventory(item);
+            playerBehavior.ItemLoot(item);
+            AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.PickUp]);
+            yield return itemLootWait;
         }
     }
 
