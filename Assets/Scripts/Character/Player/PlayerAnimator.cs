@@ -24,55 +24,37 @@ public class PlayerAnimator : AnimatorManager
 
     public void AnimatorValue(float moveVer, float moveHor, bool isSprinting)
     {
-        // Vertical 파라미터
-        parameterVer = player.characterAnimatorData.IdleParameterValue;
-
-        if (moveVer > 0 && moveVer < player.characterAnimatorData.RunAnimationCondition)
+        if (!isSprinting) // Idle, Run
         {
-            parameterVer = player.characterAnimatorData.WalkParameterValue;
-        }
-        else if (moveVer > player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterVer = player.characterAnimatorData.RunParameterValue;
-        }
-        else if (moveVer < 0 && moveVer > -player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterVer = player.characterAnimatorData.WalkParameterValue ;
-        }
-        else if (moveVer < -player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterVer = -player.characterAnimatorData.RunParameterValue;
-        }
-        else
-        {
+            // Vertical 파라미터
             parameterVer = player.characterAnimatorData.IdleParameterValue;
-        }
 
-        // Horizontal 파라미터
-        parameterHor = player.characterAnimatorData.IdleParameterValue;
+            if (moveVer > 0 && moveVer < player.characterAnimatorData.RunAnimationCondition)
+                parameterVer = player.characterAnimatorData.WalkParameterValue;
+            else if (moveVer > player.characterAnimatorData.RunAnimationCondition)
+                parameterVer = player.characterAnimatorData.RunParameterValue;
+            else if (moveVer < 0 && moveVer > -player.characterAnimatorData.RunAnimationCondition)
+                parameterVer = player.characterAnimatorData.WalkParameterValue;
+            else if (moveVer < -player.characterAnimatorData.RunAnimationCondition)
+                parameterVer = -player.characterAnimatorData.RunParameterValue;
+            else
+                parameterVer = player.characterAnimatorData.IdleParameterValue;
 
-        if (moveHor > 0 && moveHor < player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterHor = player.characterAnimatorData.WalkParameterValue;
-        }
-        else if (moveHor > player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterHor = player.characterAnimatorData.RunParameterValue;
-        }
-        else if (moveHor < 0 && moveHor > -player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterHor = -player.characterAnimatorData.WalkParameterValue;
-        }
-        else if (moveHor < -player.characterAnimatorData.RunAnimationCondition)
-        {
-            parameterHor = -player.characterAnimatorData.RunParameterValue;
-        }
-        else
-        {
+            // Horizontal 파라미터
             parameterHor = player.characterAnimatorData.IdleParameterValue;
-        }
 
-        if (isSprinting)
+            if (moveHor > 0 && moveHor < player.characterAnimatorData.RunAnimationCondition)
+                parameterHor = player.characterAnimatorData.WalkParameterValue;
+            else if (moveHor > player.characterAnimatorData.RunAnimationCondition)
+                parameterHor = player.characterAnimatorData.RunParameterValue;
+            else if (moveHor < 0 && moveHor > -player.characterAnimatorData.RunAnimationCondition)
+                parameterHor = -player.characterAnimatorData.WalkParameterValue;
+            else if (moveHor < -player.characterAnimatorData.RunAnimationCondition)
+                parameterHor = -player.characterAnimatorData.RunParameterValue;
+            else
+                parameterHor = player.characterAnimatorData.IdleParameterValue;
+        }
+        else // Sprint
         {
             parameterVer = player.characterAnimatorData.SprintParameterValue;
             parameterHor = player.characterAnimatorData.SprintParameterValue;
@@ -135,9 +117,7 @@ public class PlayerAnimator : AnimatorManager
         if (item is RecoveryItem recoveryItem)
         {
             if (recoveryItem.hpRecoveryAmount > 0)
-            {
                 player.playerStatus.RecoveryHP(recoveryItem.hpRecoveryAmount);
-            }
 
             //if (recoveryItem.mpRecoveryAmount > 0) // 아직 미정
             //{
