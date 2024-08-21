@@ -6,38 +6,29 @@ using SystemData;
 public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera instance;
+    private PlayerManager player;
 
     [Header("Data")]
     private CameraData cameraData;
     private LayerData layerData;
 
-    [Header("Player")]
-    [SerializeField]
-    private PlayerManager player;
-    public Transform targetTransform;
-    private float targetPosition;
-
     [Header("Camera")]
-    public Transform cameraTransform; // Main Camera
+    public Transform playerCamTransform; // Main Camera
     [SerializeField]
-    private Transform cameraPivotTransform; // Pivot
-    private Transform myTransform; // Camera Holder
-    private Vector3 cameraTransformPosition;
-    private Vector3 cameraFollowVelocity = Vector3.zero;
-    public LayerMask ignoreLayers;
-    public LayerMask targetLayer;
-
-    [Header("Angle")]
-    private float defaultPosition;
+    private Transform pivotTransform; // Pivot
+    private Transform holderTransform; // Camera Holder
     private float lookAngle;
     private float pivotAngle;
+    private float preCamPosZ;
+    private float curCamPosZ;
+    private Vector3 camFollowVelocity = Vector3.zero;
+    public LayerMask targetLayers;
 
     [Header("LockOn")]
     [HideInInspector]
     public bool isLockOn;
     private readonly List<EnemyManager> availableTargets = new();
     private EnemyManager currentLockOnTarget;
-    private Vector3 currentTargetPos;
     [SerializeField]
     private Transform lockOnUI;
     private LayerMask lockOnLayer;
@@ -46,25 +37,22 @@ public class PlayerCamera : MonoBehaviour
     void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
 
         Init();
     }
 
     void Init()
     {
+        player = FindObjectOfType<PlayerManager>();
         cameraData = new CameraData();
         lockOnLayer = LayerMask.GetMask(layerData.EnemyLayer);
         environmentLayer = LayerMask.GetMask(layerData.EnvironmentLayer);
 
-        myTransform = transform;
-        defaultPosition = cameraTransform.localPosition.z;
+        holderTransform = transform;
+        preCamPosZ = playerCamTransform.localPosition.z;
     }
 
     void Update()
@@ -77,13 +65,9 @@ public class PlayerCamera : MonoBehaviour
         if (isLockOn)
         {
             if (IsTargetRange())
-            {
                 LookAtTarget();
-            }
             else
-            {
                 SwitchLockOn();
-            }
         }
     }
 
@@ -91,9 +75,8 @@ public class PlayerCamera : MonoBehaviour
     {
         Vector3 targetPos = player.transform.position;
         targetPos.y += isLockOn ? cameraData.LockedPivotPositionY : cameraData.UnlockedPivotPositionY;
-        Vector3 followPos = Vector3.SmoothDamp(transform.position, targetPos, ref cameraFollowVelocity, delta / cameraData.FollowSpeed);
-        myTransform.position = followPos;
-
+        Vector3 followPos = Vector3.SmoothDamp(transform.position, targetPos, ref camFollowVelocity, delta / cameraData.FollowSpeed);
+        holderTransform.position = followPos;
         HandleCameraCollision(delta);
     }
 
@@ -108,12 +91,12 @@ public class PlayerCamera : MonoBehaviour
             Vector3 rotation = Vector3.zero;
             rotation.y = lookAngle;
             Quaternion targetRotation = Quaternion.Euler(rotation);
-            myTransform.rotation = targetRotation;
+            holderTransform.rotation = targetRotation;
 
             rotation = Vector3.zero;
             rotation.x = pivotAngle;
             targetRotation = Quaternion.Euler(rotation);
-            cameraPivotTransform.localRotation = targetRotation;
+            pivotTransform.localRotation = targetRotation;
         }
         else if (currentLockOnTarget != null)
         {
@@ -124,14 +107,14 @@ public class PlayerCamera : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(dir);
             transform.rotation = targetRotation;
 
-            dir = currentLockOnTarget.transform.position - cameraPivotTransform.position;
+            dir = currentLockOnTarget.transform.position - pivotTransform.position;
             dir.Normalize();
 
             targetRotation = Quaternion.LookRotation(dir);
             Vector3 eulerAngle = targetRotation.eulerAngles;
             eulerAngle.x = Mathf.Min(eulerAngle.x, cameraData.LockOnRotateMax);
             eulerAngle.y = 0;
-            cameraPivotTransform.localEulerAngles = eulerAngle;
+            pivotTransform.localEulerAngles = eulerAngle;
         }
     }
 
@@ -164,7 +147,7 @@ public class PlayerCamera : MonoBehaviour
             {
                 EnemyManager target = findTarget[i].gameObject.GetComponent<EnemyManager>();
                 Vector3 targetDirection = target.transform.position - player.transform.position;
-                float viewAngle = Vector3.Angle(targetDirection, cameraTransform.forward);
+                float viewAngle = Vector3.Angle(targetDirection, playerCamTransform.forward);
 
                 if (viewAngle < cameraData.MaxLockOnDistance)
                 {
@@ -206,9 +189,8 @@ public class PlayerCamera : MonoBehaviour
     {
         if (currentLockOnTarget != null && !player.playerInput.rollFlag)
         {
-            currentTargetPos = currentLockOnTarget.lockOnTransform.position;
-            lockOnUI.position = Camera.main.WorldToScreenPoint(currentTargetPos);
-            player.playerMove.LookRotation(currentTargetPos);
+            lockOnUI.position = Camera.main.WorldToScreenPoint(currentLockOnTarget.lockOnTransform.position);
+            player.playerMove.LookRotation(currentLockOnTarget.lockOnTransform.position);
         }
     }
 
@@ -227,20 +209,20 @@ public class PlayerCamera : MonoBehaviour
 
     void HandleCameraCollision(float delta)
     {
-        targetPosition = defaultPosition;
-        Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
-        direction.Normalize();
+        curCamPosZ = preCamPosZ;
+        Vector3 camTransformPosition = Vector3.zero;
+        Vector3 direction = (playerCamTransform.position - pivotTransform.position).normalized;
 
-        if (Physics.SphereCast(cameraPivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(targetPosition), ignoreLayers))
+        if (Physics.SphereCast(pivotTransform.position, cameraData.CameraSphereRadius, direction, out RaycastHit hit, Mathf.Abs(curCamPosZ), targetLayers))
         {
-            float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
-            targetPosition = -(distance - cameraData.CameraCollisionOffset);
+            float distance = Vector3.Distance(pivotTransform.position, hit.point);
+            curCamPosZ = -(distance - cameraData.CameraCollisionOffset);
         }
 
-        if (Mathf.Abs(targetPosition) < cameraData.MinCollisionOffset)
-            targetPosition = -cameraData.MinCollisionOffset;
+        if (Mathf.Abs(curCamPosZ) < cameraData.MinCollisionOffset)
+            curCamPosZ = -cameraData.MinCollisionOffset;
 
-        cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / cameraData.PlayerFollowRate);
-        cameraTransform.localPosition = cameraTransformPosition;
+        camTransformPosition.z = Mathf.Lerp(playerCamTransform.localPosition.z, curCamPosZ, delta / cameraData.PlayerFollowRate);
+        playerCamTransform.localPosition = camTransformPosition;
     }
 }

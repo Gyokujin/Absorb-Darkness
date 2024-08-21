@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 1
-  interactableText: 
+  interactMesssage: 
   gameMessage: {fileID: 11400000, guid: 6e2bbbd6d8e5a1a458bc83f82b4257a3, type: 2}
 --- !u!1 &3046770466973403046
 GameObject:

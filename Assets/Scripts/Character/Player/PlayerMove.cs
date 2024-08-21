@@ -90,8 +90,8 @@ public class PlayerMove : MonoBehaviour
     void HandleRotation(float delta)
     {
         Vector3 targetdir;
-        targetdir = PlayerCamera.instance.cameraTransform.forward * player.playerInput.vertical;
-        targetdir += PlayerCamera.instance.cameraTransform.right * player.playerInput.horizontal;
+        targetdir = PlayerCamera.instance.playerCamTransform.forward * player.playerInput.vertical;
+        targetdir += PlayerCamera.instance.playerCamTransform.right * player.playerInput.horizontal;
         targetdir.Normalize();
         targetdir.y = 0;
 

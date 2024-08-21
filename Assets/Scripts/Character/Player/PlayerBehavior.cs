@@ -25,7 +25,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public void CheckInteractableObject()
     {
-        if (Physics.SphereCast(transform.position, player.interactData.InteractCheckRadius, transform.forward, out RaycastHit hit, player.interactData.InteractCheckDis, PlayerCamera.instance.targetLayer))
+        if (Physics.SphereCast(transform.position, player.interactData.InteractCheckRadius, transform.forward, out RaycastHit hit, player.interactData.InteractCheckDis, PlayerCamera.instance.targetLayers))
         {
             if (hit.collider.CompareTag(player.interactData.InteractObjTag))
                 interactableObj = hit.collider.GetComponent<Interactable>();

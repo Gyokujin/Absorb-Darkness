@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 3683769820229131542}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.725, z: -8.25}
+  m_LocalPosition: {x: 0, y: 1.725, z: -8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -334,12 +334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0ec76935b051840999df4453c1bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  cameraTransform: {fileID: 4138985857852927242}
-  cameraPivotTransform: {fileID: 3159409154732173816}
-  targetLayer:
+  playerCamTransform: {fileID: 4138985857852927242}
+  pivotTransform: {fileID: 3159409154732173816}
+  targetLayers:
     serializedVersion: 2
-    m_Bits: 102152
-  cameraFollowVelocity: {x: 0, y: 0, z: 0}
+    m_Bits: 33088
   isLockOn: 0
   lockOnUI: {fileID: 0}
