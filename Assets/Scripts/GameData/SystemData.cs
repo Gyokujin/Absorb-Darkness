@@ -243,13 +243,13 @@ namespace SystemData
 
     public struct InitItemData
     {
-        [Header("Init Estus")]
-        // Init EstusCount
-        private int? initEstusCount;
-        public int InitEstusCount
+        [Header("EtherFlask Count")]
+        // EtherFlask Count
+        private int? initEtherFlaskCount;
+        public int InitEtherFlaskCount
         {
-            readonly get => initEstusCount ?? 3;
-            set => initEstusCount = value;
+            readonly get => initEtherFlaskCount ?? 3;
+            set => initEtherFlaskCount = value;
         }
     }
 

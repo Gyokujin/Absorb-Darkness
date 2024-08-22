@@ -1697,7 +1697,7 @@ MonoBehaviour:
   onDie: 0
   lockOnTransform: {fileID: 2037056813837801136}
   isInteracting: 0
-  isGrounded: 0
+  isGrounded: 1
   isDodge: 0
   isSprinting: 0
   isAttack: 0

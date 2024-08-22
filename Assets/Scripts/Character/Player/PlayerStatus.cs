@@ -135,8 +135,8 @@ public class PlayerStatus : CharacterStatus
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
         UIManager.instance.hudUI.SetCurrentHealth(CurrentHealth);
 
-        GameObject estusEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EstusEffect);
-        estusEffect.transform.position = effectTransform.position;
+        GameObject etherFlaskEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.EtherEffect);
+        etherFlaskEffect.transform.position = effectTransform.position;
         player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Recovery]);
     }
 

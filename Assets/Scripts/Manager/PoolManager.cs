@@ -13,7 +13,7 @@ public class PoolManager : MonoBehaviour
 
     public enum Effect
     {
-        HitBlood, EstusEffect
+        HitBlood, EtherEffect
     }
 
     public enum EnemySpell
@@ -23,7 +23,7 @@ public class PoolManager : MonoBehaviour
 
     public enum Item
     {
-        EstusFlask
+        EtherFlask
     }
 
     [Header("Enemy")]

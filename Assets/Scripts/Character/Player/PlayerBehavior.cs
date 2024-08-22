@@ -67,11 +67,11 @@ public class PlayerBehavior : MonoBehaviour
 
         switch (item.usingItemType)
         {
-            case UsingItem.UsingItemType.EstusFlask:
+            case UsingItem.UsingItemType.EtherFlask:
                 if (player.playerInventory.curUsingItem.itemCount <= 0)
                     return;
 
-                curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EstusFlask);
+                curUsingItem = PoolManager.instance.GetItem((int)PoolManager.Item.EtherFlask);
                 player.playerInventory.curUsingItem.itemCount--;
                 break;
         }
@@ -79,6 +79,7 @@ public class PlayerBehavior : MonoBehaviour
         curUsingItem.transform.parent = player.playerInventory.leftHandSlot.parentOverride;
         curUsingItem.transform.position = player.playerInventory.leftHandSlot.parentOverride.transform.position;
         curUsingItem.transform.localRotation = Quaternion.identity;
+
         player.playerAnimator.animator.SetBool(player.characterAnimatorData.IsItemUseParameter, true);
         player.playerAnimator.PlayTargetAnimation(item.usingAnimation, true);
         UIManager.instance.quickSlotUI.UpdateUsingItemUI(item, player.playerInventory.curUsingItem.itemCount);

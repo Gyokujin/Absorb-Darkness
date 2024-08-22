@@ -54,7 +54,7 @@ public class PlayerInventory : MonoBehaviour
                 backSlot = weaponSlot;
         }
 
-        curUsingItem.itemCount = initItemData.InitEstusCount;
+        curUsingItem.itemCount = initItemData.InitEtherFlaskCount;
     }
 
     void Start()

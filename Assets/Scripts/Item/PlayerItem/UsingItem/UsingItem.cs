@@ -7,7 +7,7 @@ public class UsingItem : Item
 {
     public enum UsingItemType
     {
-        EstusFlask
+        EtherFlask
     }
 
     public UsingItemType usingItemType;

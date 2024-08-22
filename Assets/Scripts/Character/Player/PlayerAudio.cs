@@ -23,9 +23,7 @@ public class PlayerAudio : CharacterAudio
         if (!onFootstepPlaying)
         {
             onFootstepPlaying = true;
-            int loofIndex = AudioAllocation();
-
-            footstepAudio = characterAudios[loofIndex];
+            footstepAudio = characterAudios[AudioAllocation()];
             footstepAudio.clip = playerClips[(int)PlayerSound.Footstep];
             footstepAudio.loop = true;
             footstepAudio.Play();
@@ -46,9 +44,7 @@ public class PlayerAudio : CharacterAudio
         if (!onSprintPlaying)
         {
             onSprintPlaying = true;
-            int loofIndex = AudioAllocation();
-
-            sprintAudio = characterAudios[loofIndex];
+            sprintAudio = characterAudios[AudioAllocation()];
             sprintAudio.clip = playerClips[(int)PlayerSound.Sprint];
             sprintAudio.Play();
         }
