@@ -16,21 +16,19 @@ public class PursueTargetState : EnemyState
         }
         else if (targetDistance > enemy.enemyStatus.attackRangeMax)
         {
-            enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.RunParameterValue, enemy.characterAnimatorData.AnimationDampTime, Time.deltaTime);
             targetDirection.Normalize();
             targetDirection.y = 0;
             targetDirection *= enemy.enemyStatus.runSpeed;
+
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
             enemy.rigidbody.velocity = projectedVelocity;
+            enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.RunParameterValue, enemy.characterAnimatorData.AnimationDampTime, Time.deltaTime);
         }
 
         HandleRotateTarget();
         enemy.navMesh.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-        if (targetDistance <= enemy.enemyStatus.attackRangeMax)
-            return enemy.combatStanceState;
-        else
-            return this;
+        return targetDistance <= enemy.enemyStatus.attackRangeMax ? enemy.combatStanceState : this;
     }
 
     void HandleRotateTarget()

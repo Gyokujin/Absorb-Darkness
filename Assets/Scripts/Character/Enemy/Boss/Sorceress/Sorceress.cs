@@ -35,8 +35,8 @@ public class Sorceress : EnemyManager
 
     protected override void Init()
     {
-        summonWait = new WaitForSeconds(sorceressData.SummonDelay);
         spawnMeteors = new Meteor[meteorTransform.Length];
+        summonWait = new WaitForSeconds(sorceressData.SummonDelay);
         meteorFallWait = new WaitForSeconds(sorceressData.MeteorFallDelay);
     }
 
@@ -45,7 +45,7 @@ public class Sorceress : EnemyManager
         lightningImpact = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.LightningImpact).GetComponent<LightningImpact>();
         lightningImpact.transform.position = lightningImpactTransform.position;
         Quaternion spellRotation = Quaternion.LookRotation(currentTarget.transform.position - transform.position);
-        lightningImpact.transform.rotation = spellRotation;
+        lightningImpact.transform.SetPositionAndRotation(lightningImpactTransform.position, spellRotation);
     }
 
     public void ShootLightning()
@@ -83,9 +83,8 @@ public class Sorceress : EnemyManager
         for (int i = 0; i < spawnMeteors.Length; i++)
         {
             spawnMeteors[i] = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Meteor).GetComponent<Meteor>();
-            spawnMeteors[i].transform.position = meteorTransform[i].position;
             Quaternion rotation = Quaternion.LookRotation(currentTarget.transform.position);
-            spawnMeteors[i].gameObject.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+            spawnMeteors[i].transform.SetPositionAndRotation(meteorTransform[i].position, rotation);
         }
     }
 

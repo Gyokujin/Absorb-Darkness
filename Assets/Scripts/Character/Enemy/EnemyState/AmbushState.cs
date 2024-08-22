@@ -33,9 +33,6 @@ public class AmbushState : EnemyState
             }
         }
 
-        if (enemy.currentTarget != null)
-            return enemy.pursueTargetState;
-        else
-            return this;
+        return enemy.currentTarget != null ? enemy.pursueTargetState : this;
     }
 }
