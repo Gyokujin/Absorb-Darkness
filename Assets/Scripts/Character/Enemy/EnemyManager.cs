@@ -20,8 +20,7 @@ public class EnemyManager : CharacterManager
     public LayerData layerData;
 
     [Header("State")]
-    [HideInInspector]
-    public EnemyState curState;
+    private EnemyState curState;
     [HideInInspector]
     public AmbushState ambushState;
     [HideInInspector]
@@ -33,7 +32,13 @@ public class EnemyManager : CharacterManager
     [HideInInspector]
     public AttackState attackState;
 
-    [Header("Action")]
+    [Header("Physics")]
+    [SerializeField]
+    private float stopDistance = 2f;
+    public Collider blockerCollider;
+
+    [Header("Combat")]
+    [HideInInspector]
     public DamageCollider[] attackColliders;
     [HideInInspector]
     public bool isInteracting;
@@ -41,20 +46,16 @@ public class EnemyManager : CharacterManager
     public bool isPreformingAction;
     [HideInInspector]
     public LayerMask detectionLayer;
-
-    [Header("Status")]
-    [SerializeField]
-    private float stopDistance = 2f;
-    public float currentRecoveryTime = 0;
-
-    [Header("Component")]
-    public new Rigidbody rigidbody;
-    public new Collider collider;
-    public Collider blockerCollider;
-    public NavMeshAgent navMesh;
+    [HideInInspector]
     public CharacterStatus currentTarget;
 
-    [Header("Enemy Component")]
+    [Header("Component")]
+    [HideInInspector]
+    public new Rigidbody rigidbody;
+    [HideInInspector]
+    public new Collider collider;
+    [HideInInspector]
+    public NavMeshAgent navMesh;
     [HideInInspector]
     public EnemyStatus enemyStatus;
     [HideInInspector]
@@ -77,7 +78,6 @@ public class EnemyManager : CharacterManager
         enemyStatus = GetComponent<EnemyStatus>();
         enemyAnimator = GetComponentInChildren<EnemyAnimator>();
         enemyAudio = GetComponent<EnemyAudio>();
-        attackColliders = GetComponentsInChildren<DamageCollider>();
 
         ambushState = GetComponentInChildren<AmbushState>();
         idleState = GetComponentInChildren<IdleState>();
@@ -95,6 +95,8 @@ public class EnemyManager : CharacterManager
         navMesh.acceleration = enemyStatus.runSpeed;
         navMesh.angularSpeed = enemyStatus.rotationSpeed;
         navMesh.stoppingDistance = stopDistance;
+
+        attackColliders = GetComponentsInChildren<DamageCollider>();
         Physics.IgnoreCollision(collider, blockerCollider, true);
     }
 
@@ -117,10 +119,5 @@ public class EnemyManager : CharacterManager
             if (nextState != null)
                 curState = nextState;
         }
-    }
-
-    public void CloseColliders()
-    {
-
     }
 }

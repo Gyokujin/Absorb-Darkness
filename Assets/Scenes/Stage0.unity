@@ -573,8 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079f5b2472f02f4e8de904ff3e6c3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmClips:
-  - {fileID: 8300000, guid: 74b15811ee71ab042ace98148c0a30f4, type: 3}
+  bgmClips: []
   bgmVolume: 0.6
   systemClips:
   - {fileID: 8300000, guid: ebfe812345c1ed04da6fda804fe336ab, type: 3}

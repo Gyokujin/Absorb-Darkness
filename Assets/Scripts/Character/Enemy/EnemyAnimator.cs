@@ -22,10 +22,9 @@ public class EnemyAnimator : AnimatorManager
         if (enemy.onDamage || enemy.onDie)
             return;
 
-        enemy.rigidbody.drag = 0;
-        Vector3 deltaPoistion = animator.deltaPosition;
-        deltaPoistion.y = 0;
+        Vector3 deltaPoistion = new(animator.deltaPosition.x, 0, animator.deltaPosition.z);
         Vector3 velocity = deltaPoistion / Time.deltaTime;
+        enemy.rigidbody.drag = 0;
         enemy.rigidbody.velocity = velocity;
     }
 
@@ -38,7 +37,7 @@ public class EnemyAnimator : AnimatorManager
     {
         animator.SetBool(enemy.characterAnimatorData.AttackParameter, false);
         animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.IdleParameterValue, enemy.characterAnimatorData.AnimationDampTime, Time.deltaTime);
-        Invoke(nameof(AttackDelayProcess), enemy.currentRecoveryTime);
+        Invoke(nameof(AttackDelayProcess), enemy.enemyStatus.currentRecoveryTime);
     }
 
     void AttackDelayProcess()

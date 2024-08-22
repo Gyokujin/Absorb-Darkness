@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldType: 2
   bossName: "\uC8FC\uC220\uC0AC \uBAA8\uB974\uB3C4"
-  bossBgm: {fileID: 8300000, guid: 74b15811ee71ab042ace98148c0a30f4, type: 3}
+  bossBgm: {fileID: 8300000, guid: a75c2ca956708324db7b81e2446ee8a8, type: 3}
   dropItems:
   - {fileID: 11400000, guid: 64238a123b048cd49adf90b50ee7f392, type: 2}

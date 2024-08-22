@@ -27,7 +27,6 @@ public class PursueTargetState : EnemyState
 
         HandleRotateTarget();
         enemy.navMesh.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
         return targetDistance <= enemy.enemyStatus.attackRangeMax ? enemy.combatStanceState : this;
     }
 

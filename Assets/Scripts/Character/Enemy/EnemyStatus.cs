@@ -6,14 +6,12 @@ public class EnemyStatus : CharacterStatus
 {
     private EnemyManager enemy;
 
-    [SerializeField]
-    private bool onStageBoss = false;
-
     [Header("Status")]
     public float detectionRadius = 20;
     public float detectionAngleMax = 50;
     public float detectionAngleMin = -50;
     public float attackRangeMax = 1.5f;
+    public float currentRecoveryTime = 0;
 
     [Header("Damage")]
     [SerializeField]
@@ -48,8 +46,7 @@ public class EnemyStatus : CharacterStatus
 
     int SetMaxHealthLevel()
     {
-        maxHealth = healthLevel * healthLevelAmount;
-        return maxHealth;
+        return healthLevel * healthLevelAmount;
     }
 
     public virtual void TakeDamage(int damage, CharacterStatus player)
@@ -59,7 +56,7 @@ public class EnemyStatus : CharacterStatus
 
         CurrentHealth -= damage;
 
-        if (onStageBoss)
+        if (enemy.enemyType == EnemyManager.EnemyType.Boss)
             UIManager.instance.stageUI.BossHPUIModify(CurrentHealth, maxHealth);
 
         GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
@@ -125,7 +122,7 @@ public class EnemyStatus : CharacterStatus
             attackCollider.CloseDamageCollider();
         }
 
-        if (onStageBoss)
+        if (enemy.enemyType == EnemyManager.EnemyType.Boss)
         {
             GameManager.instance.EndBossBattle();
             CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();

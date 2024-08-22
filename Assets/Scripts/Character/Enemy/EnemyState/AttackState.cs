@@ -32,7 +32,7 @@ public class AttackState : EnemyState
 
         enemy.isPreformingAction = true;
         enemy.navMesh.enabled = false;
-        enemy.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
+        enemy.enemyStatus.currentRecoveryTime = Random.Range(currentAttack.recoveryTimeMin, currentAttack.recoveryTimeMax);
 
         enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.HorizontalParameter, enemy.characterAnimatorData.IdleParameterValue); // 공격은 즉시 애니메이션을 정지하게 한다.
         enemy.enemyAnimator.animator.SetFloat(enemy.characterAnimatorData.VerticalParameter, enemy.characterAnimatorData.IdleParameterValue);
