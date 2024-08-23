@@ -16,12 +16,10 @@ public class CharacterDissolve : MonoBehaviour
     private Texture2D dissolveTexture;
     [SerializeField]
     private float dissolveTime = 1;
+    private Material material;
 
     [Header("Coroutine")]
     private WaitForSeconds dissolveWait;
-
-    [Header("Component")]
-    private Material material;
 
     void Awake()
     {
@@ -39,7 +37,7 @@ public class CharacterDissolve : MonoBehaviour
         yield return dissolveWait;
         material.shader = dissolveShader;
         material.mainTexture = dissolveTexture;
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.BossDissolve]);
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDissolve]);
 
         while (shaderData.DissolveProgress < dissolveTime)
         {

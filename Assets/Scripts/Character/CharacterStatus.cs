@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStatus : MonoBehaviour
+abstract public class CharacterStatus : MonoBehaviour
 {
     [Header("Speed")]
     public float walkSpeed = 3;
@@ -35,4 +35,6 @@ public class CharacterStatus : MonoBehaviour
     [Header("Effect")]
     [SerializeField]
     protected Transform effectTransform;
+
+    abstract protected void InitHealth();
 }

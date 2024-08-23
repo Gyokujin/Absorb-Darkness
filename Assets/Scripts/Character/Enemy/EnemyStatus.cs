@@ -40,13 +40,13 @@ public class EnemyStatus : CharacterStatus
 
     void Start()
     {
-        maxHealth = SetMaxHealthLevel();
-        CurrentHealth = maxHealth;
+        InitHealth();
     }
 
-    int SetMaxHealthLevel()
+    protected override void InitHealth()
     {
-        return healthLevel * healthLevelAmount;
+        maxHealth = healthLevel * healthLevelAmount;
+        CurrentHealth = maxHealth;
     }
 
     public virtual void TakeDamage(int damage, CharacterStatus player)
@@ -111,20 +111,19 @@ public class EnemyStatus : CharacterStatus
         enemy.onDie = true;
         enemy.collider.enabled = false;
         enemy.blockerCollider.enabled = false;
-        CurrentHealth = 0;
         enemy.rigidbody.isKinematic = true;
 
         enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
         enemy.enemyAudio.PlaySFX(enemy.enemyAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
 
         foreach (DamageCollider attackCollider in enemy.attackColliders)
-        {
             attackCollider.CloseDamageCollider();
-        }
 
         if (enemy.enemyType == EnemyManager.EnemyType.Boss)
-        {
             GameManager.instance.EndBossBattle();
+
+        if (GetComponentInChildren<CharacterDissolve>() != null)
+        {
             CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
             StartCoroutine(characterDissolve.DissolveFade());
         }

@@ -43,7 +43,7 @@ public class PlayerStatus : CharacterStatus
         InitStamina();
     }
 
-    void InitHealth()
+    override protected void InitHealth()
     {
         maxHealth = player.playerStatusData.HealthLevel * player.playerStatusData.HealthLevelAmount;
         CurrentHealth = maxHealth;

@@ -70,14 +70,15 @@ public class EnemyManager : CharacterManager
 
     protected virtual void Init()
     {
+        detectionLayer = LayerMask.GetMask(layerData.PlayerLayer);
+
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         navMesh = GetComponentInChildren<NavMeshAgent>();
-        detectionLayer = LayerMask.GetMask(layerData.PlayerLayer);
 
         enemyStatus = GetComponent<EnemyStatus>();
-        enemyAnimator = GetComponentInChildren<EnemyAnimator>();
         enemyAudio = GetComponent<EnemyAudio>();
+        enemyAnimator = GetComponentInChildren<EnemyAnimator>();
 
         ambushState = GetComponentInChildren<AmbushState>();
         idleState = GetComponentInChildren<IdleState>();
