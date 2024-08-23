@@ -24,19 +24,9 @@ public class WeaponHolderSlot : MonoBehaviour
             return;
         }
 
-        GameObject model = Instantiate(weaponItem.modelPrefab) as GameObject;
-        
-        if (model != null)
-        {
-            if (parentOverride != null)
-                model.transform.parent = parentOverride;
-            else
-                model.transform.parent = transform;
-
-            model.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            model.transform.localScale = Vector3.one;
-        }
-
+        GameObject model = Instantiate(weaponItem.modelPrefab, parentOverride != null ? parentOverride : transform);
+        model.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        model.transform.localScale = Vector3.one;
         currentWeaponModel = model;
     }
 

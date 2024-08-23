@@ -43,8 +43,7 @@ public class UnlockDoor : Interactable
             animator.SetTrigger("doUnlock");
             gameObject.tag = "Untagged";
 
-            player.transform.position = interactTrasnform.position;
-            player.transform.rotation = interactTrasnform.rotation;
+            player.transform.SetPositionAndRotation(interactTrasnform.position, interactTrasnform.rotation);
             player.playerAnimator.PlayTargetAnimation("DoorOpen", true);
             AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.DoorOpen]);
             UIManager.instance.messageUI.UpdateGameSystem(UIManager.instance.messageUIData.UnlockDoorInteractSuccessText);

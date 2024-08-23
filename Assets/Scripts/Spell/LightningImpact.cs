@@ -89,7 +89,7 @@ public class LightningImpact : MonoBehaviour
     {
         if (other.gameObject.layer == playerLayer)
         {
-            StartCoroutine("ElectricShock");
+            StartCoroutine(ElectricShock());
         }
         else if (other.gameObject.layer == groundLayer)
         {

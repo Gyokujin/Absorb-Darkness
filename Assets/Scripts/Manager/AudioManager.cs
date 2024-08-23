@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public enum SystemSound
     {
-        DoorOpen, FogEntrance, BossDissolve
+        DoorOpen, FogEntrance, EnemyDissolve
     }
 
     public enum UISound
