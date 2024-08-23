@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemData;
+
 
 public class LightningImpact : MonoBehaviour
 {
+    [Header("Data")]
+    private LayerData layerData;
+
     [Header("Shooting")]
     [SerializeField]
     private float shootTime = 20;
@@ -34,8 +39,8 @@ public class LightningImpact : MonoBehaviour
 
     void Start()
     {
-        playerLayer = LayerMask.NameToLayer("Player");
-        groundLayer = LayerMask.NameToLayer("Ground");
+        playerLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
+        groundLayer = LayerMask.NameToLayer(layerData.GroundLayer);
     }
 
     void OnEnable()
@@ -49,13 +54,9 @@ public class LightningImpact : MonoBehaviour
         if (onShooting)
         {
             if (curShootTime > 0)
-            {
                 curShootTime -= Time.deltaTime;
-            }
             else
-            {
                 Return();
-            }
         }
     }
 
@@ -88,12 +89,8 @@ public class LightningImpact : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == playerLayer)
-        {
             StartCoroutine(ElectricShock());
-        }
         else if (other.gameObject.layer == groundLayer)
-        {
             Return();
-        }
     }
 }

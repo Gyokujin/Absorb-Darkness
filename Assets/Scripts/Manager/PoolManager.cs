@@ -49,13 +49,9 @@ public class PoolManager : MonoBehaviour
     void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(this);
-        }
 
         Init();
     }
@@ -68,24 +64,16 @@ public class PoolManager : MonoBehaviour
         itemPool = new List<GameObject>[items.Length];
 
         for (int i = 0; i < enemyPool.Length; i++)
-        {
             enemyPool[i] = new List<GameObject>();
-        }
 
         for (int i = 0; i < effectPool.Length; i++)
-        {
             effectPool[i] = new List<GameObject>();
-        }
 
         for (int i = 0; i < enemySpellPool.Length; i++)
-        {
             enemySpellPool[i] = new List<GameObject>();
-        }
 
         for (int i = 0; i < itemPool.Length; i++)
-        {
             itemPool[i] = new List<GameObject>();
-        }
     }
 
     public GameObject GetEnemy(int index)
@@ -184,8 +172,7 @@ public class PoolManager : MonoBehaviour
 
     public void Return(GameObject obj)
     {
-        obj.transform.position = Vector3.zero;
-        obj.transform.rotation = Quaternion.identity;
+        obj.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         obj.transform.parent = transform;
         obj.SetActive(false);
     }

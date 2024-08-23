@@ -6,11 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance = null;
 
-    public enum GameBGM
-    {
-        Stage0Boss
-    }
-
     public enum SystemSound
     {
         DoorOpen, FogEntrance, EnemyDissolve
@@ -22,7 +17,6 @@ public class AudioManager : MonoBehaviour
     }
 
     [Header("BGM")]
-    public AudioClip[] bgmClips;
     [SerializeField]
     [Range(0, 1)]
     private float bgmVolume;
