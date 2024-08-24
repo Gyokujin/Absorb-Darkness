@@ -253,9 +253,18 @@ namespace SystemData
         }
     }
 
-    public struct LayerData
+    public struct GameObjectData
     {
-        [Header("Character Layer")]
+        [Header("GameObject Tag")]
+        // Untagged Tag
+        private string untaggedTag;
+        public string UntaggedTag
+        {
+            readonly get => untaggedTag ?? "Untagged";
+            set => untaggedTag = value;
+        }
+
+        [Header("GameObject Layer")]
         // Player Layer
         private string playerLayer;
         public string PlayerLayer
@@ -294,6 +303,15 @@ namespace SystemData
         {
             readonly get => environmentLayer ?? "Environment";
             set => environmentLayer = value;
+        }
+
+        [Header("Interact Object Animation Parameter")]
+        // Do Unlock Animation
+        private string doUnlockParameter;
+        public string DoUnlockParameter
+        {
+            readonly get => doUnlockParameter ?? "doUnlock";
+            set => doUnlockParameter = value;
         }
     }
 }

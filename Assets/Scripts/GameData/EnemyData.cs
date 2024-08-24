@@ -78,5 +78,13 @@ namespace EnemyData
             readonly get => meteorRetentionTime ?? 10;
             set => meteorRetentionTime = value;
         }
+
+        // Explosion RetentionTime
+        private float? explosionRetentionTime;
+        public float ExplosionRetentionTime
+        {
+            readonly get => explosionRetentionTime ?? 0.05f;
+            set => explosionRetentionTime = value;
+        }
     }
 }

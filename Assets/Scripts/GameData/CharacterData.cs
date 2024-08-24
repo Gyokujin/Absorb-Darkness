@@ -357,6 +357,34 @@ namespace PlayerData
         }
     }
 
+    public struct PlayerAnimatorData
+    {
+        // Pickup Animation
+        private string pickupAnimation;
+        public string PickupAnimation
+        {
+            readonly get => pickupAnimation ?? "Pickup";
+            set => pickupAnimation = value;
+        }
+
+        [Header("Animation Name")]
+        // Entrance Animation
+        private string entranceAnimation;
+        public string EntranceAnimation
+        {
+            readonly get => entranceAnimation ?? "Entrance";
+            set => entranceAnimation = value;
+        }
+
+        // DoorOpen Animation
+        private string doorOpenAnimation;
+        public string DoorOpenAnimation
+        {
+            readonly get => doorOpenAnimation ?? "DoorOpen";
+            set => doorOpenAnimation = value;
+        }
+    }
+
     public struct PlayerPhysicsData
     {
         [Header("Move")]
