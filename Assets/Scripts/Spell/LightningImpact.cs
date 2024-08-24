@@ -1,28 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyData;
 using SystemData;
-
 
 public class LightningImpact : MonoBehaviour
 {
     [Header("Data")]
+    private SorceressData sorceressData;
     private LayerData layerData;
 
     [Header("Shooting")]
-    [SerializeField]
-    private float shootTime = 20;
-    private float curShootTime;
-    [SerializeField]
     private bool onShooting;
-
-    [Header("Attack")]
-    private int playerLayer = 3;
-    private int groundLayer = 6;
-
-    [Header("Component")]
+    private float curRetentionTime;
     [SerializeField]
     private GameObject lightningEffect;
+    private LayerMask targetLayer;
+    private LayerMask groundLayer;
+
+    [Header("Component")]
     private new Collider collider;
     private new Rigidbody rigidbody;
 
@@ -35,11 +31,7 @@ public class LightningImpact : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
-    }
-
-    void Start()
-    {
-        playerLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
+        targetLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
         groundLayer = LayerMask.NameToLayer(layerData.GroundLayer);
     }
 
@@ -53,8 +45,8 @@ public class LightningImpact : MonoBehaviour
     {
         if (onShooting)
         {
-            if (curShootTime > 0)
-                curShootTime -= Time.deltaTime;
+            if (curRetentionTime > 0)
+                curRetentionTime -= Time.deltaTime;
             else
                 Return();
         }
@@ -64,9 +56,9 @@ public class LightningImpact : MonoBehaviour
     {
         onShooting = true;
         collider.enabled = true;
-        curShootTime = shootTime;
-        lightningEffect.SetActive(true);
+        curRetentionTime = sorceressData.LightningImpactRetentionTime;
         rigidbody.velocity = shootDir * speed;
+        lightningEffect.SetActive(true);
     }
 
     IEnumerator ElectricShock()
@@ -88,7 +80,7 @@ public class LightningImpact : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == playerLayer)
+        if (other.gameObject.layer == targetLayer)
             StartCoroutine(ElectricShock());
         else if (other.gameObject.layer == groundLayer)
             Return();
