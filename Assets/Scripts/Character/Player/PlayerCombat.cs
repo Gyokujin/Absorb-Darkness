@@ -16,9 +16,9 @@ public class PlayerCombat : MonoBehaviour
     [Header("Weapon")]
     public WeaponItem usingWeapon;
     [HideInInspector]
-    public DamageCollider leftHandDamageCollider;
+    public WeaponDamageCollider leftHandDamageCollider;
     [HideInInspector]
-    public DamageCollider rightHandDamageCollider;
+    public WeaponDamageCollider rightHandDamageCollider;
 
     void Awake()
     {
@@ -93,8 +93,8 @@ public class PlayerCombat : MonoBehaviour
     public void LoadWeaponDamageCollider(bool isLeft)
     {
         if (isLeft)
-            leftHandDamageCollider = player.playerInventory.leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            leftHandDamageCollider = player.playerInventory.leftHandSlot.currentWeaponModel.GetComponentInChildren<WeaponDamageCollider>();
         else
-            rightHandDamageCollider = player.playerInventory.rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            rightHandDamageCollider = player.playerInventory.rightHandSlot.currentWeaponModel.GetComponentInChildren<WeaponDamageCollider>();
     }
 }

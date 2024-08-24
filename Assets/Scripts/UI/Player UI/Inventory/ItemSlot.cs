@@ -13,21 +13,21 @@ public class ItemSlot : MonoBehaviour
     public SlotType slotType;
 
     [SerializeField]
-    private Image slotIcon;
+    private Image slotItemIcon;
     [SerializeField]
-    private Text slotCount;
+    private Text slotItemCount;
     [SerializeField]
-    private Text slotName;
+    private Text slotItemName;
     [SerializeField]
-    private Text slotInfo;
+    private Text slotItemInfo;
     public int slotIndex;
 
     public void ItemSlotUpdate(bool isWeapon, Sprite icon, int count, string name, string info, int index)
     {
-        slotIcon.sprite = icon;
-        slotCount.text = isWeapon ? null : count.ToString();
-        slotName.text = name;
-        slotInfo.text = info;
+        slotItemIcon.sprite = icon;
+        slotItemCount.text = isWeapon ? null : count.ToString();
+        slotItemName.text = name;
+        slotItemInfo.text = info;
         slotIndex = index;
     }
 }

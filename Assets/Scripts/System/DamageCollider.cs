@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using SystemData;
 
-[RequireComponent(typeof(Collider))]
 public class DamageCollider : MonoBehaviour
 {
     public enum AttackType
@@ -12,35 +11,24 @@ public class DamageCollider : MonoBehaviour
     }
 
     [SerializeField]
-    private AttackType attackType;
+    protected AttackType attackType;
 
     [Header("Data")]
     private GameObjectData gameObjectData;
 
     [Header("Attack")]
     [SerializeField]
-    private int damage = 10;
-    private Collider damageCollider;
+    protected int damage = 10;
     [SerializeField]
-    private TrailRenderer trailRenderer;
-    private LayerMask targetLayer;
+    private bool hasCrash;
+    protected LayerMask targetLayer;
 
     void Awake()
     {
         Init();
     }
 
-    void Init()
-    {
-        damageCollider = GetComponent<Collider>();
-        damageCollider.gameObject.SetActive(true);
-        damageCollider.isTrigger = true;
-
-        if (attackType == AttackType.EnemyUnarmed || attackType == AttackType.PlayerWeapon || attackType == AttackType.EnemyWeapon)
-            damageCollider.enabled = false;
-    }
-
-    void Start()
+    protected virtual void Init()
     {
         switch (attackType)
         {
@@ -57,22 +45,6 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
-    public void OpenDamageCollider()
-    {
-        damageCollider.enabled = true;
-
-        if (trailRenderer != null)
-            trailRenderer.enabled = true;
-    }
-
-    public void CloseDamageCollider()
-    {
-        damageCollider.enabled = false;
-
-        if (trailRenderer != null)
-            trailRenderer.enabled = false;
-    }
-
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == targetLayer)
@@ -84,13 +56,12 @@ public class DamageCollider : MonoBehaviour
                     collision.GetComponent<EnemyStatus>().TakeDamage(damage, GetComponentInParent<CharacterStatus>());
                     PlayerAudio playerAudio = gameObject.GetComponentInParent<PlayerAudio>();
                     playerAudio.PlaySFX(playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack2]);
-
                     break;
 
                 case AttackType.EnemyUnarmed:
                 case AttackType.EnemyWeapon:
                 case AttackType.EnemySpell:
-                    collision.GetComponent<PlayerStatus>().TakeDamage(damage, true);
+                    collision.GetComponent<PlayerStatus>().TakeDamage(damage, hasCrash);
                     break;
             }
         }

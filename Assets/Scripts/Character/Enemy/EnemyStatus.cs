@@ -116,7 +116,7 @@ public class EnemyStatus : CharacterStatus
         enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
         enemy.enemyAudio.PlaySFX(enemy.enemyAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
 
-        foreach (DamageCollider attackCollider in enemy.attackColliders)
+        foreach (WeaponDamageCollider attackCollider in enemy.attackColliders)
             attackCollider.CloseDamageCollider();
 
         if (enemy.enemyType == EnemyManager.EnemyType.Boss)

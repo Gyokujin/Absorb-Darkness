@@ -39,7 +39,7 @@ public class EnemyManager : CharacterManager
 
     [Header("Combat")]
     [HideInInspector]
-    public DamageCollider[] attackColliders;
+    public WeaponDamageCollider[] attackColliders;
     [HideInInspector]
     public bool isInteracting;
     [HideInInspector]
@@ -97,7 +97,7 @@ public class EnemyManager : CharacterManager
         navMesh.angularSpeed = enemyStatus.rotationSpeed;
         navMesh.stoppingDistance = stopDistance;
 
-        attackColliders = GetComponentsInChildren<DamageCollider>();
+        attackColliders = GetComponentsInChildren<WeaponDamageCollider>();
         Physics.IgnoreCollision(collider, blockerCollider, true);
     }
 
