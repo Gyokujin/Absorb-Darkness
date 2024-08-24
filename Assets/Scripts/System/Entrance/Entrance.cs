@@ -6,7 +6,7 @@ using SystemData;
 public class Entrance : MonoBehaviour
 {
     [Header("Data")]
-    private LayerData layerData;
+    private GameObjectData gameObjectData;
 
     [SerializeField]
     protected FieldInfo fieldInfo;
@@ -19,7 +19,7 @@ public class Entrance : MonoBehaviour
 
     void Init()
     {
-        playerLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
+        playerLayer = LayerMask.NameToLayer(gameObjectData.PlayerLayer);
     }
 
     void OnTriggerEnter(Collider other)

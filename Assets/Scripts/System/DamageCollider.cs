@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemData;
 
 [RequireComponent(typeof(Collider))]
 public class DamageCollider : MonoBehaviour
@@ -10,17 +11,19 @@ public class DamageCollider : MonoBehaviour
         PlayerWeapon, PlayerSpell, EnemyUnarmed, EnemyWeapon, EnemySpell
     }
 
-    [Header("Attack")]
     [SerializeField]
     private AttackType attackType;
-    private int targetLayer;
-    [SerializeField]
-    private TrailRenderer trailRenderer;
 
-    [Header("Weapon Info")]
-    private Collider damageCollider;
+    [Header("Data")]
+    private GameObjectData gameObjectData;
+
+    [Header("Attack")]
     [SerializeField]
     private int damage = 10;
+    private Collider damageCollider;
+    [SerializeField]
+    private TrailRenderer trailRenderer;
+    private LayerMask targetLayer;
 
     void Awake()
     {
@@ -34,9 +37,7 @@ public class DamageCollider : MonoBehaviour
         damageCollider.isTrigger = true;
 
         if (attackType == AttackType.EnemyUnarmed || attackType == AttackType.PlayerWeapon || attackType == AttackType.EnemyWeapon)
-        {
             damageCollider.enabled = false;
-        }
     }
 
     void Start()
@@ -45,13 +46,13 @@ public class DamageCollider : MonoBehaviour
         {
             case AttackType.PlayerWeapon:
             case AttackType.PlayerSpell:
-                targetLayer = LayerMask.NameToLayer("Enemy");
+                targetLayer = LayerMask.NameToLayer(gameObjectData.EnemyLayer);
                 break;
 
             case AttackType.EnemyUnarmed:
             case AttackType.EnemyWeapon:
             case AttackType.EnemySpell:
-                targetLayer = LayerMask.NameToLayer("Player");
+                targetLayer = LayerMask.NameToLayer(gameObjectData.PlayerLayer);
                 break;
         }
     }
@@ -61,9 +62,7 @@ public class DamageCollider : MonoBehaviour
         damageCollider.enabled = true;
 
         if (trailRenderer != null)
-        {
             trailRenderer.enabled = true;
-        }
     }
 
     public void CloseDamageCollider()
@@ -71,9 +70,7 @@ public class DamageCollider : MonoBehaviour
         damageCollider.enabled = false;
 
         if (trailRenderer != null)
-        {
             trailRenderer.enabled = false;
-        }
     }
 
     void OnTriggerEnter(Collider collision)
@@ -84,27 +81,16 @@ public class DamageCollider : MonoBehaviour
             {
                 case AttackType.PlayerWeapon:
                 case AttackType.PlayerSpell:
-                    EnemyStatus enemyStatus = collision.GetComponent<EnemyStatus>();
-
-                    if (enemyStatus != null)
-                    {
-                        PlayerAudio playerAudio = gameObject.GetComponentInParent<PlayerAudio>();
-                        playerAudio.PlaySFX(playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack2]);
-                        enemyStatus.TakeDamage(damage, GetComponentInParent<CharacterStatus>());
-                    }
+                    collision.GetComponent<EnemyStatus>().TakeDamage(damage, GetComponentInParent<CharacterStatus>());
+                    PlayerAudio playerAudio = gameObject.GetComponentInParent<PlayerAudio>();
+                    playerAudio.PlaySFX(playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Attack2]);
 
                     break;
 
                 case AttackType.EnemyUnarmed:
                 case AttackType.EnemyWeapon:
                 case AttackType.EnemySpell:
-                    PlayerStatus playerStatus = collision.GetComponent<PlayerStatus>();
-
-                    if (playerStatus != null)
-                    {
-                        playerStatus.TakeDamage(damage, true);
-                    }
-
+                    collision.GetComponent<PlayerStatus>().TakeDamage(damage, true);
                     break;
             }
         }

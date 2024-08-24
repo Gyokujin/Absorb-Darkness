@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using UIData;
 using UnityEngine;
+using SystemData;
+using PlayerData;
 
 public class UnlockDoor : Interactable
 {
-    private bool unlock = false;
-    private Animator animator;
+    [Header("Data")]
+    private PlayerAnimatorData playerAnimatorData;
+    private GameObjectData gameObjectData;
 
+    [Header("Unlock")]
     [SerializeField]
     private int lockNum;
+    private bool unlock;
     [SerializeField]
     private Transform interactTrasnform;
+
+    [Header("Component")]
+    private Animator animator;
 
     void Start() // 부모 클래스의 Awake를 위해 분리한다.
     {
@@ -40,11 +47,11 @@ public class UnlockDoor : Interactable
         if (KeyCheck(player))
         {
             unlock = true;
-            animator.SetTrigger("doUnlock");
-            gameObject.tag = "Untagged";
+            animator.SetTrigger(gameObjectData.DoUnlockParameter);
+            gameObject.tag = gameObjectData.UntaggedTag;
 
             player.transform.SetPositionAndRotation(interactTrasnform.position, interactTrasnform.rotation);
-            player.playerAnimator.PlayTargetAnimation("DoorOpen", true);
+            player.playerAnimator.PlayTargetAnimation(playerAnimatorData.DoorOpenAnimation, true);
             AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.DoorOpen]);
             UIManager.instance.messageUI.UpdateGameSystem(UIManager.instance.messageUIData.UnlockDoorInteractSuccessText);
         }

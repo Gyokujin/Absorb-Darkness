@@ -1,28 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SystemData;
 
 public class StayDamageCollider : MonoBehaviour
 {
+    [Header("Data")]
+    private GameObjectData gameObjectData;
+
+    [Header("Attack")]
     [SerializeField]
     private int damage = 1;
-    private int targetLayer;
+    private LayerMask targetLayer;
 
-    void Start()
+    void Awake()
     {
-        targetLayer = LayerMask.NameToLayer("Player");
+        Init();
+    }
+
+    void Init()
+    {
+        targetLayer = LayerMask.NameToLayer(gameObjectData.PlayerLayer);
     }
 
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.layer == targetLayer)
-        {
-            PlayerStatus playerStatus = collision.GetComponent<PlayerStatus>();
-
-            if (playerStatus != null)
-            {
-                playerStatus.TakeDamage(damage, false);
-            }
-        }
+        if (collision.gameObject.layer == targetLayer && collision.GetComponent<PlayerStatus>() != null)
+            collision.gameObject.GetComponent<PlayerStatus>().TakeDamage(damage, false);
     }
 }
