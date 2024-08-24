@@ -8,7 +8,7 @@ public class LightningImpact : MonoBehaviour
 {
     [Header("Data")]
     private SorceressData sorceressData;
-    private LayerData layerData;
+    private GameObjectData gameObjectData;
 
     [Header("Shooting")]
     private bool onShooting;
@@ -16,7 +16,7 @@ public class LightningImpact : MonoBehaviour
     [SerializeField]
     private GameObject lightningEffect;
     private LayerMask targetLayer;
-    private LayerMask groundLayer;
+    private LayerMask environmentLayer;
 
     [Header("Component")]
     private new Collider collider;
@@ -31,8 +31,8 @@ public class LightningImpact : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
-        targetLayer = LayerMask.NameToLayer(layerData.PlayerLayer);
-        groundLayer = LayerMask.NameToLayer(layerData.GroundLayer);
+        targetLayer = LayerMask.NameToLayer(gameObjectData.PlayerLayer);
+        environmentLayer = LayerMask.NameToLayer(gameObjectData.EnvironmentLayer);
     }
 
     void OnEnable()
@@ -82,7 +82,7 @@ public class LightningImpact : MonoBehaviour
     {
         if (other.gameObject.layer == targetLayer)
             StartCoroutine(ElectricShock());
-        else if (other.gameObject.layer == groundLayer)
+        else if (other.gameObject.layer == environmentLayer)
             Return();
     }
 }

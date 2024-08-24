@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public enum UISound
     {
-        GameUI, Click, Interact1, Interact2, PickUp, Victory, FieldUI
+        GameUI, Click, Interact1, Interact2, Pickup, Victory, FieldUI
     }
 
     [Header("BGM")]

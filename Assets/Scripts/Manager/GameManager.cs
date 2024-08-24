@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         foreach (Item item in bossDropItem)
         {
             playerBehavior.ItemLoot(item);
-            AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.PickUp]);
+            AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Pickup]);
             yield return itemLootWait;
         }
     }

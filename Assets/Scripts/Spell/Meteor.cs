@@ -8,7 +8,7 @@ public class Meteor : MonoBehaviour
 {
     [Header("Data")]
     private SorceressData sorceressData;
-    private LayerData layerData;
+    private GameObjectData gameObjectData;
 
     [Header("Falling")]
     private bool onFalling;
@@ -30,7 +30,7 @@ public class Meteor : MonoBehaviour
     void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
-        groundLayer = LayerMask.NameToLayer(layerData.GroundLayer);
+        groundLayer = LayerMask.NameToLayer(gameObjectData.GroundLayer);
     }
 
     void OnEnable()

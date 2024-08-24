@@ -4854,7 +4854,7 @@ GameObject:
   - component: {fileID: 688532881555738606}
   - component: {fileID: 7328791478791236317}
   - component: {fileID: 5655407555434912811}
-  - component: {fileID: 932904998114119526}
+  - component: {fileID: -5924004624622733285}
   m_Layer: 15
   m_Name: Drop Item
   m_TagString: Interactable
@@ -9709,7 +9709,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &932904998114119526
+--- !u!114 &-5924004624622733285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9722,7 +9722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 0
-  interactableText: 
+  interactMesssage: 
   dropItem: {fileID: 0}
 --- !u!1 &8563626619874918318
 GameObject:
