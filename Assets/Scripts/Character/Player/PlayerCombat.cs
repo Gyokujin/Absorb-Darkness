@@ -28,8 +28,8 @@ public class PlayerCombat : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        defaultLayer = LayerMask.NameToLayer(player.layerData.PlayerLayer);
-        invincibleLayer = LayerMask.NameToLayer(player.layerData.InvincibleLayer);
+        defaultLayer = LayerMask.NameToLayer(player.gameObjectData.PlayerLayer);
+        invincibleLayer = LayerMask.NameToLayer(player.gameObjectData.InvincibleLayer);
     }
 
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)

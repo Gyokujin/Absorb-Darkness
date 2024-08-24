@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
     void Init()
     {
         player = GetComponent<PlayerManager>();
-        ignoreGroundCheck = LayerMask.GetMask(player.layerData.GroundLayer);
+        ignoreGroundCheck = LayerMask.GetMask(player.gameObjectData.GroundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
     }
 

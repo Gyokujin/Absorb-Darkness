@@ -10,7 +10,7 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("Data")]
     private CameraData cameraData;
-    private LayerData layerData;
+    private GameObjectData gameObjectData;
 
     [Header("Camera")]
     public Transform playerCamTransform; // Main Camera
@@ -48,8 +48,8 @@ public class PlayerCamera : MonoBehaviour
     {
         player = FindObjectOfType<PlayerManager>();
         cameraData = new CameraData();
-        lockOnLayer = LayerMask.GetMask(layerData.EnemyLayer);
-        environmentLayer = LayerMask.GetMask(layerData.EnvironmentLayer);
+        lockOnLayer = LayerMask.GetMask(gameObjectData.EnemyLayer);
+        environmentLayer = LayerMask.GetMask(gameObjectData.EnvironmentLayer);
 
         holderTransform = transform;
         preCamPosZ = playerCamTransform.localPosition.z;

@@ -17,7 +17,7 @@ public class EnemyManager : CharacterManager
     [Header("Data")]
     public CharacterAnimatorData characterAnimatorData;
     public PhysicsData physicsData;
-    public LayerData layerData;
+    public GameObjectData gameObjectData;
 
     [Header("State")]
     private EnemyState curState;
@@ -70,7 +70,7 @@ public class EnemyManager : CharacterManager
 
     protected virtual void Init()
     {
-        detectionLayer = LayerMask.GetMask(layerData.PlayerLayer);
+        detectionLayer = LayerMask.GetMask(gameObjectData.PlayerLayer);
 
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();

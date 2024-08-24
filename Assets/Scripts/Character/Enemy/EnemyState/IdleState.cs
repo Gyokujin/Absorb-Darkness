@@ -22,7 +22,7 @@ public class IdleState : EnemyState
 
                 if (Physics.Raycast(enemy.lockOnTransform.position, targetDirection, out RaycastHit hit, enemy.enemyStatus.detectionRadius))
                 {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer(enemy.layerData.PlayerLayer))
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer(enemy.gameObjectData.PlayerLayer))
                         showAble = true;
                 }
 

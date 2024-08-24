@@ -19,7 +19,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector]
     public PhysicsData physicsData;
     [HideInInspector]
-    public LayerData layerData;
+    public GameObjectData gameObjectData;
 
     [Header("Player Action")]
     public bool isInteracting;
