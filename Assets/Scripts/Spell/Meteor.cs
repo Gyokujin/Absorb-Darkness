@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyData;
+using SystemData;
 
 public class Meteor : MonoBehaviour
 {
+    [Header("Data")]
+    private SorceressData sorceressData;
+    private LayerData layerData;
+
     [Header("Falling")]
-    [SerializeField]
-    private float fallTime = 20; // 메테오 풀링 버그방지용
-    private float curFallTime = 10;
+    private bool onFalling;
+    private float curFallTime;
     [SerializeField]
     private GameObject fireEffect;
     [SerializeField]
     private GameObject smokeEffect;
-
-    [Header("Attack")]
-    private int groundLayer = 6;
+    private LayerMask groundLayer;
 
     [Header("Component")]
     private new Rigidbody rigidbody;
@@ -27,28 +30,29 @@ public class Meteor : MonoBehaviour
     void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
+        groundLayer = LayerMask.NameToLayer(layerData.GroundLayer);
     }
 
-    void Start()
+    void OnEnable()
     {
-        groundLayer = LayerMask.NameToLayer("Ground");
+        onFalling = false;
     }
 
     void Update()
     {
-        if (curFallTime > 0)
+        if (onFalling)
         {
-            curFallTime -= Time.deltaTime;
-        }
-        else
-        {
-            Return();
+            if (curFallTime > 0)
+                curFallTime -= Time.deltaTime;
+            else
+                Return();
         }
     }
 
     public void Falling(Vector3 fallDir, float speed)
     {
-        curFallTime = fallTime;
+        onFalling = true;
+        curFallTime = sorceressData.MeteorRetentionTime;
         rigidbody.velocity = fallDir * speed;
         fireEffect.SetActive(true);
         smokeEffect.SetActive(true);
@@ -74,8 +78,6 @@ public class Meteor : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == groundLayer)
-        {
-            StartCoroutine("Explosion");
-        }
+            StartCoroutine(Explosion());
     }
 }

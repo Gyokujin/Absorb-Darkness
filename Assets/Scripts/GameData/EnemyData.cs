@@ -13,14 +13,6 @@ namespace EnemyData
             set => lightningImpactOffsetY = value;
         }
 
-        // LightningImpact Speed
-        private float? lightningImpactSpeed;
-        public float LightningImpactSpeed
-        {
-            readonly get => lightningImpactSpeed ?? 36;
-            set => lightningImpactSpeed = value;
-        }
-
         // LightningImpact RotateLimit
         private float? lightningImpactRotateLimit;
         public float LightningImpactRotateLimit
@@ -36,6 +28,22 @@ namespace EnemyData
         {
             readonly get => summonOffsetY ?? -2;
             set => summonDelay = value;
+        }
+
+        // LightningImpact Speed
+        private float? lightningImpactSpeed;
+        public float LightningImpactSpeed
+        {
+            readonly get => lightningImpactSpeed ?? 36;
+            set => lightningImpactSpeed = value;
+        }
+
+        // LightningImpact RetentionTime
+        private float? lightningImpactRetentionTime;
+        public float LightningImpactRetentionTime
+        {
+            readonly get => lightningImpactRetentionTime ?? 3;
+            set => lightningImpactRetentionTime = value;
         }
 
         // summonDelay
@@ -61,6 +69,14 @@ namespace EnemyData
         {
             readonly get => meteorFallDelay ?? 0.5f;
             set => meteorFallDelay = value;
+        }
+
+        // Meteor RetentionTime
+        private float? meteorRetentionTime;
+        public float MeteorRetentionTime
+        {
+            readonly get => meteorRetentionTime ?? 10;
+            set => meteorRetentionTime = value;
         }
     }
 }

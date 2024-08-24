@@ -82,7 +82,6 @@ public class PlayerManager : CharacterManager
         playerAnimator.animator.SetBool(characterAnimatorData.InAirParameter, isInAir);
 
         playerInput.TickInput();
-        playerBehavior.CheckInteractableObject();
     }
 
     void LateUpdate()
@@ -96,7 +95,8 @@ public class PlayerManager : CharacterManager
 
     void FixedUpdate()
     {
-        playerMove.HandleFalling(playerMove.moveDirection);
         playerMove.HandleMovement(Time.fixedDeltaTime);
+        playerMove.HandleFalling(playerMove.moveDirection);
+        playerBehavior.CheckInteractableObject();
     }
 }

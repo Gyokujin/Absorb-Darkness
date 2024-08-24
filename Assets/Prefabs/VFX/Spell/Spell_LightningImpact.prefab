@@ -96,8 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bbd9e8be587bf47b56b4d448d528a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 3
-  onShooting: 0
   lightningEffect: {fileID: 7855951014405498844}
 --- !u!114 &5184662997848930070
 MonoBehaviour:
@@ -111,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 3
+  attackType: 4
+  trailRenderer: {fileID: 0}
   damage: 20
 --- !u!1 &5289391912713078885
 GameObject:
