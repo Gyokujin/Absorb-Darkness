@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 273112792458133285}
   - component: {fileID: 4953912797558887378}
   - component: {fileID: 8923406748265414709}
-  - component: {fileID: 6169088460356788993}
+  - component: {fileID: 8972688743972640389}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
---- !u!114 &6169088460356788993
+--- !u!114 &8972688743972640389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1187,12 +1187,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3962439854134760005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 272aff3312b118f41a4a233fdf2f99a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 2
-  trailRenderer: {fileID: 0}
   damage: 5
+  hasCrash: 1
+  trailRenderer: {fileID: 0}
 --- !u!1 &4236012578103979771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,28 +1430,26 @@ MonoBehaviour:
   onDie: 0
   lockOnTransform: {fileID: 5428491561185675698}
   enemyType: 0
-  curState: {fileID: 6824375812976821898}
   ambushState: {fileID: 0}
   idleState: {fileID: 0}
   pursueTargetState: {fileID: 0}
   combatStanceState: {fileID: 0}
   attackState: {fileID: 0}
+  stopDistance: 1.75
+  blockerCollider: {fileID: 3988145368780504335}
   attackColliders: []
   isInteracting: 0
   isPreformingAction: 0
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
-  stopDistance: 1.75
-  currentRecoveryTime: 3
+  currentTarget: {fileID: 0}
+  rigidbody: {fileID: 0}
+  collider: {fileID: 0}
+  navMesh: {fileID: 0}
   enemyStatus: {fileID: 0}
   enemyAudio: {fileID: 0}
   enemyAnimator: {fileID: 0}
-  rigidbody: {fileID: 0}
-  collider: {fileID: 0}
-  blockerCollider: {fileID: 3988145368780504335}
-  navMeshAgent: {fileID: 4953912797558887378}
-  currentTarget: {fileID: 0}
 --- !u!114 &2042603856108357006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,7 +1472,7 @@ MonoBehaviour:
   detectionAngleMax: 180
   detectionAngleMin: -180
   attackRangeMax: 1.8
-  onStageBoss: 0
+  currentRecoveryTime: 0
   hitTime: 1
   knockbackTime: 2
   knockbackPower: 0.85
@@ -1609,7 +1608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAttacks:
   - {fileID: 11400000, guid: 903a2deb7744e6942b7e77c80e73c168, type: 2}
-  currentAttack: {fileID: 11400000, guid: 903a2deb7744e6942b7e77c80e73c168, type: 2}
 --- !u!1 &5671601671262288195
 GameObject:
   m_ObjectHideFlags: 0

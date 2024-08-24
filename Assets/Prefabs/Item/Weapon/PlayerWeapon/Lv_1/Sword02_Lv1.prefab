@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackType: 0
   damage: 9
+  hasCrash: 1
 --- !u!1 &1948291277060276223
 GameObject:
   m_ObjectHideFlags: 0

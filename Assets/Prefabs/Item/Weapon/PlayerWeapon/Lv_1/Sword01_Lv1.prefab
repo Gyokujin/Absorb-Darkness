@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7404688934101610762}
   - component: {fileID: 2876126044690533459}
   - component: {fileID: 4443989352842434974}
-  - component: {fileID: 151847858034899791}
+  - component: {fileID: 1684258222821327329}
   m_Layer: 9
   m_Name: Sword01_Lv1
   m_TagString: Untagged
@@ -135,11 +135,11 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.0010533095, y: 0.011, z: 0.0015738946}
   m_Center: {x: 0, y: 0.0082, z: 0.0000048781512}
---- !u!114 &151847858034899791
+--- !u!114 &1684258222821327329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,12 +148,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5660244489470045581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 272aff3312b118f41a4a233fdf2f99a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 0
-  trailRenderer: {fileID: 6601029685302393467}
   damage: 6
+  hasCrash: 1
+  trailRenderer: {fileID: 6601029685302393467}
 --- !u!1 &6503920099782284672
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1158864074314808561}
   - component: {fileID: 8093378281589698460}
   - component: {fileID: 8762088017448391875}
-  - component: {fileID: 379553070709265653}
+  - component: {fileID: 8822331300814824397}
   m_Layer: 0
   m_Name: Infected Sword
   m_TagString: Untagged
@@ -134,11 +134,11 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.005349293, y: 0.10308649, z: 0.026369266}
   m_Center: {x: -0.00014514384, y: -0.06107693, z: 0.003275239}
---- !u!114 &379553070709265653
+--- !u!114 &8822331300814824397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,11 +147,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7557381188063845762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0ba2fb09c0750469dce2d93cf80b3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 272aff3312b118f41a4a233fdf2f99a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 3
-  damage: 10
+  damage: 15
+  hasCrash: 1
+  trailRenderer: {fileID: 0}
 --- !u!1 &8610785415607207775
 GameObject:
   m_ObjectHideFlags: 0

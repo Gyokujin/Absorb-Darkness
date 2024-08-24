@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 4
-  trailRenderer: {fileID: 0}
-  damage: 20
+  damage: 25
+  hasCrash: 1
 --- !u!1 &5289391912713078885
 GameObject:
   m_ObjectHideFlags: 0
