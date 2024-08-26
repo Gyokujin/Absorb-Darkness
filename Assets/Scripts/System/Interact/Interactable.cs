@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
 {
     public enum InteractType
     {
-        Item, Message, LockDoor, FogWall
+        DropItem, RuneLetter, LockDoor, FogWall
     }
 
     public InteractType interactType;
@@ -22,12 +22,12 @@ public class Interactable : MonoBehaviour
     {
         switch (interactType)
         {
-            case InteractType.Item:
-                interactMesssage = UIManager.instance.messageUIData.ItemInteractText;
+            case InteractType.DropItem:
+                interactMesssage = UIManager.instance.messageUIData.DropItemInteractText;
                 break;
 
-            case InteractType.Message:
-                interactMesssage = UIManager.instance.messageUIData.MessageInteractText;
+            case InteractType.RuneLetter:
+                interactMesssage = UIManager.instance.messageUIData.RuneLetterInteractText;
                 break;
 
             case InteractType.LockDoor:

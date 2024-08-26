@@ -42,20 +42,20 @@ namespace UIData
     public struct MessageUIData
     {
         [Header("Interact Text")]
-        // Interact Item Text
-        private readonly string itemInteractText;
-        public string ItemInteractText
+        // Interact DropItem Text
+        private readonly string dropItemInteractText;
+        public string DropItemInteractText
         {
-            readonly get => itemInteractText ?? "아이템을 획득한다 E";
-            set => ItemInteractText = value;
+            readonly get => dropItemInteractText ?? "아이템을 획득한다 E";
+            set => DropItemInteractText = value;
         }
 
-        // Interact Message Text
-        private string messageInteractText;
-        public string MessageInteractText
+        // Interact RuneLetter Text
+        private string runeLetterInteractText;
+        public string RuneLetterInteractText
         {
-            readonly get => messageInteractText ?? "메시지를 확인한다 E";
-            set => messageInteractText = value;
+            readonly get => runeLetterInteractText ?? "메시지를 확인한다 E";
+            set => runeLetterInteractText = value;
         }
 
         // Interact LockDoor Text
