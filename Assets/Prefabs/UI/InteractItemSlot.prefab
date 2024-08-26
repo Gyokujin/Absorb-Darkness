@@ -204,10 +204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 0
-  slotIcon: {fileID: 989892688786033294}
-  slotCount: {fileID: 6977913290284427236}
-  slotName: {fileID: 9012316554439770783}
-  slotInfo: {fileID: 8116226999022988917}
+  slotItemIcon: {fileID: 989892688786033294}
+  slotItemCount: {fileID: 6977913290284427236}
+  slotItemName: {fileID: 9012316554439770783}
+  slotItemInfo: {fileID: 8116226999022988917}
+  slotIndex: 0
 --- !u!1 &5396394741767461071
 GameObject:
   m_ObjectHideFlags: 0

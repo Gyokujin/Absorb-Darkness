@@ -9696,7 +9696,6 @@ GameObject:
   - component: {fileID: 3406240815676256646}
   - component: {fileID: 3980155430190461108}
   - component: {fileID: 110692957957832515}
-  - component: {fileID: 8524092875535055162}
   m_Layer: 15
   m_Name: Drop Item
   m_TagString: Interactable
@@ -14551,18 +14550,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8524092875535055162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789965102373353376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8eb6e737b078994bb584c31f0d28526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactType: 0
-  interactableText: 
-  dropWeaponItem: {fileID: 11400000, guid: 33e463ecf98df774594ae80033a7ffa0, type: 2}

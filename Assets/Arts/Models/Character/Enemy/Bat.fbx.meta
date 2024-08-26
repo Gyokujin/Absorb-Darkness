@@ -293,7 +293,7 @@ ModelImporter:
     second: Mesh
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -983,7 +983,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.005
+    globalScale: 0.5
     rootMotionBoneName: Bat1Control
     hasTranslationDoF: 0
     hasExtraRoot: 0
