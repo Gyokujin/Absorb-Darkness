@@ -5024,7 +5024,7 @@ GameObject:
   - component: {fileID: 4329433441393493877}
   - component: {fileID: 4497539462539215606}
   m_Layer: 0
-  m_Name: flash
+  m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9843,7 +9843,7 @@ GameObject:
   - component: {fileID: 8174653350809110172}
   - component: {fileID: 6238234424123409961}
   m_Layer: 0
-  m_Name: LightningEffect
+  m_Name: Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14765,7 +14765,7 @@ GameObject:
   - component: {fileID: 7307484847670996137}
   - component: {fileID: 5167979271452794406}
   m_Layer: 0
-  m_Name: flare
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

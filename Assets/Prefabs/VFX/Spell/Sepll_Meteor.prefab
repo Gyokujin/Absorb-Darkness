@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7778761757307096968}
   - component: {fileID: 5415434123649069361}
   m_Layer: 0
-  m_Name: flash
+  m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4831,7 +4831,7 @@ GameObject:
   - component: {fileID: 4310393130797720195}
   - component: {fileID: 4792103348869136370}
   m_Layer: 0
-  m_Name: Sepll_Meteor
+  m_Name: Meteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9814,7 +9814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf6d18d7b0a24d41a7525b110d9f632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallTime: 10
   fireEffect: {fileID: 6294875344551358889}
   smokeEffect: {fileID: 7158069090546632471}
 --- !u!1 &6294875344551358889
@@ -9830,7 +9829,7 @@ GameObject:
   - component: {fileID: 7435366845301229820}
   - component: {fileID: 1134064628793458146}
   m_Layer: 0
-  m_Name: fire
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14744,7 +14743,7 @@ GameObject:
   - component: {fileID: 2374485603505840613}
   - component: {fileID: 6789012788318911379}
   m_Layer: 0
-  m_Name: smoke
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19561,7 +19560,7 @@ GameObject:
   - component: {fileID: 3326430474899545117}
   - component: {fileID: 8884190262872406997}
   m_Layer: 0
-  m_Name: light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

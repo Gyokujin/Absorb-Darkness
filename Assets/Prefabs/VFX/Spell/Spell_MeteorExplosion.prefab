@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7149744476801449244}
   - component: {fileID: 4039832167187126047}
   m_Layer: 0
-  m_Name: ppfxExplosionHeavyShockwave
+  m_Name: MeteorExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5021,7 +5021,7 @@ GameObject:
   - component: {fileID: 1494625793244398189}
   - component: {fileID: 4576638677624995931}
   m_Layer: 0
-  m_Name: flash
+  m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10022,7 +10022,7 @@ GameObject:
   - component: {fileID: 6279026962453527061}
   - component: {fileID: 1120233833093575289}
   m_Layer: 0
-  m_Name: lightFlare
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10117,7 +10117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a4adcdbd17311459ca9f4ee12be4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  li: {fileID: 6279026962453527061}
   fadeTime: 0.4
 --- !u!1 &5211129800683713294
 GameObject:
@@ -10131,7 +10130,7 @@ GameObject:
   - component: {fileID: 3345569429450285931}
   - component: {fileID: 2453282335508566385}
   m_Layer: 0
-  m_Name: shockwave
+  m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15007,7 +15006,7 @@ GameObject:
   - component: {fileID: 4331875796832233788}
   - component: {fileID: 623107245815608004}
   m_Layer: 0
-  m_Name: smoke
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
