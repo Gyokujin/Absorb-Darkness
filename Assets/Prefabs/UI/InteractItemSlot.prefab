@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d53024e4cb5014783a52853a635168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 0
+  slotType: 2
   slotItemIcon: {fileID: 989892688786033294}
   slotItemCount: {fileID: 6977913290284427236}
   slotItemName: {fileID: 9012316554439770783}
