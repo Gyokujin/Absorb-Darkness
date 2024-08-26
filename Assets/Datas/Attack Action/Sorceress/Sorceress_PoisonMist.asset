@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137342359ad86204e88529c0b9b9a356, type: 3}
   m_Name: Sorceress_PoisonMist
   m_EditorClassIdentifier: 
-  actionAnimation: Casting Poison Mist
+  actionAnimation: Cast_PoisonMist
   recoveryTimeMin: 3
   recoveryTimeMax: 3.5
   attackAngleMax: 180

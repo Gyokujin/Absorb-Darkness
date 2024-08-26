@@ -175,7 +175,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Casting Lightning Impact
+  m_Name: Cast_LightningImpact
   m_Speed: 2.8
   m_CycleOffset: 0
   m_Transitions:
@@ -266,7 +266,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Casting Meteor
+  m_Name: Cast_Meteor
   m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
@@ -397,31 +397,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: vertical
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isInteracting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: doDie
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -549,13 +549,13 @@ AnimatorStateMachine:
     m_Position: {x: 390, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2415510418211191945}
-    m_Position: {x: 660, y: -70, z: 0}
+    m_Position: {x: 650, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8449625573993099850}
-    m_Position: {x: 310, y: 480, z: 0}
+    m_Position: {x: 30, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4105585284509638870}
-    m_Position: {x: -80, y: 800, z: 0}
+    m_Position: {x: 30, y: 610, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7297755455400714903}
     m_Position: {x: 120, y: -70, z: 0}
@@ -564,19 +564,19 @@ AnimatorStateMachine:
     m_Position: {x: 390, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2955617433922071929}
-    m_Position: {x: 240, y: 260, z: 0}
+    m_Position: {x: 390, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3312542745230500353}
-    m_Position: {x: -80, y: 860, z: 0}
+    m_Position: {x: 30, y: 670, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8123131034484729437}
-    m_Position: {x: -80, y: 660, z: 0}
+    m_Position: {x: 30, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4382800431544038779}
-    m_Position: {x: -80, y: 730, z: 0}
+    m_Position: {x: 30, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1711641950213118133}
-    m_Position: {x: 570, y: 260, z: 0}
+    m_Position: {x: 760, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8814944805837832730}
     m_Position: {x: 760, y: 120, z: 0}
@@ -586,9 +586,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 70, y: 350, z: 0}
+  m_AnyStatePosition: {x: 50, y: 260, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 620, y: 490, z: 0}
+  m_ExitPosition: {x: 50, y: 200, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -8904085734958646530}
 --- !u!1102 &2415510418211191945
@@ -598,7 +598,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Casting Summon
+  m_Name: Cast_Summon
   m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
@@ -733,7 +733,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Casting Poison Mist
+  m_Name: Cast_PoisonMist
   m_Speed: 1.6
   m_CycleOffset: 0
   m_Transitions:

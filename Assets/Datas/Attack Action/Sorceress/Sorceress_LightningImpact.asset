@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137342359ad86204e88529c0b9b9a356, type: 3}
   m_Name: Sorceress_LightningImpact
   m_EditorClassIdentifier: 
-  actionAnimation: Casting Lightning Impact
+  actionAnimation: Cast_LightningImpact
   recoveryTimeMin: 1.5
   recoveryTimeMax: 2.25
   attackAngleMax: 60
