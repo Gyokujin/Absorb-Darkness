@@ -127,7 +127,7 @@ public class PlayerInput : MonoBehaviour
 
     void HandleRollInput()
     {
-        if (gameSystemFlag)
+        if (gameSystemFlag || lightAttackInput || heavyAttackInput)
             return;
 
         rollingInput = inputActions.PlayerActions.Rolling.phase == InputActionPhase.Performed;
@@ -166,6 +166,8 @@ public class PlayerInput : MonoBehaviour
         if (gameSystemFlag || player.onDamage || (player.isAttack && !player.isComboAble) || player.playerStatus.CurrentStamina < player.playerStatusData.ActionLimitStamina || 
             player.isDodge || player.isItemUse)
             return;
+
+        player.isSprinting = false;
 
         if (lightAttackInput) // ¾à°ø°Ý
         {
