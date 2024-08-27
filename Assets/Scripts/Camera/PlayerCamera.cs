@@ -27,6 +27,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("LockOn")]
     [HideInInspector]
     public bool isLockOn;
+    private int curTargetIndex = 0;
     private readonly List<EnemyManager> availableTargets = new();
     private EnemyManager currentLockOnTarget;
     [SerializeField]
@@ -100,8 +101,7 @@ public class PlayerCamera : MonoBehaviour
         }
         else if (currentLockOnTarget != null)
         {
-            Vector3 dir = currentLockOnTarget.transform.position - transform.position;
-            dir.Normalize();
+            Vector3 dir = (currentLockOnTarget.transform.position - transform.position).normalized;
             dir.y = 0;
 
             Quaternion targetRotation = Quaternion.LookRotation(dir);
@@ -115,6 +115,7 @@ public class PlayerCamera : MonoBehaviour
             eulerAngle.x = Mathf.Min(eulerAngle.x, cameraData.LockOnRotateMax);
             eulerAngle.y = 0;
             pivotTransform.localEulerAngles = eulerAngle;
+            lookAngle = transform.eulerAngles.y;
         }
     }
 
@@ -180,6 +181,7 @@ public class PlayerCamera : MonoBehaviour
                 {
                     shortDistance = targetDistance;
                     currentLockOnTarget = availableTargets[i];
+                    curTargetIndex = i;
                 }
             }
         }
@@ -191,6 +193,22 @@ public class PlayerCamera : MonoBehaviour
         {
             lockOnUI.position = Camera.main.WorldToScreenPoint(currentLockOnTarget.lockOnTransform.position);
             player.playerMove.LookRotation(currentLockOnTarget.lockOnTransform.position);
+        }
+    }
+
+    public void ChangeTarget(bool isLeft)
+    {
+        if (availableTargets.Count > 0)
+        {
+            curTargetIndex += isLeft ? -1 : 1;
+
+            if (curTargetIndex >= availableTargets.Count)
+                curTargetIndex = 0;
+
+            if (curTargetIndex < 0)
+                curTargetIndex = availableTargets.Count - 1;
+
+            currentLockOnTarget = availableTargets[curTargetIndex];
         }
     }
 

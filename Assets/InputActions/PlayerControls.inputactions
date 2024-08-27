@@ -147,6 +147,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "TargetSwapLeft",
+                    "type": "Button",
+                    "id": "481b2671-0066-4efe-b4ac-be5485d77619",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TargetSwapRight",
+                    "type": "Button",
+                    "id": "afb8e564-6aa5-429f-9ebb-34ae9ac793d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "TwoHand",
                     "type": "Button",
                     "id": "92c370ec-1fd6-46d9-80b9-b76b892470b2",
@@ -355,6 +373,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Use Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab654fcc-0cf7-4daa-8bf6-5a28c7b3a07d",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TargetSwapRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d172b9e-a9f2-4e1c-9fdf-ef248854d3bc",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TargetSwapRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "915958bc-fa5a-4c56-abd0-843b30836a15",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TargetSwapLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b81a0a6-19f2-47e3-afba-b0bdd1d5c38d",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TargetSwapLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

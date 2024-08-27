@@ -27,6 +27,8 @@ public class PlayerInput : MonoBehaviour
     private bool interactInput;
     private bool twoHandInput;
     private bool lockOnInput;
+    private bool targetSwapLeftInput;
+    private bool targetSwapRightInput;
     private bool useItemInpt;
 
     [Header("Input System")]
@@ -64,6 +66,8 @@ public class PlayerInput : MonoBehaviour
             inputActions.PlayerActions.Interact.performed += i => interactInput = true;
             inputActions.PlayerActions.TwoHand.performed += i => twoHandInput = true;
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            inputActions.PlayerActions.TargetSwapLeft.performed += i => targetSwapLeftInput= true;
+            inputActions.PlayerActions.TargetSwapRight.performed += i => targetSwapRightInput= true;
             inputActions.PlayerActions.UseItem.performed += i => useItemInpt = true;
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
@@ -87,6 +91,8 @@ public class PlayerInput : MonoBehaviour
         interactInput = false;
         twoHandInput = false;
         lockOnInput = false;
+        targetSwapLeftInput = false;
+        targetSwapRightInput = false;
         useItemInpt = false;
 
         // quickSlotUpInput = false;
@@ -108,6 +114,7 @@ public class PlayerInput : MonoBehaviour
             HandleInteractInput();
             HandleTwoHandInput();
             HandleLockOnInput();
+            HandleTargetSwapInput();
             HandleUseItemInput();
             HandleQuickSlotsInput();
         }
@@ -211,6 +218,17 @@ public class PlayerInput : MonoBehaviour
 
         if (lockOnInput && !gameSystemFlag)
             PlayerCamera.instance.SwitchLockOn();
+    }
+
+    void HandleTargetSwapInput()
+    {
+        if (gameSystemFlag)
+            return;
+
+        if (targetSwapLeftInput)
+            PlayerCamera.instance.ChangeTarget(true);
+        else if (targetSwapRightInput)
+            PlayerCamera.instance.ChangeTarget(false);
     }
 
     void HandleUseItemInput()
