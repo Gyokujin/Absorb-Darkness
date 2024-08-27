@@ -352,7 +352,7 @@ namespace PlayerData
         private float? sprintStaminaAmount;
         public float SprintStaminaAmount
         {
-            readonly get => sprintStaminaAmount ?? 0.5f;
+            readonly get => sprintStaminaAmount ?? 0.8f;
             set => sprintStaminaAmount = value;
         }
     }

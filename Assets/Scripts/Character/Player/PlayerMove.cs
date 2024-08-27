@@ -13,8 +13,9 @@ public class PlayerMove : MonoBehaviour
     private Vector3 normalVec;
     private Vector3 targetPosition;
 
-    [Header("Ground Landed")]
+    [Header("Physics")]
     public float inAirTimer;
+    private bool sprintAble = true;
     private LayerMask ignoreGroundCheck;
 
     [Header("Component")]
@@ -64,7 +65,7 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
 
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > player.playerPhysicsData.RunCondition && player.playerStatus.CurrentStamina > 0) // sprint
+        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > player.playerPhysicsData.RunCondition && sprintAble) // sprint
         {
             moveDirection *= player.playerPhysicsData.SprintSpeed;
             player.isSprinting = true;
@@ -210,5 +211,13 @@ public class PlayerMove : MonoBehaviour
             else
                 player.transform.position = targetPosition;
         }
+    }
+
+    public IEnumerator SprintDelay()
+    {
+        sprintAble = false;
+
+        yield return new WaitForSeconds(2f);
+        sprintAble = true;
     }
 }

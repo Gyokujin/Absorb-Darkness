@@ -98,7 +98,7 @@ public class PlayerStatus : CharacterStatus
         if (player.onDie)
             return;
 
-        if (player.isItemUse) // playerBehavior.curUsingItem != null
+        if (player.isItemUse)
             player.playerBehavior.EndItemUse();
 
         CurrentHealth -= damage;
@@ -156,5 +156,8 @@ public class PlayerStatus : CharacterStatus
     {
         CurrentStamina -= amount;
         UIManager.instance.hudUI.SetCurrentStamina(CurrentStamina);
+        
+        if (currentStamina == 0 && player.isSprinting)
+            StartCoroutine(player.playerMove.SprintDelay());
     }
 }
