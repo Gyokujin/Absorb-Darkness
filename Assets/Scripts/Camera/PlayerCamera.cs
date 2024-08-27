@@ -65,8 +65,10 @@ public class PlayerCamera : MonoBehaviour
     {
         if (isLockOn)
         {
-            if (IsTargetRange())
+            if (IsTargetRange() && !currentLockOnTarget.onDie)
                 LookAtTarget();
+            else if (availableTargets.Count > 1)
+                ChangeTarget(true);
             else
                 SwitchLockOn();
         }
@@ -140,6 +142,7 @@ public class PlayerCamera : MonoBehaviour
 
     bool FindLockOnTarget()
     {
+        availableTargets.Clear();
         Collider[] findTarget = Physics.OverlapSphere(player.transform.position, cameraData.LockOnRadius, lockOnLayer);
 
         for (int i = 0; i < findTarget.Length; i++)
@@ -147,6 +150,10 @@ public class PlayerCamera : MonoBehaviour
             if (findTarget[i].GetComponent<EnemyManager>() != null)
             {
                 EnemyManager target = findTarget[i].gameObject.GetComponent<EnemyManager>();
+
+                if (target.onDie)
+                    continue;
+
                 Vector3 targetDirection = target.transform.position - player.transform.position;
                 float viewAngle = Vector3.Angle(targetDirection, playerCamTransform.forward);
 
@@ -198,7 +205,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void ChangeTarget(bool isLeft)
     {
-        if (availableTargets.Count > 0)
+        if (FindLockOnTarget())
         {
             curTargetIndex += isLeft ? -1 : 1;
 

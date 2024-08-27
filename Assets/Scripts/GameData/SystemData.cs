@@ -99,7 +99,7 @@ namespace SystemData
         private float? maxLockOnDistance;
         public float MaxLockOnDistance
         {
-            readonly get => maxLockOnDistance ?? 36;
+            readonly get => maxLockOnDistance ?? 60;
             set => maxLockOnDistance = value;
         }
 

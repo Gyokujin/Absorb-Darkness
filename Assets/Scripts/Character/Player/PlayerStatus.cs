@@ -98,7 +98,7 @@ public class PlayerStatus : CharacterStatus
         if (player.onDie)
             return;
 
-        if (player.playerBehavior.curUsingItem != null)
+        if (player.isItemUse) // playerBehavior.curUsingItem != null
             player.playerBehavior.EndItemUse();
 
         CurrentHealth -= damage;
