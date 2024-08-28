@@ -24,6 +24,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private Collider playerBlockerCollider;
 
+    [Header("Coroutine")]
+    private WaitForSeconds sprintDelayWait;
+
     void Awake()
     {
         Init();
@@ -34,6 +37,7 @@ public class PlayerMove : MonoBehaviour
         player = GetComponent<PlayerManager>();
         ignoreGroundCheck = LayerMask.GetMask(player.gameObjectData.GroundLayer);
         Physics.IgnoreCollision(playerCollider, playerBlockerCollider, true);
+        sprintDelayWait = new WaitForSeconds(player.playerPhysicsData.SprintDelayTime);
     }
 
     public void HandleMovement(float delta)
@@ -216,8 +220,9 @@ public class PlayerMove : MonoBehaviour
     public IEnumerator SprintDelay()
     {
         sprintAble = false;
+        player.playerAudio.PlaySFX(player.playerAudio.playerClips[(int)PlayerAudio.PlayerSound.Gasp]);
 
-        yield return new WaitForSeconds(2f);
+        yield return sprintDelayWait;
         sprintAble = true;
     }
 }

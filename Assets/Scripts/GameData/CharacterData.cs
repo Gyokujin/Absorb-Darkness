@@ -412,6 +412,14 @@ namespace PlayerData
             set => sprintSpeed = value;
         }
 
+        // Sprint Delay Time
+        private float? sprintDelayTime;
+        public float SprintDelayTime
+        {
+            readonly get => sprintDelayTime ?? 2;
+            set => sprintDelayTime = value;
+        }
+
         [Header("Battle")]
         // InvincibleTime
         private float? invincibleTime;

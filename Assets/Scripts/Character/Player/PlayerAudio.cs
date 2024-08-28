@@ -6,7 +6,7 @@ public class PlayerAudio : CharacterAudio
 {
     public enum PlayerSound
     {
-        Footstep, Sprint, Rolling, Backstep, Attack1, Attack2, Drink, Recovery
+        Footstep, Sprint, Rolling, Backstep, Attack1, Attack2, Drink, Recovery, Gasp
     }
 
     [Header("Parameter")]
