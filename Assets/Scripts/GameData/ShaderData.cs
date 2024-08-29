@@ -4,8 +4,41 @@ namespace ShaderData
 {
     public struct CharacterShaderData
     {
+        [Header("Color")]
+        // Texture Brightness
+        private string textureBrightness;
+        public string TextureBrightness
+        {
+            readonly get => textureBrightness ?? "_TextureBrightness";
+            set => textureBrightness = value;
+        }
+
+        // Light Color
+        private string lightColor;
+        public string LightColor
+        {
+            readonly get => lightColor ?? "_LightColor";
+            set => lightColor = value;
+        }
+
+        // Light Direction
+        private string lightDirection;
+        public string LightDirection
+        {
+            readonly get => lightDirection ?? "_LightDirection";
+            set => lightDirection = value;
+        }
+
+        // Light Intensity
+        private string lightIntensity;
+        public string LightIntensity
+        {
+            readonly get => lightIntensity ?? "_LightIntensity";
+            set => lightIntensity = value;
+        }
+
         [Header("Dissolve")]
-        // DissolveBeforeDelay
+        // Dissolve Before Delay
         private float? dissolveDelay;
         public float DissolveDelay
         {
@@ -13,7 +46,7 @@ namespace ShaderData
             set => dissolveDelay = value;
         }
 
-        // DissolveTime
+        // Dissolve Time
         private float? dissolveTime;
         public float DissolveTime
         {
@@ -21,7 +54,7 @@ namespace ShaderData
             set => dissolveTime = value;
         }
 
-        // DissolveProgress
+        // Dissolve Progress
         private float? dissolveProgress;
         public float DissolveProgress
         {
@@ -29,7 +62,7 @@ namespace ShaderData
             set => dissolveProgress = value;
         }
 
-        // DissolveThreshold
+        // Dissolve Threshold
         private string dissolveThresholdParameter;
         public string DissolveThresholdParameter
         {
