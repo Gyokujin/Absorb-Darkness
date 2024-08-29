@@ -35,6 +35,5 @@ public class HandEquipmentSlotUI : MonoBehaviour
     public void WeaponSlotClick()
     {
         UIManager.instance.equipmentUI.SelectWeapon(this);
-        AudioManager.instance.PlayUISFX(AudioManager.instance.uiClips[(int)AudioManager.UISound.Click]);
     }
 }
