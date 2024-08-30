@@ -28,6 +28,14 @@ public class CharacterDissolve : MonoBehaviour
     [SerializeField]
     private float lightIntensity;
 
+    [Header("Particle")]
+    [SerializeField]
+    private float particleOffsetX;
+    [SerializeField]
+    private float particleOffsetY;
+    [SerializeField]
+    private float particleOffsetZ;
+
     [Header("Coroutine")]
     private WaitForSeconds dissolveWait;
 
@@ -42,9 +50,21 @@ public class CharacterDissolve : MonoBehaviour
         dissolveWait = new WaitForSeconds(shaderData.DissolveDelay);
     }
 
-    public IEnumerator DissolveFade()
+    public IEnumerator DissolveFade(Transform effectTransform)
     {
         yield return dissolveWait;
+        GameObject glowObject = PoolManager.instance.GetEffect((int)PoolManager.Effect.ExtinctionGlow);
+
+        Quaternion rotation = Quaternion.Euler(0, effectTransform.eulerAngles.y, 0);
+        Vector3 forwardVector = rotation * Vector3.forward;
+        Vector3 targetPos = new(forwardVector.x * particleOffsetX, particleOffsetY, forwardVector.z * particleOffsetZ);
+
+        glowObject.transform.position = effectTransform.position + targetPos;
+
+        //glowObject.transform.position = new Vector3(effectTransform.position.x + forwardVector.x * particleOffsetDis,
+        //                                            )
+        //    effectTransform.position + (forwardVector * particleOffsetDis); // effectTransform.position + forward * particleOffset;
+
         material.shader = dissolveShader;
         material.mainTexture = dissolveTexture;
         material.SetFloat(shaderData.TextureBrightness, textureBrightness);

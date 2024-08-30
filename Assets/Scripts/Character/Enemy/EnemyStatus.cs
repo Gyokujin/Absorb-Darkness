@@ -125,7 +125,7 @@ public class EnemyStatus : CharacterStatus
         if (GetComponentInChildren<CharacterDissolve>() != null)
         {
             CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
-            StartCoroutine(characterDissolve.DissolveFade());
+            StartCoroutine(characterDissolve.DissolveFade(transform));
         }
     }
 }
