@@ -292,7 +292,6 @@ Transform:
   - {fileID: 7081273940025020003}
   - {fileID: 7790592378129280624}
   - {fileID: 4575604216957081403}
-  - {fileID: 1299152529260380030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7365873495875009557
@@ -361,25 +360,23 @@ MonoBehaviour:
   onDie: 0
   lockOnTransform: {fileID: 7790592378129280624}
   enemyType: 2
-  curState: {fileID: 1985222649722456806}
   ambushState: {fileID: 0}
   idleState: {fileID: 0}
   pursueTargetState: {fileID: 0}
   combatStanceState: {fileID: 0}
   attackState: {fileID: 0}
+  stopDistance: 2
+  blockerCollider: {fileID: 5758493670866006236}
   attackColliders: []
   isInteracting: 0
   isPreformingAction: 0
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
-  stopDistance: 2
-  currentRecoveryTime: 0
+  currentTarget: {fileID: 0}
   rigidbody: {fileID: 0}
   collider: {fileID: 0}
-  blockerCollider: {fileID: 5758493670866006236}
   navMesh: {fileID: 0}
-  currentTarget: {fileID: 0}
   enemyStatus: {fileID: 0}
   enemyAudio: {fileID: 0}
   enemyAnimator: {fileID: 0}
@@ -409,14 +406,14 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   rotationSpeed: 10
-  healthLevel: 5
-  healthLevelAmount: 17
+  healthLevel: 1
+  healthLevelAmount: 3
   effectTransform: {fileID: 1299152529260380030}
-  onStageBoss: 1
   detectionRadius: 25
   detectionAngleMax: 90
   detectionAngleMin: -90
   attackRangeMax: 20
+  currentRecoveryTime: 0
   hitTime: 1
   knockbackTime: 2.5
   knockbackPower: 50
@@ -809,7 +806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1299152529260380030}
   m_Layer: 3
-  m_Name: Effect Transform
+  m_Name: BloodEffect Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,12 +820,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2498440772304111778}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0.23}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.946, z: 0.6000061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7323164783708159819}
+  m_Father: {fileID: 3823108923368413742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2576167221426961292
 GameObject:
@@ -1426,7 +1423,7 @@ GameObject:
   - component: {fileID: 1041519883906043611}
   - component: {fileID: 7785974057656025707}
   - component: {fileID: 80953507484469099}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sorceress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2126,7 +2123,7 @@ GameObject:
   - component: {fileID: 2286394766628534366}
   - component: {fileID: 2739808889296030774}
   - component: {fileID: 2336108779692489642}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: necromancer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2255,6 +2252,43 @@ MonoBehaviour:
   dissolveShader: {fileID: 4800000, guid: 6dbfbaa53659a0f4e8aaf36bc3d50cc4, type: 3}
   dissolveTexture: {fileID: 2800000, guid: 8e7bd81de5c20a440a35d591184b4139, type: 3}
   dissolveTime: 1
+  textureBrightness: 0.23
+  lightDir: {x: 0.87, y: 1.17, z: -0.29}
+  lightColor: {r: 0.7372549, g: 0.4392157, b: 0.4392157, a: 1}
+  lightIntensity: 0.2
+  glowEffectTransform: {fileID: 8968750339723162998}
+  flashEffectTransform: {fileID: 2871380394005231710}
+--- !u!1 &6743646603142833866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2871380394005231710}
+  m_Layer: 0
+  m_Name: FlashEffectTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2871380394005231710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743646603142833866}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.14, z: 2.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6788208298091235483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2320,37 @@ Transform:
   m_Children:
   - {fileID: 7539617017004073338}
   m_Father: {fileID: 2281325122491284957}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6859658772731375831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8968750339723162998}
+  m_Layer: 0
+  m_Name: GlowEffectTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8968750339723162998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6859658772731375831}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.53, z: -0.10699463}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3823108923368413742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6886746571375131382
 GameObject:
@@ -2620,7 +2685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3823108923368413742}
   m_Layer: 0
-  m_Name: Spell Transforms
+  m_Name: VFX Transforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2643,6 +2708,9 @@ Transform:
   - {fileID: 8967081879668770238}
   - {fileID: 407117041024176818}
   - {fileID: 9222011791597783658}
+  - {fileID: 1299152529260380030}
+  - {fileID: 8968750339723162998}
+  - {fileID: 2871380394005231710}
   m_Father: {fileID: 7323164783708159819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9221714165062483434

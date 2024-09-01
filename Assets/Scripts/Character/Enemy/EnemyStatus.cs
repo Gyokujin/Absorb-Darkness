@@ -112,8 +112,6 @@ public class EnemyStatus : CharacterStatus
         enemy.collider.enabled = false;
         enemy.blockerCollider.enabled = false;
         enemy.rigidbody.isKinematic = true;
-
-        enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
         enemy.enemyAudio.PlaySFX(enemy.enemyAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
 
         foreach (WeaponDamageCollider attackCollider in enemy.attackColliders)
@@ -124,8 +122,11 @@ public class EnemyStatus : CharacterStatus
 
         if (GetComponentInChildren<CharacterDissolve>() != null)
         {
+            enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.HitAnimation, true);
             CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
-            StartCoroutine(characterDissolve.DissolveFade(transform));
+            StartCoroutine(characterDissolve.DissolveFade(enemy));
         }
+        else
+            enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
     }
 }

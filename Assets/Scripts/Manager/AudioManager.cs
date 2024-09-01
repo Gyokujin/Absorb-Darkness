@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public enum SystemSound
     {
-        DoorOpen, FogEntrance, EnemyDissolve
+        DoorOpen, FogEntrance, EnemyDieGlow, EnemyDieFlash, EnemyDissolve
     }
 
     public enum UISound

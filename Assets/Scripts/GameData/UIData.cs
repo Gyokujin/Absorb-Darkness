@@ -18,7 +18,7 @@ namespace UIData
         private float? defeatDelay;
         public float DefeatDelay
         {
-            readonly get => defeatDelay ?? 6;
+            readonly get => defeatDelay ?? 9;
             set => defeatDelay = value;
         }
 

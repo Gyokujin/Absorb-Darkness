@@ -37,13 +37,21 @@ namespace ShaderData
             set => lightIntensity = value;
         }
 
-        [Header("Dissolve")]
-        // Dissolve Before Delay
-        private float? dissolveDelay;
-        public float DissolveDelay
+        [Header("Boss Dissolve")]
+        // Glow Delay
+        private float? glowDelay;
+        public float GlowDelay
         {
-            readonly get => dissolveDelay ?? 3;
-            set => dissolveDelay = value;
+            readonly get => glowDelay ?? 1;
+            set => glowDelay = value;
+        }
+
+        // Glow Time
+        private float? glowTime;
+        public float GlowTime
+        {
+            readonly get => glowTime ?? 3;
+            set => glowTime = value;
         }
 
         // Dissolve Time

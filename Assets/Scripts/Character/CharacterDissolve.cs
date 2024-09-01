@@ -30,14 +30,13 @@ public class CharacterDissolve : MonoBehaviour
 
     [Header("Particle")]
     [SerializeField]
-    private float particleOffsetX;
+    private Transform glowEffectTransform;
     [SerializeField]
-    private float particleOffsetY;
-    [SerializeField]
-    private float particleOffsetZ;
+    private Transform flashEffectTransform;
 
     [Header("Coroutine")]
-    private WaitForSeconds dissolveWait;
+    private WaitForSeconds glowDelayWait;
+    private WaitForSeconds glowWait;
 
     void Awake()
     {
@@ -47,23 +46,16 @@ public class CharacterDissolve : MonoBehaviour
     void Init()
     {
         material = GetComponent<Renderer>().material;
-        dissolveWait = new WaitForSeconds(shaderData.DissolveDelay);
+        glowDelayWait = new WaitForSeconds(shaderData.GlowDelay);
+        glowWait = new WaitForSeconds(shaderData.GlowTime);
     }
 
-    public IEnumerator DissolveFade(Transform effectTransform)
+    public IEnumerator DissolveFade(EnemyManager enemy)
     {
-        yield return dissolveWait;
+        yield return glowDelayWait;
         GameObject glowObject = PoolManager.instance.GetEffect((int)PoolManager.Effect.ExtinctionGlow);
-
-        Quaternion rotation = Quaternion.Euler(0, effectTransform.eulerAngles.y, 0);
-        Vector3 forwardVector = rotation * Vector3.forward;
-        Vector3 targetPos = new(forwardVector.x * particleOffsetX, particleOffsetY, forwardVector.z * particleOffsetZ);
-
-        glowObject.transform.position = effectTransform.position + targetPos;
-
-        //glowObject.transform.position = new Vector3(effectTransform.position.x + forwardVector.x * particleOffsetDis,
-        //                                            )
-        //    effectTransform.position + (forwardVector * particleOffsetDis); // effectTransform.position + forward * particleOffset;
+        glowObject.transform.position = glowEffectTransform.position;
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDieGlow]);
 
         material.shader = dissolveShader;
         material.mainTexture = dissolveTexture;
@@ -71,6 +63,14 @@ public class CharacterDissolve : MonoBehaviour
         material.SetColor(shaderData.LightColor, lightColor);
         material.SetVector(shaderData.LightDirection, lightDir);
         material.SetFloat(shaderData.LightIntensity, lightIntensity);
+
+        yield return glowWait;
+        enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
+
+        yield return glowDelayWait;
+        GameObject flashObject = PoolManager.instance.GetEffect((int)PoolManager.Effect.ExtinctionFlash);
+        flashObject.transform.position = flashEffectTransform.transform.position;
+        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDieFlash]);
         AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDissolve]);
 
         while (shaderData.DissolveProgress < dissolveTime)

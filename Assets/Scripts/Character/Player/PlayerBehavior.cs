@@ -45,7 +45,10 @@ public class PlayerBehavior : MonoBehaviour
     public void BehaviourAction()
     {
         if (player.playerBehavior.interactableObj != null)
+        {
             interactableObj.Interact(player);
+            player.playerAudio.StopFootstepSFX();
+        }
         else
             UIManager.instance.CloseMessageUI();
     }
