@@ -6,6 +6,7 @@ Shader "PPFX/AlphaSelfIllum" {
     Category {
        Lighting On
        ZWrite Off
+       ZTest Always
        Cull Back
        Blend SrcAlpha OneMinusSrcAlpha
        Tags {Queue=Transparent}
