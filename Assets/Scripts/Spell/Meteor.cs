@@ -11,12 +11,11 @@ public class Meteor : MonoBehaviour
     private GameObjectData gameObjectData;
 
     [Header("Falling")]
-    private bool onFalling;
-    private float curFallTime;
     [SerializeField]
     private GameObject fireEffect;
     [SerializeField]
     private GameObject smokeEffect;
+    private float curFallTime;
     private LayerMask groundLayer;
 
     [Header("Component")]
@@ -35,24 +34,19 @@ public class Meteor : MonoBehaviour
 
     void OnEnable()
     {
-        onFalling = false;
+        curFallTime = sorceressData.MeteorRetentionTime;
     }
 
     void Update()
     {
-        if (onFalling)
-        {
-            if (curFallTime > 0)
-                curFallTime -= Time.deltaTime;
-            else
-                Return();
-        }
+        if (curFallTime > 0)
+            curFallTime -= Time.deltaTime;
+        else
+            Return();
     }
 
     public void Falling(Vector3 fallDir, float speed)
     {
-        onFalling = true;
-        curFallTime = sorceressData.MeteorRetentionTime;
         rigidbody.velocity = fallDir * speed;
         fireEffect.SetActive(true);
         smokeEffect.SetActive(true);

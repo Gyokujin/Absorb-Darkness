@@ -42,7 +42,7 @@ namespace EnemyData
         private float? lightningImpactRetentionTime;
         public float LightningImpactRetentionTime
         {
-            readonly get => lightningImpactRetentionTime ?? 3;
+            readonly get => lightningImpactRetentionTime ?? 6;
             set => lightningImpactRetentionTime = value;
         }
 
@@ -75,7 +75,7 @@ namespace EnemyData
         private float? meteorRetentionTime;
         public float MeteorRetentionTime
         {
-            readonly get => meteorRetentionTime ?? 10;
+            readonly get => meteorRetentionTime ?? 15;
             set => meteorRetentionTime = value;
         }
 

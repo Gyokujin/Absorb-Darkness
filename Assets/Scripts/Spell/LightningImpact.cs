@@ -11,7 +11,6 @@ public class LightningImpact : MonoBehaviour
     private GameObjectData gameObjectData;
 
     [Header("Shooting")]
-    private bool onShooting;
     private float curRetentionTime;
     [SerializeField]
     private GameObject lightningEffect;
@@ -37,24 +36,20 @@ public class LightningImpact : MonoBehaviour
 
     void OnEnable()
     {
-        onShooting = false;
         collider.enabled = false;
+        curRetentionTime = sorceressData.LightningImpactRetentionTime;
     }
 
     void Update()
     {
-        if (onShooting)
-        {
-            if (curRetentionTime > 0)
-                curRetentionTime -= Time.deltaTime;
-            else
-                Return();
-        }
+        if (curRetentionTime > 0)
+            curRetentionTime -= Time.deltaTime;
+        else
+            Return();
     }
 
     public void Shoot(Vector3 shootDir, float speed)
     {
-        onShooting = true;
         collider.enabled = true;
         curRetentionTime = sorceressData.LightningImpactRetentionTime;
         rigidbody.velocity = shootDir * speed;
