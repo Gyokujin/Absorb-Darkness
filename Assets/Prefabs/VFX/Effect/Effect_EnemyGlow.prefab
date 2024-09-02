@@ -4866,7 +4866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7651045806954050269}
   m_Layer: 17
-  m_Name: Glow
+  m_Name: Effect_EnemyGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
