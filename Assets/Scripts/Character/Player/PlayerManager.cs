@@ -95,6 +95,9 @@ public class PlayerManager : CharacterManager
 
     void FixedUpdate()
     {
+        if (onDie)
+            return;
+
         playerMove.HandleMovement(Time.fixedDeltaTime);
         playerMove.HandleFalling(playerMove.moveDirection);
         playerBehavior.CheckInteractableObject();

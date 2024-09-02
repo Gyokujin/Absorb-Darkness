@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour
 
     public void HandleMovement(float delta)
     {
-        if (player.isInteracting || player.playerInput.rollFlag)
+        if (player.isInteracting || player.playerInput.rollFlag || player.onDie)
             return;
 
         Movement();
@@ -69,19 +69,26 @@ public class PlayerMove : MonoBehaviour
         // 해당 방향에 스피드만큼 rigidbody 이동시킨다.
         float speed = player.playerStatus.runSpeed;
 
-        if (player.playerInput.sprintFlag && player.playerInput.moveAmount > player.playerPhysicsData.RunCondition && sprintAble) // sprint
-        {
-            moveDirection *= player.playerPhysicsData.SprintSpeed;
-            player.isSprinting = true;
-            player.playerAudio.PlaySprintSFX();
-        }
-        else if (player.playerInput.moveAmount < player.playerPhysicsData.RunCondition) // Idle, walk
+        if (player.onDie || player.playerInput.moveAmount < player.playerPhysicsData.RunCondition) // Idle, walk
         {
             moveDirection *= player.playerStatus.walkSpeed;
             player.isSprinting = false;
             player.playerAudio.StopFootstepSFX();
             player.playerAudio.StopSprintSFX();
         }
+        else if (player.playerInput.sprintFlag && player.playerInput.moveAmount > player.playerPhysicsData.RunCondition && sprintAble) // sprint
+        {
+            moveDirection *= player.playerPhysicsData.SprintSpeed;
+            player.isSprinting = true;
+            player.playerAudio.PlaySprintSFX();
+        }
+        //else if (player.playerInput.moveAmount < player.playerPhysicsData.RunCondition) // Idle, walk
+        //{
+        //    moveDirection *= player.playerStatus.walkSpeed;
+        //    player.isSprinting = false;
+        //    player.playerAudio.StopFootstepSFX();
+        //    player.playerAudio.StopSprintSFX();
+        //}
         else if (player.playerInput.moveAmount > 0) // run
         {
             moveDirection *= speed;
@@ -207,14 +214,6 @@ public class PlayerMove : MonoBehaviour
             player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / player.physicsData.FallingFactor);
         else
             player.transform.position = targetPosition;
-
-        if (player.isGrounded)
-        {
-            if (player.isInteracting || player.playerInput.moveAmount > 0)
-                player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime);
-            else
-                player.transform.position = targetPosition;
-        }
     }
 
     public IEnumerator SprintDelay()

@@ -59,6 +59,9 @@ public class PlayerStatus : CharacterStatus
 
     void Update() 
     {
+        if (player.onDie)
+            return;
+
         InvincibleCheck();
         StaminaCheck();
     }
@@ -76,7 +79,7 @@ public class PlayerStatus : CharacterStatus
 
     void StaminaCheck()
     {
-        if (player.isSprinting)
+        if (!player.onDamage && player.isSprinting)
             TakeStamina(player.playerStatusData.SprintStaminaAmount);
 
         RecoveryStamina();
@@ -125,6 +128,7 @@ public class PlayerStatus : CharacterStatus
     void DieProcess()
     {
         player.onDie = true;
+        player.playerMove.rigidbody.isKinematic = true;
         gameObject.layer = player.playerCombat.invincibleLayer;
         player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.DeadAnimation, true);
         player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Dead]);
