@@ -5,11 +5,13 @@ using UnityEngine;
 public class BossFieldEntrance : Entrance
 {
     public FogWallEntrance targetGate;
+    private bool isAct;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == playerLayer && other.GetComponent<PlayerManager>() != null)
+        if (!isAct && other.gameObject.layer == playerLayer && other.GetComponent<PlayerManager>() != null)
         {
+            isAct = true;
             targetGate.CloseGate();
             GameManager.instance.ReadFieldInfo(fieldInfo, this);
         }

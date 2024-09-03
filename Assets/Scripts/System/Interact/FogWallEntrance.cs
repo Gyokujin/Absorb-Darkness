@@ -15,12 +15,15 @@ public class FogWallEntrance : Interactable
 
     [Header("Component")]
     private new Collider collider;
+    private new ParticleSystem particleSystem;
 
     protected override void Init()
     {
         base.Init();
         untaggedTag = gameObjectData.UntaggedTag;
+
         collider = GetComponent<Collider>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
     public override void Interact(PlayerManager player)
@@ -44,6 +47,7 @@ public class FogWallEntrance : Interactable
 
     public void DisappearGate()
     {
-
+        collider.isTrigger = true;
+        particleSystem.Stop();
     }
 }
