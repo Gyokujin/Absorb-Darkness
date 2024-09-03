@@ -116,6 +116,7 @@ public class PlayerStatus : CharacterStatus
 
             GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
             hitEffect.transform.position = effectTransform.position;
+            StartCoroutine(PlayerCamera.instance.Shake());
             player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);
         }
 

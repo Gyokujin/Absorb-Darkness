@@ -126,6 +126,23 @@ namespace SystemData
             readonly get => cameraSphereRadius ?? 0.2f;
             set => cameraSphereRadius = value;
         }
+
+        [Header("Shake")]
+        // Shake Duration
+        private float? shakeDuration;
+        public float ShakeDuration
+        {
+            readonly get => shakeDuration ?? 0.15f;
+            set => shakeDuration = value;
+        }
+
+        // Shake Magnitude
+        private float? shakeMagnitude;
+        public float ShakeMagnitude
+        {
+            readonly get => shakeMagnitude ?? 0.2f;
+            set => shakeMagnitude = value;
+        }
     }
 
     public struct PhysicsData
