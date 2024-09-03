@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightFade : MonoBehaviour {
-
+public class EffectLightFade : MonoBehaviour
+{
     [SerializeField]
     private float fadeTime = 0f;
     private float t = 0f;

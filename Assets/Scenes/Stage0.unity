@@ -8669,7 +8669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0ec76935b051840999df4453c1bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamTransform: {fileID: 996771540}
+  camTransforms: {fileID: 996771540}
   pivotTransform: {fileID: 2311721737900868815}
   targetLayers:
     serializedVersion: 2

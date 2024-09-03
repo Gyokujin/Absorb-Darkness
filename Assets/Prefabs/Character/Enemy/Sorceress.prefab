@@ -406,7 +406,7 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   rotationSpeed: 10
-  healthLevel: 5
+  healthLevel: 6
   healthLevelAmount: 17
   effectTransform: {fileID: 1299152529260380030}
   detectionRadius: 25
