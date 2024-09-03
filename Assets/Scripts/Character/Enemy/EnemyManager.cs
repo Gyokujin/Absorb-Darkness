@@ -38,6 +38,7 @@ public class EnemyManager : CharacterManager
     public Collider blockerCollider;
 
     [Header("Combat")]
+    public bool onChase;
     [HideInInspector]
     public WeaponDamageCollider[] attackColliders;
     [HideInInspector]

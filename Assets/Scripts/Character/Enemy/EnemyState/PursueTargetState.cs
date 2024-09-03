@@ -6,6 +6,7 @@ public class PursueTargetState : EnemyState
 {
     public override EnemyState Tick()
     {
+        enemy.onChase = true;
         Vector3 targetDirection = enemy.currentTarget.transform.position - enemy.transform.position;
         float targetDistance = Vector3.Distance(enemy.currentTarget.transform.position, enemy.transform.position);
 
@@ -27,7 +28,22 @@ public class PursueTargetState : EnemyState
 
         HandleRotateTarget();
         enemy.navMesh.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        return targetDistance <= enemy.enemyStatus.attackRangeMax ? enemy.combatStanceState : this;
+
+        if (targetDistance <= enemy.enemyStatus.attackRangeMax)
+        {
+            enemy.onChase = false;
+            return enemy.combatStanceState;
+        }
+        else
+            return this;
+    }
+
+    void Update()
+    {
+        if (enemy.onChase)
+        {
+            Debug.DrawLine(enemy.transform.position, enemy.transform.forward * 3, Color.green);
+        }
     }
 
     void HandleRotateTarget()
