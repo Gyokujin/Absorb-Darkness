@@ -367,6 +367,7 @@ MonoBehaviour:
   attackState: {fileID: 0}
   stopDistance: 2
   blockerCollider: {fileID: 5758493670866006236}
+  onChase: 0
   attackColliders: []
   isInteracting: 0
   isPreformingAction: 0
@@ -380,6 +381,7 @@ MonoBehaviour:
   enemyStatus: {fileID: 0}
   enemyAudio: {fileID: 0}
   enemyAnimator: {fileID: 0}
+  maxSummonCount: 2
   lightningImpactTransform: {fileID: 5282769393375881160}
   poisonMistTransform: {fileID: 8967081879668770238}
   summonTransforms:
@@ -406,8 +408,8 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   rotationSpeed: 10
-  healthLevel: 6
-  healthLevelAmount: 17
+  healthLevel: 1
+  healthLevelAmount: 1
   effectTransform: {fileID: 1299152529260380030}
   detectionRadius: 25
   detectionAngleMax: 90
@@ -2123,6 +2125,7 @@ GameObject:
   - component: {fileID: 2286394766628534366}
   - component: {fileID: 2739808889296030774}
   - component: {fileID: 2336108779692489642}
+  - component: {fileID: 3646456647557589232}
   m_Layer: 7
   m_Name: necromancer
   m_TagString: Untagged
@@ -2249,13 +2252,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b345acebc0632ea4daa06c811c91f090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveShader: {fileID: 4800000, guid: 6dbfbaa53659a0f4e8aaf36bc3d50cc4, type: 3}
-  dissolveTexture: {fileID: 2800000, guid: 8e7bd81de5c20a440a35d591184b4139, type: 3}
   dissolveTime: 1
   textureBrightness: 0.23
   lightDir: {x: 0.87, y: 1.17, z: -0.29}
   lightColor: {r: 0.7372549, g: 0.4392157, b: 0.4392157, a: 1}
   lightIntensity: 0.2
+--- !u!114 &3646456647557589232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6443184942360358635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44efc092869cc748a08c3bfab8e4c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   glowEffectTransform: {fileID: 8968750339723162998}
   flashEffectTransform: {fileID: 2871380394005231710}
 --- !u!1 &6743646603142833866
