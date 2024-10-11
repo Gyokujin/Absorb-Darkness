@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyData;
 
-public class Sorceress : EnemyManager
+public class Sorceress : EnemyManager, ISummoner
 {
     [Header("Data")]
     private SorceressData sorceressData;
@@ -11,7 +11,11 @@ public class Sorceress : EnemyManager
     [Header("Spell")]
     private LightningImpact lightningImpact;
     private Meteor[] spawnMeteors;
-    private int summonCount;
+
+    [Header("Summon")]
+    [SerializeField]
+    private int maxSummonCount = 2;
+    public List<SummonEnemy> SummonEnemies { get; set; }
 
     [Header("Spell Transform")]
     [SerializeField]
@@ -35,6 +39,7 @@ public class Sorceress : EnemyManager
 
     protected override void Init()
     {
+        SummonEnemies = new List<SummonEnemy>();
         spawnMeteors = new Meteor[meteorTransform.Length];
         summonWait = new WaitForSeconds(sorceressData.SummonDelay);
         meteorFallWait = new WaitForSeconds(sorceressData.MeteorFallDelay);
@@ -67,15 +72,19 @@ public class Sorceress : EnemyManager
 
     public IEnumerator SummonBat()
     {
-        summonCount++;
-        Vector3 summonPos = summonTransforms[summonCount % summonTransforms.Length].position;
-        GameObject summonSFX = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Summon);
-        summonSFX.transform.position = summonPos;
+        if (SummonEnemies.Count < maxSummonCount)
+        {
+            Vector3 summonPos = summonTransforms[SummonEnemies.Count % summonTransforms.Length].position;
+            GameObject summonSFX = PoolManager.instance.GetEnemySpell((int)PoolManager.EnemySpell.Summon);
+            summonSFX.transform.position = summonPos;
 
-        yield return summonWait;
-        GameObject summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat);
-        summonPos.y += sorceressData.SummonOffsetY; // 몬스터 오브젝트의 Y좌표는 0
-        summonBat.transform.SetPositionAndRotation(summonPos, transform.rotation);
+            yield return summonWait;
+            SummonEnemy summonBat = PoolManager.instance.GetEnemy((int)PoolManager.Enemy.Bat).AddComponent<SummonEnemy>();
+            summonPos.y += sorceressData.SummonOffsetY; // 몬스터 오브젝트의 Y좌표는 0
+            summonBat.transform.SetPositionAndRotation(summonPos, transform.rotation);
+            SummonEnemies.Add(summonBat);
+            summonBat.summoner = this;
+        }
     }
 
     public void SpawnMeteors()
