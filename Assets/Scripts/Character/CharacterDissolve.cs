@@ -11,32 +11,23 @@ public class CharacterDissolve : MonoBehaviour
     private Material material;
 
     [Header("Dissolve")]
-    [SerializeField]
     private Shader dissolveShader;
-    [SerializeField]
     private Texture2D dissolveTexture;
     [SerializeField]
+    private float dissolvePreDealy = 1.5f;
+    [SerializeField]
     private float dissolveTime = 1;
+    private WaitForSeconds dissolvePreWait;
 
     [Header("Color")]
     [SerializeField]
-    private float textureBrightness;
+    private float textureBrightness = 0.23f;
     [SerializeField]
-    private Vector3 lightDir;
+    private Vector3 lightDir = new(0.87f, 1.17f, -0.29f);
     [SerializeField]
-    private Color lightColor;
+    private Color lightColor = new(0.7372549f, 0.4392157f, 0.4392157f);
     [SerializeField]
-    private float lightIntensity;
-
-    [Header("Particle")]
-    [SerializeField]
-    private Transform glowEffectTransform;
-    [SerializeField]
-    private Transform flashEffectTransform;
-
-    [Header("Coroutine")]
-    private WaitForSeconds glowDelayWait;
-    private WaitForSeconds glowWait;
+    private float lightIntensity = 0.2f;
 
     void Awake()
     {
@@ -46,32 +37,20 @@ public class CharacterDissolve : MonoBehaviour
     void Init()
     {
         material = GetComponent<Renderer>().material;
-        glowDelayWait = new WaitForSeconds(shaderData.GlowDelay);
-        glowWait = new WaitForSeconds(shaderData.GlowTime);
+        dissolveShader = Shader.Find("Custom/CharacterDissolve");
+        dissolveTexture = (Texture2D)material.GetTexture("_MainTex");
+        dissolvePreWait = new WaitForSeconds(dissolvePreDealy);
     }
 
     public IEnumerator DissolveFade(EnemyManager enemy)
     {
-        yield return glowDelayWait;
-        GameObject glowObject = PoolManager.instance.GetEffect((int)PoolManager.Effect.ExtinctionGlow);
-        glowObject.transform.position = glowEffectTransform.position;
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDieGlow]);
-
+        yield return dissolvePreWait;
         material.shader = dissolveShader;
         material.mainTexture = dissolveTexture;
         material.SetFloat(shaderData.TextureBrightness, textureBrightness);
         material.SetColor(shaderData.LightColor, lightColor);
         material.SetVector(shaderData.LightDirection, lightDir);
         material.SetFloat(shaderData.LightIntensity, lightIntensity);
-
-        yield return glowWait;
-        enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
-
-        yield return glowDelayWait;
-        GameObject flashObject = PoolManager.instance.GetEffect((int)PoolManager.Effect.ExtinctionFlash);
-        flashObject.transform.position = flashEffectTransform.transform.position;
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDieFlash]);
-        AudioManager.instance.PlaySystemSFX(AudioManager.instance.systemClips[(int)AudioManager.SystemSound.EnemyDissolve]);
 
         while (shaderData.DissolveProgress < dissolveTime)
         {

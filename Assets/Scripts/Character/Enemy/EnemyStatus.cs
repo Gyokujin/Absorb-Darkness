@@ -118,15 +118,20 @@ public class EnemyStatus : CharacterStatus
             attackCollider.CloseDamageCollider();
 
         if (enemy.enemyType == EnemyManager.EnemyType.Boss)
-            GameManager.instance.EndBossBattle();
-
-        if (GetComponentInChildren<CharacterDissolve>() != null)
         {
+            GameManager.instance.EndBossBattle();
             enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.HitAnimation, true);
-            CharacterDissolve characterDissolve = GetComponentInChildren<CharacterDissolve>();
-            StartCoroutine(characterDissolve.DissolveFade(enemy));
+            StartCoroutine(GetComponentInChildren<CharacterGlow>().Glow());
         }
         else
+        {
             enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
+
+            if (GetComponentInChildren<CharacterDissolve>() != null)
+                StartCoroutine(GetComponentInChildren<CharacterDissolve>().DissolveFade(enemy));
+        }
+
+        if (GetComponent<SummonEnemy>() != null)
+            StartCoroutine(GetComponent<SummonEnemy>().RevertEnemy());
     }
 }
