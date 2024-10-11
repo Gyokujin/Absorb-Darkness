@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -35,6 +36,10 @@ public class PlayerCombat : MonoBehaviour
     public void HandleWeaponAttack(WeaponItem weapon, bool onLightAttack)
     {
         usingWeapon = weapon;
+
+        if (usingWeapon.weaponType == WeaponItem.WeaponType.None) // 맨손일 경우 공격 취소
+            return;
+
         player.playerInput.sprintFlag = false;
         player.isSprinting = false;
 
@@ -44,9 +49,6 @@ public class PlayerCombat : MonoBehaviour
 
         switch (usingWeapon.weaponType)
         {
-            case WeaponItem.WeaponType.None:
-                break;
-
             case WeaponItem.WeaponType.Sword:
 
                 if (onLightAttack)
