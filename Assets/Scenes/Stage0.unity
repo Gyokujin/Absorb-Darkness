@@ -457,6 +457,7 @@ MonoBehaviour:
   - {fileID: 4636373201134749058, guid: 5fd1210210040d34e8810388185a6063, type: 3}
   effects:
   - {fileID: 7366913133744347035, guid: 0c988c57d13cfc64895a3fa51c2750d3, type: 3}
+  - {fileID: 7366913133744347035, guid: f593b84fb0deb994ea6984086cbf7502, type: 3}
   - {fileID: 5767961683956056756, guid: 457b09b8120f66c4f9231ef9be729b85, type: 3}
   - {fileID: 1025251091560914748, guid: 1373f8ae5529c244e85cb866cb731060, type: 3}
   - {fileID: 8070283385636925653, guid: 4a9efebc463b38543bc999e00ab6a6f4, type: 3}
@@ -20218,6 +20219,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1586074302}
     m_Modifications:
+    - target: {fileID: 627337151530297000, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: enemyAttacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 627337151530297000, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: enemyAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e04c601fc2d552b4f822f2f8eea4be6f, type: 2}
     - target: {fileID: 957284572224849543, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_Name
       value: Sorceress
@@ -20261,6 +20270,14 @@ PrefabInstance:
     - target: {fileID: 7323164783708159819, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421784553130219315, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: healthLevel
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421784553130219315, guid: 8b79114391319fb4bb56f64adb410eff, type: 3}
+      propertyPath: healthLevelAmount
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

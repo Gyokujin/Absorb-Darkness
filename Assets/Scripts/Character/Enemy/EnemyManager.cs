@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using CharacterData;
 using SystemData;
+using static PoolManager;
 
 public class EnemyManager : CharacterManager
 {
@@ -69,6 +70,17 @@ public class EnemyManager : CharacterManager
         Init();
     }
 
+    void OnEnable()
+    {
+        onDie = false;
+        collider.enabled = true;
+        blockerCollider.enabled = true;
+        rigidbody.isKinematic = false;
+
+        curState = idleState;
+        navMesh.enabled = false;
+    }
+
     protected virtual void Init()
     {
         detectionLayer = LayerMask.GetMask(gameObjectData.PlayerLayer);
@@ -86,13 +98,10 @@ public class EnemyManager : CharacterManager
         pursueTargetState = GetComponentInChildren<PursueTargetState>();
         combatStanceState = GetComponentInChildren<CombatStanceState>();
         attackState = GetComponentInChildren<AttackState>();
-        curState = idleState;
     }
 
     void Start()
     {
-        rigidbody.isKinematic = false;
-        navMesh.enabled = false;
         navMesh.speed = enemyStatus.runSpeed;
         navMesh.acceleration = enemyStatus.runSpeed;
         navMesh.angularSpeed = enemyStatus.rotationSpeed;

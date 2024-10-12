@@ -23,5 +23,6 @@ public class SummonEnemy : MonoBehaviour
     {
         yield return revertWait;
         summoner.SummonEnemies.Remove(this);
+        PoolManager.instance.Return(gameObject);
     }
 }

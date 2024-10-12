@@ -55,11 +55,23 @@ public class EnemyStatus : CharacterStatus
             return;
 
         CurrentHealth -= damage;
+        GameObject hitEffect = null;
 
-        if (enemy.enemyType == EnemyManager.EnemyType.Boss)
-            UIManager.instance.stageUI.BossHPUIModify(CurrentHealth, maxHealth);
+        switch (enemy.enemyType)
+        {
+            case EnemyManager.EnemyType.Normal:
+                hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.SmallHitBlood);
+                break;
 
-        GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
+            case EnemyManager.EnemyType.Named:
+                break;
+
+            case EnemyManager.EnemyType.Boss:
+                UIManager.instance.stageUI.BossHPUIModify(CurrentHealth, maxHealth);
+                hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.BigHitBlood);
+                break;
+        }
+
         hitEffect.transform.position = effectTransform.position;
 
         if (CurrentHealth <= 0)
@@ -117,21 +129,27 @@ public class EnemyStatus : CharacterStatus
         foreach (WeaponDamageCollider attackCollider in enemy.attackColliders)
             attackCollider.CloseDamageCollider();
 
-        if (enemy.enemyType == EnemyManager.EnemyType.Boss)
+        switch (enemy.enemyType)
         {
-            GameManager.instance.EndBossBattle();
-            enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.HitAnimation, true);
-            StartCoroutine(GetComponentInChildren<CharacterGlow>().Glow());
-        }
-        else
-        {
-            enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
+            case EnemyManager.EnemyType.Normal:
+                enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.DeadAnimation, true);
 
-            if (GetComponentInChildren<CharacterDissolve>() != null)
-                StartCoroutine(GetComponentInChildren<CharacterDissolve>().DissolveFade(enemy));
-        }
+                if (GetComponentInChildren<CharacterDissolve>() != null)
+                    StartCoroutine(GetComponentInChildren<CharacterDissolve>().DissolveFade(enemy));
 
-        if (GetComponent<SummonEnemy>() != null)
-            StartCoroutine(GetComponent<SummonEnemy>().RevertEnemy());
+                if (GetComponent<SummonEnemy>() != null)
+                    StartCoroutine(GetComponent<SummonEnemy>().RevertEnemy());
+                break;
+
+            case EnemyManager.EnemyType.Named:
+
+                break;
+
+            case EnemyManager.EnemyType.Boss:
+                GameManager.instance.EndBossBattle();
+                enemy.enemyAnimator.PlayTargetAnimation(enemy.characterAnimatorData.HitAnimation, true);
+                StartCoroutine(GetComponentInChildren<CharacterGlow>().Glow());
+                break;
+        }
     }
 }

@@ -114,7 +114,7 @@ public class PlayerStatus : CharacterStatus
             player.playerAnimator.animator.SetBool(player.characterAnimatorData.OnDamageParameter, true);
             player.playerAnimator.PlayTargetAnimation(player.characterAnimatorData.HitAnimation, true);
 
-            GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.HitBlood);
+            GameObject hitEffect = PoolManager.instance.GetEffect((int)PoolManager.Effect.SmallHitBlood);
             hitEffect.transform.position = effectTransform.position;
             StartCoroutine(PlayerCamera.instance.Shake());
             player.playerAudio.PlaySFX(player.playerAudio.characterClips[(int)CharacterAudio.CharacterSound.Hit]);

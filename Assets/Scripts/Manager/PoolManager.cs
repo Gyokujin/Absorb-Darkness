@@ -13,7 +13,7 @@ public class PoolManager : MonoBehaviour
 
     public enum Effect
     {
-        HitBlood, EtherEffect, ExtinctionGlow, ExtinctionFlash
+        SmallHitBlood, BigHitBlood, EtherEffect, ExtinctionGlow, ExtinctionFlash
     }
 
     public enum EnemySpell
